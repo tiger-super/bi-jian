@@ -1,0 +1,211 @@
+.head {
+	margin: 0px
+}
+
+.logo {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.content {
+	padding: 0px;
+	background-image: url(../img/indexBackground.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding-top: 150px;
+	background-color: #F5F5F5;
+	height: 800px;
+}
+
+.house-content {
+	height: 620px;
+	background-color: white;
+}
+
+.house-window {
+	margin-top: 40px;
+}
+
+.house {
+	border: 1px solid #ececec;
+	height: 315px;
+	padding: 0px;
+}
+
+.house-img {
+	cursor: pointer;
+	height: 124px;
+	padding: 0px;
+}
+
+.house-rent {
+	background-image: url(../img/renting.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.title {
+	font-size: 20px;
+	color: #000;
+}
+
+.number {
+	font-size: 14px;
+	color: #999;
+}
+
+.see {
+	display: block;
+	border: 1px solid #aaa;
+	border-radius: 100px;
+	text-align: center;
+	color: #4a4a4a;
+	width: 76px;
+	height: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	margin-top: 7px;
+}
+
+.see:hover {
+	background-color: red;
+	color: white;
+	transition: all 0.5s;
+}
+
+.icon {
+	color: #aaa;
+	width: 10px;
+	font-size: 10px;
+	padding: 0px;
+	"
+}
+
+.see:hover .icon {
+	color: white;
+	transition: all 0.5s;
+}
+
+.house-entrance {
+	padding: 10px;
+}
+
+.table td {
+	text-align: center;
+	background-color: #f3f6f9;
+	cursor: pointer;
+}
+
+.table td a {
+	color: black;
+}
+
+.table td:hover {
+	background-color: red;
+	transition: all 0.5s;
+}
+
+.table td:hover a {
+	text-decoration: none;
+	color: white;
+	transition: all 0.5s;
+}
+
+.table td:hover .icon {
+	color: white;
+	transition: all 0.5s;
+}
+
+.house-second {
+	background-image: url(../img/second-house.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.house-business {
+	background-image: url(../img/business.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.tail {
+	margin-top: 30px;
+	height: 200px;
+	padding: 0px;
+}
+
+.tail:hover .see-tail {
+	color: white;
+	transition: all 0.5s;
+	background-color: red;
+}
+
+.tail:hover .icon {
+	color: white;
+	transition: all 0.5s;
+}
+
+.tail-left {
+	background-image: url(../img/house01.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.tail-right {
+	background-image: url(../img/house02.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.see-tail {
+	width: 103px;
+	height: 28px;
+	line-height: 28px;
+	margin-top: 24px;
+	font-size: 14px;
+	display: block;
+	border: 1px solid #aaa;
+	border-radius: 100px;
+	text-align: center;
+}
+
+.end-title {
+	font-size: 14px;
+	color: #333;
+	margin: 30px 0 10px;
+	"
+}
+
+.end-ul {
+	padding: 0px;
+}
+
+.end-ul li {
+	list-style: none;
+	float: left;
+	width: 100px;
+	margin-right: 27px;
+	margin-bottom: 10px;
+	color: #999;
+	font-size: 12px;
+}
+
+.footer {
+	padding: 0px;
+	margin-top: 20px;
+	border-top: 1px solid #eee;
+	padding-top: 30px;
+	margin-bottom: 20px;
+}
+
+.footer a {
+	color: #555;
+	font-size: 12px;
+	text-decoration: none;
+	margin-right: 8px;
+	margin-left: 8px;
+}
+
+.footer span {
+	color: #999;
+}

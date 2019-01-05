@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.house.mapper.CustomerManagementMapper">
+   <!-- 注册  -->
+   <insert  id="registerCustomer" parameterType="com.house.entity.Customer">
+   insert into customer(customer_name,customer_phone,
+   customer_password,customer_mailbox) value
+   (#{customerName},#{customerPhone},#{customerPassword},#{customerMailbox})
+   </insert>
+   <!-- 登录  -->
+   <select id="loginSystem" parameterType="String" resultType="com.house.entity.Customer">
+      select customer_password from customer where customer_phone = #{parameter}
+   </select>
+  </mapper>
