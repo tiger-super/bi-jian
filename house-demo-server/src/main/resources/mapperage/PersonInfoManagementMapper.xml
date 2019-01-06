@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.house.mapper.PersonInfoManagementMapper">
+   <update id="updateName" parameterType="com.house.entity.Customer">
+   update customer set customer_name = #{customerName} where customer_id = #{customerId}
+   </update>
+   
+   <update id="updateAge" parameterType="com.house.entity.Customer">
+   update customer set customer_age = #{customerAge} where customer_id = #{customerId}
+   </update>
+   
+   <update id="updateSex" parameterType="com.house.entity.Customer">
+   update customer set customer_sex = #{customerSex} where customer_id = #{customerId}
+   </update>
+   
+   <update id="updateMailbox" parameterType="com.house.entity.Customer">
+   update customer set customer_mailbox = #{customerMailbox} where customer_id = #{customerId}
+   </update>
+  
+    <update id="updatePassword" parameterType="com.house.entity.Customer">
+   update customer set customer_Password = #{customerPassword} where customer_id = #{customerId}
+   </update>
+ 
+ 
+  </mapper>

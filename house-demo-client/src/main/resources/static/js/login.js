@@ -9,7 +9,7 @@ $(document).ready(function() {
 				data : $("#login").serialize(),
 				success : function(result) {
 					if (result == "true") {
-						window.location.href = "/house/login/success/jump";
+						window.location.href = "/house/show/indexView";
 					} else {
 						$(".dataJudge").removeClass("hide");
 						$(".text").text(result);

@@ -23,9 +23,10 @@
 				<a href="#" class="navbar-brand logo">住哪儿</a>
 			</div>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li><a>登录/注册</a></li>
-				<li><a>个人中心</a></li>
+			<ul class="nav navbar-nav navbar-right" id="head-nav">
+				<li><a href ="/house/show/loginView" style="padding-right:0px">登录</a></li>
+				<li><a href ="/house/show/registerView" style="padding-left:5px">/&nbsp注册</a></li>
+				<li><a href = "/house/show/personView">个人中心</a></li>
 				<li><a href="#">帮助中心</a></li>
 				<li><a>投诉渠道</a></li>
 				<li><a>网站导航</a></li>

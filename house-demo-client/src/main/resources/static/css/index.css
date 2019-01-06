@@ -6,7 +6,14 @@
 	font-size: 40px;
 	font-weight: bold;
 }
+#head-nav li{
+		cursor: pointer;
+}
+#head-nav li a{display: block;}
 
+#head-nav li a:hover{
+	color:red;
+}
 .content {
 	padding: 0px;
 	background-image: url(../img/indexBackground.jpg);

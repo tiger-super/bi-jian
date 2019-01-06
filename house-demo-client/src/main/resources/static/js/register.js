@@ -11,7 +11,7 @@ $(document).ready(function(){
 				data : $("#register").serialize(),
 				success : function(result) {
 					if (result == "true") {
-						window.location.href = "/house/register/success/jump";
+						window.location.href = "/show/successView";
 					} else {
 						$(".dataJudge").removeClass("hide");
 						$(".text").text(result);
