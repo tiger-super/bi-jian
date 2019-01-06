@@ -1,11 +1,14 @@
 package com.house.demo.provider;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
 import com.house.mapper.PersonInfoManagementMapper;
 @Service
 public class PersonInfoServiceImpl implements PersonInfoService{
+	@Autowired
     PersonInfoManagementMapper personInfoManagementMapper;
 	@Override
 	public String modifyCustomerAge(Customer customer) {
@@ -58,7 +61,7 @@ public class PersonInfoServiceImpl implements PersonInfoService{
 	}
 
 	@Override
-	public Customer queryCustomerIdAndCustomerName(Customer customer) {
+	public Customer queryCustomerIdAndCustomerName(Customer customer){
 		return personInfoManagementMapper.selectCustomerIdAndCustomerName(customer);
 	}
 

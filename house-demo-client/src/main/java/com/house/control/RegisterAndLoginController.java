@@ -35,7 +35,7 @@ public class RegisterAndLoginController {
 	public String handleLogin(Customer customer,Map<String,Customer> map) {
 		String result =  registerAndService.loginSystemService(customer);
 		 if("true".equals(result)) {
-		 map.put("customerSession",personInfoService.queryCustomerId(customer));
+		 map.put("customerSession",personInfoService.queryCustomerIdAndCustomerName(customer));
 		 }
 		return result;
 	}

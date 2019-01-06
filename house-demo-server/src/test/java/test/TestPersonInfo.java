@@ -32,6 +32,14 @@ public class TestPersonInfo {
     	customer.setCustomerId("3");
     	personInfoManagementMapper.updateName(customer);
     }
-
+    
+	
+	@Test
+	public void testQueryNameAndId() {
+		Customer customer = new Customer();
+    	customer.setCustomerPhone("17875511746");
+		System.out.println(personInfoManagementMapper.selectCustomerIdAndCustomerName(customer));
+		
+	}
 
 }
