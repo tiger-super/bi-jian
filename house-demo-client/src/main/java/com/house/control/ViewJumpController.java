@@ -35,15 +35,9 @@ public class ViewJumpController {
 	}
 
 	// 显示个人中心
-	@RequestMapping("/show/personView")
+	@RequestMapping("/session/show/personView")
 	public String showPerson(HttpSession session) {
-		Customer customer = (Customer)session.getAttribute("customerSession");
-		if(customer == null) {
-             return "login";			
-		}else {
-			return "person";
-			
-		}
+		return "person";
 	}
 
 }

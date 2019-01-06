@@ -8,7 +8,7 @@ import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
 
 @Controller
-@RequestMapping("/house")
+@RequestMapping("/house/session")
 public class ModifyPersonInfoController {
 	@Reference
 	PersonInfoService personInfoService;

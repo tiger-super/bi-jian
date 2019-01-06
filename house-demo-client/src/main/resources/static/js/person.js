@@ -23,16 +23,16 @@ $(document).ready(function() {
 				var urlAddress;
 				switch (attribute) {
 				case "customerName":
-					urlAddress = "/house/modify/customerName";
+					urlAddress = "/house/session/modify/customerName";
 					break;
 				case "customerSex":
-					urlAddress = "/house/modify/customerSex";
+					urlAddress = "/house/session/modify/customerSex";
 					break;
 				case "customerAge":
-					urlAddress = "/house/modify/customerAge";
+					urlAddress = "/house/session/modify/customerAge";
 					break;
 				default:
-					urlAddress = "/house/modify/customerMailbox";
+					urlAddress = "/house/session/modify/customerMailbox";
 					break;
 				}
 			}
