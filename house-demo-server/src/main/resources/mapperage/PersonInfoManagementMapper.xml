@@ -23,5 +23,9 @@
    update customer set customer_Password = #{customerPassword} where customer_id = #{customerId}
    </update>
  
+    <!-- 查询用户的id -->
+    <select id="selectCustomerIdAndCustomerName" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
+    select customer_id,customer_name from customer where customer_phone = #{customerPhone}
+    </select>
  
   </mapper>

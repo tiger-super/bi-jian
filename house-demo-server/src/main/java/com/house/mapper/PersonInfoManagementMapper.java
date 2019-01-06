@@ -16,4 +16,7 @@ public interface PersonInfoManagementMapper {
 	int updateSex(Customer customer);
 	// 修改邮箱
 	int updateMailbox(Customer customer);
+	
+	// 查询用户的id和姓名
+	Customer selectCustomerIdAndCustomerName(Customer customer);
 }

@@ -5,7 +5,7 @@ $(document).ready(function() {
 		if (isName && isPassowrd) {
 			$.ajax({
 				url : '/house/handle/login',
-				type : "get",
+				type : "post",
 				data : $("#login").serialize(),
 				success : function(result) {
 					if (result == "true") {

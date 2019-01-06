@@ -39,7 +39,7 @@ $(document).ready(function() {
 			$.ajax({
 				url : urlAddress,
 				dataType : "json",
-				type : "get",
+				type : "post",
 				data : {
 					attribute : inputNewValue
 				},

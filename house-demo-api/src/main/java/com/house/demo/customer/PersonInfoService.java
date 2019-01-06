@@ -13,4 +13,6 @@ public interface PersonInfoService {
 	public String modifyCustomerMailbox(Customer customer);
 	// 修改用户密码
 	public String modifyCustomerPassword(Customer customer);
+	// 查询用户id
+	public Customer queryCustomerIdAndCustomerName(Customer customer);
 }
