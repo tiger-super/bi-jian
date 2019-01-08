@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -25,24 +25,28 @@
 			</div>
 
 			<ul class="nav navbar-nav navbar-right" id="head-nav">
-			<c:choose>
-   <c:when test="${empty sessionScope.customerSession.customerName}">  
-				<li><a href ="/house/show/loginView" style="padding-right:0px">登录</a></li>
-				<li><a href ="/house/show/registerView" style="padding-left:5px">/&nbsp注册</a></li>
-				 </c:when>
-   <c:otherwise> 
-				<li><a href="#">欢迎你！<span class="glyphicon glyphicon-user"></span>${sessionScope.customerSession.customerName}
-				</a></li>
-				<li><a href="#">退出</a></li>
-				   </c:otherwise>
-</c:choose>
-				<li><a href = "/house/session/show/personView">个人中心</a></li>
+				<c:choose>
+					<c:when test="${empty sessionScope.customerSession.customerName}">
+						<li><a href="/house/show/loginView"
+							style="padding-right: 0px">登录</a></li>
+						<li><a href="/house/show/registerView"
+							style="padding-left: 5px">/&nbsp注册</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="#">欢迎你！<span
+								class="glyphicon glyphicon-user"></span>${sessionScope.customerSession.customerName}
+						</a></li>
+					</c:otherwise>
+				</c:choose>
+					<li><a href="/house/show/indexView">首页</a>
+				<li><a href="/house/session/show/personView">个人中心</a></li>
 				<li><a href="#">帮助中心</a></li>
 				<li><a>投诉渠道</a></li>
 				<li><a>网站导航</a></li>
-				<!--<li>
-						<a href="#">欢迎你！<span class="glyphicon glyphicon-user"></span>钟泰文</a>
-					</li>-->
+				<c:if test="${not empty sessionScope.customerSession.customerName}">
+				<li><a href="/house/quit">退出</a></li>
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
@@ -345,7 +349,7 @@
 
 
 			<div class="end-title">其他房产网相关热门城市</div>
-			<div class="col-lg-12" style="padding:0px">
+			<div class="col-lg-12" style="padding: 0px">
 				<ul class="end-ul">
 
 					<li>北京房产网</li>

@@ -28,7 +28,6 @@ public class TestMapper {
      house.setHousePublisherId("10000");
      houseManagementMapper.insertHouse(house);
      System.out.println(house);
-     
-     
 	}
+	
 }

@@ -23,9 +23,26 @@
    update customer set customer_Password = #{customerPassword} where customer_id = #{customerId}
    </update>
  
-    <!-- 查询用户的id -->
+    <!-- 查询用户的id和姓名 -->
     <select id="selectCustomerIdAndCustomerName" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
     select customer_id,customer_name from customer where customer_phone = #{customerPhone}
     </select>
- 
-  </mapper>
+     
+     <!-- 根据id查询用户的所有信息 -->
+     <select id="selectCustomerAllInfoFromId" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
+     select customer_name,customer_mailbox,customer_sex,customer_age,customer_phone,
+     customer_head_image_address from customer where customer_id = #{customerId}
+     </select>
+     
+     
+     <!-- 根据id查询图片地址 -->
+     <select id="selectPhotoAddressFromId" parameterType="String" resultType="String">
+       select customer_head_image_address from customer where customer_id = #{customerId}    
+       </select>
+       
+       <!-- 根据id插入图片地址 -->
+       <update id="updatePhotoAddressFromId" parameterType="com.house.entity.Customer">
+       update customer set customer_head_image_address= #{customerHeadImageAddress}  
+       where customer_id = #{customerId}    
+       </update>
+ </mapper>

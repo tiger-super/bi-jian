@@ -1,68 +1,126 @@
 package com.house.demo.provider;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.util.ClassUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
 import com.house.mapper.PersonInfoManagementMapper;
+import com.house.tool.FileUtil;
+import com.house.tool.PhoneAddressCreate;
+
 @Service
-public class PersonInfoServiceImpl implements PersonInfoService{
+public class PersonInfoServiceImpl implements PersonInfoService {
 	@Autowired
-    PersonInfoManagementMapper personInfoManagementMapper;
+	PersonInfoManagementMapper personInfoManagementMapper;
+
 	@Override
 	public String modifyCustomerAge(Customer customer) {
-		int result =  personInfoManagementMapper.updateAge(customer);
-		if( result == 1) {
+		int result = personInfoManagementMapper.updateAge(customer);
+		if (result == 1) {
 			return "true";
-		}else {
+		} else {
 			return "false";
 		}
 	}
 
 	@Override
 	public String modifyCustomerMailbox(Customer customer) {
-		int result =  personInfoManagementMapper.updateMailbox(customer);
-		if( result == 1) {
+		int result = personInfoManagementMapper.updateMailbox(customer);
+		if (result == 1) {
 			return "true";
-		}else {
+		} else {
 			return "false";
 		}
 	}
 
 	@Override
 	public String modifyCustomerName(Customer customer) {
-		int result =  personInfoManagementMapper.updateName(customer);
-		if( result == 1) {
+		int result = personInfoManagementMapper.updateName(customer);
+		if (result == 1) {
 			return "true";
-		}else {
+		} else {
 			return "false";
 		}
 	}
 
 	@Override
 	public String modifyCustomerPassword(Customer customer) {
-		int result =  personInfoManagementMapper.updatePassword(customer);
-		if( result == 1) {
+		int result = personInfoManagementMapper.updatePassword(customer);
+		if (result == 1) {
 			return "true";
-		}else {
+		} else {
 			return "false";
 		}
 	}
 
 	@Override
 	public String modifyCustomerSex(Customer customer) {
-		int result =  personInfoManagementMapper.updateSex(customer);
-		if( result == 1) {
+		int result = personInfoManagementMapper.updateSex(customer);
+		if (result == 1) {
 			return "true";
-		}else {
+		} else {
 			return "false";
 		}
 	}
 
 	@Override
-	public Customer queryCustomerIdAndCustomerName(Customer customer){
+	public Customer queryCustomerIdAndCustomerName(Customer customer) {
 		return personInfoManagementMapper.selectCustomerIdAndCustomerName(customer);
+	}
+
+	@Override
+	public Customer queryCustomerInfo(Customer customer) {
+
+		return personInfoManagementMapper.selectCustomerAllInfoFromId(customer);
+	}
+
+	// 文件上传服务
+	@Override
+	public String photoUploadService(byte[] arr, String suffix,String id) {
+		Customer customer = new Customer();
+		customer.setCustomerId(id);
+		// 根据id去查询图片地址
+		String photoAddress;
+		int result = 0;
+        // 本地路径
+		StringBuffer path = new StringBuffer(); 
+        // 类路径
+		StringBuffer classPath = new StringBuffer();
+     
+		photoAddress = personInfoManagementMapper.selectPhotoAddressFromId(id);
+		try {
+			path.append(new File("").getCanonicalPath()+"/src/main/resources/static/customerPhoto/");
+			classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/customerPhoto/");
+			if (photoAddress != null) {
+				path.append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
+				classPath.append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
+				customer.setCustomerHeadImageAddress(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
+			} else {
+				photoAddress = PhoneAddressCreate.createAddress(id) + suffix;
+				path.append(photoAddress);
+				classPath.append(photoAddress);
+				customer.setCustomerHeadImageAddress(photoAddress);
+			}
+			FileUtil.fileupload(arr, path.toString());
+			FileUtil.fileupload(arr, classPath.toString());
+			result =  personInfoManagementMapper.updatePhotoAddressFromId(customer);
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+		if (result != 0) {
+			return customer.getCustomerHeadImageAddress();
+		} else {
+			return "false";
+		}
 	}
 
 }

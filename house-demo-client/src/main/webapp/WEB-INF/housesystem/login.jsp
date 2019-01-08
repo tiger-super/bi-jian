@@ -36,7 +36,7 @@
 <body>
 	<div
 		class="col-lg-4 col-lg-offset-4  col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 container col-center-block">
-		<form class="form-signin form-horizontal" id="login">
+		<form class="form-signin form-horizontal" id="login" autocomplete="off">
 			
 			<div  class="form-group"> 
 						<div class="col-sm-4"></div>

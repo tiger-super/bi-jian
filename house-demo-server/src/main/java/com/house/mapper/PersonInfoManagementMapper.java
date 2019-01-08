@@ -19,4 +19,14 @@ public interface PersonInfoManagementMapper {
 	
 	// 查询用户的id和姓名
 	Customer selectCustomerIdAndCustomerName(Customer customer);
+	
+	// 根据id查询用户的所有信息
+	Customer selectCustomerAllInfoFromId(Customer customer);
+
+	// 根据id查询图片地址
+	String selectPhotoAddressFromId(String id);
+	
+	
+	// 更新图片地址
+	int updatePhotoAddressFromId(Customer customer);
 }

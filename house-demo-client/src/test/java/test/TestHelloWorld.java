@@ -30,5 +30,9 @@ public class TestHelloWorld {
 	 public void say() {
 	    	System.out.println(demoService.sayHello("tiger"));
 	    }
-
+    @Test
+    public void test1() {
+    	String s = "s5df435sdf4.jpg";
+    	System.out.println(s.substring(0,s.lastIndexOf(".")));
+    }
 }

@@ -10,7 +10,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.CoumterApplication;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
-import com.house.mapper.HouseManagementMapper;
 
 
 @RunWith(SpringRunner.class)

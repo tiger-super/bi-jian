@@ -12,7 +12,6 @@ public class CoustomerSessionInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		if(request.getSession().getAttribute("customerSession") == null) {
-			System.out.println(request.getSession().getAttribute("customerSession"));
 			response.sendRedirect("/house/show/loginView");
 			return false;
 			

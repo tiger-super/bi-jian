@@ -55,7 +55,7 @@
 			<artifactId>zkclient</artifactId>
 			<version>0.10</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>org.apache.curator</groupId>
 			<artifactId>curator-framework</artifactId>
 			<version>4.0.1</version>
@@ -72,8 +72,8 @@
 			<version>1.7.5</version>
 			<scope>test</scope>
 		</dependency>
-        <!-- c3p0 -->
-        <dependency>
+		<!-- c3p0 -->
+		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5.2</version>
@@ -92,7 +92,8 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.0</version>
 		</dependency>
-		
+
+
 	</dependencies>
 	<build>
 		<finalName>house-server</finalName>
