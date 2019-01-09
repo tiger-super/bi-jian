@@ -148,8 +148,8 @@ function submitform(){
 			    contentType: false,
 			success : function(result) {
 			   if(result != "false" ){
-				   console.log(result);
-				   $(".head-img").attr("src","http://localhost:8080/static/customerPhoto/"+result);
+				   $(".head-img").attr("src","#");
+				 $(".head-img").attr("src","http://localhost:8080/static/customerPhoto/"+result);
 			   }else{
 				   alter("上传失败");
 			   }

@@ -8,6 +8,7 @@
 <title></title>
 </head>
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/static/css/login.css">
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/login.js"></script>
 <style>
@@ -77,9 +78,9 @@
 				<button class="btn btn-primary btn-block">登录</button>
 			</div>
 		</form>
-		<div class="col-sm-5" style="padding: 0px;"><a href="/house/show/registerView">没有账户？去注册</a></div>  
+		<div class="col-sm-5" style="padding: 0px;"><a href="/house/show/registerView" class="footer-a">没有账户？去注册</a></div>  
 			<div class="col-sm-4"></div>
-			<div class="col-sm-3"><a >找回密码</a>
+			<div class="col-sm-3"><a href="/house/show/retrievePasswordView" class="footer-a">找回密码</a>
 			</div>
 	</div>
 </body>

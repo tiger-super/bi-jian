@@ -39,5 +39,11 @@ public class ViewJumpController {
 	public String showPerson(HttpSession session) {
 		return "person";
 	}
+	
+	// 显示找回密码
+	@RequestMapping("/show/retrievePasswordView")
+	public String showRetrievePassword(){
+		return "retrievePassword";
+	}
 
 }
