@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/static/css/login.css">
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/login.js"></script>
+<script type="text/javascript" src="/static/js/nextVerification.js" ></script>
 <style>
 .col-center-block {
 	position: absolute;
@@ -66,13 +67,22 @@
 				<div class="alert alert-warning hide password-tips"
 					style="margin: 0px;"></div>
 			</div>
-
-
-			<div class="form-group ">
-				<div class="alert alert-danger alert-dismissable hide dataJudge" role="alert">
-					<strong class="text"> </strong>
-				</div>
+			
+			
+			
+            <div class="form-group" >
+				<div class="col-sm-12" style="padding:0px"><label>验证码</label></div> 
+				<div class="col-sm-6" style="padding:0px">
+                <input type="text" class="form-control  VerificationCode" maxlength="4">
+					</div>
+					<div class="col-sm-3" ><img class="code-image"></div>
+					<div class="col-sm-3 replace-code">看不清，换一张</div>
 			</div>
+			<div class="form-group">
+				<div class="alert alert-warning hide VerificationCode-tips"
+					style="margin: 0px;"></div>
+			</div>
+			
 
 			<div class="form-group">
 				<button class="btn btn-primary btn-block">登录</button>

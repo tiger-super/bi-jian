@@ -23,4 +23,8 @@ public interface PersonInfoService {
 	public Customer queryCustomerInfo(Customer customer);
 	// 处理用户头像
 	public String photoUploadService(byte[] arr,String suffix,String id);
+    // 查询账号是否存在，若存在返回该账号的邮箱
+	public Customer ifExistAccountNumberReturnMail(Customer customer);
+
+
 }

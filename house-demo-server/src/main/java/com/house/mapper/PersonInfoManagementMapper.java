@@ -26,7 +26,10 @@ public interface PersonInfoManagementMapper {
 	// 根据id查询图片地址
 	String selectPhotoAddressFromId(String id);
 	
-	
 	// 更新图片地址
 	int updatePhotoAddressFromId(Customer customer);
+		
+	
+	// 查询用户的id和邮箱
+	Customer selectCustomerIdAndMail(Customer customer);
 }

@@ -45,4 +45,9 @@
        update customer set customer_head_image_address= #{customerHeadImageAddress}  
        where customer_id = #{customerId}    
        </update>
+       
+       
+       <select id="selectCustomerIdAndMail" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
+        select customer_id,customer_mailbox from customer where customer_Phone = #{customerPhone}
+       </select>
  </mapper>

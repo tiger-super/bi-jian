@@ -123,4 +123,9 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 		}
 	}
 
+	@Override
+	public Customer ifExistAccountNumberReturnMail(Customer customer) {
+		return personInfoManagementMapper.selectCustomerIdAndMail(customer);
+	}
+
 }

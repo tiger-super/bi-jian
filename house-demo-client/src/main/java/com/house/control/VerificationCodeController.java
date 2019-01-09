@@ -35,7 +35,7 @@ public class VerificationCodeController {
 		String piccode = (String) session.getAttribute("piccode");
 		if (piccode == null) {
 			return "false";
-		} else if (piccode.equals(VerificationCode)) {
+		} else if (piccode.equals(VerificationCode.toUpperCase())) {
 			return "true";
 		} else {
 			return "false";

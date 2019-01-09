@@ -1,25 +1,45 @@
 var isName = false;
 var isPassowrd = false;
+var  isVerificationCode = false;
 $(document).ready(function() {
 	$("#login").submit(function() {
-		if (isName && isPassowrd) {
+		if (isName && isPassowrd && isVerificationCode) {
 			$.ajax({
-				url : '/house/handle/login',
+				url : '/house/judge/VerificationCode',
 				type : "post",
-				data : $("#login").serialize(),
+				dataType : "json",
+				data : {"VerificationCode":$(".VerificationCode").val()},
 				success : function(result) {
-					if (result == "true") {
-						window.location.href = "/house/show/indexView";
-					} else {
-						$(".dataJudge").removeClass("hide");
-						$(".text").text(result);
+					if(result == true){
+						$.ajax({
+							url : '/house/handle/login',
+							type : "post",
+							data : $("#login").serialize(),
+							success : function(result) {
+								if (result == "true") {
+									window.location.href = "/house/show/indexView";
+								} else {
+									$(".dataJudge").removeClass("hide");
+									$(".text").text(result);
+								}
+							}
+						});
+					}
+					else{
+						$(".VerificationCode-tips").removeClass("hide");
+						$(".VerificationCode-tips").text("验证码不正确");
+						$(".VerificationCode").parent().addClass("has-error");
+						return false;
 					}
 				}
 			});
+			
+			
 
 		} else {		
 				blurNameJudge();
 				blurPasswordJudge();
+				blurVerification();
 		}
 		return false;
 
@@ -32,6 +52,11 @@ $(document).ready(function() {
 	$(".form-password").blur(function() {
 		blurPasswordJudge();
 	});
+	
+	$(".VerificationCode").blur(function() {
+		blurVerification();
+	});
+
 })
 
 function blurNameJudge() {
@@ -63,5 +88,20 @@ function blurPasswordJudge() {
 		$(".form-password").parent().removeClass("has-error");
 		$(".password-tips").addClass("hide");
 		isPassowrd = true;
+	}
+}
+
+
+function blurVerification(){
+	var value = $(".VerificationCode").val();
+	if (value == "") {
+		$(".VerificationCode-tips").removeClass("hide");
+		$(".VerificationCode-tips").text("验证码不能为空");
+		$(".VerificationCode").parent().addClass("has-error");
+		isVerificationCode = false;
+	} else {
+		$(".VerificationCode").parent().removeClass("has-error");
+		$(".VerificationCode-tips").addClass("hide");
+		isVerificationCode = true;
 	}
 }

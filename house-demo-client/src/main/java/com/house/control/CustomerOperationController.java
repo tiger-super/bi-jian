@@ -15,18 +15,31 @@ import com.house.entity.Customer;
 public class CustomerOperationController {
 	@Reference
 	PersonInfoService personInfoService;
-	
+
 	// 根据用户id获取用户信息
-	  @RequestMapping("/session/gain/info")
-	  @ResponseBody
-     public Customer gainPersonInfo(HttpSession session) {
-		  Customer customer  = (Customer)session.getAttribute("customerSession");
-    	 return personInfoService.queryCustomerInfo(customer);
-     }
-	  
-		// 修改用户密码
-		@RequestMapping("/modify/customerPassword")
-		public String modifyCustomerPassword(Customer customer) {
-			return  personInfoService.modifyCustomerPassword(customer);
+	@RequestMapping("/session/gain/info")
+	@ResponseBody
+	public Customer gainPersonInfo(HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
+		return personInfoService.queryCustomerInfo(customer);
+	}
+
+	// 修改用户密码
+	@RequestMapping("/modify/customerPassword")
+	public String modifyCustomerPassword(Customer customer) {
+		return personInfoService.modifyCustomerPassword(customer);
+	}
+	
+	// 根据账号查询是否存在该账号，返回账号带着这个账号的邮箱
+	@RequestMapping("/exist/account/number")
+	@ResponseBody
+	public Customer ifExistAccountNumerReturnMail(Customer customer) {
+		Customer result = personInfoService.ifExistAccountNumberReturnMail(customer);
+		if(result != null) {
+		return result;
+		}else {
+			return new Customer();
 		}
+	}
+	
 }

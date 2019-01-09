@@ -21,4 +21,17 @@ public class TestPersonInfoManagementMapper {
 	customer.setCustomerHeadImageAddress("sdfhkjsdhf.jpg");
 	personInfoManagementMapper.updatePhotoAddressFromId(customer);
 	}
+	
+	@Test
+	public void testSelectCustomerIdAndMail() {
+		Customer customer = new Customer();
+		customer.setCustomerPhone("17875511746");
+		System.out.println(personInfoManagementMapper.selectCustomerIdAndMail(customer));
+		
+		Customer c2 = new Customer();
+		c2.setCustomerPhone("1787");
+		System.out.println(personInfoManagementMapper.selectCustomerIdAndMail(c2));
+		
+		
+	}
 }

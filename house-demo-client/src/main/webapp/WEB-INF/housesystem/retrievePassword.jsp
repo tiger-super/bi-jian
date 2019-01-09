@@ -43,15 +43,23 @@
 				</div>
 				<div  class="col-sm-3"></div>
 				<div  class="col-sm-6 first-form">
-					<div>请输入要重置密码的邮箱账号</div>
-					<div><input type="text" placeholder="帐号" class="form-control" id="account-number"></div>
+					<div>请输入要重置密码的账号</div>
+					<div>
+					<input type="text" placeholder="帐号" class="form-control" id="account-number">
+					</div>
+					<div class="form-group">
+				<div class="alert alert-warning hide account-number-tips" style="margin: 0px;"></div>
+			</div>
 					<div>请输入验证码</div>
 					
-					<div class="first-form-code" class="col-sm-12">
-					<div class="col-sm-4"><input type=""class="form-control  VerificationCode" maxlength="4"></div>
+					<div class="first-form-code" class="col-sm-12" style="height:30px">
+					<div class="col-sm-4"><input type="text" class="form-control  VerificationCode" maxlength="4"></div>
 					<div class="col-sm-4"><img class="code-image"></div>
 					<div class="col-sm-4 replace-code">看不清，换一张</div>
 					</div>
+					<div class="form-group">
+				<div class="alert alert-warning hide code-tips" style="margin: 0px;"></div>
+			</div>
 					
 					<div  class="col-sm-12">
 						<button class="next btn btn-info btn-block">下一步</button>
