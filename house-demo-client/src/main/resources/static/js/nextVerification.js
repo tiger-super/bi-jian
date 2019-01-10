@@ -2,6 +2,7 @@ var isAccountNumber = false;
 var isCode = false;
 $(document).ready(
 		function() {
+			$(".second-form").hide();
 			// 获取验证码
 			$(".code-image").attr("src", '/house/gain/VerificationCode');
             // 换一张验证码
@@ -58,6 +59,10 @@ $(document).ready(
 			$(".gainMailVerificationCode").click(function(){
 				 mailVerificationCode();
 			})
+			$(".second").click(function(){
+				ajaxGainMailVerificationCode();
+			})
+			
 		})
 // 账号是否为空
 function blurAccountNumber() {
@@ -73,7 +78,7 @@ function blurAccountNumber() {
 		isAccountNumber = true;
 	}
 }
-//验证码是否为空
+// 验证码是否为空
 function blurCode() {
 	var value = $(".VerificationCode").val();
 	if (value == "") {
@@ -106,6 +111,9 @@ function ajaxAccountNumber() {
 				$(".VerificationCode").val("");
 			} else {
 				$(".center-content-title").text("完成验证");
+				$(".first-form").hide();
+				$(".second-form").show();
+				$(".second-form").attr("value",result.customerMailbox);
 			}
 		}
 	});
@@ -132,5 +140,17 @@ function mailVerificationCode(){
 
 // ajax获取邮箱验证码
 function ajaxGainMailVerificationCode(){
-	$(".gainMailVerificationCode").submit()
+	var customerMailbox = $(".second-form").attr("value");
+	$.ajax({
+		url : '/house/send/mailVerificationCode',
+		type : "post",
+		dataType : "json",
+		data : {
+			"customerMailbox" : customerMailbox
+		},
+		success : function(result) {
+			console.log(typeof result);
+		}
+	
+});
 }

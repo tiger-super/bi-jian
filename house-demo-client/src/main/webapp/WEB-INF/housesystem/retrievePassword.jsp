@@ -37,7 +37,7 @@
 		<div class="center-content col-sm-6">
 			<div class="center-content-title">输入账号</div>
 			<div class="col-sm-3"></div>
- 			<div class="col-sm-6 first-form">
+ 			 <div class="col-sm-6 first-form">
 				<div>请输入要重置密码的账号</div>
 				<div>
 					<input type="text" placeholder="帐号" class="form-control"
@@ -68,7 +68,7 @@
 					<button class="next btn btn-info btn-block">下一步</button>
 
 				</div>
-			</div> 
+			</div>  
 			<div class="col-sm-6 second-form">
 				<div>点击获取验证码，验证码将发送至安全邮箱<span class="span-mail"></span></div>
 			    <div class="col-sm-12 securify">
@@ -76,7 +76,8 @@
 			    <input type="text" class="form-control" placeholder="输入邮箱验证码">
 			    </div>
 			       <div class="col-sm-1"></div>
-			    <div class="col-sm-5"><button class="btn btn-info btn-block gainMailVerificationCode"><a>获取验证码</a></button></div>
+			    <div class="col-sm-5"><button class="btn btn-info btn-block gainMailVerificationCode">
+			    <a href="/house/send/mailVerificationCode">获取验证码</a></button></div>
 			    
 			    </div>
 			    <div class="col-sm-12">
