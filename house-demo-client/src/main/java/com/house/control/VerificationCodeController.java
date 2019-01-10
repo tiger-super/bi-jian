@@ -13,22 +13,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.house.tool.CreateVerificationCode;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.house.demo.verificationcode.VerificationCodeService;
 
 @Controller
 @RequestMapping("/house")
 public class VerificationCodeController {
+	@Reference
+	VerificationCodeService verificationCodeService;
+
+	// 获取验证码
 	@RequestMapping("/gain/VerificationCode")
-	public void gainVerificationCode(HttpServletRequest request, HttpServletResponse response) {
-		BufferedImage image = CreateVerificationCode.create(request.getSession());
-		try {
-			OutputStream out = response.getOutputStream();
-			ImageIO.write(image, "jpg", out);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void gainVerificationCode(HttpSession session, HttpServletResponse response) {
+		 verificationCodeService.gainVerificationCode(session,response);
+		
 	}
 
+	// 判断验证码正确与否
 	@RequestMapping("/judge/VerificationCode")
 	@ResponseBody
 	public String judgeVerificationCode(HttpSession session, String VerificationCode) {
@@ -40,5 +41,12 @@ public class VerificationCodeController {
 		} else {
 			return "false";
 		}
+	}
+
+	// 发送邮箱验证码
+	@RequestMapping("/send/mailVerificationCode")
+	@ResponseBody
+	public void sendMailVerificationCode() {
+
 	}
 }
