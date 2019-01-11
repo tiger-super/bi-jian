@@ -26,7 +26,8 @@ public class CustomerOperationController {
 
 	// 修改用户密码
 	@RequestMapping("/modify/customerPassword")
-	public String modifyCustomerPassword(Customer customer) {
+	@ResponseBody
+	public String modifyCustomerPassword(Customer customer) {	
 		return personInfoService.modifyCustomerPassword(customer);
 	}
 	

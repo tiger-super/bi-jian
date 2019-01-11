@@ -3,11 +3,12 @@ package com.house.control;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,11 +23,13 @@ import com.house.tool.CreateVerificationCode;
 @Controller
 @RequestMapping("/house")
 public class VerificationCodeController {
-	@Reference
+	// 设置超时时间
+	@Reference(timeout=20000)
 	VerificationCodeService verificationCodeService;
 
 	// 获取验证码
 	@RequestMapping("/gain/VerificationCode")
+	@ResponseBody
 	public void gainVerificationCode(HttpSession session, HttpServletResponse response) {
 		BufferedImage image = CreateVerificationCode.create(session);
 		try {
@@ -54,14 +57,11 @@ public class VerificationCodeController {
 	// 发送邮箱验证码
 	@RequestMapping("/send/mailVerificationCode")
 	@ResponseBody
-	public String sendMailVerificationCode(String customerMailbox, HttpSession session) {
+	public void sendMailVerificationCode(String customerMailbox, HttpSession session) {
 		String mailVerificationCodeText = verificationCodeService.sendMailVerificationCode(customerMailbox, "您的验证码为：");
 		if (mailVerificationCodeText != null) {
 			session.setAttribute("mailVerificationCodeText", mailVerificationCodeText);
 			removeAttrbute(session, "mailVerificationCodeText");
-			return "true";
-		}else {
-			return "验证码失效请重新发送";
 		}
 	}
      // 设置验证码有效时间
@@ -76,5 +76,20 @@ public class VerificationCodeController {
 			}
 		},  60 * 1000);
 	}
+	@RequestMapping("/judge/mailVerificationCode")
+	@ResponseBody
+	public  Map<String, String> judgeMailVerificationCode(String mailVerificationCodeText,HttpSession session) {
+		Map<String, String> map = new HashMap();
+		String  mailVerificationCodeSession = (String) session.getAttribute("mailVerificationCodeText");
+		if( mailVerificationCodeSession == null) {
+			map.put("result", "验证码已失效，请重新获取");
+		}else if(mailVerificationCodeSession.equals(mailVerificationCodeText)){
+			map.put("result","true");
+		}else {
+			map.put("result","false");	
+		}
+		return map;
+	}
+	
 
 }

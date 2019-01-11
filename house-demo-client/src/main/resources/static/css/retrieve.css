@@ -89,3 +89,43 @@
 	text-decoration:none;
 	color:white;
 }
+
+
+.three-form{
+	margin-top: 30px;
+}
+.three-form div {
+	margin-top: 10px;
+	padding: 0px;
+}
+
+
+.true {
+	height: 480PX;
+	position: relative;
+}
+
+.true-content{
+	height: 200px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0px;
+}
+.true-content{
+	padding:0px;
+}
+.true-image{
+	width:100px;
+	height:100px;
+
+}
+
+.true-text{
+	padding-top:10px;
+	font-size:50px;
+	box-sizing: border-box;
+}
