@@ -129,6 +129,7 @@ function ajaxAccountNumber() {
 				$(".first-form").hide();
 				$(".second-form").show();
 				$(".second-form").attr("value", result.customerMailbox);
+				$(".span-mail").text(result.customerMailbox);
 				$(".three-form").attr("value",result.customerId);
 			}
 		}

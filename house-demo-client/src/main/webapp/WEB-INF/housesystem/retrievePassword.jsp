@@ -73,64 +73,63 @@
 			</div>
 			<!-- 完成验证 -->
 			<div class="col-sm-6 second-form">
-				<div>
-					点击获取验证码，验证码将发送至安全邮箱<span class="span-mail"></span>
-				</div>
-				<div class="col-sm-12 securify">
-					<div class="col-sm-6">
-						<input type="text" class="form-control mailVerificationCodeText"
-							placeholder="输入邮箱验证码">
-					</div>
-					<div class="col-sm-1"></div>
-					<div class="col-sm-5" >
-						<button class="btn btn-info btn-block gainMailVerificationCode">获取验证码</button>
-					</div>
-				</div>
-
-
-				<div class="form-group col-sm-12" style="margin-bottom: 0px">
-					<div class="alert alert-warning hide mailCode-tips"
-						style="margin: 0px;"></div>
-				</div>
-				<div class="col-sm-12">
-					<button class="second btn btn-info btn-block">下一步</button>
-				</div>
+				点击获取验证码，验证码将发送至安全邮箱<span class="span-mail"></span>
 			</div>
-			<!-- 修改密码 -->
-			<div class="col-sm-6 three-form">
-				<div>请输入新密码</div>
-				<div>
-					<input type="password" placeholder="新密码" class="form-control"
-						id="new-password">
+			<div class="col-sm-12 securify">
+				<div class="col-sm-6">
+					<input type="text" class="form-control mailVerificationCodeText"
+						placeholder="输入邮箱验证码">
 				</div>
-				<div class="form-group">
-					<div class="alert alert-warning hide new-password-tips"
-						style="margin: 0px;"></div>
-				</div>
-				<div>请确认密码</div>
-				<div>
-					<input type="password" placeholder="确认密码" class="form-control"
-						id="confirm-password">
-				</div>
-				<div class="form-group" style="margin-bottom: 0px">
-					<div class="alert alert-warning hide confirm-password-tips"
-						style="margin: 0px;"></div>
-				</div>
-
-				<div class="col-sm-12" style="padding: 0px;">
-					<button class="modify-password btn btn-info btn-block">下一步</button>
-
+				<div class="col-sm-1"></div>
+				<div class="col-sm-5">
+					<button class="btn btn-info btn-block gainMailVerificationCode">获取验证码</button>
 				</div>
 			</div>
 
 
+			<div class="form-group col-sm-12" style="margin-bottom: 0px">
+				<div class="alert alert-warning hide mailCode-tips"
+					style="margin: 0px;"></div>
+			</div>
+			<div class="col-sm-12">
+				<button class="second btn btn-info btn-block">下一步</button>
+			</div>
 		</div>
+		<!-- 修改密码 -->
+		<div class="col-sm-6 three-form">
+			<div>请输入新密码</div>
+			<div>
+				<input type="password" placeholder="新密码" class="form-control"
+					id="new-password">
+			</div>
+			<div class="form-group">
+				<div class="alert alert-warning hide new-password-tips"
+					style="margin: 0px;"></div>
+			</div>
+			<div>请确认密码</div>
+			<div>
+				<input type="password" placeholder="确认密码" class="form-control"
+					id="confirm-password">
+			</div>
+			<div class="form-group" style="margin-bottom: 0px">
+				<div class="alert alert-warning hide confirm-password-tips"
+					style="margin: 0px;"></div>
+			</div>
+
+			<div class="col-sm-12" style="padding: 0px;">
+				<button class="modify-password btn btn-info btn-block">下一步</button>
+
+			</div>
+		</div>
+
+
+	</div>
 	</div>
 	<!-- 完成修改 -->
 	<div class="true">
 		<div class="col-sm-4"></div>
 		<div class="true-content col-sm-5">
-			<div class="col-sm-3" style="padding:0px;padding-left:25px">
+			<div class="col-sm-3" style="padding: 0px; padding-left: 25px">
 				<img src="/static/img/true.png" class="true-image">
 			</div>
 			<div class="true-text col-sm-6">修改成功</div>
