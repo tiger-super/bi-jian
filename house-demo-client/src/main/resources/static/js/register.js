@@ -2,22 +2,58 @@ var isName = false;
 var isPassowrd = false;
 var isPhone = false;
 var isMailbox = false;
+var isMailboxExist = false;
+
 $(document).ready(function(){
     $("#register").submit(function() {
     	if (isName && isPassowrd && isPhone && isMailbox) {
-    		$.ajax({
-				url : '/house/handle/register',
-				type : "get",
-				data : $("#register").serialize(),
-				success : function(result) {
-					if (result == "true") {
-						window.location.href = "/show/successView";
-					} else {
-						$(".dataJudge").removeClass("hide");
-						$(".text").text(result);
-					}
-				}
-			});
+    		if(isMailboxExist){
+    			var mailVerificationCodeText = $(".mailVerificationCodeText").val();
+    			$.ajax({
+    				url : '/house/judge/mailVerificationCode',
+    				type : "post",
+    				dataType : "json",
+    				data : {
+    					"mailVerificationCodeText" : mailVerificationCodeText
+    				},
+    				success : function(result) {
+    					if (result.result == "true") {
+    						$.ajax({
+    							url : '/house/handle/register',
+    							type : "get",
+    							data : $("#register").serialize(),
+    							success : function(result) {
+    								if (result == "true") {
+    									window.location.href = "/house/show/successView";
+    								} else {
+    									$(".dataJudge").removeClass("hide");
+    									$(".text").text(result);
+    								}
+    							}
+    						});
+
+    					} else {
+    						$(".mailVerificationCode-tips").removeClass("hide");
+    						if (result.result == "false") {
+    							$(".mailVerificationCode-tips").text("验证码错误");
+    						} else {
+    							$(".mailVerificationCode-tips").text(result.result);
+    						}
+    					}
+    				}
+
+    			});	
+    			
+    			
+    			
+    			
+    
+  
+    		}else{
+    			$(".mailVerificationCode-tips").removeClass("hide");
+    	      	$(".mailVerificationCode-tips").text("请验证邮箱");
+    	      	$(".mailVerificationCodeText").parent().addClass("has-error");
+    		}
 
 		} else {		
 				blurNameJudge();
@@ -50,6 +86,12 @@ $(document).ready(function(){
     $(".form-mailbox").blur(function(){
     	blurMailboxJudge();
     });
+    // 邮箱验证
+    $(".gainMailVerificationCode").click(function(){
+    	$(".mailVerificationCode-tips").addClass("hide");
+      	$(".mailVerificationCodeText").parent().removeClass("has-error");
+    	 judgeMailboxExist();
+    })
 })
 
 
@@ -124,3 +166,56 @@ function blurMailboxJudge(){
     	isMailbox = true;
     }
 }
+
+
+function judgeMailboxExist(){
+	
+	   var  value = $(".form-mailbox").val();
+	   console.log("X")
+	   $.ajax({
+			url : '/house/send/mailVerificationCode',
+			type : "post",
+			dataType : "json",
+			data : {
+				"customerMailbox" : value
+			},
+			success : function(result) {
+				console.log(result)
+				if(result == true){
+					isMailboxExist = true;
+				}else{
+					$(".mailVerificationCode-tips").removeClass("hide");
+	    	      	$(".mailVerificationCode-tips").text("邮箱不存在");
+	    	      	$(".mailVerificationCodeText").parent().addClass("has-error");
+	    	      	$(".form-mailbox").parent().addClass("has-error");
+				}
+			}
+
+		});
+}
+
+function ajaxJudgeMailVerificationCode() {
+	var mailVerificationCodeText = $(".mailVerificationCodeText").val();
+	$.ajax({
+		url : '/house/judge/mailVerificationCode',
+		type : "post",
+		dataType : "json",
+		data : {
+			"mailVerificationCodeText" : mailVerificationCodeText
+		},
+		success : function(result) {
+			if (result.result == "true") {
+				isMailVerificationCode = true;
+			} else {
+				$(".mailVerificationCode-tips").removeClass("hide");
+				if (result.result == "false") {
+					$(".mailVerificationCode-tips").text("验证码错误");
+				} else {
+					$(".mailVerificationCode-tips").text(result.result);
+				}
+			}
+		}
+
+	});
+}
+

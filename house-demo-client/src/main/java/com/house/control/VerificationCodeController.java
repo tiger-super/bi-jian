@@ -57,11 +57,14 @@ public class VerificationCodeController {
 	// 发送邮箱验证码
 	@RequestMapping("/send/mailVerificationCode")
 	@ResponseBody
-	public void sendMailVerificationCode(String customerMailbox, HttpSession session) {
+	public String sendMailVerificationCode(String customerMailbox, HttpSession session) {
 		String mailVerificationCodeText = verificationCodeService.sendMailVerificationCode(customerMailbox, "您的验证码为：");
 		if (mailVerificationCodeText != null) {
 			session.setAttribute("mailVerificationCodeText", mailVerificationCodeText);
 			removeAttrbute(session, "mailVerificationCodeText");
+			return "true"; 
+		}else {
+			return "false";
 		}
 	}
      // 设置验证码有效时间

@@ -82,7 +82,7 @@
 							placeholder="输入邮箱验证码">
 					</div>
 					<div class="col-sm-1"></div>
-					<div class="col-sm-5">
+					<div class="col-sm-5" >
 						<button class="btn btn-info btn-block gainMailVerificationCode">获取验证码</button>
 					</div>
 				</div>

@@ -100,15 +100,21 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 			path.append(new File("").getCanonicalPath()+"/src/main/resources/static/customerPhoto/");
 			classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/customerPhoto/");
 			if (photoAddress != null) {
-				path.append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
-				classPath.append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
-				customer.setCustomerHeadImageAddress(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
-			} else {
+				 // 旧的本地路径
+				StringBuffer oldPath = new StringBuffer(); 
+		        // 旧的类路径
+				StringBuffer oldClassPath = new StringBuffer();
+				 oldPath.append(path.toString()).append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
+				 oldClassPath.append(classPath.toString()).append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
+				// 删除之前的文件
+				FileUtil.deleteFile(oldPath.toString());
+				FileUtil.deleteFile(oldClassPath.toString());
+			} 
 				photoAddress = PhoneAddressCreate.createAddress(id) + suffix;
 				path.append(photoAddress);
 				classPath.append(photoAddress);
 				customer.setCustomerHeadImageAddress(photoAddress);
-			}
+			
 			FileUtil.fileupload(arr, path.toString());
 			FileUtil.fileupload(arr, classPath.toString());
 			result =  personInfoManagementMapper.updatePhotoAddressFromId(customer);
