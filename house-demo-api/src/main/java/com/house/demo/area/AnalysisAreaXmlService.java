@@ -12,4 +12,6 @@ public interface AnalysisAreaXmlService {
     public List<String> analysisAreaXmlGainCity(String province);
     // 解析xml获得所有区
     public List<String> analysisAreaXmlGainArea(String province,String city);
+    // pinyin排序
+    public Map<String,List<String>> sortPinyin();
 }

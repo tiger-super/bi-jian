@@ -20,4 +20,12 @@ public class TestAnalysisAreaXmlServiceImpl {
 	public void testanalysisAreaXmlGainCity() {
 		System.out.println(new AnalysisAreaXmlServiceImpl().analysisAreaXmlGainCity("广东省"));
 	}
+	@Test
+	public void testAnalysisAreaXml() {
+		System.out.println(new AnalysisAreaXmlServiceImpl().analysisAreaXml());
+	}
+	@Test
+	public void testSortPinyin() {
+		System.out.println(new AnalysisAreaXmlServiceImpl().sortPinyin());
+	}
 }

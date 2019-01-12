@@ -2,8 +2,10 @@ package com.house.demo.provider;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,16 +16,21 @@ import org.dom4j.io.SAXReader;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.area.AnalysisAreaXmlService;
+import com.house.tool.PinyinComparator;
 
 @Service
 public class AnalysisAreaXmlServiceImpl implements AnalysisAreaXmlService {
 	@Override
-	public Map<String,List<String>> analysisAreaXml() {
-		Map<String,List<String>> map = new HashMap<String,List<String>>();
-		List<String> key = analysisAreaXmlGainProvince();
-		for(int i = 0 ; i < key.size() ;i++) {
-		List<String> value = analysisAreaXmlGainCity(key.get(i));
-		map.put(key.get(i), value);
+	public Map<String, List<String>> analysisAreaXml() {
+		Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
+		String[] province = PinyinComparator.getStringArray(analysisAreaXmlGainProvince());
+		List<String> key = Arrays.asList(province);
+		Arrays.sort(province, new PinyinComparator());
+		for (int i = 0; i < key.size(); i++) {
+			String[] city = PinyinComparator.getStringArray(analysisAreaXmlGainCity(key.get(i)));
+			List<String> value = Arrays.asList(city);
+			Arrays.sort(city, new PinyinComparator());
+			map.put(key.get(i), value);
 		}
 		return map;
 	}
@@ -153,4 +160,11 @@ public class AnalysisAreaXmlServiceImpl implements AnalysisAreaXmlService {
 
 	}
 
+	@Override
+	public Map<String, List<String>> sortPinyin() {
+		List<String> list = analysisAreaXmlGainProvince();
+		return 	new PinyinComparator().getSortPinyin(list);
+	}
+	
+	
 }
