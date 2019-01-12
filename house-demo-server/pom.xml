@@ -98,7 +98,13 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
+		<!-- 解析xml -->
+		<dependency>
+    <groupId>dom4j</groupId>
+    <artifactId>dom4j</artifactId>
+    <version>1.6.1</version>
+</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>house-server</finalName>
