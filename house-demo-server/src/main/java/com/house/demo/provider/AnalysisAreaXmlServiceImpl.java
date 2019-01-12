@@ -30,7 +30,8 @@ public class AnalysisAreaXmlServiceImpl implements AnalysisAreaXmlService {
 			String[] city = PinyinComparator.getStringArray(analysisAreaXmlGainCity(key.get(i)));
 			List<String> value = Arrays.asList(city);
 			Arrays.sort(city, new PinyinComparator());
-			map.put(key.get(i), value);
+			String deleteSuffixKey = PinyinComparator.deleteSuffix(key.get(i));
+			map.put(deleteSuffixKey, value);
 		}
 		return map;
 	}

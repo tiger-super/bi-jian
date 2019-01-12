@@ -15,11 +15,10 @@ import net.sourceforge.pinyin4j.PinyinHelper;
 public class TestPinyin {
     @Test
     public void test() {
-    	char c = '钟';
+    	char c = '重';
     	String[] s = PinyinHelper.toHanyuPinyinStringArray(c);
-    	System.out.println(s.length);
     	for(int i = 0 ;i < s.length ; i++) {
-    		System.out.println(s[0]);
+    		System.out.println(s[i]);
     	}
     	System.out.println(s[0].substring(0, 1));
     }

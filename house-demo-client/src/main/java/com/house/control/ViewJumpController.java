@@ -45,5 +45,11 @@ public class ViewJumpController {
 	public String showRetrievePassword(){
 		return "retrievePassword";
 	}
+	
+	// 显示选择区域界面
+	@RequestMapping("/show/selectAreaView")
+	public String showSelectArea() {
+		return "selectArea";
+	}
 
 }

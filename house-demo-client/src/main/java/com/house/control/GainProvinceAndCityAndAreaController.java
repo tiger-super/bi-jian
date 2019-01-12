@@ -20,6 +20,11 @@ public class GainProvinceAndCityAndAreaController {
     public Map<String,List<String>> gainProvinceAndCity(){
     	return analysisAreaXmlService.analysisAreaXml();
     }
+	@RequestMapping("/gain/pinyin/province")
+	@ResponseBody
+	public Map<String,List<String>> gainProvincePinyin(){
+		return analysisAreaXmlService.sortPinyin();
+	}
 	@RequestMapping("/gain/province")
 	@ResponseBody
     public List<String> gainProvince(){
