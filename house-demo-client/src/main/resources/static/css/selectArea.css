@@ -1,0 +1,179 @@
+.houselogo{
+	width:30px;
+	height: 30px;
+}
+.house-title{
+	padding-left: 5px;
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+.search{
+	margin-top:20px ;
+	margin-left:55px;
+	height: 50px;
+	position: relative;
+	padding: 0px;
+}
+.citySearch{
+	box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    padding: 0 125px 0 50px;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+}
+
+.sreach-img{
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top:13px;
+	left: 15px;
+}
+.searchSumit{
+	position: absolute;
+	right: 10px;
+	top:7px;
+	height: 35px;
+	    width: 100px;
+}
+
+.choose{
+	color: #101d37;
+	    font-weight: bold;
+  margin-left: 40px;
+    font-size: 16px;
+    margin-top: 7px;
+    padding: 0px;
+}
+.select{
+	width: 184px;
+    height: 40px;
+    line-height: 39px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 14px;
+    position: relative;
+    vertical-align: -1px;
+    margin-right: 10px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+    padding: 0px;
+}
+
+.select-text{
+	margin-left: 14px;
+}
+.province-select{
+	position: relative;
+}
+.city-select{
+		position: relative;
+}
+
+
+.select-img{
+	position: absolute;
+	background-image: url(../img/down.png);
+	  background-size: 100% 100%;
+    background-repeat: no-repeat;
+	width: 10px;
+	height: 10px;
+     right: 14px;
+     top: 15px;
+}
+
+.select-content{
+	height: 160px;
+overflow-y:auto;
+border: 1px solid  #ddd;
+border-top: none;
+	z-index:999;
+	position: absolute;
+	background-color:#FFFFFF;
+	width:183px;
+}
+.select-content ul{
+	padding: 0px;
+}
+.select-content-ul li{
+list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+    color: #101d37;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    }
+    
+.content{
+	border: 1px solid #ddd;
+	border-bottom: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 18px;
+    margin-left:50px ;
+}
+.content div{
+	padding: 0px;
+}
+.content-div{
+	border-bottom: 1px solid #ddd;
+}
+
+.py{
+    margin: auto;
+    font-size: 24px;
+    color: #afb3bb;
+    background-color: #F8F8F9;
+    width: 50px;
+    text-align: center;
+    height: 100%;
+}
+.province-div{
+	width: 60px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #101d37;
+    margin-top: 13px;
+}
+.content-window{
+	width: 1000px;
+		position: relative;
+}
+.content-window:hover{
+	  background-color: #F8F8F9;
+}
+.city-div{
+	margin-top: 10px;
+	 margin-bottom:10px ;
+}
+.city-div span{
+	margin-top: 5px;
+	margin-left: 20px;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+.city-div span a{
+color: #000000;
+cursor: pointer;
+}
+.city-div span a:hover{
+	text-decoration: none;
+     color: blue;
+}
+
+.sjx{
+	background-image: url(../img/sjx.png);
+	width: 7px;
+    height: 10px;
+    display: inline-block;
+    background-size: 100%;
+    position: absolute;
+       background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
