@@ -2,14 +2,12 @@ var pc;
 $(document).ready(function() {
 	$(".select-content").hide();
 	gainProvinceAndCity();
-	$(".province-select").click(function(){
-		 ProvinceClickTigger();
+	$(".province-select").click(function() {
+		ProvinceClickTigger();
 	})
-	
-		
-	
-	$(".city-select").click(function(){
-		 CityClickTigger()
+
+	$(".city-select").click(function() {
+		CityClickTigger()
 	})
 
 });
@@ -62,7 +60,7 @@ function gainProvincePinyin() {
 														+ i + j + '"></div>');
 								for (let m = 0; m < pc[province[j]].length; m++) {
 									$(".city-div-" + i + j).append(
-											'<span class=""><a>'
+											'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='+ pc[province[j]][m]+'">'
 													+ pc[province[j]][m]
 													+ '</a></span>')
 								}
@@ -87,7 +85,7 @@ function gainProvincePinyin() {
 							"color" : "white"
 						});
 						$(this).children(".sjx").show();
-						$(this).children(".sjx").css("top",height);
+						$(this).children(".sjx").css("top", height);
 					});
 
 					$(".content-window").mouseleave(function() {
@@ -107,84 +105,148 @@ var provinceClick = false;
 var cityClick = false;
 var ifProvince = false;
 
-function ProvinceClickTigger(){
-	if(provinceClick){
+function ProvinceClickTigger() {
+	if (provinceClick) {
 		provinceClick = false;
 		$(".province").children(".select-content").hide();
-		$(".province-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/down.png)");
-	}else{
+		$(".province-select").children(".select-img").css("background-image",
+				"url(http://localhost:8088/static/img/down.png)");
+	} else {
 		provinceClick = true;
 		$(".province").children(".select-content").show();
-		$(".province-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/up.png)");
-	$(".province").children(".select-content");
-	$(".province").children(".select-content").children(".select-content-ul").empty();
-	$.ajax({
-		url : '/house/gain/province',
-		type : "post",
-		dataType : "json",
-		success : function(result) {
-			for(let i = 0; i < result.length ; i++){
-				$(".province").children(".select-content").children(".select-content-ul").append('<li>'+result[i]+'</li>')
-			}
-		
-			$(".select-content-ul").children("li").mouseleave(function() {
-				$(this).css({"background-color":"white"});
-			});
-			$(".select-content-ul").children("li").mouseenter(function() {
-				$(this).css({"background-color":"#F8F8F8"});
-			});
-			
-			$(".province-select-content-ul").children("li").click(function(){
-				var value = $(this).text();
-				$(".province-select-text").text(value);
-				provinceClick = false;
-				$(".province").children(".select-content").hide();
-				$(".province-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/down.png)");
-			})
-		}
-	});
+		$(".province-select").children(".select-img").css("background-image",
+				"url(http://localhost:8088/static/img/up.png)");
+		$(".province").children(".select-content");
+		$(".province").children(".select-content").children(
+				".select-content-ul").empty();
+		$
+				.ajax({
+					url : '/house/gain/province',
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						for (let i = 0; i < result.length; i++) {
+							$(".province").children(".select-content")
+									.children(".select-content-ul").append(
+											'<li>' + result[i] + '</li>')
+						}
+
+						$(".select-content-ul").children("li").mouseleave(
+								function() {
+									$(this).css({
+										"background-color" : "white"
+									});
+								});
+						$(".select-content-ul").children("li").mouseenter(
+								function() {
+									$(this).css({
+										"background-color" : "#F8F8F8"
+									});
+								});
+
+						$(".province-select-content-ul")
+								.children("li")
+								.click(
+										function() {
+											var value = $(this).text();
+											$(".province-select-text").text(
+													value);
+											provinceClick = false;
+											$(".province").children(
+													".select-content").hide();
+											$(".province-select")
+													.children(".select-img")
+													.css("background-image",
+															"url(http://localhost:8088/static/img/down.png)");
+										})
+					}
+				});
 	}
 }
 
-function CityClickTigger(){
+function CityClickTigger() {
 	var province = $(".province-select-text").text();
-	if(province != "省份"){
-	if(cityClick){
-		cityClick = false;
-		$(".city").children(".select-content").hide();
-		$(".city-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/down.png)");
-	}else{
-		cityClick = true;
-		$(".city").children(".select-content").show();
-		$(".city-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/up.png)");
-     	$(".city").children(".select-content");
-	    $(".city").children(".select-content").children(".select-content-ul").empty();
-	$.ajax({
-		url : '/house/gain/city',
-		type : "post",
-		dataType : "json",
-		data:{"province":province},
-		success : function(result) {
-			for(let i = 0; i < result.length ; i++){
-				$(".city").children(".select-content").children(".select-content-ul").append('<li>'+result[i]+'</li>')
-			}
-		
-			$(".select-content-ul").children("li").mouseleave(function() {
-				$(this).css({"background-color":"white"});
-			});
-			$(".select-content-ul").children("li").mouseenter(function() {
-				$(this).css({"background-color":"#F8F8F8"});
-			});
-			
-			$(".city-select-content-ul").children("li").click(function(){
-				var value = $(this).text();
-				$(".city-select-text").text(value);
-				provinceClick = false;
-				$(".city").children(".select-content").hide();
-				$(".city-select").children(".select-img").css("background-image","url(http://localhost:8088/static/img/down.png)");
-			})
+	if (province != "省份") {
+		if (cityClick) {
+			cityClick = false;
+			$(".city").children(".select-content").hide();
+			$(".city-select").children(".select-img").css("background-image",
+					"url(http://localhost:8088/static/img/down.png)");
+
+		} else {
+			cityClick = true;
+			$(".city").children(".select-content").show();
+			$(".city-select").children(".select-img").css("background-image",
+					"url(http://localhost:8088/static/img/up.png)");
+			$(".city").children(".select-content");
+			$(".city").children(".select-content").children(
+					".select-content-ul").empty();
+			$
+					.ajax({
+						url : '/house/gain/city',
+						type : "post",
+						dataType : "json",
+						data : {
+							"province" : province
+						},
+						success : function(result) {
+							for (let i = 0; i < result.length; i++) {
+								$(".city").children(".select-content")
+										.children(".select-content-ul").append(
+												'<li>' + result[i] + '</li>')
+							}
+
+							$(".select-content-ul").children("li").mouseleave(
+									function() {
+										$(this).css({
+											"background-color" : "white"
+										});
+									});
+							$(".select-content-ul").children("li").mouseenter(
+									function() {
+										$(this).css({
+											"background-color" : "#F8F8F8"
+										});
+									});
+
+							$(".city-select-content-ul")
+									.children("li")
+									.click(
+											function() {
+												var value = $(this).text();
+												$(".city-select-text").text(
+														value);
+												provinceClick = false;
+												$(".city").children(
+														".select-content")
+														.hide();
+												$(".city-select")
+														.children(".select-img")
+														.css(
+																"background-image",
+																"url(http://localhost:8088/static/img/down.png)");
+
+												$.ajax({
+													url : '/house/keep/place',
+													type : "post",
+													dataType : "json",
+													data : {
+														"city" : value
+													},
+													success : function(result) {
+													
+														if(result != false){
+															window.location.href = "/house/show/indexView";
+														}
+													}
+												})
+
+											});
+
+						}
+					})
 		}
-	});
+
 	}
-	}
+
 }
