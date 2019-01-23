@@ -1,6 +1,29 @@
 .head{
 	margin: 0px;
 }
+.houselogo {
+	margin-top: 5px;
+	width: 40px;
+	height: 40px;
+	margin-left: 35px;
+}
+
+.place-img {
+	width: 20px;
+	height: 20px;
+}
+
+.place-div {
+	padding: 0px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.place a{
+	color:black;
+}
+.place a:hover{
+	text-decoration: none;
+}
 
 .select-sex{
 	margin-left: 30px;

@@ -51,5 +51,10 @@ public class ViewJumpController {
 	public String showSelectArea() {
 		return "selectArea";
 	}
+	// 显示发布界面
+	@RequestMapping("/show/publish/house")
+	public String showPublishHouseView() {
+		return "publish-house";
+	}
 
 }
