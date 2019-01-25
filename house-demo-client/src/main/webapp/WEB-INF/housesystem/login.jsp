@@ -88,9 +88,9 @@
 				<button class="btn btn-primary btn-block">登录</button>
 			</div>
 		</form>
-		<div class="col-sm-5" style="padding: 0px;"><a href="/house/show/registerView" class="footer-a">没有账户？去注册</a></div>  
+		<div class="col-sm-5" style="padding: 0px;margin-top:10px"><a href="/house/show/registerView" class="footer-a">没有账户？去注册</a></div>  
 			<div class="col-sm-4"></div>
-			<div class="col-sm-3" style="padding-right:0px;padding-left:40px"><a href="/house/show/retrievePasswordView" class="footer-a">找回密码</a>
+			<div class="col-sm-3" style="padding-right:0px;padding-left:40px;margin-top:10px"><a href="/house/show/retrievePasswordView" class="footer-a">找回密码</a>
 			</div>
 	</div>
 </body>

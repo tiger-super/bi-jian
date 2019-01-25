@@ -23,8 +23,8 @@
 			</div>
 
 			<ul class="nav navbar-nav navbar-right" id="head-nav">
-				<li class="li-help-center"><a href="#" style="color: #2c82ff;">
-						帮助中心</a></li>
+				<li class="li-help-center"><a href="/house/show/indexView" style="color: #2c82ff;">
+						主页</a></li>
 			</ul>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 			<!-- 完成验证 -->
 			<div class="col-sm-6 second-form">
 				点击获取验证码，验证码将发送至安全邮箱<span class="span-mail"></span>
-			</div>
+			
 			<div class="col-sm-12 securify">
 				<div class="col-sm-6">
 					<input type="text" class="form-control mailVerificationCodeText"
@@ -94,6 +94,7 @@
 			<div class="col-sm-12">
 				<button class="second btn btn-info btn-block">下一步</button>
 			</div>
+		
 		</div>
 		<!-- 修改密码 -->
 		<div class="col-sm-6 three-form">

@@ -88,9 +88,26 @@ $(document).ready(function(){
     });
     // 邮箱验证
     $(".gainMailVerificationCode").click(function(){
-    	$(".mailVerificationCode-tips").addClass("hide");
-      	$(".mailVerificationCodeText").parent().removeClass("has-error");
-    	 judgeMailboxExist();
+    	if(isMailbox){
+    	$(".gainMailVerificationCode").addClass("disabled");
+    	$(".gainMailVerificationCode").attr("disabled", true);
+     	 judgeMailboxExist();
+    	var i = 60
+    	var interval = setInterval(function() {
+    		$(".gainMailVerificationCode").text(i + "秒后可在发送");
+    		i--;
+    	}, 1000);
+    	var time = setTimeout(function() {
+    		$(".gainMailVerificationCode").removeClass("disabled");
+    		$(".gainMailVerificationCode").attr("disabled", false);
+    		$(".gainMailVerificationCode").text("获取验证码");
+    		clearInterval(interval);
+    	}, 62000);
+    	}else{
+    		$(".mailbox-tips").removeClass("hide");
+        	$(".mailbox-tips").text("邮箱不能为空");
+        	$(this).parent().addClass("has-error");
+    	}
     })
 })
 
@@ -171,7 +188,6 @@ function blurMailboxJudge(){
 function judgeMailboxExist(){
 	
 	   var  value = $(".form-mailbox").val();
-	   console.log("X")
 	   $.ajax({
 			url : '/house/send/mailVerificationCode',
 			type : "post",
