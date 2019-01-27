@@ -34,10 +34,16 @@ $(document).ready(function() {
 		showArea();
 	})
 	
-$("#publish").submit(function() {	$.ajax({
+$("#publish").submit(function() {
+	var JsonData = decodeURIComponent($("#publish").serialize(),true);
+	JsonData = transformationJson(JsonData);
+	var Data = JSON.parse(JsonData);
+	$.ajax({
 		url : '/house/publish/house',
 		type : "post",
-		data : $("#publish").serialize(),
+		dataType:"json",
+     	data : Data,
+     	async: false,
 		success : function(result) {
 			/*if (result == "true") {
 				window.location.href = "/house/show/indexView";
@@ -47,6 +53,7 @@ $("#publish").submit(function() {	$.ajax({
 			}*/
 		}
 	});
+	return false;
 })
 })
 
@@ -250,5 +257,15 @@ function showArea() {
 
 	}
 }
-function judgeSellWay(){
+function transformationJson(data){
+	var houseAddressProvince = $(".province-select-text").text();
+	var houseAddressCity = $(".city-select-text").text();
+	var houseAddressArea = $(".area-select-text").text();
+	var houseStructure = $(".room").val()+$(".office").val()+$(".toilet").val();
+	   data = data+"&houseAddressProvince="+houseAddressProvince+"&houseAddressCity="+houseAddressCity+
+	   "&houseAddressArea="+houseAddressArea+"&houseInfo.houseStructure="+houseStructure;
+	   data=data.replace(/&/g,"\",\"");
+       data=data.replace(/=/g,"\":\"");
+       data="{\""+data+"\"}";
+       return data;
 }

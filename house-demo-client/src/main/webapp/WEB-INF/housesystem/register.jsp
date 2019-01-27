@@ -105,7 +105,7 @@
 		</form>
 		<div class="col-sm-5" style="padding:0px;margin-bottom:20px"><a href="/house/show/loginView">已有账户？去登陆</a></div>  
 			<div class="col-sm-5"></div>  
-			<div class="col-sm-2" style="padding:0px"><a href="/house/show/personView">返回首页</a>
+			<div class="col-sm-2" style="padding:0px"><a href="/house/show/indexView">返回首页</a>
 			</div>
 	</div>
 </body>
