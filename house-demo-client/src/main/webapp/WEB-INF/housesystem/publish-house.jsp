@@ -155,7 +155,7 @@
 						<div class="col-sm-10 select-content">
 							<div class="col-sm-2">
 
-								<select class="form-control" name="houseInfo.househouseType">
+								<select class="form-control" name="houseInfo.houseType">
 									<option>请选择</option>
 									<option>商品房</option>
 									<option>公寓</option>
@@ -181,46 +181,46 @@
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control room" >
 									<option>请选择</option>
-									<option>1室</option>
-									<option>2室</option>
-									<option>3室</option>
-									<option>4室</option>
-									<option>5室</option>
-									<option>6室</option>
-									<option>7室</option>
-									<option>8室</option>
-									<option>9室</option>
-									<option>10室</option>
+									<option>一室</option>
+									<option>二室</option>
+									<option>三室</option>
+									<option>四室</option>
+									<option>五室</option>
+									<option>六室</option>
+									<option>七室</option>
+									<option>八室</option>
+									<option>九室</option>
+									<option>十室</option>
 								</select>
 							</div>
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control office">
 									<option>请选择</option>
-									<option>1厅</option>
-									<option>2厅</option>
-									<option>3厅</option>
-									<option>4厅</option>
-									<option>5厅</option>
-									<option>6厅</option>
-									<option>7厅</option>
-									<option>8厅</option>
-									<option>9厅</option>
-									<option>10厅</option>
+									<option>一厅</option>
+									<option>二厅</option>
+									<option>三厅</option>
+									<option>四厅</option>
+									<option>五厅</option>
+									<option>六厅</option>
+									<option>七厅</option>
+									<option>八厅</option>
+									<option>九厅</option>
+									<option>十厅</option>
 								</select>
 							</div>
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control toilet">
 									<option>请选择</option>
-									<option>1卫</option>
-									<option>2卫</option>
-									<option>3卫</option>
-									<option>4卫</option>
-									<option>5卫</option>
-									<option>6卫</option>
-									<option>7卫</option>
-									<option>8卫</option>
-									<option>9卫</option>
-									<option>10卫</option>
+									<option>一卫</option>
+									<option>二卫</option>
+									<option>三卫</option>
+									<option>四卫</option>
+									<option>五卫</option>
+									<option>六卫</option>
+									<option>七卫</option>
+									<option>八卫</option>
+									<option>九卫</option>
+									<option>十卫</option>
 								</select>
 							</div>
 							<div class="col-sm-2 select-house-structure">
@@ -345,20 +345,40 @@
 						</div>
 
 					</div>
-					<!--照片上传 -->
-					<div class="col-sm-12 select">
-						<div class="col-sm-2" style="padding-left: 39px;">
-							<span class="select-sign">*</span> <span class="select-text">
-								上传图片： </span>
-						</div>
-						<div class="col-sm-10 select-content"></div>
-
-					</div>
-
 
 				</div>
 
-
+  </form>
+  <form id="fileUploadFrom" >
+					<!--照片上传 -->
+					<div class="col-sm-12 select">
+					<div class="col-sm-1" ></div>
+						<div class="col-sm-2" style="padding-left: 39px;width:170px">
+							<span class="select-sign">*</span> <span class="select-text">
+								上传图片： </span>
+						</div>
+						<div class="col-sm-9 select-content select-upload-img-show">
+					   
+						</div>
+						
+                        <div class="col-sm-3 select-upload-button">
+                        <div class="select-upload-button-window">
+                        <div class="select-upload-button-title">
+                        上传电脑中图片
+                        </div>
+                        
+                        <div class="select-upload-button-content">
+                        <div style=" position: relative;" class="select-upload-button-img-and-input">
+                        <img  class="select-upload-button-img">
+                      
+                          <input type="file" multiple="multiple" name="photoFile" class="select-upload-button-input" onchange="submitform()">
+                          </div>
+                          <div style="font-size:10px;color:#9a9a9a;">选择电脑图片上传</div>
+                        </div>
+                        </div>
+                        </div>
+					</div>
+  </form>
 				<!--发布完成-->
 				<div class="col-sm-12"
 					style="margin-top: 30px; margin-bottom: 50px;">
@@ -369,7 +389,7 @@
 
 				</div>
 
-			</form>
+
 		</div>
 	</div>
 

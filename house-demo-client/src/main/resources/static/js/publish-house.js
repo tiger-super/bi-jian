@@ -269,3 +269,21 @@ function transformationJson(data){
        data="{\""+data+"\"}";
        return data;
 }
+
+function submitform(){
+	$.ajax({
+		url : "/house/publish/house/upload",
+		type : "post",
+	    data: new FormData($('#fileUploadFrom')[0]),
+		 processData: false,
+		 contentType: false,
+		success : function(result) {
+			for(let i = 0; i <result.length;i++){
+				$(".select-upload-img-show").append("<img src="+result[i]+"/>");
+				$(".select-upload-button").css("padding-left","270px");
+				$(".select-upload-button").css("padding-top","20px");
+			}
+		}
+		
+	})
+}

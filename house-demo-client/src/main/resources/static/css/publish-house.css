@@ -1,6 +1,7 @@
-.content div{
+.content div {
 	padding: 0px;
 }
+
 .houselogo {
 	margin-top: 5px;
 	width: 40px;
@@ -18,170 +19,242 @@
 	margin-top: 15px;
 	cursor: pointer;
 }
-.place a{
-	color:black;
+
+.place a {
+	color: black;
 }
-.content{
+
+.content {
 	margin-top: 20px;
 }
 
-.content-title{
+.content-title {
 	line-height: 14px;
-    color: #000;
-    font-size: 20px;
-    font-family: "Hiragino Sans GB","寰蒋闆呪繆","Microsoft YaHei",SimHei,Tahoma,"瀹嬩綋b8b浣�",SimSun,sansserif;
-    font-weight: bolder;
-    padding: 0px;
+	color: #000;
+	font-size: 20px;
+	font-family: "Hiragino Sans GB", "寰蒋闆呪繆", "Microsoft YaHei", SimHei,
+		Tahoma, "瀹嬩綋b8b浣�", SimSun, sansserif;
+	font-weight: bolder;
+	padding: 0px;
 }
-.select{
+
+.select {
 	margin-top: 30px;
 }
-.province{
-	margin-top: 0px;
-}
-.city{
-	margin-top: 0px;
-}
-.area{
+
+.province {
 	margin-top: 0px;
 }
 
-.address-select{
+.city {
+	margin-top: 0px;
+}
+
+.area {
+	margin-top: 0px;
+}
+
+.address-select {
 	width: 184px;
-    height: 40px;
-    line-height: 39px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-    position: relative;
-    vertical-align: -1px;
-    margin-right: 10px;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.05);
-    padding: 0px;
-}
-.address-select span{
-margin-left: 14px;
-font-size:14px;
-color:black;
-}
-.select-img {
-    position: absolute;
-    background-image: url(../img/down.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    width: 10px;
-    height: 10px;
-    right: 14px;
-    top: 15px;
-}
-.select-address-content{
-	height: 160px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-top: none;
-    z-index: 999;
-    position: absolute;
-    background-color: #FFFFFF;
-    width: 183px;
-}
-.select-content-address-ul {
-	padding:0px
-}
-.select-content-address-ul li{
-	list-style: none;
-    margin: 0;
-    padding: 0;
-    padding-left: 10px;
-    color: #101d37;
-    cursor: pointer;
-    height: 40px;
-    line-height: 40px;
-    font-size:14px;
+	height: 40px;
+	line-height: 39px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+	position: relative;
+	vertical-align: -1px;
+	margin-right: 10px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+	padding: 0px;
 }
 
-label{
+.address-select span {
+	margin-left: 14px;
+	font-size: 14px;
+	color: black;
+}
+
+.select-img {
+	position: absolute;
+	background-image: url(../img/down.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 10px;
+	height: 10px;
+	right: 14px;
+	top: 15px;
+}
+
+.select-address-content {
+	height: 160px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	border-top: none;
+	z-index: 999;
+	position: absolute;
+	background-color: #FFFFFF;
+	width: 183px;
+}
+
+.select-content-address-ul {
+	padding: 0px
+}
+
+.select-content-address-ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	color: #101d37;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+}
+
+label {
 	margin: 0px;
 	vertical-align: middle;
 }
 
-.select-sign{
+.select-sign {
 	height: 22px;
 	color: red;
 	line-height: 22px;
 }
-.select-text{
+
+.select-text {
 	color: #808080;
 	font-size: 20px;
 }
-.select-content input{
+
+.select-content input {
 	width: 20px;
 	height: 20px;
 	margin: 0px;
 	vertical-align: middle;
 }
-.select-content{
+
+.select-content {
 	font-size: 20px;
 }
 
-.select-house-structure{
-
-margin-right: 10px;
+.select-house-structure {
+	margin-right: 10px;
 }
-.select-house-structure input{
+
+.select-house-structure input {
 	border: 1px solid #E0E0E0;
 	width: 150px;
 	height: 34px;
-	outline:none;
-	line-height:34px;
-	    border-radius: 3px;
-	    text-align: center;
-	    color: #c6c6c6;
+	outline: none;
+	line-height: 34px;
+	border-radius: 3px;
+	text-align: center;
+	color: #c6c6c6;
 }
-.select-house-structure span{
+
+.select-house-structure span {
 	color: #a6a6a6;
 }
 
-.money-div{
+.money-div {
 	text-align: right;
 	color: #c6c6c6;
-		border: 1px solid #E0E0E0;
-		  border-radius: 3px;
-		  line-height: 32px;
+	border: 1px solid #E0E0E0;
+	border-radius: 3px;
+	line-height: 32px;
 }
 
-.money{
-	
+.money {
 	border: none;
 	text-align: center;
 	outline: none;
 }
-.house-name{
-		border: 1px solid #E0E0E0;
-		  border-radius: 3px;
-		  line-height: 32px;
-		  	outline:none;
-}
 
-
-. detailed-address{
+.house-name {
 	border: 1px solid #E0E0E0;
-		  border-radius: 3px;
-		  line-height: 32px;
-		  	outline:none;
+	border-radius: 3px;
+	line-height: 32px;
+	outline: none;
 }
-.address-div{
+
+.
+detailed-address {
+	border: 1px solid #E0E0E0;
+	border-radius: 3px;
+	line-height: 32px;
+	outline: none;
+}
+
+.address-div {
 	margin-right: 10px;
 }
-.house-device-div label{
-	    width: 80px;
-	    font-size: 14px;
-	    color: #000000;
-	    font-weight: 100;
-	    font-family:"寰蒋闆呴粦";
+
+.house-device-div label {
+	width: 80px;
+	font-size: 14px;
+	color: #000000;
+	font-weight: 100;
+	font-family: "寰蒋闆呴粦";
 }
 
-.house-descripe{
+.house-descripe {
 	text-align: left;
-	overflow:hidden; 
-	resize:none;
+	overflow: hidden;
+	resize: none;
+}
+
+.select-upload-button-window {
+	height: 180px;
+	width: 150px;
+	border: 1px solid #ececec;
+}
+
+.select-upload-button-title {
+	height: 30px;
+	background-color: #f5f5f5;
+	text-align: center;
+	line-height: 30px;
+	color: #9a9a9a;
+	border-bottom: 1px solid #ececec;
+}
+
+.select-upload-button-img {
+	content: url("/static/img/upload.png");
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+}
+
+.select-upload-button-input {
+	opacity: 0;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	top: 0px;
+	left: 24px;
+	z-index: 9;
+		cursor: pointer;
+}
+
+.select-upload-button-content {
+	text-align: center;
+}
+
+.select-upload-button-img-and-input:hover .select-upload-button-img{
+	content: url("/static/img/upload-hover.png");
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+	
+} 
+
+.select-upload-img-show img{
+	height:100px;
+	width:100px;
+		background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin-right:20px;
+		margin-top:20px;
 }
