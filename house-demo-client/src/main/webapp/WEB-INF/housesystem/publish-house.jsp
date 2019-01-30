@@ -383,8 +383,8 @@
 				<div class="col-sm-12"
 					style="margin-top: 30px; margin-bottom: 50px;">
 					<div class="col-sm-2"></div>
-					<div class="col-sm-2" style="margin-left: 65px;">
-						<button class="btn btn-primary btn-lg" style="width: 200px;">发布</button>
+					<div class="col-sm-2" style="margin-left: 63px;">
+						<button class="btn btn-primary btn-lg send" style="width: 200px;">发布</button>
 					</div>
 
 				</div>

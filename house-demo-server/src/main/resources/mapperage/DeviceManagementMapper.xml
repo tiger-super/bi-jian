@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.house.mapper.DeviceManagementMapper">
+ <!-- 插入房源设备 -->
+  <insert id="inserDeviceInfo" parameterType="com.house.entity.House">
+   insert into device(house_id,bed,wardrobe,desk,air,heater,washer,refigerator,
+   wifi,sofa,tv,toilet,balcony,cook,elevator,tube_coal,heating,escalator,
+   smoke,sewage_disposal,parking) value(#{houseId},#{device.bed},#{device.wardrobe},#{device.desk},
+   #{device.air},#{device.heater},#{device.washer},#{device.refigerator},
+   #{device.wifi},#{device.sofa},#{device.TV},#{device.toilet},
+   #{device.balcony},#{device.Cook},#{device.elevator},#{device.tubeCoal},#{device.heating},
+   #{device.escalator},#{device.smoke},#{device.sewageDisposal},#{device.parking})
+  </insert>
+  </mapper>

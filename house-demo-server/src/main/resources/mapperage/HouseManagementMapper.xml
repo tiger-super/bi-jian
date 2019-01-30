@@ -19,8 +19,8 @@
   house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure)
   value(#{houseId},#{housePublisherId},#{houseInfo.houseType},#{houseInfo.houseMoney},#{houseInfo.houseSize},
   #{houseInfo.houseDirection},#{houseInfo.houseSellWay},
-  #{houseInfo.houseDepoitWay},#{houseInfo.houseDescripe},#{houseInfo.houseImageAddress},
-  #{houseInfo.houseStructure}) 
+  #{houseInfo.houseDepoitWay},#{houseInfo.houseDescripe},
+  #{houseInfo.houseImageAddress},#{houseInfo.houseStructure}) 
   </insert>
- 
+
   </mapper>

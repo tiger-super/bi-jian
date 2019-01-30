@@ -33,30 +33,27 @@ $(document).ready(function() {
 	$(".area").click(function() {
 		showArea();
 	})
-	
-$("#publish").submit(function() {
-	var JsonData = decodeURIComponent($("#publish").serialize(),true);
-	JsonData = transformationJson(JsonData);
-	var Data = JSON.parse(JsonData);
-	$.ajax({
-		url : '/house/publish/house',
-		type : "post",
-		dataType:"json",
-     	data : Data,
-     	async: false,
-		success : function(result) {
-			/*if (result == "true") {
-				window.location.href = "/house/show/indexView";
-			} else {
-				$(".dataJudge").removeClass("hide");
-				$(".text").text(result);
-			}*/
-		}
-	});
-	return false;
-})
-})
 
+	$(".send").click(function() {
+			var JsonData = decodeURIComponent($("#publish").serialize(), true);
+			JsonData = transformationJson(JsonData);
+			var Data = JSON.parse(JsonData);
+			$.ajax({
+				url : '/house/publish/house',
+				type : "post",
+				dataType : "json",
+				data : Data,
+				async : false,
+				success : function(result) {
+					console.log(result);
+				}
+			});
+	
+
+
+	})
+
+})
 var provinceClick = false;
 var cityClick = false;
 var areaClick = false;
@@ -242,8 +239,9 @@ function showArea() {
 												$(".area-select-text").text(
 														value);
 												$(".area").children(
-												".select-content").hide();
-									
+														".select-content")
+														.hide();
+
 												$(".area-select")
 														.children(".select-img")
 														.css(
@@ -257,33 +255,36 @@ function showArea() {
 
 	}
 }
-function transformationJson(data){
+function transformationJson(data) {
 	var houseAddressProvince = $(".province-select-text").text();
 	var houseAddressCity = $(".city-select-text").text();
 	var houseAddressArea = $(".area-select-text").text();
-	var houseStructure = $(".room").val()+$(".office").val()+$(".toilet").val();
-	   data = data+"&houseAddressProvince="+houseAddressProvince+"&houseAddressCity="+houseAddressCity+
-	   "&houseAddressArea="+houseAddressArea+"&houseInfo.houseStructure="+houseStructure;
-	   data=data.replace(/&/g,"\",\"");
-       data=data.replace(/=/g,"\":\"");
-       data="{\""+data+"\"}";
-       return data;
+	var houseStructure = $(".room").val() + $(".office").val()
+			+ $(".toilet").val();
+	data = data + "&houseAddressProvince=" + houseAddressProvince
+			+ "&houseAddressCity=" + houseAddressCity + "&houseAddressArea="
+			+ houseAddressArea + "&houseInfo.houseStructure=" + houseStructure;
+	data = data.replace(/&/g, "\",\"");
+	data = data.replace(/=/g, "\":\"");
+	data = "{\"" + data + "\"}";
+	return data;
 }
 
-function submitform(){
+function submitform() {
 	$.ajax({
 		url : "/house/publish/house/upload",
 		type : "post",
-	    data: new FormData($('#fileUploadFrom')[0]),
-		 processData: false,
-		 contentType: false,
+		data : new FormData($('#fileUploadFrom')[0]),
+		processData : false,
+		contentType : false,
 		success : function(result) {
-			for(let i = 0; i <result.length;i++){
-				$(".select-upload-img-show").append("<img src="+result[i]+"/>");
-				$(".select-upload-button").css("padding-left","270px");
-				$(".select-upload-button").css("padding-top","20px");
+			for (let i = 0; i < result.length; i++) {
+				$(".select-upload-img-show").append(
+						"<img src=" + result[i] + "/>");
+				$(".select-upload-button").css("padding-left", "270px");
+				$(".select-upload-button").css("padding-top", "20px");
 			}
 		}
-		
+
 	})
 }

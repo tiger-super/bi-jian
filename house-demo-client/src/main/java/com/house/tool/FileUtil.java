@@ -1,10 +1,16 @@
 package com.house.tool;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +27,20 @@ public class FileUtil {
 		}
 		
 		// 删除文件
-		public static void deleteFile(String path) {
-			 File file=new File(path);
-	         if(file.exists()&&file.isFile()) {
-	        	 file.delete();
-	         }
+		public static void deleteFile(String folder) throws IOException {
+			StringBuffer path = new StringBuffer(); 
+			StringBuffer classPath = new StringBuffer(); 
+			 path.append(new File("").getCanonicalPath()+"/src/main/resources/static/uploadcache/"+folder);
+				//类路径
+				classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/uploadcache/"+folder);
+				File file = new File(path.toString());
+				File classFile = new File(classPath.toString());
+				if(!file.exists()) {
+				file.delete();
+				}
+				if(!classFile.exists()) {
+		        classFile.delete();					
+				}
 		}
 		
 		
@@ -42,7 +57,6 @@ public class FileUtil {
 				//本地路径
 				path.append(new File("").getCanonicalPath()+"/src/main/resources/static/uploadcache/"+folder);
 				createFolder(path.toString());
-				System.out.println(path.toString());
 				//类路径
 				classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/uploadcache/"+folder);
 				createFolder(classPath.toString());
@@ -63,5 +77,20 @@ public class FileUtil {
 			if(!file.exists()) {
 				file.mkdirs();
 			}
+		}
+		public static List<byte[]> readCacheImg(String folder,List<byte[]> list) throws IOException{
+			StringBuffer path = new StringBuffer(); 
+			path.append(new File("").getCanonicalPath()+"/src/main/resources/static/uploadcache/"+folder);
+			File file = new File(path.toString());
+			String[] s = file.list();
+			for(int i = 0 ; i < s.length ; i++) {
+				File f = new File(path.toString()+"/"+s[i]);
+				BufferedImage bi = ImageIO.read(f);;
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write(bi, "jpg", baos);
+				list.add(baos.toByteArray());
+			}
+			deleteFile(folder);
+			return list;
 		}
 }
