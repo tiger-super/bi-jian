@@ -56,5 +56,9 @@ public class ViewJumpController {
 	public String showPublishHouseView() {
 		return "publish-house";
 	}
-
+	// 显示房源界面
+	@RequestMapping("/show/house/list")
+	public String showHouseListView() {
+		return "house-list";
+	}
 }
