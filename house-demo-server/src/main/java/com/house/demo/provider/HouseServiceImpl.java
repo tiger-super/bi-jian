@@ -10,7 +10,9 @@ import org.springframework.util.ClassUtils;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.house.HouseService;
+import com.house.entity.Device;
 import com.house.entity.House;
+import com.house.entity.HouseInfo;
 import com.house.mapper.DeviceManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.FileUtil;
@@ -49,5 +51,15 @@ public class HouseServiceImpl implements HouseService{
 		houseManagementMapper.insertHouseInfo(house);
 		deviceManagementMapper.inserDeviceInfo(house);
 		return "true";
+	}
+	@Override
+	public House getHouseInformation() {
+		String houseId = "10000";
+		House house = houseManagementMapper.selectHouseAccordingHouseId(houseId);
+		HouseInfo houseInfo = houseManagementMapper.selectHouseInfoAccordingHouseId(houseId);
+		house.setHouseInfo(houseInfo);
+		Device device = deviceManagementMapper.selectDeviceInfoAccordingHouseId(houseId);
+		house.setDevice(device);
+		return house;
 	}
 }

@@ -61,7 +61,7 @@ public class ViewJumpController {
 	public String showHouseListView() {
 		return "house-list";
 	}
-	// 显示房源界面
+	// 显示房源详细信息界面
 	@RequestMapping("/show/house/info")
 	public String showHouseDetailedInformationView() {
 		return "house-detailed-information";

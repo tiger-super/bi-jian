@@ -60,4 +60,11 @@ public class HouseController {
 		
 		return null;
 	}
+	
+	@RequestMapping("/get/house/info")
+	@ResponseBody
+	public House getHouseInfo() {
+		
+		return null;
+	}
 }

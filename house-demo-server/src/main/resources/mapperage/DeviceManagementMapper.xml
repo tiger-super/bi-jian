@@ -13,4 +13,10 @@
    #{device.balcony},#{device.Cook},#{device.elevator},#{device.tubeCoal},#{device.heating},
    #{device.escalator},#{device.smoke},#{device.sewageDisposal},#{device.parking})
   </insert>
+  
+  <!-- 查询房源设备信息 -->
+  <select id="selectDeviceInfoAccordingHouseId" parameterType="String" resultType="com.house.entity.Device">
+   select bed,wardrobe,desk,air,heater,washer,refigerator,wifi,sofa,tv,toilet,balcony,cook,elevator,tube_coal,heating,escalator,
+   smoke,sewage_disposal,parking from device where house_id = #{parameter}
+  </select> 
   </mapper>

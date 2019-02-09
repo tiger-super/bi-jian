@@ -22,5 +22,12 @@
   #{houseInfo.houseDepoitWay},#{houseInfo.houseDescripe},
   #{houseInfo.houseImageAddress},#{houseInfo.houseStructure}) 
   </insert>
-
+<!-- 查询房源 -->
+<select id="selectHouseAccordingHouseId" parameterType="String" resultType="com.house.entity.House">
+   select house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number from house where house_id = #{parameter}
+</select>
+<!-- 查询房源详细信息 -->
+<select id="selectHouseInfoAccordingHouseId" parameterType="String" resultType="com.house.entity.HouseInfo">
+ select house_type,house_money,house_size,house_direction,house_sell_way,house_descripe,house_image_address,house_structure from house_info where house_id = #{parameter}
+</select>
   </mapper>

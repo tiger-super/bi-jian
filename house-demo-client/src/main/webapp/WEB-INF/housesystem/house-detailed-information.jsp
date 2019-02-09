@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/iconfont.css" />
 <link rel="stylesheet" href="/static/css/house-detailed-information.css" />
+<script type="text/javascript" src="/static/js/house-detailed-information.js"></script>
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <body>
 	<div class="navbar navbar-default head">
