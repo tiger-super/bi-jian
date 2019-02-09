@@ -10,8 +10,6 @@ public class FileUtil {
 		public static void fileupload(byte[] file,String filePath) throws IOException {	
 			//二进制流写入		
 			FileOutputStream out = new FileOutputStream(filePath);
-			System.out.println(filePath);
-			System.out.println(file.length);
 		    out.write(file);
 		    out.flush();
 		    out.close();

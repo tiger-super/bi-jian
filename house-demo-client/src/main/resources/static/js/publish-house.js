@@ -37,8 +37,8 @@ $(document).ready(function() {
 	$(".send").click(function() {
 			var JsonData = decodeURIComponent($("#publish").serialize(), true);
 			JsonData = transformationJson(JsonData);
-			var Data = JSON.parse(JsonData);
 			console.log(JsonData)
+			var Data = JSON.parse(JsonData);
 			$.ajax({
 				url : '/house/publish/house',
 				type : "post",
@@ -267,6 +267,7 @@ function transformationJson(data) {
 			+ houseAddressArea + "&houseInfo.houseStructure=" + houseStructure;
 	data = data.replace(/&/g, "\",\"");
 	data = data.replace(/=/g, "\":\"");
+	data = data.replace(/[\r\n]/g, "<br/>");
 	data = "{\"" + data + "\"}";
 	return data;
 }
