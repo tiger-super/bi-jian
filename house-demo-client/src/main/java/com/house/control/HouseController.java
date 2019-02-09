@@ -2,12 +2,8 @@ package com.house.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,5 +55,12 @@ public class HouseController {
 		}
 		FileUtil.uploadCache(houseImg, folder, list);
 		return list;
+	}
+	
+	@RequestMapping("/get/house/list")
+	@ResponseBody
+	public List<House> getHouseList() {
+		
+		return null;
 	}
 }

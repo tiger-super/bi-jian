@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/static/css/iconfont.css" />
 <link rel="stylesheet" href="/static/css/house-list.css" />
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/house-list.js"></script>
 
 <body>
 	<div class="navbar navbar-default head">
