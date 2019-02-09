@@ -65,7 +65,7 @@ public class FileUtil {
 				classPath.append("/"+photoAddress);
 				fileupload(houseImg.getBytes(),path.toString());
 				fileupload(houseImg.getBytes(),classPath.toString());
-				list.add("/static/uploadcache/"+folder+"/"+photoAddress);
+				 readCacheImgName(folder, list); 
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -91,6 +91,15 @@ public class FileUtil {
 				list.add(baos.toByteArray());
 			}
 			deleteFile(folder);
+			return list;
+		}
+		
+		private static List<String> readCacheImgName(String folder,List<String> list) throws IOException{
+			File file = new File(new File("").getCanonicalPath()+"/src/main/resources/static/uploadcache/"+folder);
+			String[] s = file.list();
+			for(int i = 0 ; i < s.length; i++) {
+				list.add("/static/uploadcache/"+folder+"/"+s[i]);
+			}
 			return list;
 		}
 }

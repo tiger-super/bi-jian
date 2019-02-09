@@ -1,5 +1,6 @@
 package com.house.control;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,6 @@ public class HouseController {
 		} catch (IOException e) {
 			return "false";
 		}
-		/* house.setHousePublisherId(customer.getCustomerId()); */
 		house.setHousePublisherId("1");
 		String result = houseService.housePublish(list,house);
 	    return result;
@@ -42,21 +42,18 @@ public class HouseController {
 	@RequestMapping("/publish/house/upload")
 	@ResponseBody
 	public List<String> uploadHouseImg(@RequestParam("photoFile") MultipartFile houseImg, HttpSession session) {
-		
-		List<String> list = (List<String>) session.getAttribute("list");
 		String folder = (String) session.getAttribute("folder");
 		if (folder == null) {
 			folder = PhoneAddressCreate.createAddress();
 			session.setAttribute("folder", folder);
 		}
-		if(list == null) {
-			list = new ArrayList<String>();
-			session.setAttribute("list", list);
-		}
-		FileUtil.uploadCache(houseImg, folder, list);
+
+			List<String> list = new ArrayList<String>();
+		
+		FileUtil.uploadCache(houseImg, folder,list);
 		return list;
 	}
-	
+
 	@RequestMapping("/get/house/list")
 	@ResponseBody
 	public List<House> getHouseList() {

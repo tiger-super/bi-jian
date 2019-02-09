@@ -1,5 +1,6 @@
 package test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,15 @@ public void testReadCacheImg() {
 	byte[] b = list.get(0);
 	for(int i = 0; i < b.length ; i++) {
 		System.out.print(b[i]); 
+	}
+}
+@Test
+public void testList() throws IOException {
+	List<String> list = new ArrayList<String>();
+	File file = new File(new File("").getCanonicalPath()+"/src/main/resources/static/uploadcache/1549682220209");
+	String[] s = file.list();
+	for(int i = 0 ; i < s.length; i++) {
+		System.out.println(s[i]);
 	}
 }
 }

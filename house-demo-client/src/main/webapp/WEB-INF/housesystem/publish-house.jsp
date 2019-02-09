@@ -55,7 +55,7 @@
 		<div class="col-sm-1"></div>
 		<div class="col-sm-2 content-title">房源基本信息</div>
 		<div class="col-sm-12">
-			<form id="publish">
+			<form id="publish" >
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10">
 					<!--出售方式-->
@@ -181,6 +181,7 @@
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control room" >
 									<option>请选择</option>
+									<option>0室</option>
 									<option>一室</option>
 									<option>二室</option>
 									<option>三室</option>
@@ -196,6 +197,7 @@
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control office">
 									<option>请选择</option>
+										<option>0厅</option>
 									<option>一厅</option>
 									<option>二厅</option>
 									<option>三厅</option>
@@ -211,6 +213,7 @@
 							<div class="col-sm-2 select-house-structure">
 								<select class="form-control toilet">
 									<option>请选择</option>
+										<option>0卫</option>
 									<option>一卫</option>
 									<option>二卫</option>
 									<option>三卫</option>

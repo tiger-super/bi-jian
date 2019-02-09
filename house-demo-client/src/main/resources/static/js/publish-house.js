@@ -38,6 +38,7 @@ $(document).ready(function() {
 			var JsonData = decodeURIComponent($("#publish").serialize(), true);
 			JsonData = transformationJson(JsonData);
 			var Data = JSON.parse(JsonData);
+			console.log(JsonData)
 			$.ajax({
 				url : '/house/publish/house',
 				type : "post",
@@ -278,9 +279,10 @@ function submitform() {
 		processData : false,
 		contentType : false,
 		success : function(result) {
+			$(".select-upload-img-show").empty();
 			for (let i = 0; i < result.length; i++) {
 				$(".select-upload-img-show").append(
-						"<img src=" + result[i] + "/>");
+						"<img src=" + result[i] + ">");
 				$(".select-upload-button").css("padding-left", "270px");
 				$(".select-upload-button").css("padding-top", "20px");
 			}
