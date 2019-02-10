@@ -42,5 +42,12 @@ public class CustomerOperationController {
 			return new Customer();
 		}
 	}
-	
+	// 根据id获得发布人的信息
+	@RequestMapping("/get/publisher/info")
+	@ResponseBody
+	public Customer getPublisherInfo(String publisherId) {
+		Customer customer = new Customer();
+		customer.setCustomerId(publisherId);
+		 return  personInfoService.queryCustomerInfo(customer);
+	}
 }

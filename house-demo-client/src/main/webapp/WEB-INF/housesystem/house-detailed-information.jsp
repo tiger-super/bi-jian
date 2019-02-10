@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/iconfont.css" />
 <link rel="stylesheet" href="/static/css/house-detailed-information.css" />
-<script type="text/javascript" src="/static/js/house-detailed-information.js"></script>
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/house-detailed-information.js"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -63,11 +63,11 @@
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
-    <div class="col-sm-10 house-info-window" >
+    <div class="col-sm-10 house-info-window" houseId="${houseId}">
     
     <div class="col-sm-12 house-info-title">
       <div class="col-sm-11">
-    <span>遵义市海尔大道区政府</span><span style="margin-left:10px">1室1卫</span>
+    <span>${house.houseName }</span><span style="margin-left:10px">${house.houseInfo.houseStructure}</span>
       </div>
     <div class="col-sm-1">
    <div >
@@ -104,45 +104,44 @@
     <div class="col-sm-7 house-other-info-window">
     <div class="col-sm-12 house-other-info">
     <div class="col-sm-12">
-    <span class="house-money">800</span>
+    <span class="house-money">${house.houseInfo.houseMoney}</span>
     <span class="house-money-company">元/月</span>
-    <span>半年付</span>
+    <span>${house.houseInfo.houseDepoitWay}</span>
     </div>
     
     <div class="col-sm-12">
     <span>房屋类型：</span>
-    <span>1室1厅1卫</span>
-    <span>70平米</span>
+    <span>${house.houseInfo.houseDepoitWay}</span>
+    <span>${house.houseInfo.houseSize}</span>
     </div>
     
     
     <div class="col-sm-12">
     <span>朝向楼层：</span>
-    <span>西</span>
+    <span>${house.houseInfo.houseDirection}</span>
     
     </div>
     
     <div class="col-sm-12">
     
     <span>所在省市区：</span>
-    <span>广东省梅州市五华县</span>
+    <span>${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
     </div>
     
     
     <div class="col-sm-12">
     <span>详细地址：</span>
-    <span>圆新路爱民巷013</span>
+    <span>${house. houseAddressInfo}</span>
     
     </div>
     
     
     <div class="col-sm-12">
     <div class="col-sm-12 publish-person-img-window">
-    <div class="col-sm-2" style="margin:0px;">
-   <img src="/static/img/timg.jpg" class="publish-person-img">
+    <div class="col-sm-2 publish-person-img-window" style="margin:0px;">
+   <img  class="publish-person-img">
     </div>
-    <div class="col-sm-8" style="margin-top:50px;font-size: 24px;font-weight: 700;color: #101d37;">
-    钟先生
+    <div class="col-sm-8 publish" style="margin-top:50px;font-size: 24px;font-weight: 700;color: #101d37;" publishId="${house.housePublisherId }">
     
     </div>
     </div>
@@ -154,7 +153,7 @@
    </div>
    <div class="col-sm-4  publish-person-phone">
    
-   <div>17875511746</div>
+   <div class="publish-person-phone-value"></div>
    </div>
    </div>
     </div>

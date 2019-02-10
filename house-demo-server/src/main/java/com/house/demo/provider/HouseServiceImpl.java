@@ -53,8 +53,7 @@ public class HouseServiceImpl implements HouseService{
 		return "true";
 	}
 	@Override
-	public House getHouseInformation() {
-		String houseId = "10000";
+	public House getHouseInformation(String houseId) {
 		House house = houseManagementMapper.selectHouseAccordingHouseId(houseId);
 		HouseInfo houseInfo = houseManagementMapper.selectHouseInfoAccordingHouseId(houseId);
 		house.setHouseInfo(houseInfo);

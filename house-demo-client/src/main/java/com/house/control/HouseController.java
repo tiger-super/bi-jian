@@ -61,10 +61,10 @@ public class HouseController {
 		return null;
 	}
 	
-	@RequestMapping("/get/house/info")
-	@ResponseBody
-	public House getHouseInfo() {
-		
-		return null;
-	}
+	/*
+	 * @RequestMapping("/get/house/info")
+	 * 
+	 * @ResponseBody public House getHouseInfo(String houseId) { House house =
+	 * houseService.getHouseInformation(houseId); return house; }
+	 */
 }

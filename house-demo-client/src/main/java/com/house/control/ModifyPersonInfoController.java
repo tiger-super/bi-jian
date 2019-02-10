@@ -1,4 +1,4 @@
-	package com.house.control;
+package com.house.control;
 
 import java.io.IOException;
 

@@ -4,12 +4,18 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.house.demo.house.HouseService;
 import com.house.entity.Customer;
+import com.house.entity.House;
 
 @Controller
 @RequestMapping("/house")
 public class ViewJumpController {
+	@Reference
+    HouseService houseService;
 	// 显示注册界面
 	@RequestMapping("/show/registerView")
 	public String showRegister() {
@@ -63,7 +69,11 @@ public class ViewJumpController {
 	}
 	// 显示房源详细信息界面
 	@RequestMapping("/show/house/info")
-	public String showHouseDetailedInformationView() {
-		return "house-detailed-information";
+	public ModelAndView showHouseDetailedInformationView(String houseId) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("house-detailed-information");
+		House house = houseService.getHouseInformation(houseId);
+		mv.addObject("house", house);
+		return mv;
 	}
 }
