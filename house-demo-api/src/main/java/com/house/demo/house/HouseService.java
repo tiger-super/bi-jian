@@ -9,4 +9,6 @@ public interface HouseService {
    public String housePublish(List<byte[]> list,House house);
    // 获取房源信息
    public House getHouseInformation(String houseId);
+   // 获取房源的图片信息
+   public List<String> getHouseImageInfo(String houseImageAddress);
 }

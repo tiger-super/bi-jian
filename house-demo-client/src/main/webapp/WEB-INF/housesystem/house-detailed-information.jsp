@@ -73,31 +73,30 @@
    <div >
     <img src="/static/img/stars.png">
     </div>
-    <div style="font-weight: inherit;font-size:8px">
+    <div style="font-weight: inherit;font-size:8px"  >
     加入收藏
   </div>
     </div>
     </div>
     
     <div class="col-sm-12 house-info-content">
-    <div class="col-sm-5 house-info-img-window">
+    <div class="col-sm-5 house-info-img-window" value='${house.houseInfo.houseImageAddress}'>
     <img src="/static/img/houseInfo.png" class="house-info-img-show">
     
-    <div class="col-sm-12 house-info-list-window">
-    <ul>
-    <li class="switch-up-img switch" style="width:30px;">
+    <div class="col-sm-11 house-info-list-window" >
+    <div class="col-sm-1 switch switch-left">
     <img src="/static/img/left.png">
     
-    </li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li class="switch-down-img switch" style="width:30px;">
-     <img src="/static/img/right.png">
-    
-    </li>
+    </div>
+    <div class="col-sm-10 house-info-list-ul-window" >
+
+   <ul class="house-info-list-ul">
     </ul>
+    </div>
+     <div class="col-sm-1 switch switch-right" style="margin-left: 13px;">
+    <img src="/static/img/right.png">
+    
+    </div>
     </div>
     </div>
     
@@ -112,7 +111,7 @@
     <div class="col-sm-12">
     <span>房屋类型：</span>
     <span>${house.houseInfo.houseDepoitWay}</span>
-    <span>${house.houseInfo.houseSize}</span>
+    <span>${house.houseInfo.houseSize}平米</span>
     </div>
     
     
@@ -153,7 +152,7 @@
    </div>
    <div class="col-sm-4  publish-person-phone">
    
-   <div class="publish-person-phone-value"></div>
+   <div class="publish-person-phone-value" style="margin-top: 0px;"></div>
    </div>
    </div>
     </div>

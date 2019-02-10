@@ -2,6 +2,7 @@ package com.house.demo.provider;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class HouseServiceImpl implements HouseService{
 	HouseManagementMapper houseManagementMapper;
 	@Autowired
 	DeviceManagementMapper deviceManagementMapper;
+	// 房源发布
 	@Override
 	public String housePublish(List<byte[]> list, House house) {
 		String houseFolder = PhoneAddressCreate.createAddress(house.getHousePublisherId());
@@ -52,6 +54,8 @@ public class HouseServiceImpl implements HouseService{
 		deviceManagementMapper.inserDeviceInfo(house);
 		return "true";
 	}
+	
+	// 获取房源信息
 	@Override
 	public House getHouseInformation(String houseId) {
 		House house = houseManagementMapper.selectHouseAccordingHouseId(houseId);
@@ -60,5 +64,22 @@ public class HouseServiceImpl implements HouseService{
 		Device device = deviceManagementMapper.selectDeviceInfoAccordingHouseId(houseId);
 		house.setDevice(device);
 		return house;
+	}
+	// 获取房源的图片信息
+	@Override
+	public List<String> getHouseImageInfo(String houseImageAddress) {
+		List<String> list = new ArrayList<String>();
+		try {
+			File file = new File(new File("").getCanonicalPath()+"/src/main/resources/static/publish-house-img"+"/"+houseImageAddress);
+		    String[] images = file.list();
+		    for(int i = 0 ; i < images.length ; i++) {
+		    	list.add(images[i]);
+		    }
+		    return list;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }

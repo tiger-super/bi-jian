@@ -88,12 +88,25 @@
 	list-style: none;
 	height: 70px;
 	background-color: #000;
-	width: 70px;
+	width: 71px;
 	float: left;
-	margin-right: 12px;
+	margin-left: 13px;
 	text-align: center;
 }
-
+.imageAddress img{
+	width: 71px;
+		height: 70px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity:0.6;
+}
+.switch{
+	background-color: #000;
+	text-align: center;
+	height:70px;
+	width:26px;
+	cursor:pointer;
+}
 .switch img {
 	margin-top:20px;
 	height: 30px;
@@ -102,6 +115,15 @@
 .house-other-info-window{
 	margin-top:20px;
 	border-top: 1px solid #f3f3f3;
+}
+.house-info-list-ul{
+	height:70px;
+	position:relative;
+	animation:mymove 2s infinite;
+}
+.house-info-list-ul-window{
+	height:70px;
+	overflow: hidden;
 }
 
 .house-other-info div{
@@ -143,8 +165,11 @@ height:70px;
 .publish-person-phone{
 	background-color: rgba(255,85,46,.9);
 	text-align:center;
-}
+
 	margin-top:20px;
 	color:white;
 	font-size:25px;
+}
+.publish-person-phone-value{
+	line-height:70px;
 }

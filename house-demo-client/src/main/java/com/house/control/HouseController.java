@@ -22,7 +22,8 @@ import com.house.tool.PhoneAddressCreate;
 @RequestMapping("/house")
 public class HouseController {
 	@Reference
-    HouseService houseService;
+	HouseService houseService;
+
 	@RequestMapping("/publish/house")
 	@ResponseBody
 	public String PublishHouse(House house, HttpSession session) {
@@ -30,13 +31,13 @@ public class HouseController {
 		String folder = (String) session.getAttribute("folder");
 		List<byte[]> list = new ArrayList<byte[]>();
 		try {
-			FileUtil.readCacheImg(folder,list);
+			FileUtil.readCacheImg(folder, list);
 		} catch (IOException e) {
 			return "false";
 		}
 		house.setHousePublisherId("1");
-		String result = houseService.housePublish(list,house);
-	    return result;
+		String result = houseService.housePublish(list, house);
+		return result;
 	}
 
 	@RequestMapping("/publish/house/upload")
@@ -48,23 +49,23 @@ public class HouseController {
 			session.setAttribute("folder", folder);
 		}
 
-			List<String> list = new ArrayList<String>();
-		
-		FileUtil.uploadCache(houseImg, folder,list);
+		List<String> list = new ArrayList<String>();
+
+		FileUtil.uploadCache(houseImg, folder, list);
 		return list;
 	}
 
 	@RequestMapping("/get/house/list")
 	@ResponseBody
 	public List<House> getHouseList() {
-		
+
 		return null;
 	}
-	
-	/*
-	 * @RequestMapping("/get/house/info")
-	 * 
-	 * @ResponseBody public House getHouseInfo(String houseId) { House house =
-	 * houseService.getHouseInformation(houseId); return house; }
-	 */
+
+	@RequestMapping("/get/house/image")
+	@ResponseBody
+	public List<String> getHouseImage(String houseImageAddress) {
+	return houseService.getHouseImageInfo(houseImageAddress);
+	}
+
 }
