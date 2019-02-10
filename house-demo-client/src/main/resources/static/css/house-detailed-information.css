@@ -245,3 +245,17 @@
 .house-descripe-information{
 	margin-top:25px;
 }
+.house-baidu-api-windows{
+	margin-top:30px;
+	    color: #333;
+    font-size: 20px;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+#house-baidu-api{
+	margin-top:20px;
+	height:400px;
+	font-size: 10px;
+}
+

@@ -14,6 +14,8 @@
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="/static/js/house-detailed-information.js"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=nI6URMs9j07NGjGT3Ho2FRaj0NwdFMzx"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -121,12 +123,12 @@
 
 					<div class="col-sm-12">
 
-						<span>所在省市区：</span> <span>${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
+						<span>所在省市区：</span> <span class="address">${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
 					</div>
 
 
 					<div class="col-sm-12">
-						<span>详细地址：</span> <span>${house. houseAddressInfo}</span>
+						<span>详细地址：</span> <span class="address-info">${house. houseAddressInfo}</span>
 
 					</div>
 
@@ -180,136 +182,146 @@
 
 						<c:if test="${not empty house.device.wardrobe}">
 							<li><img src="/static/img/equipment/wardrobe.png">
-							<div class="house-device-info-name">衣柜</div></li>
+								<div class="house-device-info-name">衣柜</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.desk}">
 							<li><img src="/static/img/equipment/desk.png">
-							<div class="house-device-info-name">书桌</div>
-							</li>
+								<div class="house-device-info-name">书桌</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.air}">
 							<li><img src="/static/img/equipment/air.png">
-							<div class="house-device-info-name">空调</div>
-							</li>
+								<div class="house-device-info-name">空调</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.heater}">
 							<li><img src="/static/img/equipment/heater.png">
-							<div class="house-device-info-name">热水</div></li>
+								<div class="house-device-info-name">热水</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.washer}">
 							<li><img src="/static/img/equipment/washer.png">
-							<div class="house-device-info-name">洗衣机</div></li>
+								<div class="house-device-info-name">洗衣机</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.refigerator}">
 							<li><img src="/static/img/equipment/refigerator.png">
-							<div class="house-device-info-name">冰箱</div>
-							</li>
+								<div class="house-device-info-name">冰箱</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.wifi}">
 							<li><img src="/static/img/equipment/wifi.png">
-							<div class="house-device-info-name">wifi</div></li>
+								<div class="house-device-info-name">wifi</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.sofa}">
 							<li><img src="/static/img/equipment/sofa.png">
-							<div class="house-device-info-name">沙发</div>
-							</li>
+								<div class="house-device-info-name">沙发</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.TV}">
 							<li><img src="/static/img/equipment/tv.png">
-							<div class="house-device-info-name">电视</div></li>
+								<div class="house-device-info-name">电视</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.toilet}">
 							<li><img src="/static/img/equipment/wc.png">
-							<div class="house-device-info-name">厕所</div></li>
+								<div class="house-device-info-name">厕所</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.balcony}">
 							<li><img src="/static/img/equipment/balcony.png">
-							<div class="house-device-info-name">阳台</div></li>
+								<div class="house-device-info-name">阳台</div></li>
 						</c:if>
 
 
 
 						<c:if test="${not empty house.device.cook}">
 							<li><img src="/static/img/equipment/cook.png">
-							<div class="house-device-info-name">厨房</div></li>
+								<div class="house-device-info-name">厨房</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.elevator}">
 							<li><img src="/static/img/equipment/elevator.png">
-							<div class="house-device-info-name">电梯</div></li>
+								<div class="house-device-info-name">电梯</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.tubeCoal}">
 							<li><img src="/static/img/equipment/tubeCoal.png">
-							<div class="house-device-info-name">煤管</div></li>
+								<div class="house-device-info-name">煤管</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.heating}">
 							<li><img src="/static/img/equipment/heating.png">
-							<div class="house-device-info-name">暖气</div>
-							</li>
+								<div class="house-device-info-name">暖气</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.escalator}">
 							<li><img src="/static/img/equipment/escalator.png">
-							<div class="house-device-info-name">扶梯</div>
-							</li>
+								<div class="house-device-info-name">扶梯</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.smoke}">
 							<li><img src="/static/img/equipment/smoke.png">
-							<div class="house-device-info-name">排烟</div>
-							</li>
+								<div class="house-device-info-name">排烟</div></li>
 						</c:if>
 
 
 						<c:if test="${not empty house.device.sewageDisposal}">
 							<li><img src="/static/img/equipment/sewageDisposal.png">
-							<div class="house-device-info-name">排污</div>
-							</li>
+								<div class="house-device-info-name">排污</div></li>
 						</c:if>
 
 						<c:if test="${not empty house.device.parking}">
 							<li><img src="/static/img/equipment/parking.png">
-							<div class="house-device-info-name">停车场</div>
-							</li>
-						</c:if> 
+								<div class="house-device-info-name">停车场</div></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
-           
-            
-           <div class="col-sm-12 house-descripe-information-windows">
-            <div class="col-sm-1 house-descripe-information-word">房源描述</div>
-           <div class="col-sm-8 house-descripe-information">
-           ${house.houseInfo.houseDescripe}
-           </div>
-           
-           
-           </div>
+
+
+			<div class="col-sm-12 house-descripe-information-windows">
+				<div class="col-sm-1 house-descripe-information-word">房源描述</div>
+				<div class="col-sm-8 house-descripe-information">
+					${house.houseInfo.houseDescripe}</div>
+
+
+			</div>
+			<div class="col-sm-12 house-baidu-api-windows">
+				<div class="col-sm-12">房源地图</div>
+				<div class="col-sm-9" id="house-baidu-api"></div>
+				
+				<div class="col-sm-12">
+				<div style="margin-top:20px;margin-bottom:20px">测一测，看看距离你的目的地(如:上学、工作地)是否近在眼前</div>
+					<div class="col-sm-8">
+						请输入目的地：<input type="text" style="width:500px">
+					</div>
+					<div class="col-sm-4  distance-button">
+					   <button class="btn btn-info" style="width:100px"> 查询</button>
+					</div>
+				</div>
+
+
+			</div>
 		</div>
-	
-	
-	
+
+
+
+
+
+
 	</div>
 
+	<div class="col-sm-12" style="height: 200px;"></div>
 </body>
 
 </html>
