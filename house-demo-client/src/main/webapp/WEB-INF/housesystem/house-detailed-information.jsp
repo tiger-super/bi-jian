@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="/static/css/iconfont.css" />
 <link rel="stylesheet" href="/static/css/house-detailed-information.css" />
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/static/js/house-detailed-information.js"></script>
+<script type="text/javascript"
+	src="/static/js/house-detailed-information.js"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -63,107 +64,252 @@
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
-    <div class="col-sm-10 house-info-window" houseId="${houseId}">
-    
-    <div class="col-sm-12 house-info-title">
-      <div class="col-sm-11">
-    <span>${house.houseName }</span><span style="margin-left:10px">${house.houseInfo.houseStructure}</span>
-      </div>
-    <div class="col-sm-1">
-   <div >
-    <img src="/static/img/stars.png">
-    </div>
-    <div style="font-weight: inherit;font-size:8px"  >
-    加入收藏
-  </div>
-    </div>
-    </div>
-    
-    <div class="col-sm-12 house-info-content">
-    <div class="col-sm-5 house-info-img-window" value='${house.houseInfo.houseImageAddress}'>
-    <img src="/static/img/houseInfo.png" class="house-info-img-show">
-    
-    <div class="col-sm-11 house-info-list-window" >
-    <div class="col-sm-1 switch switch-left">
-    <img src="/static/img/left.png">
-    
-    </div>
-    <div class="col-sm-10 house-info-list-ul-window" >
+	<div class="col-sm-10 house-info-window" houseId="${houseId}">
 
-   <ul class="house-info-list-ul">
-    </ul>
-    </div>
-     <div class="col-sm-1 switch switch-right" style="margin-left: 13px;">
-    <img src="/static/img/right.png">
-    
-    </div>
-    </div>
-    </div>
-    
-    <div class="col-sm-7 house-other-info-window">
-    <div class="col-sm-12 house-other-info">
-    <div class="col-sm-12">
-    <span class="house-money">${house.houseInfo.houseMoney}</span>
-    <span class="house-money-company">元/月</span>
-    <span>${house.houseInfo.houseDepoitWay}</span>
-    </div>
-    
-    <div class="col-sm-12">
-    <span>房屋类型：</span>
-    <span>${house.houseInfo.houseDepoitWay}</span>
-    <span>${house.houseInfo.houseSize}平米</span>
-    </div>
-    
-    
-    <div class="col-sm-12">
-    <span>朝向楼层：</span>
-    <span>${house.houseInfo.houseDirection}</span>
-    
-    </div>
-    
-    <div class="col-sm-12">
-    
-    <span>所在省市区：</span>
-    <span>${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
-    </div>
-    
-    
-    <div class="col-sm-12">
-    <span>详细地址：</span>
-    <span>${house. houseAddressInfo}</span>
-    
-    </div>
-    
-    
-    <div class="col-sm-12">
-    <div class="col-sm-12 publish-person-img-window">
-    <div class="col-sm-2 publish-person-img-window" style="margin:0px;">
-   <img  class="publish-person-img">
-    </div>
-    <div class="col-sm-8 publish" style="margin-top:50px;font-size: 24px;font-weight: 700;color: #101d37;" publishId="${house.housePublisherId }">
-    
-    </div>
-    </div>
-    </div>
-    
-   <div class="col-sm-12 publish-person-phone-window"> 
-   <div class="col-sm-2 publish-person-phone-logo">
-   <img src="/static/img/phone.png">
-   </div>
-   <div class="col-sm-4  publish-person-phone">
-   
-   <div class="publish-person-phone-value" style="margin-top: 0px;"></div>
-   </div>
-   </div>
-    </div>
-    
-    </div>
-   
-   
-    
-    </div>
-    </div>
+		<div class="col-sm-12 house-info-title">
+			<div class="col-sm-11">
+				<span>${house.houseName }</span><span style="margin-left: 10px">${house.houseInfo.houseStructure}</span>
+			</div>
+			<div class="col-sm-1">
+				<div>
+					<img src="/static/img/stars.png">
+				</div>
+				<div style="font-weight: inherit; font-size: 8px">加入收藏</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 house-info-content">
+			<div class="col-sm-5 house-info-img-window"
+				value='${house.houseInfo.houseImageAddress}'>
+				<img src="/static/img/houseInfo.png" class="house-info-img-show">
+
+				<div class="col-sm-11 house-info-list-window">
+					<div class="col-sm-1 switch switch-left">
+						<img src="/static/img/left.png">
+
+					</div>
+					<div class="col-sm-10 house-info-list-ul-window">
+
+						<ul class="house-info-list-ul">
+						</ul>
+					</div>
+					<div class="col-sm-1 switch switch-right"
+						style="margin-left: 13px;">
+						<img src="/static/img/right.png">
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-7 house-other-info-window">
+				<div class="col-sm-12 house-other-info">
+					<div class="col-sm-12">
+						<span class="house-money">${house.houseInfo.houseMoney}</span> <span
+							class="house-money-company">元/月</span> <span>${house.houseInfo.houseDepoitWay}</span>
+					</div>
+
+					<div class="col-sm-12">
+						<span>房屋类型：</span> <span>${house.houseInfo.houseDepoitWay}</span>
+						<span>${house.houseInfo.houseSize}平米</span>
+					</div>
+
+
+					<div class="col-sm-12">
+						<span>朝向楼层：</span> <span>${house.houseInfo.houseDirection}</span>
+
+					</div>
+
+					<div class="col-sm-12">
+
+						<span>所在省市区：</span> <span>${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
+					</div>
+
+
+					<div class="col-sm-12">
+						<span>详细地址：</span> <span>${house. houseAddressInfo}</span>
+
+					</div>
+
+
+					<div class="col-sm-12">
+						<div class="col-sm-12 publish-person-img-window">
+							<div class="col-sm-2 publish-person-img-window"
+								style="margin: 0px;">
+								<img class="publish-person-img">
+							</div>
+							<div class="col-sm-8 publish"
+								style="margin-top: 50px; font-size: 24px; font-weight: 700; color: #101d37;"
+								publishId="${house.housePublisherId }"></div>
+						</div>
+					</div>
+
+					<div class="col-sm-12 publish-person-phone-window">
+						<div class="col-sm-2 publish-person-phone-logo">
+							<img src="/static/img/phone.png">
+						</div>
+						<div class="col-sm-4  publish-person-phone">
+
+							<div class="publish-person-phone-value" style="margin-top: 0px;"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+
+
+	<div class="col-sm-12" style="padding: 0px">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10 house-other-information-window">
+			<div class="col-sm-1 house-other-information-word">房源详情</div>
+
+
+			<div class="col-sm-12 house-device-info-windows">
+				<div class="col-sm-10 house-device-info-div">
+					<ul class="house-device-info-ul">
+						<c:if test="${not empty house.device.bed}">
+							<li><img src="/static/img/equipment/bed.png">
+								<div class="house-device-info-name">床</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.wardrobe}">
+							<li><img src="/static/img/equipment/wardrobe.png">
+							<div class="house-device-info-name">衣柜</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.desk}">
+							<li><img src="/static/img/equipment/desk.png">
+							<div class="house-device-info-name">书桌</div>
+							</li>
+						</c:if>
+
+						<c:if test="${not empty house.device.air}">
+							<li><img src="/static/img/equipment/air.png">
+							<div class="house-device-info-name">空调</div>
+							</li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.heater}">
+							<li><img src="/static/img/equipment/heater.png">
+							<div class="house-device-info-name">热水</div></li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.washer}">
+							<li><img src="/static/img/equipment/washer.png">
+							<div class="house-device-info-name">洗衣机</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.refigerator}">
+							<li><img src="/static/img/equipment/refigerator.png">
+							<div class="house-device-info-name">冰箱</div>
+							</li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.wifi}">
+							<li><img src="/static/img/equipment/wifi.png">
+							<div class="house-device-info-name">wifi</div></li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.sofa}">
+							<li><img src="/static/img/equipment/sofa.png">
+							<div class="house-device-info-name">沙发</div>
+							</li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.TV}">
+							<li><img src="/static/img/equipment/tv.png">
+							<div class="house-device-info-name">电视</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.toilet}">
+							<li><img src="/static/img/equipment/wc.png">
+							<div class="house-device-info-name">厕所</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.balcony}">
+							<li><img src="/static/img/equipment/balcony.png">
+							<div class="house-device-info-name">阳台</div></li>
+						</c:if>
+
+
+
+						<c:if test="${not empty house.device.cook}">
+							<li><img src="/static/img/equipment/cook.png">
+							<div class="house-device-info-name">厨房</div></li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.elevator}">
+							<li><img src="/static/img/equipment/elevator.png">
+							<div class="house-device-info-name">电梯</div></li>
+						</c:if>
+
+						<c:if test="${not empty house.device.tubeCoal}">
+							<li><img src="/static/img/equipment/tubeCoal.png">
+							<div class="house-device-info-name">煤管</div></li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.heating}">
+							<li><img src="/static/img/equipment/heating.png">
+							<div class="house-device-info-name">暖气</div>
+							</li>
+						</c:if>
+
+						<c:if test="${not empty house.device.escalator}">
+							<li><img src="/static/img/equipment/escalator.png">
+							<div class="house-device-info-name">扶梯</div>
+							</li>
+						</c:if>
+
+						<c:if test="${not empty house.device.smoke}">
+							<li><img src="/static/img/equipment/smoke.png">
+							<div class="house-device-info-name">排烟</div>
+							</li>
+						</c:if>
+
+
+						<c:if test="${not empty house.device.sewageDisposal}">
+							<li><img src="/static/img/equipment/sewageDisposal.png">
+							<div class="house-device-info-name">排污</div>
+							</li>
+						</c:if>
+
+						<c:if test="${not empty house.device.parking}">
+							<li><img src="/static/img/equipment/parking.png">
+							<div class="house-device-info-name">停车场</div>
+							</li>
+						</c:if> 
+					</ul>
+				</div>
+			</div>
+           
+            
+           <div class="col-sm-12 house-descripe-information-windows">
+            <div class="col-sm-1 house-descripe-information-word">房源描述</div>
+           <div class="col-sm-8 house-descripe-information">
+           ${house.houseInfo.houseDescripe}
+           </div>
+           
+           
+           </div>
+		</div>
 	
+	
+	
+	</div>
+
 </body>
 
 </html>

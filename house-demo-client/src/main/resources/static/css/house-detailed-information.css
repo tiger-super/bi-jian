@@ -48,7 +48,7 @@
 .house-info-window {
 	margin-top: 20px;
 	padding: 0px;
-	border-bottom: 1px solid #f3f3f3;
+	border-bottom: 2px solid #f3f3f3;
 	padding-bottom: 50px;
 }
 
@@ -61,10 +61,11 @@
 	font-size: 20px;
 }
 
-.house-info-title img{
-	width:15px;
-	height:15px;
+.house-info-title img {
+	width: 15px;
+	height: 15px;
 }
+
 .house-info-img-window {
 	margin-top: 20px;
 }
@@ -93,83 +94,154 @@
 	margin-left: 13px;
 	text-align: center;
 }
-.imageAddress img{
+
+.imageAddress img {
 	width: 71px;
-		height: 70px;
+	height: 70px;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	opacity:0.6;
+	opacity: 0.6;
 }
-.switch{
+
+.switch {
 	background-color: #000;
 	text-align: center;
-	height:70px;
-	width:26px;
-	cursor:pointer;
+	height: 70px;
+	width: 26px;
+	cursor: pointer;
 }
+
 .switch img {
-	margin-top:20px;
+	margin-top: 20px;
 	height: 30px;
 	width: 20px;
 }
-.house-other-info-window{
-	margin-top:20px;
+
+.house-other-info-window {
+	margin-top: 20px;
 	border-top: 1px solid #f3f3f3;
 }
-.house-info-list-ul{
-	height:70px;
-	position:relative;
-	animation:mymove 2s infinite;
+
+.house-info-list-ul {
+	height: 70px;
+	position: relative;
+	animation: mymove 2s infinite;
 }
-.house-info-list-ul-window{
-	height:70px;
+
+.house-info-list-ul-window {
+	height: 70px;
 	overflow: hidden;
 }
 
-.house-other-info div{
-		margin-top:16px;
+.house-other-info div {
+	margin-top: 16px;
 }
 
-.house-other-info .house-money{
-	    font-size: 36px;
-	        font-weight: bold;
-	        color:red;
+.house-other-info .house-money {
+	font-size: 36px;
+	font-weight: bold;
+	color: red;
 }
-.house-money-company{
-	color:red;
-	margin-right:20px;
+
+.house-money-company {
+	color: red;
+	margin-right: 20px;
 }
-.publish-person-img{
-	width:80px;
-	height:80px;
-		background-repeat: no-repeat;
+
+.publish-person-img {
+	width: 80px;
+	height: 80px;
+	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	
 }
-.publish-person-phone-window div{
-height:70px;
+
+.publish-person-phone-window div {
+	height: 70px;
 }
-.publish-person-phone-logo{
+
+.publish-person-phone-logo {
 	background-color: #FF552E;
-	text-align:center;
-	
+	text-align: center;
 }
-.publish-person-phone-logo img{
-	width:50px;
-	height:50px;
-		background-repeat: no-repeat;
-	background-size: 100% 100%;
-	margin-top:10px;
-	
-}
-.publish-person-phone{
-	background-color: rgba(255,85,46,.9);
-	text-align:center;
 
-	margin-top:20px;
-	color:white;
-	font-size:25px;
+.publish-person-phone-logo img {
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	margin-top: 10px;
 }
-.publish-person-phone-value{
-	line-height:70px;
+
+.publish-person-phone {
+	background-color: rgba(255, 85, 46, .9);
+	text-align: center;
+	margin-top: 20px;
+	color: white;
+	font-size: 25px;
+}
+
+.publish-person-phone-value {
+	line-height: 70px;
+}
+
+.house-device-window {
+	height: 100px;
+}
+
+.house-other-information-window {
+	padding: 0px;
+}
+
+.house-other-information-window div {
+	padding: 0px;
+}
+
+.house-other-information-word {
+	margin-top: 40px;
+	color: #333;
+	font-size: 20px;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+.house-device-info-windows {
+	margin-top: 30px;
+}
+
+.house-device-info-div {
+	margin-left: 40px; 
+}
+.house-device-info-ul{
+	padding:0px;
+}
+.house-device-info-ul li {
+	list-style: none;
+	float:left;
+	margin-right:80px;
+	margin-top:15px;
+}
+
+.house-device-info-ul li img {
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.house-device-info-name{
+	margin-top:5px;
+	width:50px;
+	text-align:center;
+}
+.house-descripe-information-windows{
+	margin-top:30px;
+}
+.house-descripe-information-word{
+   margin-right:15px;
+	color: #333;
+	font-size: 20px;
+	font-style: inherit;
+	font-weight: inherit;
+}
+.house-descripe-information{
+	margin-top:25px;
 }
