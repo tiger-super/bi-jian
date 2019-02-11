@@ -1,3 +1,7 @@
+body {
+	overflow-x: hidden;
+}
+
 .head {
 	margin: 0px
 }
@@ -209,16 +213,18 @@
 }
 
 .house-device-info-div {
-	margin-left: 40px; 
+	margin-left: 40px;
 }
-.house-device-info-ul{
-	padding:0px;
+
+.house-device-info-ul {
+	padding: 0px;
 }
+
 .house-device-info-ul li {
 	list-style: none;
-	float:left;
-	margin-right:80px;
-	margin-top:15px;
+	float: left;
+	margin-right: 80px;
+	margin-top: 15px;
 }
 
 .house-device-info-ul li img {
@@ -227,35 +233,112 @@
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
-.house-device-info-name{
-	margin-top:5px;
-	width:50px;
-	text-align:center;
+
+.house-device-info-name {
+	margin-top: 5px;
+	width: 50px;
+	text-align: center;
 }
-.house-descripe-information-windows{
-	margin-top:30px;
+
+.house-descripe-information-windows {
+	margin-top: 30px;
 }
-.house-descripe-information-word{
-   margin-right:15px;
+
+.house-descripe-information-word {
+	margin-right: 15px;
 	color: #333;
 	font-size: 20px;
 	font-style: inherit;
 	font-weight: inherit;
 }
-.house-descripe-information{
-	margin-top:25px;
-}
-.house-baidu-api-windows{
-	margin-top:30px;
-	    color: #333;
-    font-size: 20px;
-    font-style: inherit;
-    font-weight: inherit;
+
+.house-descripe-information {
+	margin-top: 25px;
 }
 
-#house-baidu-api{
-	margin-top:20px;
-	height:400px;
+.house-baidu-api-windows {
+	margin-top: 30px;
+	color: #333;
+	font-size: 20px;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+#house-baidu-api {
+	margin-top: 20px;
+	height: 400px;
 	font-size: 10px;
 }
 
+#house-select-distance-result {
+	margin-top: 20px;
+	margin-left: 20px;
+	height: 400px; overflow : auto;
+	overflow-x: hidden;
+	overflow: auto
+}
+
+.action-way {
+	margin-top: 15px;
+}
+.distance-button{
+	padding:0px;
+}
+.select-button{
+	width:200px;
+}
+.service-windows {
+	padding:0px;
+	margin-top:20px;
+	
+}
+.service-word{
+	color: #333;
+    font-size: 20px;
+    font-style: inherit;
+    font-weight: inherit;
+    margin-bottom:20px;
+	
+}
+.service-windows div{
+	padding:0px;
+}
+.service-img-move{
+background: #fff url(/static/img/movehouse.png) no-repeat ;
+height:120px;
+}
+
+.service-img-clean{
+background: #fff url(/static/img/cleanservice.png) no-repeat ;
+height:120px;
+}
+.service-title{
+	font-size:20px;
+	margin-top:20px;
+	margin-left:20px;
+	font-weight: 1000;
+}
+.service-content{
+margin-left:20px;
+color:#999;
+}
+.tail-windows{
+	margin-top:30px;
+	border-top:1px solid #eee;
+	padding:0px;
+	height:100px;
+}
+.tail-windows div{
+	padding:0px;
+}
+.tail-content{
+	margin-top:35px;
+	margin-left:40px;
+}
+.tail-content span{
+	font-size:10px;
+}
+.line{
+	margin-left:15px;
+	margin-right:15px;
+}

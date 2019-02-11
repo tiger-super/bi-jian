@@ -352,11 +352,51 @@
 	</div>
 
 
-<div class="col-sm-12 " style="height:200px;">
+<div class="col-sm-12 service-windows" style="height:200px;">
+<div class="col-sm-1"></div>
+<div class="col-sm-10 service-word">
+相关服务
+</div>
+<div class="col-sm-12 service-img-div">
+<div class="col-sm-1"></div>
+<div class="col-sm-4 service-img-move">
+<p class="service-title">搬家服务</p>
+<p class="service-content">行李太多搬不动？</p>
+<p class="service-content">专业人员来帮忙</p>
 
-
+</div> 
+<div class="col-sm-4 service-img-clean">
+<p class="service-title">保洁服务</p>
+<p class="service-content">健康卫生无小事</p>
+<p class="service-content">保洁服务一条龙</p>
+</div> 
+</div>
 </div>
 
+<div class="tail-windows col-sm-12">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 tail-content">
+  <span>常见问题</span>
+  <span class="line">|</span>
+   <span>帮助中心</span>
+  <span class="line">|</span>
+   <span>意见反馈</span>
+  <span class="line">|</span>
+   <span>了解我们</span>
+  <span class="line">|</span>
+   <span>加入我们</span>
+  <span class="line">|</span>
+   <span>反欺诈联盟</span>
+  <span class="line">|</span>
+   <span>报案平台</span>
+  <span class="line">|</span>
+   <span>推广服务</span>
+  <span class="line">|</span>
+   <span>渠道招商</span>
+  <span class="line">|</span>
+   <span>Investor Relations</span>
+  </div>
+</div>
 
 </body>
 
