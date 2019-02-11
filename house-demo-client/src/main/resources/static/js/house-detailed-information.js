@@ -5,6 +5,11 @@ $(document).ready(
 			baiduAPIRead();
 			getPublisherInfo();
 			getHouseInfoImage();
+			$(".select-button").click(function() {
+				if ($(".select-distacne-input").val() != null) {
+					calculateDistance()
+				}
+			})
 			$(".switch-left")
 					.click(
 							function() {
@@ -139,28 +144,88 @@ function moveImage() {
 
 }
 
-
-function baiduAPIRead(){
-	let houseAddress = $(".address").text()+$(".address-info").text();
+var map;
+function baiduAPIRead() {
+	let houseAddress = $(".addressProvince").text() + $(".addressCity").text()
+			+ $(".addressArea").text() + $(".address-info").text();
 	// 百度地图API功能
-	var map = new BMap.Map("house-baidu-api");
-var myGeo = new BMap.Geocoder();      
-// 将地址解析结果显示在地图上，并调整地图视野
-myGeo.getPoint(houseAddress, function(point){  
-    if (point) {      
-        map.centerAndZoom(point, 16);
-        map.addOverlay(new BMap.Marker(point));      
-        var marker = new BMap.Marker(point);  // 创建标注
-        	map.addOverlay(marker);              // 将标注添加到地图中
-        	map.centerAndZoom(point, 15);
-        	var opts = {
-        	  width :100,     // 信息窗口宽度
-        	  enableMessage:true,// 设置允许信息窗发送短息
-        	}
-        	var infoWindow = new BMap.InfoWindow("房屋地址："+houseAddress, opts);  // 创建信息窗口对象
-        	marker.addEventListener("click", function(){          
-        		map.openInfoWindow(infoWindow,point); // 开启信息窗口
-        	});
-    }      
- }) 
+	map = new BMap.Map("house-baidu-api");
+	var myGeo = new BMap.Geocoder();
+	// 开启滚轮缩放
+	map.enableScrollWheelZoom();
+	// 左上角添加缩放平移控件和比例尺
+	var top_left_control = new BMap.ScaleControl({
+		anchor : BMAP_ANCHOR_TOP_LEFT
+	});
+	var top_left_navigation = new BMap.NavigationControl();
+	map.addControl(top_left_control);
+	map.addControl(top_left_navigation);
+	// 将地址解析结果显示在地图上，并调整地图视野
+	myGeo.getPoint(houseAddress, function(point) {
+		if (point) {
+			map.centerAndZoom(point, 12);
+			var marker = new BMap.Marker(point); // 创建标注
+			marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+			map.addOverlay(marker); // 将标注添加到地图中
+			var opts = {
+				width : 100, // 信息窗口宽度
+				enableMessage : true,// 设置允许信息窗发送短息
+			}
+			var infoWindow = new BMap.InfoWindow("房屋地址：" + houseAddress, opts); // 创建信息窗口对象
+			marker.addEventListener("click", function() {
+				map.openInfoWindow(infoWindow, point); // 开启信息窗口
+			});
+		}
+	})
+}
+
+function calculateDistance() {
+	var actionWay = $(".select-action-way").val();
+	let end = $(".select-distacne-input").val();
+
+	let start = $(".addressProvince").text() + $(".addressCity").text();
+	let startInfo = $(".addressArea").text() + $(".address-info").text();
+	// 百度地图API功能
+	var myGeo = new BMap.Geocoder();
+	// 将地址解析结果显示在地图上，并调整地图视野
+	myGeo.getPoint(start, function(point) {
+		map.centerAndZoom(point, 11);
+	})
+	switch (actionWay) {
+	case "walking":
+		// 步行功能
+		var walking = new BMap.WalkingRoute(map, {
+			renderOptions : {
+				map : map,
+				panel : "house-select-distance-result",
+				autoViewport : true
+			}
+		});
+
+		walking.search(startInfo, end); 
+		break;
+	case "driving":
+		// 驾车功能
+		var driving = new BMap.DrivingRoute(map, {
+			renderOptions : {
+				map : map,
+				panel : "house-select-distance-result",
+				autoViewport : true
+			}
+		});
+		driving.search(startInfo, end);
+
+		break;
+	case "transit":
+
+		// 公车功能
+		var transit = new BMap.TransitRoute(map, {
+			renderOptions : {
+				map : map,
+				panel : "house-select-distance-result"
+			}
+		});
+		transit.search(startInfo, end);
+		break;
+	}
 }

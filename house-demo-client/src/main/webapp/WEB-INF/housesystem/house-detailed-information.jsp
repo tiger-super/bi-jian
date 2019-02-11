@@ -123,7 +123,9 @@
 
 					<div class="col-sm-12">
 
-						<span>所在省市区：</span> <span class="address">${house.houseAddressProvince}${house.houseAddressCity}${house.houseAddressArea}</span>
+						<span>所在省市区：</span> <span class="addressProvince">${house.houseAddressProvince}</span>
+						<span class="addressCity">${house.houseAddressCity}</span> <span
+							class="addressArea">${house.houseAddressArea}</span>
 					</div>
 
 
@@ -296,22 +298,6 @@
 
 
 			</div>
-			<div class="col-sm-12 house-baidu-api-windows">
-				<div class="col-sm-12">房源地图</div>
-				<div class="col-sm-9" id="house-baidu-api"></div>
-				
-				<div class="col-sm-12">
-				<div style="margin-top:20px;margin-bottom:20px">测一测，看看距离你的目的地(如:上学、工作地)是否近在眼前</div>
-					<div class="col-sm-8">
-						请输入目的地：<input type="text" style="width:500px">
-					</div>
-					<div class="col-sm-4  distance-button">
-					   <button class="btn btn-info" style="width:100px"> 查询</button>
-					</div>
-				</div>
-
-
-			</div>
 		</div>
 
 
@@ -321,7 +307,57 @@
 
 	</div>
 
-	<div class="col-sm-12" style="height: 200px;"></div>
+
+	<div class="col-sm-12 house-baidu-api-windows" style="padding: 0px">
+		<div class="col-sm-1" style="padding: 0px"></div>
+		<div class="col-sm-10" style="padding: 0px">
+			<div class="col-sm-12" style="padding: 0px">房源地图</div>
+			<!-- 	<div class="col-sm-1"></div> -->
+			<div class="col-sm-7" id="house-baidu-api"></div>
+			<div class="col-sm-4" id="house-select-distance-result"></div>
+			<div class="col-sm-12" style="padding: 0px">
+				<div style="margin-top: 20px; margin-bottom: 20px">
+
+					<label>测一测，看看该房源距离你的目的地(如:上学、工作地)是否近在眼前</label>
+				</div>
+
+				<form role="form" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 ">请输入目的地：</label>
+						<div class="col-sm-6" style="padding: 0px">
+							<input type="text" class="form-control select-distacne-input"
+								placeholder="请输入该房源所在市的某个地址">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="name">选择出行方式：</label>
+						</div>
+						<div class="col-sm-2" style="padding: 0px">
+							<select class="form-control select-action-way">
+								<option value="walking">步行</option>
+								<option value="driving">驾车</option>
+								<option value="transit">公交</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="col-sm-4  distance-button">
+					<button class="btn btn-info select-button">
+						查询</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+<div class="col-sm-12 " style="height:200px;">
+
+
+</div>
+
+
 </body>
 
 </html>
