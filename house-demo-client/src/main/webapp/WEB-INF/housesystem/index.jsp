@@ -32,7 +32,6 @@
 					                 请选择城市
 					</c:when>
 					<c:otherwise>
-						
         ${ sessionScope.placeSession}
 						</c:otherwise>
 				</c:choose>

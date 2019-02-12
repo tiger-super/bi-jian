@@ -5,6 +5,10 @@ $(document).ready(
 			baiduAPIRead();
 			getPublisherInfo();
 			getHouseInfoImage();
+			$(".collection").click(function(){
+				clcikCollection();
+			})
+			clcikCollection()
 			$(".select-button").click(function() {
 				if ($(".select-distacne-input").val() != null) {
 					calculateDistance()
@@ -228,4 +232,18 @@ function calculateDistance() {
 		transit.search(startInfo, end);
 		break;
 	}
+}
+/*function loadCollectionNumber(){
+	$.ajax({
+		url : '/house/get/house/image',
+		type : "post",
+		success : function(result) {
+			
+		}
+		
+	})
+}*/
+
+function clcikCollection(){
+	$(".collection-img").attr("src","/static/img/click-stars.png");
 }

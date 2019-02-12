@@ -898,10 +898,10 @@
 <area name="青浦区" postcode="310118"/>
 <area name="南汇区" postcode="310119"/>
 <area name="奉贤区" postcode="310120"/>
-</city>
-<city name="县" postcode="310200">
 <area name="崇明县" postcode="310230"/>
 </city>
+
+
 </province>
 <province name="江苏省" postcode="320000">
 <city name="南京市" postcode="320100">

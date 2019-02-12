@@ -59,11 +59,19 @@ function gainProvincePinyin() {
 														+ '</div><div class="col-sm-10  city-div city-div-'
 														+ i + j + '"></div>');
 								for (let m = 0; m < pc[province[j]].length; m++) {
+									if(pc[province[j]].length == 1){
+										$(".city-div-" + i + j).append(
+												'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='
+														+province[j]+"&province="+province[j]+ '">'
+														+ province[j]
+														+ '</a></span>')
+									}else{
 									$(".city-div-" + i + j).append(
-											'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='+ pc[province[j]][m]+'">'
+											'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='
+													+ pc[province[j]][m]+"&province="+province[j]+ '">'
 													+ pc[province[j]][m]
 													+ '</a></span>')
-								}
+								}}
 
 							}
 						}
@@ -226,20 +234,22 @@ function CityClickTigger() {
 																"background-image",
 																"url(http://localhost:8088/static/img/down.png)");
 
-												$.ajax({
-													url : '/house/keep/place',
-													type : "post",
-													dataType : "json",
-													data : {
-														"city" : value
-													},
-													success : function(result) {
-													
-														if(result != false){
-															window.location.href = "/house/show/indexView";
-														}
-													}
-												})
+												$
+														.ajax({
+															url : '/house/keep/place',
+															type : "post",
+															dataType : "json",
+															data : {
+																"city" : value,"province" : province
+															},
+															success : function(
+																	result) {
+
+																if (result != false) {
+																	window.location.href = "/house/show/indexView";
+																}
+															}
+														})
 
 											});
 

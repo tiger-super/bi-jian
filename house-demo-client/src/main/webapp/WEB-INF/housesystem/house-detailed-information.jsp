@@ -72,9 +72,10 @@
 			<div class="col-sm-11">
 				<span>${house.houseName }</span><span style="margin-left: 10px">${house.houseInfo.houseStructure}</span>
 			</div>
-			<div class="col-sm-1">
-				<div>
-					<img src="/static/img/stars.png">
+			<div class="col-sm-1 collection-div" >
+			
+				<div class="collection">
+					<img src="/static/img/stars.png" class="collection-img">
 				</div>
 				<div style="font-weight: inherit; font-size: 8px">加入收藏</div>
 			</div>
