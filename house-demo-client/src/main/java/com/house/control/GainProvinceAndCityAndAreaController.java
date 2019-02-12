@@ -19,6 +19,11 @@ public class GainProvinceAndCityAndAreaController {
 	@Reference(timeout = 20000)
 	AnalysisAreaXmlService analysisAreaXmlService;
 
+	/**
+	 * 该方法用于获取省及其对应的所有市之间的映射
+	 * 
+	 * @return 返回一个map，key值为省，value则是该省内所有的市，用list保存
+	 */
 	@RequestMapping("/gain/province/and/city")
 	@ResponseBody
 	public Map<String, List<String>> gainProvinceAndCity() {
@@ -26,7 +31,9 @@ public class GainProvinceAndCityAndAreaController {
 	}
 
 	/**
-	 * @return
+	 * 该方法用于获取省及该省的拼音的首字母之间的映射
+	 * 
+	 * @return 返回一个map，key值为字母，value则对应的是首字母为该值的所有省，用一个list保存
 	 */
 	@RequestMapping("/gain/pinyin/province")
 	@ResponseBody
@@ -37,7 +44,7 @@ public class GainProvinceAndCityAndAreaController {
 	/**
 	 * 该方法用于获得全国的所有省
 	 * 
-	 * @return 返回一个集合，内容为全国所有的省
+	 * @return 返回一个list，内容为全国所有的省
 	 */
 	@RequestMapping("/gain/province")
 	@ResponseBody
@@ -49,7 +56,7 @@ public class GainProvinceAndCityAndAreaController {
 	 * 该方法根据对应的省获得对应的市
 	 * 
 	 * @param province 对应的省
-	 * @return 返回一个集合，内容为对应的省内所有市
+	 * @return 返回一个list，内容为对应的省内所有市
 	 */
 	@RequestMapping("/gain/city")
 	@ResponseBody
@@ -62,7 +69,7 @@ public class GainProvinceAndCityAndAreaController {
 	 * 
 	 * @param province 对应的省
 	 * @param city     对应的市
-	 * @return 一个集合，集合的内容为对应的所有区
+	 * @return 一个list，集合的内容为对应的所有区
 	 */
 	@RequestMapping("/gain/area")
 	@ResponseBody
@@ -83,10 +90,10 @@ public class GainProvinceAndCityAndAreaController {
 	public String ajaxKeepPlace(HttpServletResponse response, String province, String city) {
 		Cookie cookieForProvince = new Cookie("province", province);
 		cookieForProvince.setPath("/");
-		cookieForProvince.setMaxAge(60*60*24*30);
+		cookieForProvince.setMaxAge(60 * 60 * 24 * 30);
 		Cookie cookieForCity = new Cookie("city", city);
 		cookieForCity.setPath("/");
-		cookieForCity.setMaxAge(60*60*24*30);
+		cookieForCity.setMaxAge(60 * 60 * 24 * 30);
 		response.addCookie(cookieForCity);
 		response.addCookie(cookieForProvince);
 		return "true";
@@ -95,7 +102,7 @@ public class GainProvinceAndCityAndAreaController {
 	/**
 	 * 该方法用于点击selectArea.jsp页面的a标签对应的地址 点击通过ajax访问这个control
 	 * 
-	 * @param response  用于保存地址
+	 * @param response 用于保存地址
 	 * @param province 地点的对应的省
 	 * @param city     地点对应的市
 	 * @return 返回index,直接调转到index界面
@@ -104,10 +111,10 @@ public class GainProvinceAndCityAndAreaController {
 	public String aKeepPlace(HttpServletResponse response, String province, String city) {
 		Cookie cookieForProvince = new Cookie("province", province);
 		cookieForProvince.setPath("/");
-		cookieForProvince.setMaxAge(60*60*24*30);
+		cookieForProvince.setMaxAge(60 * 60 * 24 * 30);
 		Cookie cookieForCity = new Cookie("city", city);
 		cookieForCity.setPath("/");
-		cookieForCity.setMaxAge(60*60*24*30);
+		cookieForCity.setMaxAge(60 * 60 * 24 * 30);
 		response.addCookie(cookieForCity);
 		response.addCookie(cookieForProvince);
 		return "index";

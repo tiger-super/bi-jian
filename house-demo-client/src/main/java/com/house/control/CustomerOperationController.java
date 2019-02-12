@@ -27,27 +27,39 @@ public class CustomerOperationController {
 	// 修改用户密码
 	@RequestMapping("/modify/customerPassword")
 	@ResponseBody
-	public String modifyCustomerPassword(Customer customer) {	
+	public String modifyCustomerPassword(Customer customer) {
 		return personInfoService.modifyCustomerPassword(customer);
 	}
-	
+
 	// 根据账号查询是否存在该账号，返回账号带着这个账号的邮箱
+	/**
+	 * 该方法获取前端传来的账号，并返回这个账号对应的邮箱
+	 * 
+	 * @param customer 账号，保存在Customer里面
+	 * @return 返回一个Customer，该对象保存了对应的邮箱
+	 */
 	@RequestMapping("/exist/account/number")
 	@ResponseBody
 	public Customer ifExistAccountNumerReturnMail(Customer customer) {
 		Customer result = personInfoService.ifExistAccountNumberReturnMail(customer);
-		if(result != null) {
-		return result;
-		}else {
+		if (result != null) {
+			return result;
+		} else {
 			return new Customer();
 		}
 	}
-	// 根据id获得发布人的信息
+
+	/**
+	 * 该方法获取前端传来的发布人id，返回该id的发布人信息
+	 * 
+	 * @param publisherId 发布人的id
+	 * @return customer对象
+	 */
 	@RequestMapping("/get/publisher/info")
 	@ResponseBody
 	public Customer getPublisherInfo(String publisherId) {
 		Customer customer = new Customer();
 		customer.setCustomerId(publisherId);
-		 return  personInfoService.queryCustomerInfo(customer);
+		return personInfoService.queryCustomerInfo(customer);
 	}
 }
