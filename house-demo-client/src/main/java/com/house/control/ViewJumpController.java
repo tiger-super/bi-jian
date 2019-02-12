@@ -1,5 +1,9 @@
 package com.house.control;
 
+import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.house.demo.area.AnalysisAreaXmlService;
 import com.house.demo.house.HouseService;
 import com.house.entity.Customer;
 import com.house.entity.House;
@@ -15,7 +20,10 @@ import com.house.entity.House;
 @RequestMapping("/house")
 public class ViewJumpController {
 	@Reference
-    HouseService houseService;
+	HouseService houseService;
+	@Reference(timeout = 20000)
+	AnalysisAreaXmlService analysisAreaXmlService;
+
 	// 显示注册界面
 	@RequestMapping("/show/registerView")
 	public String showRegister() {
@@ -45,28 +53,51 @@ public class ViewJumpController {
 	public String showPerson(HttpSession session) {
 		return "person";
 	}
-	
+
 	// 显示找回密码
 	@RequestMapping("/show/retrievePasswordView")
-	public String showRetrievePassword(){
+	public String showRetrievePassword() {
 		return "retrievePassword";
 	}
-	
+
 	// 显示选择区域界面
 	@RequestMapping("/show/selectAreaView")
 	public String showSelectArea() {
 		return "selectArea";
 	}
+
 	// 显示发布界面
 	@RequestMapping("/show/publish/house")
 	public String showPublishHouseView() {
 		return "publish-house";
 	}
+
 	// 显示房源界面
 	@RequestMapping("/show/house/list")
-	public String showHouseListView() {
-		return "house-list";
+	public ModelAndView showHouseListView(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		Cookie[] cookies = request.getCookies();
+		String province = null;
+		String city = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				switch (cookie.getName()) {
+				case "province":
+					province = cookie.getValue();
+					break;
+				case "city":
+					city = cookie.getValue();
+					break;
+				}
+
+			}
+		}
+		List<String> areaList = analysisAreaXmlService.analysisAreaXmlGainArea(province, city);
+		mv.setViewName("house-list");
+		mv.addObject("areaList", areaList);
+		return mv;
 	}
+
 	// 显示房源详细信息界面
 	@RequestMapping("/show/house/info")
 	public ModelAndView showHouseDetailedInformationView(String houseId) {

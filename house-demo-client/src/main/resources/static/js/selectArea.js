@@ -59,19 +59,13 @@ function gainProvincePinyin() {
 														+ '</div><div class="col-sm-10  city-div city-div-'
 														+ i + j + '"></div>');
 								for (let m = 0; m < pc[province[j]].length; m++) {
-									if(pc[province[j]].length == 1){
-										$(".city-div-" + i + j).append(
-												'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='
-														+province[j]+"&province="+province[j]+ '">'
-														+ province[j]
-														+ '</a></span>')
-									}else{
+								
 									$(".city-div-" + i + j).append(
 											'<span class=""><a href="/house/keepPlace/and/jumpIndex?city='
-													+ pc[province[j]][m]+"&province="+province[j]+ '">'
+													+ pc[province[j]][m]+"&province="+province[j]+"省"+ '">'
 													+ pc[province[j]][m]
 													+ '</a></span>')
-								}}
+								}
 
 							}
 						}

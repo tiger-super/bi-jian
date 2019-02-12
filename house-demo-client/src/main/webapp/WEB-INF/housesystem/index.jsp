@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="/static/js/index.js"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -26,15 +26,8 @@
 			</div>
             <div class="col-sm-1 place-div">
             <img src="/static/img/place.png" class="place-img"/>
-            <span class="place"><a href="/house/show/selectAreaView">
-            <c:choose>
-					<c:when test="${empty sessionScope.placeSession}">
-					                 请选择城市
-					</c:when>
-					<c:otherwise>
-        ${ sessionScope.placeSession}
-						</c:otherwise>
-				</c:choose>
+            <span class="place"><a href="/house/show/selectAreaView" class="show-city-a">
+         
                               
                               </a></span>
             </div>

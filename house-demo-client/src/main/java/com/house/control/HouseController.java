@@ -65,7 +65,7 @@ public class HouseController {
 	@RequestMapping("/get/house/image")
 	@ResponseBody
 	public List<String> getHouseImage(String houseImageAddress) {
-	return houseService.getHouseImageInfo(houseImageAddress);
+		return houseService.getHouseImageInfo(houseImageAddress);
 	}
 
 }

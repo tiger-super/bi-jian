@@ -17,6 +17,7 @@
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=nI6URMs9j07NGjGT3Ho2FRaj0NwdFMzx"></script>
 <body>
+<script type="text/javascript" src="/static/js/index.js"></script>
 	<div class="navbar navbar-default head">
 		<div class="container">
 			<div class="col-sm-1" style="padding-right: 0px;">
@@ -27,15 +28,7 @@
 			</div>
 			<div class="col-sm-1 place-div">
 				<img src="/static/img/place.png" class="place-img" /> <span
-					class="place"><a href="/house/show/selectAreaView"> <c:choose>
-							<c:when test="${empty sessionScope.placeSession}">
-					                 请选择城市
-					</c:when>
-							<c:otherwise>
-						
-        ${ sessionScope.placeSession}
-						</c:otherwise>
-						</c:choose>
+					class="place"><a href="/house/show/selectAreaView"  class="show-city-a">>
 
 				</a></span>
 			</div>

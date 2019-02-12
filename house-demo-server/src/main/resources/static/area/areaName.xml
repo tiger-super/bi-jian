@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <country name="中国">
-<province name="北京市" postcode="110000">
-<city name="市辖区" postcode="110100">
+<province name="北京省" postcode="110000">
+<city name="北京市" postcode="110100">
 <area name="东城区" postcode="110101"/>
 <area name="西城区" postcode="110102"/>
 <area name="崇文区" postcode="110103"/>
@@ -20,7 +20,7 @@
 <area name="平谷区" postcode="110117"/>
 </city>
 </province>
-<province name="天津市" postcode="120000">
+<province name="天津省" postcode="120000">
 <city name="市辖区" postcode="120100">
 <area name="和平区" postcode="120101"/>
 <area name="河东区" postcode="120102"/>
@@ -878,8 +878,8 @@
 <area name="漠河县" postcode="232723"/>
 </city>
 </province>
-<province name="上海市" postcode="310000">
-<city name="市辖区" postcode="310100">
+<province name="上海省" postcode="310000">
+<city name="上海市" postcode="310100">
 <area name="黄浦区" postcode="310101"/>
 <area name="卢湾区" postcode="310103"/>
 <area name="徐汇区" postcode="310104"/>
@@ -2513,8 +2513,8 @@
 <area name="中沙群岛的岛礁及其海域" postcode="469039"/>
 </city>
 </province>
-<province name="重庆市" postcode="500000">
-<city name="市辖区" postcode="500100">
+<province name="重庆省" postcode="500000">
+<city name="重庆市" postcode="500100">
 <area name="万州区" postcode="500101"/>
 <area name="涪陵区" postcode="500102"/>
 <area name="渝中区" postcode="500103"/>
