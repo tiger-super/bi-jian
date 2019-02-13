@@ -93,7 +93,29 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
 			String Condition) {
-
-		return null;
+		List<House> list = null;
+		if (Condition != null) {
+			HouseInfo houseInfo = new HouseInfo();
+			switch (Condition) {
+			case "houseSize":
+				houseInfo.setHouseSize("true");
+				break;
+			case "houseMoney":
+				houseInfo.setHouseMoney("true");
+				break;
+			}
+			house.setHouseInfo(houseInfo);
+		}
+		if (sort != null) {
+			switch (sort) {
+			case "0":
+				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToAsc(house);
+				break;
+			case "1":
+				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToDesc(house);
+				break;
+			}
+		}
+		return list;
 	}
 }

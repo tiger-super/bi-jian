@@ -2,42 +2,128 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.house.mapper.HouseManagementMapper">
- <!-- 插入房源 -->
- <insert id="insertHouse" parameterType="com.house.entity.House" 
- useGeneratedKeys="true" keyProperty="houseId">
-  insert into house(house_name,house_address_province,
-  house_address_city,house_address_area,house_address_info,
-  house_publisher_id) 
-  value(#{houseName},#{houseAddressProvince},#{houseAddressCity},
-  #{houseAddressArea},#{houseAddressInfo},#{housePublisherId})
- </insert>
- 
- <!-- 插入房源信息 -->
-  <insert id="insertHouseInfo" parameterType="com.house.entity.House">
-  insert into house_info(house_id,house_publisher_id,house_type,house_money,house_size,house_direction,
-  house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure)
-  value(#{houseId},#{housePublisherId},#{houseInfo.houseType},#{houseInfo.houseMoney},#{houseInfo.houseSize},
-  #{houseInfo.houseDirection},#{houseInfo.houseSellWay},
-  #{houseInfo.houseDepoitWay},#{houseInfo.houseDescripe},
-  #{houseInfo.houseImageAddress},#{houseInfo.houseStructure}) 
-  </insert>
-<!-- 查询房源 -->
-<select id="selectHouseAccordingHouseId" parameterType="String" resultType="com.house.entity.House">
-   select house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number from house where house_id = #{parameter}
-</select>
-<!-- 查询房源详细信息 -->
-<select id="selectHouseInfoAccordingHouseId" parameterType="String" resultType="com.house.entity.HouseInfo">
- select house_type,house_money,house_size,house_direction,house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure from house_info where house_id = #{parameter}
-</select>
-<!-- 查询某个地区的房源 -->
-<select id="selectHouseFromProvinceAndCityAndArea" parameterType="com.house.entity.House">
-select house_id,house_name from house where house_address_province = #{houseAddressProvince} and house_address_city = #{houseAddressCity}
-  
-  <if test='#{houseAddressArea != null}'>
- and house_address_area = #{houseAddressArea},
-  
-  </if>
+<mapper namespace="com.house.mapper.HouseManagementMapper">
+	<!-- 插入房源 -->
+	<insert id="insertHouse" parameterType="com.house.entity.House"
+		useGeneratedKeys="true" keyProperty="houseId">
+		insert into
+		house(house_name,house_address_province,
+		house_address_city,house_address_area,house_address_info,
+		house_publisher_id)
+		value(#{houseName},#{houseAddressProvince},#{houseAddressCity},
+		#{houseAddressArea},#{houseAddressInfo},#{housePublisherId})
+	</insert>
 
-</select>
-  </mapper>
+	<!-- 插入房源信息 -->
+	<insert id="insertHouseInfo"
+		parameterType="com.house.entity.House">
+		insert into
+		house_info(house_id,house_publisher_id,house_type,house_money,house_size,house_direction,
+		house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure)
+		value(#{houseId},#{housePublisherId},#{houseInfo.houseType},#{houseInfo.houseMoney},#{houseInfo.houseSize},
+		#{houseInfo.houseDirection},#{houseInfo.houseSellWay},
+		#{houseInfo.houseDepoitWay},#{houseInfo.houseDescripe},
+		#{houseInfo.houseImageAddress},#{houseInfo.houseStructure})
+	</insert>
+	<!-- 查询房源 -->
+	<select id="selectHouseAccordingHouseId" parameterType="String"
+		resultType="com.house.entity.House">
+		select
+		house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number
+		from house where house_id = #{parameter}
+	</select>
+	<!-- 查询房源详细信息 -->
+	<select id="selectHouseInfoAccordingHouseId"
+		parameterType="String" resultType="com.house.entity.HouseInfo">
+		select
+		house_type,house_money,house_size,house_direction,house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure
+		from house_info where house_id = #{parameter}
+	</select>
+	<!-- 查询某个地区的房源 -->
+	<select id="selectHousesFromProvinceAndCityAndArea"
+		parameterType="com.house.entity.House" resultMap="setHouse">
+		select
+		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure from house
+		h,house_info hi where
+		h.house_id = hi.house_id and
+		house_address_province = #{houseAddressProvince}
+		and house_address_city
+		= #{houseAddressCity} and house_sell_way =
+		#{houseInfo.houseSellWay}
+		<if test='houseAddressArea != null'>
+			and house_address_area = #{houseAddressArea}
+		</if>
+	</select>
+
+	<resultMap type="com.house.entity.House" id="setHouse">
+		<id column="house_id" property="houseId" />
+		<result column="house_name" property="houseName" />
+		<result column="house_address_info" property="houseAddressInfo" />
+		<result column="house_publisher_time"
+			property="housePublisherTime" />
+		<result column="follow_number" property="followNumber" />
+		<association property="houseInfo"
+			javaType="com.house.entity.HouseInfo">
+			<result column="house_size" property="houseSize" />
+			<result column="house_direction" property="houseDirection" />
+			<result column="house_money" property="houseMoney" />
+			<result column="house_structure" property="houseStructure" />
+		</association>
+	</resultMap>
+
+
+	<!-- 查询某个地区的房源并按照一定条件降序排序 -->
+	<select id="selectHousesFromProvinceAndCityAndAreaAndSortToDesc"
+		parameterType="com.house.entity.House" resultMap="setHouse">
+		select
+		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure from house
+		h,house_info hi where
+		h.house_id = hi.house_id and
+		house_address_province = #{houseAddressProvince}
+		and house_address_city
+		= #{houseAddressCity} and house_sell_way =
+		#{houseInfo.houseSellWay}
+		<if test='houseAddressArea != null'>
+			and house_address_area = #{houseAddressArea}
+		</if>
+		order by CAST(
+		 <choose>
+		<when test="houseInfo.houseSize != null">
+			house_size
+		</when>
+		<otherwise>
+			house_money
+		</otherwise>
+		</choose>
+		 AS DECIMAL(10,2)) desc
+	</select>
+	
+	<!-- 查询某个地区的房源并按照一定条件降序排序 -->
+	<select id="selectHousesFromProvinceAndCityAndAreaAndSortToAsc"
+		parameterType="com.house.entity.House" resultMap="setHouse">
+		select
+		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure from house
+		h,house_info hi where
+		h.house_id = hi.house_id and
+		house_address_province = #{houseAddressProvince}
+		and house_address_city
+		= #{houseAddressCity} and house_sell_way =
+		#{houseInfo.houseSellWay}
+		<if test='houseAddressArea != null'>
+			and house_address_area = #{houseAddressArea}
+		</if>
+		order by CAST(
+		 <choose>
+		<when test="houseInfo.houseSize != null">
+			house_size
+		</when>
+		<otherwise>
+			house_money
+		</otherwise>
+		</choose>
+		 AS DECIMAL(10,2)) asc
+	</select>
+</mapper>
