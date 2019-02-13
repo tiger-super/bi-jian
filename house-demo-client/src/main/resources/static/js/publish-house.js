@@ -38,9 +38,10 @@ $(document).ready(function() {
 			var JsonData = decodeURIComponent($("#publish").serialize(), true);
 			JsonData = transformationJson(JsonData);
 			console.log(JsonData)
+			
 			var Data = JSON.parse(JsonData);
 			$.ajax({
-				url : '/house/publish/house',
+				url : '/house/session/publish/house',
 				type : "post",
 				dataType : "json",
 				data : Data,
@@ -262,11 +263,16 @@ function transformationJson(data) {
 	var houseAddressArea = $(".area-select-text").text();
 	var houseStructure = $(".room").val() + $(".office").val()
 			+ $(".toilet").val();
+
+	var text = $(".house-descripe").val().replace(/\s|\xA0/g,"");
+	var index = data.lastIndexOf("&houseInfo.houseDescripe");
+	data = data.substring(0,index);
 	data = data + "&houseAddressProvince=" + houseAddressProvince
 			+ "&houseAddressCity=" + houseAddressCity + "&houseAddressArea="
 			+ houseAddressArea + "&houseInfo.houseStructure=" + houseStructure;
 	data = data.replace(/&/g, "\",\"");
 	data = data.replace(/=/g, "\":\"");
+	data = data+"\",\"houseInfo.houseDescripe\":\""+text;
 	data = data.replace(/[\r\n]/g, "<br/>");
 	data = "{\"" + data + "\"}";
 	return data;
@@ -274,7 +280,7 @@ function transformationJson(data) {
 
 function submitform() {
 	$.ajax({
-		url : "/house/publish/house/upload",
+		url : "/house/session/publish/house/upload",
 		type : "post",
 		data : new FormData($('#fileUploadFrom')[0]),
 		processData : false,
@@ -291,3 +297,14 @@ function submitform() {
 
 	})
 }
+
+function checkLeave(){ 
+　　　$.ajax({
+	url : "/house/delete/session",
+	type : "post",
+	success : function(result) {
+		
+	}
+
+})
+　　　} 

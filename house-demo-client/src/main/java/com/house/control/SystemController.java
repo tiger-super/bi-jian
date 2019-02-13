@@ -1,5 +1,6 @@
 package com.house.control;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +8,14 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.house.tool.FileUtil;
 
 @Controller
 @RequestMapping("/house")
@@ -52,5 +56,34 @@ public class SystemController {
 		map.put("city",city);
 		return map;
 	   }
+	/**
+	 * 该方法用于发布房源界面关闭时候触发的control
+	 * @param request 用于获取cookie
+	 * @param response 用于保存cookie
+	 */
+	@RequestMapping("/delete/session")
+	@ResponseBody
+	   public void deleteSession(HttpServletResponse response,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String folder = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				switch (cookie.getName()) {
+				case "folder":
+					folder = cookie.getValue();
+					 cookie.setValue(null);  
+                     cookie.setMaxAge(0);// 立即销毁cookie  
+                     cookie.setPath("/");  
+                     response.addCookie(cookie);
+					break;
+				}
+			}
+			try {
+				FileUtil.deleteFile(folder);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 }

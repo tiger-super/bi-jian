@@ -6,5 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CoumterApplication {
     public static void main(String[] args) {
     	 SpringApplication.run(CoumterApplication.class,args);
+       
     }
 } 

@@ -28,27 +28,25 @@ public class HouseServiceImpl implements HouseService {
 	// 房源发布
 	@Override
 	public String housePublish(List<byte[]> list, House house) {
-
 		String houseFolder = PhoneAddressCreate.createAddress(house.getHousePublisherId());
 		house.getHouseInfo().setHouseImageAddress(houseFolder);
-		for (int i = 0; i < list.size(); i++) { 
-			// 本地路径 
-			StringBuffer path = new StringBuffer(); 
+		for (int i = 0; i < list.size(); i++) {
+			String houseImageAddress = PhoneAddressCreate.createAddress(house.getHousePublisherId());
+			// 本地路径
+			StringBuffer path = new StringBuffer();
 			// 类路径
 			StringBuffer classPath = new StringBuffer();
 			try {
 				path.append(new File("").getCanonicalPath() + "/src/main/resources/static/publish-house-img" + "/"
 						+ houseFolder);
 				new File(path.toString()).mkdirs();
-				path.append("/" + PhoneAddressCreate.createAddress(house.getHousePublisherId()) + ".jpg");
-				classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath() + "/publish-house-img"
-						+ "/" + houseFolder);
+				path.append("/" + houseImageAddress + ".jpg");
+				classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()
+						+ "/static/publish-house-img" + "/" + houseFolder);
 				new File(classPath.toString()).mkdirs();
-				classPath.append("/" + PhoneAddressCreate.createAddress(house.getHousePublisherId()) + ".jpg");
+				classPath.append("/" + houseImageAddress + ".jpg");
 				FileUtil.fileupload(list.get(i), path.toString());
-				;
 				FileUtil.fileupload(list.get(i), classPath.toString());
-				;
 			} catch (IOException e) {
 				e.printStackTrace();
 				return "false";
@@ -95,7 +93,7 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
 			String Condition) {
-		
+
 		return null;
 	}
 }

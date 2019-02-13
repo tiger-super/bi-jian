@@ -30,4 +30,14 @@
 <select id="selectHouseInfoAccordingHouseId" parameterType="String" resultType="com.house.entity.HouseInfo">
  select house_type,house_money,house_size,house_direction,house_sell_way,house_depoit_way,house_descripe,house_image_address,house_structure from house_info where house_id = #{parameter}
 </select>
+<!-- 查询某个地区的房源 -->
+<select id="selectHouseFromProvinceAndCityAndArea" parameterType="com.house.entity.House">
+select house_id,house_name from house where house_address_province = #{houseAddressProvince} and house_address_city = #{houseAddressCity}
+  
+  <if test='#{houseAddressArea != null}'>
+ and house_address_area = #{houseAddressArea},
+  
+  </if>
+
+</select>
   </mapper>

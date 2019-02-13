@@ -35,10 +35,20 @@ public class FileUtil {
 				classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/uploadcache/"+folder);
 				File file = new File(path.toString());
 				File classFile = new File(classPath.toString());
-				if(!file.exists()) {
+				if(file.exists()) {
+					String[] fileString = file.list();
+					for(int i = 0 ; i < fileString.length; i++) {
+						StringBuffer sb = new StringBuffer(path.toString()+"/"+fileString[i]);
+						new File(sb.toString()).delete();
+					}
 				file.delete();
 				}
-				if(!classFile.exists()) {
+				if(classFile.exists()) {
+					String[] fileClassString = classFile.list();
+					for(int i = 0 ; i < fileClassString.length; i++) {
+						StringBuffer sb = new StringBuffer(classPath.toString()+"/"+fileClassString[i]);
+						new File(sb.toString()).delete();
+					}
 		        classFile.delete();					
 				}
 		}

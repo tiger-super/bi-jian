@@ -67,7 +67,7 @@ public class ViewJumpController {
 	}
 
 	// 显示发布界面
-	@RequestMapping("/show/publish/house")
+	@RequestMapping("/session/show/publish/house")
 	public String showPublishHouseView() {
 		return "publish-house";
 	}

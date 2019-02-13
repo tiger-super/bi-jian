@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,25 @@ public class HouseController {
 	 * 该方法收集用户发布的房源信息
 	 * 
 	 * @param house   发布的房源
-	 * @param session 用来获取发布人的id和房源图片的地址
+	 * @param session 用来获取发布人的id
+	 * @param request 用来获取cookie，从cookie中的得到房源图片的地址
 	 * @return 返回一个String类型数据，有"true"和"false"
 	 */
-	@RequestMapping("/publish/house")
+	@RequestMapping("/session/publish/house")
 	@ResponseBody
-	public String PublishHouse(House house, HttpSession session) {
+	public String PublishHouse(House house, HttpSession session, HttpServletRequest request) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
-		String folder = (String) session.getAttribute("folder");
+		Cookie[] cookies = request.getCookies();
+		String folder = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				switch (cookie.getName()) {
+				case "folder":
+					folder = cookie.getValue();
+					break;
+				}
+			}
+		}
 		List<byte[]> list = new ArrayList<byte[]>();
 		try {
 			FileUtil.readCacheImg(folder, list);
@@ -53,17 +65,32 @@ public class HouseController {
 	 * 该方法用于用户发布房源的时候缓存上传的房源图片
 	 * 
 	 * @param houseImg 上传的图片
-	 * @param session  用于保存产生的临时父级地址
+	 * @param request  用于获取cookie
+	 * @param response 用于保存cookie
 	 * @return 返回一个集合，集合保存的是父级地址下的所有图片地址
 	 */
-	@RequestMapping("/publish/house/upload")
+	@RequestMapping("/session/publish/house/upload")
 	@ResponseBody
-	public List<String> uploadHouseImg(@RequestParam("photoFile") MultipartFile houseImg, HttpSession session) {
-		String folder = (String) session.getAttribute("folder");
+	public List<String> uploadHouseImg(@RequestParam("photoFile") MultipartFile houseImg, HttpServletResponse response,
+			HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		String folder = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				switch (cookie.getName()) {
+				case "folder":
+					folder = cookie.getValue();
+					break;
+				}
+			}
+		}
 		if (folder == null) {
 			folder = PhoneAddressCreate.createAddress();
-			session.setAttribute("folder", folder);
+			Cookie cookieFolder = new Cookie("folder", folder);
+			cookieFolder.setPath("/");
+			response.addCookie(cookieFolder);
 		}
+
 		List<String> list = new ArrayList<String>();
 		FileUtil.uploadCache(houseImg, folder, list);
 		return list;
@@ -79,7 +106,7 @@ public class HouseController {
 	 */
 	@RequestMapping("/get/house/list")
 	@ResponseBody
-	public List<House> getHouseList(HttpServletRequest request, String area, String sort,String condition) {
+	public List<House> getHouseList(HttpServletRequest request, String area, String sort, String condition) {
 		Cookie[] cookies = request.getCookies();
 		String province = null;
 		String city = null;
@@ -102,7 +129,10 @@ public class HouseController {
 			House house = new House();
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
-			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort,condition);
+			if (area != null) {
+				house.setHouseAddressArea(area);
+			}
+			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition);
 		}
 	}
 

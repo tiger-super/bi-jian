@@ -14,7 +14,7 @@
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/publish-house.js"></script>
 
-<body>
+<body onbeforeunload="checkLeave()">
 	<div class="navbar navbar-default head">
 		<div class="container">
 			<div class="col-sm-1" style="padding-right: 0px;">
