@@ -22,7 +22,7 @@
 				<img src="/static/img/houselogo.png" class="houselogo" />
 			</div>
 			<div class="navbar-header">
-				<a href="#" class="navbar-brand logo">住哪儿</a>
+				<a href="#" class="navbar-brand logo" value=${houseSellWay}>住哪儿</a>
 			</div>
 			<div class="col-sm-1 place-div">
 				<img src="/static/img/place.png" class="place-img" /> <span

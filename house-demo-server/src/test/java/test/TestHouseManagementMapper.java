@@ -27,16 +27,19 @@ public class TestHouseManagementMapper {
   public void testSelectHouseInfoAccordingHouseId() {
 	  System.out.println(houseManagementMapper.selectHouseInfoAccordingHouseId("10000"));
   }
+
   @Test
   public void testSelectHousesFromProvinceAndCityAndArea() {
 	  House house = new House();
 	  house.setHouseAddressProvince("广东省");
 	  house.setHouseAddressCity("佛山市");
-	  house.setHouseAddressArea("南海区");
+		/* house.setHouseAddressArea("南海区"); */
 	  HouseInfo houseInfo = new HouseInfo();
 	  houseInfo.setHouseSellWay("租售");
 	  house.setHouseInfo(houseInfo);
-	  List<House> list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(house);
+	  System.out.println(house);
+	  List<House> list = null;
+	 list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(house);
       for(int i = 0 ; i < list.size() ; i++) {
     	  System.out.println("第"+i+"个结果为："+list.get(i));
       }

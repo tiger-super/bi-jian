@@ -94,6 +94,9 @@ public class HouseServiceImpl implements HouseService {
 	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
 			String Condition) {
 		List<House> list = null;
+		if(Condition == null && sort == null) {
+			list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(house);
+		}else {
 		if (Condition != null) {
 			HouseInfo houseInfo = new HouseInfo();
 			switch (Condition) {
@@ -115,6 +118,7 @@ public class HouseServiceImpl implements HouseService {
 				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToDesc(house);
 				break;
 			}
+		}
 		}
 		return list;
 	}

@@ -122,7 +122,7 @@
 									</a></td>
 								</tr>
 								<tr>
-									<td colspan="3" style="border: 5px solid white"><a href="">
+									<td colspan="3" style="border: 5px solid white"><a href="/house/show/house/list?houseSellWay='租售'">
 											<div class="col-sm=12" style="padding: 0px;">
 												全部租房房源 <i class="iconfont icon-bofang icon"></i>
 											</div>
@@ -198,7 +198,7 @@
 								</tr>
 								<tr>
 									<td colspan="3" style="border: 5px solid white;"><a
-										href="">
+										href="/house/show/house/list?houseSellWay='出售'">
 											<div class="col-sm=12" style="padding: 0px;">
 												全部二手房源 <i class="iconfont icon-bofang icon"></i>
 											</div>

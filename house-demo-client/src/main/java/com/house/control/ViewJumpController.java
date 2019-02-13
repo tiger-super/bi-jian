@@ -74,7 +74,7 @@ public class ViewJumpController {
 
 	// 显示房源界面
 	@RequestMapping("/show/house/list")
-	public ModelAndView showHouseListView(HttpServletRequest request) {
+	public ModelAndView showHouseListView(HttpServletRequest request,String houseSellWay) {
 		ModelAndView mv = new ModelAndView();
 		Cookie[] cookies = request.getCookies();
 		String province = null;
@@ -89,12 +89,12 @@ public class ViewJumpController {
 					city = cookie.getValue();
 					break;
 				}
-
 			}
 		}
 		List<String> areaList = analysisAreaXmlService.analysisAreaXmlGainArea(province, city);
 		mv.setViewName("house-list");
 		mv.addObject("areaList", areaList);
+		mv.addObject("houseSellWay",houseSellWay);
 		return mv;
 	}
 

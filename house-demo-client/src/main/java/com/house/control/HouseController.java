@@ -106,7 +106,7 @@ public class HouseController {
 	 */
 	@RequestMapping("/get/house/list")
 	@ResponseBody
-	public List<House> getHouseList(HttpServletRequest request, String area, String sort, String condition) {
+	public List<House> getHouseList(HttpServletRequest request,@RequestParam(required =false) String area, @RequestParam(required =false)String sort, @RequestParam(required =false)String condition,House house) {
 		Cookie[] cookies = request.getCookies();
 		String province = null;
 		String city = null;
@@ -126,7 +126,6 @@ public class HouseController {
 		if (province == null || city == null) {
 			return null;
 		} else {
-			House house = new House();
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
 			if (area != null) {
