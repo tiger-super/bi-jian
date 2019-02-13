@@ -6,9 +6,22 @@ import com.house.entity.House;
 
 public interface HouseService {
 	// 发布房源
-   public String housePublish(List<byte[]> list,House house);
-   // 获取房源信息
-   public House getHouseInformation(String houseId);
-   // 获取房源的图片信息
-   public List<String> getHouseImageInfo(String houseImageAddress);
+	public String housePublish(List<byte[]> list, House house);
+
+	// 获取房源信息
+	public House getHouseInformation(String houseId);
+
+	// 获取房源的图片信息
+	public List<String> getHouseImageInfo(String houseImageAddress);
+
+	/**
+	 * 此方法用来获取符合一定条件下的所有房源
+	 * 
+	 * @param house     此参数对象保存着房源的省市区
+	 * @param sort      此参数表示排序方式
+	 * @param Condition 此参数表示其他条件，如面积、金额
+	 * @return 返回一个List，保存着符合条件的所有房源
+	 */
+	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
+			String condition);
 }

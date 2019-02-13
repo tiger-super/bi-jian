@@ -91,4 +91,11 @@ public class HouseServiceImpl implements HouseService {
 		}
 
 	}
+
+	@Override
+	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
+			String Condition) {
+		
+		return null;
+	}
 }

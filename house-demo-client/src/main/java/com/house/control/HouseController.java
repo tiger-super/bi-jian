@@ -79,7 +79,7 @@ public class HouseController {
 	 */
 	@RequestMapping("/get/house/list")
 	@ResponseBody
-	public List<House> getHouseList(HttpServletRequest request, String area, String arrangementMode) {
+	public List<House> getHouseList(HttpServletRequest request, String area, String sort,String condition) {
 		Cookie[] cookies = request.getCookies();
 		String province = null;
 		String city = null;
@@ -99,7 +99,10 @@ public class HouseController {
 		if (province == null || city == null) {
 			return null;
 		} else {
-			return null;
+			House house = new House();
+			house.setHouseAddressProvince(province);
+			house.setHouseAddressCity(city);
+			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort,condition);
 		}
 	}
 
