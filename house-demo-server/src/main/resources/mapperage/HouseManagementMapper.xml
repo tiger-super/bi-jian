@@ -44,7 +44,7 @@
 		parameterType="com.house.entity.House" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure from house
+		house_size,house_direction,house_money,house_structure,house_image_address from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
 		house_address_province = #{houseAddressProvince}
@@ -69,6 +69,7 @@
 			<result column="house_direction" property="houseDirection" />
 			<result column="house_money" property="houseMoney" />
 			<result column="house_structure" property="houseStructure" />
+			<result column="house_image_address" property="houseImageAddress" />
 		</association>
 	</resultMap>
 
@@ -78,7 +79,7 @@
 		parameterType="com.house.entity.House" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure from house
+		house_size,house_direction,house_money,house_structure,house_image_address from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
 		house_address_province = #{houseAddressProvince}
@@ -105,7 +106,7 @@
 		parameterType="com.house.entity.House" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure from house
+		house_size,house_direction,house_money,house_structure,house_image_address from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
 		house_address_province = #{houseAddressProvince}

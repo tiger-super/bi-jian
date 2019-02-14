@@ -26,9 +26,8 @@
 			</div>
 			<div class="col-sm-1 place-div">
 				<img src="/static/img/place.png" class="place-img" /> <span
-					class="place"><a href="/house/show/selectAreaView"  class="show-city-a">> 
-
-				</a></span>
+					class="place"><a href="/house/show/selectAreaView"
+					class="show-city-a"></a></span>
 			</div>
 			<ul class="nav navbar-nav navbar-right" id="head-nav">
 				<c:choose>
@@ -63,94 +62,49 @@
 		<div class="col-sm-12 select-area-title-window">
 			<div class="col-sm-1 select-area-title">位置</div>
 			<div class="col-sm-2 select-area-title">
-				<span style="margin-right: 15px;color:blue">区域</span><img
+				<span style="margin-right: 15px; color: blue">区域</span><img
 					src="/static/img/down.png">
 			</div>
 		</div>
 
 		<div class="col-sm-12 select-area-content-window">
-			<div class="col-sm-12 select-area-content" >
-			<c:forEach items="${areaList}" var="area">
-				<div class="col-sm-1 select-area-content-part">${area}</div>
-			</c:forEach>
+			<div class="col-sm-12 select-area-content">
+				<c:forEach items="${areaList}" var="area">
+					<div class="col-sm-1 select-area-content-part">${area}</div>
+				</c:forEach>
 
-		</div>
+			</div>
 
 
-		<div class="col-sm-12 show-sort-window">
-			<div class="col-sm-9 show-sort">
-				<div class="col-sm-2 show-sort-select" style="background-color:blue">默认排序</div>
-				<div class="col-sm-2 show-sort-select">
-					价钱 <img src="/static/img/arrow-down.png"
-						class="show-sort-select-img">
+			<div class="col-sm-12 show-sort-window">
+				<div class="col-sm-9 show-sort">
+					<div class="col-sm-2 show-sort-select"
+						style="background-color: blue">默认排序</div>
+					<div class="col-sm-2 show-sort-select">
+						价钱 <img src="/static/img/arrow-down.png"
+							class="show-sort-select-img">
+					</div>
+					<div class="col-sm-2 show-sort-select">
+						面积 <img src="/static/img/arrow-down.png"
+							class="show-sort-select-img">
+					</div>
 				</div>
-				<div class="col-sm-2 show-sort-select">
-					面积 <img src="/static/img/arrow-down.png"
-						class="show-sort-select-img">
+				<div class="col-sm-9 modification"></div>
+			</div>
+
+
+			<div class="col-sm-12 information-total-window">
+				<div class="col-sm-9  information-total-div">
+					<h2>
+						共找到&nbsp<span class="information-total"></span>&nbsp个结果
+					</h2>
 				</div>
 			</div>
-			<div class="col-sm-9 modification"></div>
-		</div>
 
-
-		<div class="col-sm-12 information-total-window">
-			<div class="col-sm-9  information-total-div">
-				<h2>
-					共找到&nbsp<span class="information-total">182</span>&nbsp个结果
-				</h2>
-			</div>
-		</div>
-
-		<div class="col-sm-12 house-information-list-window">
-			<div class="col-sm-9 house-information-div">
-				<div class="house-information-img col-sm-4">
-					<img src="/static/img/house-img.jpg">
-
-				</div>
-				
-				<div class="col-sm-8" style="padding:0px">
-				
-				<div class="house-information-word col-sm-7">
-					<div class="house-information-word-title col-sm-12">地铁口
-						新装修小三房 南向很实用</div>
-				</div>
-
-				<div class="house-information-word-left col-sm-10">
-					<div class="col-sm-12">
-					<div class="col-sm-12">
-					<img src="/static/img/house.png" class="house-information-word-left-img">
-					<span>3室1厅1卫</span><span>|</span><span>100平米</span><span>|</span><span>西南</span>
-					</div>
-					</div>
-					<div class="col-sm-12">
-					<div class="col-sm-12">
-					<img src="/static/img/place2.png" class="house-information-word-left-img">
-					<span>园新路爱民巷013</span>
-					</div>
-					</div>
-					<div class="col-sm-12">
-					<div class="col-sm-12">
-					<img src="/static/img/stars.png" class="house-information-word-left-img">
-					<span>161</span><span>人关注/</span><span>4月前发布</span>
-					</div>
-					
-					</div>
-
-				</div>
-
-				<div class="house-information-word-right col-sm-2">
-                 <span class="house-money">
-                 113
-                 </span><span style="color:red">万</span>				
-				
-				</div>
-			
-			
-			</div>
-			
-			</div>
+			<div class="col-sm-12 house-information-list-window"></div>
 		</div>
 	</div>
+
 </body>
 
 </html>

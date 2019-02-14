@@ -233,16 +233,7 @@ function calculateDistance() {
 		break;
 	}
 }
-/*function loadCollectionNumber(){
-	$.ajax({
-		url : '/house/get/house/image',
-		type : "post",
-		success : function(result) {
-			
-		}
-		
-	})
-}*/
+
 
 function clcikCollection(){
 	$(".collection-img").attr("src","/static/img/click-stars.png");

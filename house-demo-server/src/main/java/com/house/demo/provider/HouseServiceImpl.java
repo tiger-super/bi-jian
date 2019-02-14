@@ -120,6 +120,6 @@ public class HouseServiceImpl implements HouseService {
 			}
 		}
 		}
-		return list;
+		return FileUtil.readHousImg(list);
 	}
 }
