@@ -98,7 +98,7 @@ public class HouseServiceImpl implements HouseService {
 			list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(house);
 		}else {
 		if (Condition != null) {
-			HouseInfo houseInfo = new HouseInfo();
+			HouseInfo houseInfo = house.getHouseInfo();
 			switch (Condition) {
 			case "houseSize":
 				houseInfo.setHouseSize("true");

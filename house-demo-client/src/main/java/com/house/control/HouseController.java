@@ -128,7 +128,7 @@ public class HouseController {
 		} else {
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
-			if (area != null) {
+			if (area != null && !area.equals("")) {
 				house.setHouseAddressArea(area);
 			}
 			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition);

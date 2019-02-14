@@ -59,7 +59,6 @@ public class TestHouseManagementMapper {
     	  System.out.println("第"+i+"个结果为："+list.get(i).getHouseInfo().getHouseSize());
       }
   }
-  
   @Test
   public void testSelectHousesFromProvinceAndCityAndAreaAndSortToAsc() {
 	  House house = new House();
@@ -71,6 +70,7 @@ public class TestHouseManagementMapper {
 		/* houseInfo.setHouseMoney("true"); */
 	  houseInfo.setHouseSize("true");
 	  house.setHouseInfo(houseInfo);
+	  System.out.println(house);
 	  List<House> list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToAsc(house);
       for(int i = 0 ; i < list.size() ; i++) {
 			/*

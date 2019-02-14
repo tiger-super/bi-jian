@@ -68,7 +68,7 @@
 		</div>
 
 		<div class="col-sm-12 select-area-content-window">
-			<div class="col-sm-12 select-area-content">
+			<div class="col-sm-12 select-area-content" value="">
 				<c:forEach items="${areaList}" var="area">
 					<div class="col-sm-1 select-area-content-part">${area}</div>
 				</c:forEach>
@@ -77,14 +77,14 @@
 
 
 			<div class="col-sm-12 show-sort-window">
-				<div class="col-sm-9 show-sort">
-					<div class="col-sm-2 show-sort-select"
+				<div class="col-sm-9 show-sort" value="default">
+					<div class="col-sm-2 show-sort-select show-sort-select-default"
 						style="background-color: blue">默认排序</div>
-					<div class="col-sm-2 show-sort-select">
+					<div class="col-sm-2 show-sort-select show-sort-select-money" value="0"> 
 						价钱 <img src="/static/img/arrow-down.png"
 							class="show-sort-select-img">
 					</div>
-					<div class="col-sm-2 show-sort-select">
+					<div class="col-sm-2 show-sort-select show-sort-select-size" value="0">
 						面积 <img src="/static/img/arrow-down.png"
 							class="show-sort-select-img">
 					</div>
