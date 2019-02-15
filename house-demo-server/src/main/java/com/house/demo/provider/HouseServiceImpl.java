@@ -98,6 +98,7 @@ public class HouseServiceImpl implements HouseService {
 			String Condition,Page page) {
 		List<House> list = null;
 		 Map<String,Object> map = new HashMap<String,Object>();
+		 page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
 		 map.put("page",page);
 		if("default".equals(Condition) && sort == null) {
 			 map.put("house", house);

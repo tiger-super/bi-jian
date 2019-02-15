@@ -17,6 +17,7 @@ public class Page implements Serializable {
 		super();
 		this.pageNumber = 4;
 		this.pageShowNow = 0 ;
+		this.pageCurrent = 1;
 	}
 	public int getPageTotal() {
 		return pageTotal;

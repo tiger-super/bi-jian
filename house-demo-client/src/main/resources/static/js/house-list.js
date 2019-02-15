@@ -2,11 +2,11 @@ $(document)
 		.ready(
 				function() {
 					 addCondtion("houseInfo.houseSellWay",$(".logo").attr("value"));
-					informationLoad();
+					informationLoad(getJson());
 					$(".select-area-content-part").click(
 							function(){
 							 addCondtion("houseAddressArea",$(this).text());
-							 informationLoad();
+							 informationLoad(getJson());
 								$(".select-area-content-part").css("color",
 										"black");
 								$(this).css("color", "blue");
@@ -18,7 +18,7 @@ $(document)
 								 addCondtion("Condition","houseMoney");
 								 let sort = $(this).attr("value");
 								 switchSortImage(sort, $(this));
-								 informationLoad();
+								 informationLoad(getJson());
 								 $(".show-sort-select").css(
 											"background-color", "white");
 									$(this).css("background-color", "blue");
@@ -29,7 +29,7 @@ $(document)
 								 addCondtion("Condition","houseSize");
 								 let sort = $(this).attr("value");
 								switchSortImage(sort, $(this));
-								informationLoad();
+								informationLoad(getJson());
 								$(".show-sort-select").css(
 										"background-color", "white");
 								$(this).css("background-color", "blue");
@@ -41,7 +41,7 @@ $(document)
 										addCondtion("Condition","default");
 										 let sort = $(this).attr("value");
 										switchSortImage(sort, $(this));
-										informationLoad();
+										informationLoad(deleteSort(getJson()));
 										$(".show-sort-select").css(
 												"background-color", "white");
 										$(this).css("background-color", "blue");
@@ -62,12 +62,12 @@ function switchSortImage(sort, thisDiv) {
 				"/static/img/arrow-up.png");
 	}
 }
-function informationLoad() {
+function informationLoad(data) {
 	$.ajax({
 		url : '/house/get/house/list',
 		dataType : "json",
 		type : "post",
-		data : getJson(),
+		data : data,
 		success : function(result) {
 			let length = result.page.pageTotal;
 			$(".house-information-list-window").empty();
@@ -131,41 +131,7 @@ function renderIngInformation(house) {
 							+ "<span style='color: red'>万</span></div></div></div></div>");
 }
 
-
-function loadInformationSort(sort, area, condition) {
-	let data;
-	if (area != "") {
-		data = {
-			"houseInfo.houseSellWay" : $(".logo").attr("value"),
-			"houseAddressArea" : area,
-			"condition" : condition,
-			"sort" : sort
-		}
-	} else {
-		data = {
-			"houseInfo.houseSellWay" : $(".logo").attr("value"),
-			"condition" : condition,
-			"sort" : sort
-		}
-	}
-	$.ajax({
-		url : '/house/get/house/list',
-		dataType : "json",
-		type : "post",
-		data : data,
-		success : function(result) {
-			let length = result.page.pageTotal;
-			$(".house-information-list-window").empty();
-			$(".information-total").text(length);
-			for (let i = 0; i < result.list.length; i++) {
-				renderIngInformation(result.list[i]);
-			}
-			bindingEvent();
-			showPageView(result.page);
-		}
-	})
-}
-let pageCurrent;
+let pageCurrent = 1;
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -186,7 +152,7 @@ function showPageView(page) {
 				case "...":
 				$(".page-show-content").append("<button class='btn next-display disabled' >"+result[i]+"</button>")
 				break;
-				case ""+(page.pageCurrent+1):
+				case ""+(page.pageCurrent):
 					$(".page-show-content").append("<button class='btn btn-info page' >"+result[i]+"</button>")
 					break;
 				default:
@@ -196,8 +162,16 @@ function showPageView(page) {
 				
 			}
 			$(".page").click(function(){
-				 addCondtion("condition","1000")
-				  
+				pageCurrent = parseInt($(this).text());
+				 informationLoad(addJson(getJson(),"pageCurrent",parseInt($(this).text())));
+			})
+			$(".next").click(function(){
+				pageCurrent = pageCurrent+1;
+				 informationLoad(addJson(getJson(),"pageCurrent",pageCurrent));
+			})
+			$(".upper").click(function(){
+				pageCurrent = pageCurrent-1;
+				 informationLoad(addJson(getJson(),"pageCurrent",pageCurrent));
 			})
 		}
 	})
@@ -222,6 +196,11 @@ function getJson(){
 	}
 	return JSON.parse(data);
 }
+function addJson(json,key,value){
+	json[key] = value;
+	console.log(json);
+	return json;
+}
 // 由json转换为字符串
 function getString(json){
 	let data = JSON.stringify(json)
@@ -238,4 +217,12 @@ function transformationJson(data) {
 	data = data.replace(/=/g, "\":\"");
 	data = "{\"" + data + "\"}";
 	return data;
+}
+
+
+function deleteSort(json){
+	if(json["sort"] != undefined){
+		delete json["sort"];		
+	}
+	return json;
 }

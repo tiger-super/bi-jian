@@ -109,10 +109,13 @@ public class HouseController {
 	 */
 	@RequestMapping("/get/house/list")
 	@ResponseBody
-	public Map<String,Object> getHouseList(HttpServletRequest request,@RequestParam(required =false) String area, @RequestParam(required =false)String sort, @RequestParam(required =false)String condition,House house,@RequestParam(required =false)Page page) {
+	public Map<String, Object> getHouseList(HttpServletRequest request, @RequestParam(required = false) String sort,
+			@RequestParam(required = false) String condition, House house,
+			@RequestParam(required = false) Integer pageCurrent) {
 		Cookie[] cookies = request.getCookies();
-		if(page == null) {
-		    page = new Page();
+		Page page = new Page();
+		if (pageCurrent != null) {
+			page.setPageCurrent(pageCurrent);
 		}
 		String province = null;
 		String city = null;
@@ -134,10 +137,8 @@ public class HouseController {
 		} else {
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
-			if (area != null && !area.equals("")) {
-				house.setHouseAddressArea(area);
-			}
-			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition,page);
+			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition,
+					page);
 		}
 	}
 
@@ -152,9 +153,10 @@ public class HouseController {
 	public List<String> getHouseImage(String houseImageAddress) {
 		return houseService.getHouseImageInfo(houseImageAddress);
 	}
+
 	@RequestMapping("/get/show/page")
 	@ResponseBody
-	public List<String> getShowPage(Page page){
+	public List<String> getShowPage(Page page) {
 		return PageShow.handlePage(page);
 	}
 }

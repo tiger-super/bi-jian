@@ -37,9 +37,13 @@ public void testList() throws IOException {
 @Test
 public void testPageShow() {
 	Page page = new Page();
-	page.setPageCurrent(8);
-	page.setPageMax(20);
-    List<String> list = com.house.tool.PageShow.handlePage(page);
+	page.setPageMax(8);
+	for(int i = 1 ; i <= 8 ; i ++) {
+		
+		page.setPageCurrent(i);
+		List<String> list = com.house.tool.PageShow.handlePage(page);
+		System.out.println("点弟"+i+"页"+list);
+	}
    
 }
 }
