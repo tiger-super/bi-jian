@@ -26,7 +26,7 @@ public class FileUtil {
 	         }
 		}
 		
-		public static List<House> readHousImg(List<House> list) {
+		public static List<House> readHouseImg(List<House> list) {
 			for(int i = 0 ; i < list.size() ; i++) {
 			StringBuffer path = new StringBuffer();
 			String imageFolder = list.get(i).getHouseInfo().getHouseImageAddress();

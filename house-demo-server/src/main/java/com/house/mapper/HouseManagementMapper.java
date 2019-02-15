@@ -1,6 +1,7 @@
 package com.house.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,11 @@ public interface HouseManagementMapper {
 	// 查询房源信息
 	HouseInfo selectHouseInfoAccordingHouseId(String houseId);
 	// 查询某个地区的房源
-	List<House> selectHousesFromProvinceAndCityAndArea(House house);
+	List<House> selectHousesFromProvinceAndCityAndArea(Map<String,Object> map);
 	// 查询某个地区的房源并按照一定条件降序排序
-	List<House> selectHousesFromProvinceAndCityAndAreaAndSortToDesc(House house);
+	List<House> selectHousesFromProvinceAndCityAndAreaAndSortToDesc(Map<String,Object> map);
 	// 查询某个地区的房源并按照一定条件升序排序
-	List<House> selectHousesFromProvinceAndCityAndAreaAndSortToAsc(House house);
+	List<House> selectHousesFromProvinceAndCityAndAreaAndSortToAsc(Map<String,Object> map);
+	// 查询某个地区的房源信息总数
+	int getHouseInformationTotal(House house);
 }

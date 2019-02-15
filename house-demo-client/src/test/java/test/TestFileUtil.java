@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.util.ClassUtils;
 
+import com.house.entity.Page;
 import com.house.tool.FileUtil;
 
 public class TestFileUtil {
@@ -32,5 +33,13 @@ public void testList() throws IOException {
 	for(int i = 0 ; i < s.length; i++) {
 		System.out.println(s[i]);
 	}
+}
+@Test
+public void testPageShow() {
+	Page page = new Page();
+	page.setPageCurrent(8);
+	page.setPageMax(20);
+    List<String> list = com.house.tool.PageShow.handlePage(page);
+   
 }
 }

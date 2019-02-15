@@ -3,7 +3,9 @@ package com.house.demo.provider;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
@@ -13,6 +15,7 @@ import com.house.demo.house.HouseService;
 import com.house.entity.Device;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
+import com.house.entity.Page;
 import com.house.mapper.DeviceManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.FileUtil;
@@ -91,11 +94,14 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
-			String Condition) {
+	public Map<String,Object>  getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
+			String Condition,Page page) {
 		List<House> list = null;
-		if(Condition == null && sort == null) {
-			list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(house);
+		 Map<String,Object> map = new HashMap<String,Object>();
+		 map.put("page",page);
+		if("default".equals(Condition) && sort == null) {
+			 map.put("house", house);
+			 list = houseManagementMapper.selectHousesFromProvinceAndCityAndArea(map);
 		}else {
 		if (Condition != null) {
 			HouseInfo houseInfo = house.getHouseInfo();
@@ -108,18 +114,24 @@ public class HouseServiceImpl implements HouseService {
 				break;
 			}
 			house.setHouseInfo(houseInfo);
+			 map.put("house", house);
 		}
 		if (sort != null) {
 			switch (sort) {
 			case "0":
-				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToAsc(house);
+				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToAsc(map);
 				break;
 			case "1":
-				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToDesc(house);
+				list = houseManagementMapper.selectHousesFromProvinceAndCityAndAreaAndSortToDesc(map);
 				break;
 			}
 		}
 		}
-		return FileUtil.readHousImg(list);
+		page.setPageTotal(houseManagementMapper.getHouseInformationTotal(house));
+		page.setPageMax((int)Math.ceil((double)page.getPageTotal()/page.getPageNumber()));
+		Map<String,Object> result = new HashMap<String,Object>();
+		result.put("list", FileUtil.readHouseImg(list));
+		result.put("page", page);
+		return result;
 	}
 }

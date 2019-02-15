@@ -184,3 +184,12 @@
 .house-information-word-title:hover {
 	color: red;
 }
+.page-show{
+	padding:0px;
+}
+.page-show div{
+	padding:0px;
+}
+.page-show-content button{
+	margin-left:10px;
+}

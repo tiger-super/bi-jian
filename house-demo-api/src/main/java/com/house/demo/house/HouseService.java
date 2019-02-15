@@ -1,8 +1,10 @@
 package com.house.demo.house;
 
 import java.util.List;
+import java.util.Map;
 
 import com.house.entity.House;
+import com.house.entity.Page;
 
 public interface HouseService {
 	// 发布房源
@@ -22,6 +24,6 @@ public interface HouseService {
 	 * @param Condition 此参数表示其他条件，如面积、金额
 	 * @return 返回一个List，保存着符合条件的所有房源
 	 */
-	public List<House> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
-			String condition);
+	public Map<String,Object> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
+			String condition,Page page);
 }

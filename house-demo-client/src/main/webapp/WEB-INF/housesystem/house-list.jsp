@@ -58,7 +58,7 @@
 
 	<div class="col-sm-1"></div>
 
-	<div class="content col-sm-11">
+	<div class="content col-sm-11" value = "condition=default">
 		<div class="col-sm-12 select-area-title-window">
 			<div class="col-sm-1 select-area-title">位置</div>
 			<div class="col-sm-2 select-area-title">
@@ -103,6 +103,21 @@
 
 			<div class="col-sm-12 house-information-list-window"></div>
 		</div>
+	    
+	    <div class="col-sm-12 page-show">
+	    <div class="col-sm-6"></div>
+	     <div class="col-sm-5  page-show-content">
+				<!-- <button class='btn upper' >上一页</button>
+				
+				<button class='btn upper-display disabled' >.....</button>
+			
+				<button class='btn next-display disabled' >.....</button>
+			
+				<button class='btn next' >下一页</button> -->
+			</div>
+	    </div>
+	
+	
 	</div>
 
 </body>

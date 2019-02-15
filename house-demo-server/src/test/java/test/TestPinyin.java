@@ -50,7 +50,9 @@ public class TestPinyin {
     	 System.out.println(map);
     	 map.put("xx", "xx");
     	 System.out.println(map);
+    	 System.out.println(Math.ceil((double)22/4));
     }
+    
 }
 
 

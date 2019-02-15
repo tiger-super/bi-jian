@@ -41,19 +41,22 @@
 	</select>
 	<!-- 查询某个地区的房源 -->
 	<select id="selectHousesFromProvinceAndCityAndArea"
-		parameterType="com.house.entity.House" resultMap="setHouse">
+		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address from house
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
-		house_address_province = #{houseAddressProvince}
-		and house_address_city
-		= #{houseAddressCity} and house_sell_way =
-		#{houseInfo.houseSellWay}
-		<if test='houseAddressArea != null'>
-			and house_address_area = #{houseAddressArea}
+		house_address_province = #{house.houseAddressProvince}
+		and
+		house_address_city
+		= #{house.houseAddressCity} and house_sell_way =
+		#{house.houseInfo.houseSellWay}
+		<if test='house.houseAddressArea != null'>
+			and house_address_area = #{house.houseAddressArea}
 		</if>
+		limit #{page.pageShowNow},#{page.pageNumber}
 	</select>
 
 	<resultMap type="com.house.entity.House" id="setHouse">
@@ -69,62 +72,78 @@
 			<result column="house_direction" property="houseDirection" />
 			<result column="house_money" property="houseMoney" />
 			<result column="house_structure" property="houseStructure" />
-			<result column="house_image_address" property="houseImageAddress" />
+			<result column="house_image_address"
+				property="houseImageAddress" />
 		</association>
 	</resultMap>
 
 
 	<!-- 查询某个地区的房源并按照一定条件降序排序 -->
 	<select id="selectHousesFromProvinceAndCityAndAreaAndSortToDesc"
-		parameterType="com.house.entity.House" resultMap="setHouse">
+		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address from house
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
-		house_address_province = #{houseAddressProvince}
-		and house_address_city
-		= #{houseAddressCity} and house_sell_way =
-		#{houseInfo.houseSellWay}
-		<if test='houseAddressArea != null'>
-			and house_address_area = #{houseAddressArea}
+		house_address_province = #{house.houseAddressProvince}
+		and
+		house_address_city
+		= #{house.houseAddressCity} and house_sell_way =
+		#{house.houseInfo.houseSellWay}
+		<if test='house.houseAddressArea != null'>
+			and house_address_area = #{house.houseAddressArea}
 		</if>
 		order by CAST(
-		 <choose>
-		<when test="houseInfo.houseSize != null">
-			house_size
-		</when>
-		<otherwise>
-			house_money
-		</otherwise>
+		<choose>
+			<when test="house.houseInfo.houseSize != null">
+				house_size
+			</when>
+			<otherwise>
+				house_money
+			</otherwise>
 		</choose>
-		 AS DECIMAL(10,2)) desc
+		AS DECIMAL(10,2)) desc limit #{page.pageShowNow},#{page.pageNumber}
 	</select>
-	
-	<!-- 查询某个地区的房源并按照一定条件降序排序 -->
+
+	<!-- 查询某个地区的房源并按照一定条件升序排序 -->
 	<select id="selectHousesFromProvinceAndCityAndAreaAndSortToAsc"
-		parameterType="com.house.entity.House" resultMap="setHouse">
+		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address from house
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
 		h,house_info hi where
 		h.house_id = hi.house_id and
-		house_address_province = #{houseAddressProvince}
-		and house_address_city
-		= #{houseAddressCity} and house_sell_way =
-		#{houseInfo.houseSellWay}
+		house_address_province = #{house.houseAddressProvince}
+		and
+		house_address_city
+		= #{house.houseAddressCity} and house_sell_way =
+		#{house.houseInfo.houseSellWay}
+		<if test='house.houseAddressArea != null'>
+			and house_address_area = #{house.houseAddressArea}
+		</if>
+		order by CAST(
+		<choose>
+			<when test="house.houseInfo.houseSize != null">
+				house_size
+			</when>
+			<otherwise>
+				house_money
+			</otherwise>
+		</choose>
+		AS DECIMAL(10,2)) asc limit #{page.pageShowNow},#{page.pageNumber}
+	</select>
+
+	<select id="getHouseInformationTotal"
+		parameterType="com.house.entity.House" resultType="int">
+		select count(*) from house
+		h,house_info hi where
+		h.house_id = hi.house_id and house_address_province = #{houseAddressProvince}
+		and house_address_city = #{houseAddressCity} and house_sell_way = #{houseInfo.houseSellWay}
 		<if test='houseAddressArea != null'>
 			and house_address_area = #{houseAddressArea}
 		</if>
-		order by CAST(
-		 <choose>
-		<when test="houseInfo.houseSize != null">
-			house_size
-		</when>
-		<otherwise>
-			house_money
-		</otherwise>
-		</choose>
-		 AS DECIMAL(10,2)) asc
 	</select>
 </mapper>

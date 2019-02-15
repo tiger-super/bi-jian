@@ -1,124 +1,97 @@
-$(document).ready(
-		function() {
-			informationLoad();
-			$(".select-area-content-part")
-					.click(
-							function() {
-								switch ($(".show-sort").attr("value")) {
-								case "default":
-									loadInformationFromArea($(this).text());
-									break;
-								case "money":
-									switch ($(".show-sort-select-money").attr("value")) {
-									case "0":
-										loadInformationSort("1", $(this).text(), "houseMoney");
-										break;
-									case "1":
-										loadInformationSort("0", $(this).text(), "houseMoney");
-										break;
-									}
-
-									break;
-								case "size":
-									switch ($(".show-sort-select-size").attr("value")){
-									case "0":
-										loadInformationSort("1", $(this).text(), "houseSize");
-										break;
-									case "1":
-										loadInformationSort("0",$(this).text(), "houseSize");
-										break;
-									}
-									break;
-								}
-
+$(document)
+		.ready(
+				function() {
+					 addCondtion("houseInfo.houseSellWay",$(".logo").attr("value"));
+					informationLoad();
+					$(".select-area-content-part").click(
+							function(){
+							 addCondtion("houseAddressArea",$(this).text());
+							 informationLoad();
 								$(".select-area-content-part").css("color",
 										"black");
 								$(this).css("color", "blue");
 								$(".select-area-content").attr("value",
 										$(this).text());
 							})
-			$(".show-sort-select-money").click(
-					function() {
-						$(".show-sort").attr("value", "money");
-						let sort = $(this).attr("value");
-						switchSortImage(sort, $(this));
-						loadInformationSort(sort, $(".select-area-content")
-								.attr("value"), "houseMoney");
+					$(".show-sort-select-money").click(
+							function() {
+								 addCondtion("Condition","houseMoney");
+								 let sort = $(this).attr("value");
+								 switchSortImage(sort, $(this));
+								 informationLoad();
+								 $(".show-sort-select").css(
+											"background-color", "white");
+									$(this).css("background-color", "blue");
+						
+							})
+					$(".show-sort-select-size").click(
+							function() {
+								 addCondtion("Condition","houseSize");
+								 let sort = $(this).attr("value");
+								switchSortImage(sort, $(this));
+								informationLoad();
+								$(".show-sort-select").css(
+										"background-color", "white");
+								$(this).css("background-color", "blue");
+							})
 
-					})
-			$(".show-sort-select-size").click(
-					function() {
-						$(".show-sort").attr("value", "size");
-						let sort = $(this).attr("value");
-						switchSortImage(sort, $(this));
-						loadInformationSort(sort, $(".select-area-content")
-								.attr("value"), "houseSize");
-					})
-					
-					$(".show-sort-select-default").click(function(){
-						$(".show-sort").attr("value", "default");
-						if($(".select-area-content").attr("value") == null){
-							informationLoad();
-							
-						}else{
-							loadInformationFromArea($(".select-area-content").attr("value"));
-						}
-						$(".show-sort-select").css("background-color", "white");
-						$(this).css("background-color", "blue");
-					})
-		})
+					$(".show-sort-select-default")
+							.click(
+									function() {
+										addCondtion("Condition","default");
+										 let sort = $(this).attr("value");
+										switchSortImage(sort, $(this));
+										informationLoad();
+										$(".show-sort-select").css(
+												"background-color", "white");
+										$(this).css("background-color", "blue");
+									})
+				})
 function switchSortImage(sort, thisDiv) {
 	$(".show-sort-select").css("background-color", "white");
 	thisDiv.css("background-color", "blue");
 	if (sort == 0) {
+		addCondtion("sort","0");
 		thisDiv.attr("value", "1");
 		thisDiv.children(".show-sort-select-img").attr("src",
 				"/static/img/arrow-down.png");
 	} else {
+		addCondtion("sort","1");
 		thisDiv.attr("value", "0");
 		thisDiv.children(".show-sort-select-img").attr("src",
 				"/static/img/arrow-up.png");
 	}
 }
 function informationLoad() {
-	$
-			.ajax({
-				url : '/house/get/house/list',
-				dataType : "json",
-				type : "post",
-				data : {
-					"houseInfo.houseSellWay" : $(".logo").attr("value")
-				},
-				success : function(result) {
-					let length = result.length;
-					$(".house-information-list-window").empty();
-					$(".information-total").text(length);
-					for (let i = 0; i < length; i++) {
-						renderIngInformation(result[i]);
-					}
+	$.ajax({
+		url : '/house/get/house/list',
+		dataType : "json",
+		type : "post",
+		data : getJson(),
+		success : function(result) {
+			let length = result.page.pageTotal;
+			$(".house-information-list-window").empty();
+			$(".information-total").text(length);
+			for (let i = 0; i < result.list.length; i++) {
+				renderIngInformation(result.list[i]);
+			}
+			bindingEvent();
+			showPageView(result.page);
+		}
+	});
+}
 
-					$(".house-information-img")
-							.click(
-									function() {
-										let houseId = $(this).parents(
-												".house-information-div").attr(
-												"value");
-										window.location.href = "/house/show/house/info?houseId="
-												+ houseId;
-									})
+function bindingEvent() {
+	$(".house-information-img").click(function() {
+		let houseId = $(this).parents(".house-information-div").attr("value");
+		window.location.href = "/house/show/house/info?houseId=" + houseId;
+	})
 
-					$(".house-information-word-title")
-							.click(
-									function() {
-										let houseId = $(this).parents(
-												".house-information-div").attr(
-												"value");
-										window.location.href = "/house/show/house/info?houseId="
-												+ houseId;
-									})
+	$(".house-information-word-title").click(function() {
+		let houseId = $(this).parents(".house-information-div").attr("value");
+		window.location.href = "/house/show/house/info?houseId=" + houseId;
+	})
 
-				}
-			});
 }
 
 function renderIngInformation(house) {
@@ -156,30 +129,8 @@ function renderIngInformation(house) {
 							+ house.houseInfo.houseMoney
 							+ "</span>"
 							+ "<span style='color: red'>万</span></div></div></div></div>");
-
 }
 
-function loadInformationFromArea(area) {
-
-	$.ajax({
-		url : '/house/get/house/list',
-		dataType : "json",
-		type : "post",
-		data : {
-			"houseInfo.houseSellWay" : $(".logo").attr("value"),
-			"houseAddressArea" : area
-		},
-		success : function(result) {
-			let length = result.length;
-			$(".house-information-list-window").empty();
-			$(".information-total").text(length);
-			for (let i = 0; i < length; i++) {
-				renderIngInformation(result[i]);
-			}
-		}
-	})
-
-}
 
 function loadInformationSort(sort, area, condition) {
 	let data;
@@ -203,12 +154,88 @@ function loadInformationSort(sort, area, condition) {
 		type : "post",
 		data : data,
 		success : function(result) {
-			let length = result.length;
+			let length = result.page.pageTotal;
 			$(".house-information-list-window").empty();
 			$(".information-total").text(length);
-			for (let i = 0; i < length; i++) {
-				renderIngInformation(result[i]);
+			for (let i = 0; i < result.list.length; i++) {
+				renderIngInformation(result.list[i]);
 			}
+			bindingEvent();
+			showPageView(result.page);
 		}
 	})
+}
+let pageCurrent;
+function showPageView(page) {
+	pageCurrent = page.pageCurrent;
+	$.ajax({
+		url : '/house/get/show/page',
+		dataType : "json",
+		type : "post",
+		data : page,
+		success : function(result) {
+			$(".page-show-content").empty();
+			for(let i = 0 ; i < result.length ; i ++){
+				switch(result[i]){
+				case "上一页":
+					$(".page-show-content").append("<button class='btn upper' >"+result[i]+"</button>")
+					break;
+				case "下一页":
+					$(".page-show-content").append("<button class='btn next' >"+result[i]+"</button>")
+					break;
+				case "...":
+				$(".page-show-content").append("<button class='btn next-display disabled' >"+result[i]+"</button>")
+				break;
+				case ""+(page.pageCurrent+1):
+					$(".page-show-content").append("<button class='btn btn-info page' >"+result[i]+"</button>")
+					break;
+				default:
+					$(".page-show-content").append("<button class='btn page' >"+result[i]+"</button>")
+					break;
+				}
+				
+			}
+			$(".page").click(function(){
+				 addCondtion("condition","1000")
+				  
+			})
+		}
+	})
+}
+// 添加数据
+function addCondtion(key,value){
+	let json = getJson();
+	if(json[key] != undefined){
+		json[key] = value;
+		getString(json);
+	}else{
+		let newValue = $(".content").attr("value")+"&"+key+"="+value;
+		$(".content").attr("value",newValue);
+	}
+}
+
+function getJson(){
+	let value = $(".content").attr("value");
+	let data ;
+	if(value != ""){
+		data = transformationJson(value);
+	}
+	return JSON.parse(data);
+}
+// 由json转换为字符串
+function getString(json){
+	let data = JSON.stringify(json)
+	data = data.replace(/{"/g, "");
+	data = data.replace(/"}/g, "");
+	data = data.replace(/","/g, "&");
+	data = data.replace(/":"/g, "="); 
+	$(".content").attr("value",data); 
+	
+}
+// 由字符串转换为json
+function transformationJson(data) {
+	data = data.replace(/&/g, "\",\"");
+	data = data.replace(/=/g, "\":\"");
+	data = "{\"" + data + "\"}";
+	return data;
 }

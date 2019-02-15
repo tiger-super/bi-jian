@@ -3,6 +3,7 @@ package com.house.control;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,9 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.house.HouseService;
 import com.house.entity.Customer;
 import com.house.entity.House;
+import com.house.entity.Page;
 import com.house.tool.FileUtil;
+import com.house.tool.PageShow;
 import com.house.tool.PhoneAddressCreate;
 
 @Controller
@@ -106,8 +109,11 @@ public class HouseController {
 	 */
 	@RequestMapping("/get/house/list")
 	@ResponseBody
-	public List<House> getHouseList(HttpServletRequest request,@RequestParam(required =false) String area, @RequestParam(required =false)String sort, @RequestParam(required =false)String condition,House house) {
+	public Map<String,Object> getHouseList(HttpServletRequest request,@RequestParam(required =false) String area, @RequestParam(required =false)String sort, @RequestParam(required =false)String condition,House house,@RequestParam(required =false)Page page) {
 		Cookie[] cookies = request.getCookies();
+		if(page == null) {
+		    page = new Page();
+		}
 		String province = null;
 		String city = null;
 		if (cookies != null) {
@@ -131,7 +137,7 @@ public class HouseController {
 			if (area != null && !area.equals("")) {
 				house.setHouseAddressArea(area);
 			}
-			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition);
+			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition,page);
 		}
 	}
 
@@ -146,5 +152,9 @@ public class HouseController {
 	public List<String> getHouseImage(String houseImageAddress) {
 		return houseService.getHouseImageInfo(houseImageAddress);
 	}
-
+	@RequestMapping("/get/show/page")
+	@ResponseBody
+	public List<String> getShowPage(Page page){
+		return PageShow.handlePage(page);
+	}
 }
