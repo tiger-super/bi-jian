@@ -52,7 +52,7 @@
 		and
 		house_address_city
 		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay}
+		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
 		<if test='house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
 		</if>
@@ -91,7 +91,7 @@
 		and
 		house_address_city
 		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay}
+		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
 		<if test='house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
 		</if>
@@ -120,7 +120,7 @@
 		and
 		house_address_city
 		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay}
+		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
 		<if test='house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
 		</if>
@@ -142,8 +142,59 @@
 		h,house_info hi where
 		h.house_id = hi.house_id and house_address_province = #{houseAddressProvince}
 		and house_address_city = #{houseAddressCity} and house_sell_way = #{houseInfo.houseSellWay}
+		 and house_publisher_state = '1'
 		<if test='houseAddressArea != null'>
 			and house_address_area = #{houseAddressArea}
 		</if>
 	</select>
+	
+	
+	<select id="selectPublishSituation"
+		parameterType="java.util.Map" resultMap="publishHouse">
+		select house_name,house_address_province,house_address_city,house_address_area,house_address_info,
+		house_sell_way,house_size,house_structure,house_money,house_image_address
+		 from house h,house_info hi where h.house_id = hi.house_id 
+		 and h.house_publisher_id = #{house.housePublisherId}
+		<choose>
+			<when test="houseAuditingState  != null">
+				and house_auditing_state = #{house.houseAuditingState}
+			</when>
+			<otherwise>
+				and house_publisher_state = #{house.housePublisherState}
+			</otherwise>
+		</choose>
+		
+		limit #{page.pageShowNow},#{page.pageNumber}
+	</select>
+		<select id="selectPublishSituationTotal"
+		parameterType="com.house.entity.House" resultType="int">
+		select count(*) from house
+		h,house_info hi where
+		h.house_id = hi.house_id  and h.house_publisher_id = #{housePublisherId}
+		<choose>
+			<when test="houseAuditingState  != null">
+				and house_auditing_state = #{houseAuditingState}
+			</when>
+			<otherwise>
+				and house_publisher_state = #{housePublisherState}
+			</otherwise>
+		</choose>
+	</select>
+	
+		<resultMap type="com.house.entity.House" id="publishHouse">
+		<result column="house_name" property="houseName" />
+		<result column="house_address_info" property="houseAddressInfo" />
+		<result column="house_address_province" property="houseAddressProvince" />
+		<result column="house_address_city" property="houseAddressCity" />
+		<result column="house_address_area" property="houseAddressArea" />
+		<association property="houseInfo"
+			javaType="com.house.entity.HouseInfo">
+			<result column="house_size" property="houseSize" />
+			<result column="house_sell_way" property="houseSellWay" />
+			<result column="house_money" property="houseMoney" />
+			<result column="house_structure" property="houseStructure" />
+			<result column="house_image_address"
+				property="houseImageAddress" />
+		</association>
+	</resultMap>
 </mapper>

@@ -26,4 +26,7 @@ public interface HouseService {
 	 */
 	public Map<String,Object> getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(House house, String sort,
 			String condition,Page page);
+	
+	
+	public Map<String,Object> publishManageService(House house,Page page);
 }

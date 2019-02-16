@@ -105,7 +105,7 @@
 					</div>
 
 					<div class="col-sm-12">
-						<span>房屋类型：</span> <span>${house.houseInfo.houseDepoitWay}</span>
+						<span>房屋类型：</span> <span>${house.houseInfo.houseStructure}&nbsp</span>
 						<span>${house.houseInfo.houseSize}平米</span>
 					</div>
 

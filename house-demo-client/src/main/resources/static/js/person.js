@@ -1,5 +1,14 @@
 $(document).ready(function() {
 	$(".select-sex").hide();
+	$(".person-information").click(function(){
+		$(".content-right").css("display","none");
+		$(".person-information-view").css("display","block");
+	})
+	$(".my-publish").click(function(){
+		$(".content-right").css("display","none");
+		$(".my-publish-view").css("display","block");
+		loadHouseInfo("housePublisherState","1");
+	})
 	$.ajax({
 		url : '/house/session/gain/info',
 		dataType : "json",
@@ -159,4 +168,15 @@ function submitform(){
 }
 
 
-
+function loadHouseInfo(key,value){
+	$.ajax({
+		url : "/house/session/publish/manage",
+		type : "post",
+		dataType : "json",
+	    data: {"housePublisherState":"1"},
+		success : function(result) {
+		   console.log(result)
+		}
+		
+	})
+}

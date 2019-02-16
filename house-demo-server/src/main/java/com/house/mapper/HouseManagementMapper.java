@@ -27,4 +27,8 @@ public interface HouseManagementMapper {
 	List<House> selectHousesFromProvinceAndCityAndAreaAndSortToAsc(Map<String,Object> map);
 	// 查询某个地区的房源信息总数
 	int getHouseInformationTotal(House house);
+	// 查询房源的流程情况
+	List<House> selectPublishSituation(Map<String,Object> map);
+	// 查询某个地区的房源信息总数
+		int selectPublishSituationTotal(House house);
 }

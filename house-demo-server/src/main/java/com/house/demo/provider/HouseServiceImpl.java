@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -129,6 +130,22 @@ public class HouseServiceImpl implements HouseService {
 		}
 		}
 		page.setPageTotal(houseManagementMapper.getHouseInformationTotal(house));
+		page.setPageMax((int)Math.ceil((double)page.getPageTotal()/page.getPageNumber()));
+		Map<String,Object> result = new HashMap<String,Object>();
+		result.put("list", FileUtil.readHouseImg(list));
+		result.put("page", page);
+		return result;
+	}
+
+	@Override
+	public Map<String, Object> publishManageService(House house,Page page) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("house", house);
+		System.out.println(house);
+		page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
+		map.put("page", page);
+		List<House> list =  houseManagementMapper.selectPublishSituation(map);
+		page.setPageTotal(houseManagementMapper.selectPublishSituationTotal(house));
 		page.setPageMax((int)Math.ceil((double)page.getPageTotal()/page.getPageNumber()));
 		Map<String,Object> result = new HashMap<String,Object>();
 		result.put("list", FileUtil.readHouseImg(list));

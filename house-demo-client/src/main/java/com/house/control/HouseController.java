@@ -159,4 +159,18 @@ public class HouseController {
 	public List<String> getShowPage(Page page) {
 		return PageShow.handlePage(page);
 	}
+
+	@RequestMapping("/session/publish/manage")
+	@ResponseBody
+	public Map<String, Object> pubilshManage(House house, HttpSession session,
+			@RequestParam(required = false) Integer pageCurrent) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
+		house.setHousePublisherId(customer.getCustomerId());
+		Page page = new Page();
+		if (pageCurrent != null) {
+			page.setPageCurrent(pageCurrent);
+		}
+		return houseService.publishManageService(house, page);
+	}
+
 }

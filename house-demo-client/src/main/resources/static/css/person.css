@@ -1,6 +1,7 @@
-.head{
+.head {
 	margin: 0px;
 }
+
 .houselogo {
 	margin-top: 5px;
 	width: 40px;
@@ -18,97 +19,145 @@
 	margin-top: 15px;
 	cursor: pointer;
 }
-.place a{
-	color:black;
+
+.place a {
+	color: black;
 }
-.place a:hover{
+
+.place a:hover {
 	text-decoration: none;
 }
 
-.select-sex{
+.select-sex {
 	margin-left: 30px;
-    margin-right: 15px;
-    padding: 0 14px;
-    width: 206px;
-    height: 36px;
-    line-height: 36px;
-    border: 1px solid #E7E7E7;
-    font-size: 14px;
-    background: 100% 100%;
-
+	margin-right: 15px;
+	padding: 0 14px;
+	width: 206px;
+	height: 36px;
+	line-height: 36px;
+	border: 1px solid #E7E7E7;
+	font-size: 14px;
+	background: 100% 100%;
 }
-.content{
+
+.content {
 	margin-top: 50px;
 	height: 500px;
 	padding: 0px;
 }
-.content-left ul li{
-	color:#595753;
+
+.content-left ul li {
+	color: #595753;
 	font-size: 18px;
 	text-align: center;
 	margin-top: 30px;
 	cursor: pointer;
 }
 
-.content-left ul li:hover{
+.content-left ul li:hover {
 	color: red;
 }
 
-.content-li-head{
+.content-li-head {
 	height: 100px;
-	 position: relative;
+	position: relative;
 }
- 
-.head-img{
-	width: 100%;
-	height: 100%;
-}
-#fileUploadFrom{
+
+.head-img {
 	width: 100%;
 	height: 100%;
 }
 
-#fileInput{
-	 opacity:0;
-            filter:alpha(opacity=0);
-            height: 95px;
-            width: 100px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 9;
+#fileUploadFrom {
+	width: 100%;
+	height: 100%;
 }
 
-.content-center{
+#fileInput {
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	height: 95px;
+	width: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+}
+
+.content-center {
 	height: 400px;
 	margin-left: 50px;
 }
 
-.person-head-title{
+.person-head-title {
 	color: red;
 	font-size: 30px;
-	padding-bottom:10px ;
+	padding-bottom: 10px;
 	border-bottom: 2px solid #EEEEEE;
 }
 
-.person-info{
-	    font-size: 18px;
-    color: #666;
+.person-info {
+	font-size: 18px;
+	color: #666;
 	margin-top: 30px;
 }
-.person-info input{
+
+.person-info input {
 	margin-left: 30px;
-	    outline: 0;
-    margin-right: 15px;
-    padding: 0 14px;
-    width: 206px;
-    height: 36px;
-    line-height: 36px;
-    border: 0;
-    font-size: 14px;
-    background: 0 0;
-    color: #333!important;
+	outline: 0;
+	margin-right: 15px;
+	padding: 0 14px;
+	width: 206px;
+	height: 36px;
+	line-height: 36px;
+	border: 0;
+	font-size: 14px;
+	background: 0 0;
+	color: #333 !important;
 }
-#customerName{
+
+#customerName {
 	background-color: white;
+}
+
+.publish-div-button {
+	font-size: 15px;
+	color: black;
+	padding: 0px;
+	cursor: pointer;
+}
+
+.publish-div-button:hover {
+	color: red;
+}
+
+.publish-content-div {
+	padding: 0px;
+}
+.publish-content-div:hover{
+	background-color: #f8f8f8;
+}
+.publish-content-div div {
+	padding: 0px;
+}
+
+.house-image-div {
+	height: 100px;
+}
+
+.house-image {
+	height: 100px;
+}
+
+.publish-content div {
+	margin-bottom: 6px;
+}
+
+.operation-div {
+	margin: 0px;
+	margin-top: 70px;
+}
+
+.operation-div  button {
+	width: 44px;
 }
