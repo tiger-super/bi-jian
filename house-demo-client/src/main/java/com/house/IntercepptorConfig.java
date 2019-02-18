@@ -15,7 +15,6 @@ public class IntercepptorConfig implements WebMvcConfigurer {
 	 * 
 	 * @Title: addInterceptors
 	 * @Description: 先add的拦截器会越靠外，即越靠近浏览器
-	 * @Date 2018年8月28日 下午2:47:28
 	 * @author OnlyMate
 	 * @param registry
 	 */

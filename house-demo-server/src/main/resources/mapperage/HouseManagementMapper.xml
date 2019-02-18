@@ -28,7 +28,7 @@
 	<!-- 查询房源 -->
 	<select id="selectHouseAccordingHouseId" parameterType="String"
 		resultType="com.house.entity.House">
-		select
+		select house_id,
 		house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number
 		from house where house_id = #{parameter}
 	</select>
@@ -151,12 +151,12 @@
 	
 	<select id="selectPublishSituation"
 		parameterType="java.util.Map" resultMap="publishHouse">
-		select house_name,house_address_province,house_address_city,house_address_area,house_address_info,
+		select h.house_id,house_name,house_address_province,house_address_city,house_address_area,house_address_info,
 		house_sell_way,house_size,house_structure,house_money,house_image_address
 		 from house h,house_info hi where h.house_id = hi.house_id 
 		 and h.house_publisher_id = #{house.housePublisherId}
 		<choose>
-			<when test="houseAuditingState  != null">
+			<when test="house.houseAuditingState != null ">
 				and house_auditing_state = #{house.houseAuditingState}
 			</when>
 			<otherwise>
@@ -182,6 +182,7 @@
 	</select>
 	
 		<resultMap type="com.house.entity.House" id="publishHouse">
+		<result column="house_id" property="houseId" />
 		<result column="house_name" property="houseName" />
 		<result column="house_address_info" property="houseAddressInfo" />
 		<result column="house_address_province" property="houseAddressProvince" />
@@ -197,4 +198,23 @@
 				property="houseImageAddress" />
 		</association>
 	</resultMap>
+	
+	<update id="updateHouseState" parameterType="com.house.entity.House">
+	update house set 
+	<choose>
+			<when test="houseAuditingState  != null">
+				house_auditing_state = #{houseAuditingState}
+			</when>
+			<otherwise>
+				 house_publisher_state = #{housePublisherState}
+			</otherwise>
+		</choose>
+	where house_id = #{houseId}
+	</update>
+	
+	
+	<insert id="insertCollectionInformation" parameterType="com.house.entity.Collection">
+	insert into collection(collectors_id,collection_house_id) value(
+	#{collectorsId},#{collectionHouseId})
+	</insert>
 </mapper>

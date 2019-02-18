@@ -59,18 +59,17 @@
 		</div>
 	</div>
 	<div class="col-sm-1"></div>
-	<div class="col-sm-10 house-info-window" houseId="${houseId}">
+	<div class="col-sm-10 house-info-window" value="${house.houseId}">
 
 		<div class="col-sm-12 house-info-title">
 			<div class="col-sm-11">
 				<span>${house.houseName }</span><span style="margin-left: 10px">${house.houseInfo.houseStructure}</span>
 			</div>
 			<div class="col-sm-1 collection-div" >
-			
-				<div class="collection">
-					<img src="/static/img/stars.png" class="collection-img">
+			<div class="collection" value="1">
+						<img src="/static/img/stars.png" class="collection-img">
 				</div>
-				<div style="font-weight: inherit; font-size: 8px">加入收藏</div>
+				<div style='font-weight: inherit; font-size: 8px' class='collection-word'>取消收藏</div>
 			</div>
 		</div>
 

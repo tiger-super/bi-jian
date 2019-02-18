@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.house.HouseService;
+import com.house.entity.Collection;
 import com.house.entity.Customer;
 import com.house.entity.House;
 import com.house.entity.Page;
@@ -172,5 +173,12 @@ public class HouseController {
 		}
 		return houseService.publishManageService(house, page);
 	}
+    @RequestMapping("/session/modify/state")
+    @ResponseBody
+    public boolean modifyHouseState(House house,HttpSession session) {
+    	Customer customer = (Customer) session.getAttribute("customerSession");
+		house.setHousePublisherId(customer.getCustomerId());
+    	return houseService.ModifyHouseState(house);
+    }
 
 }

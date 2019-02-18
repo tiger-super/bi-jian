@@ -5,10 +5,10 @@ $(document).ready(
 			baiduAPIRead();
 			getPublisherInfo();
 			getHouseInfoImage();
-			$(".collection").click(function(){
-				clcikCollection();
+		$(".collection").click(function(){
+			let value = $(".collection").attr("value");
+				addOrDeleteCollection(value)
 			})
-			clcikCollection()
 			$(".select-button").click(function() {
 				if ($(".select-distacne-input").val() != null) {
 					calculateDistance()
@@ -77,14 +77,14 @@ function getPublisherInfo() {
 			}
 
 			$(".publish-person-phone-value").html(result.customerPhone);
+			whetherAlreadyCollection();
 		}
 	});
 
 }
 function getHouseInfoImage() {
 	var folder = $(".house-info-img-window").attr("value");
-	$
-			.ajax({
+	$.ajax({
 				url : '/house/get/house/image',
 				dataType : "json",
 				type : "post",
@@ -234,7 +234,78 @@ function calculateDistance() {
 	}
 }
 
-
-function clcikCollection(){
-	$(".collection-img").attr("src","/static/img/click-stars.png");
+function showCollection(){
+	/*$.ajax({
+		url : '/house/get/house/image',
+		dataType : "json",
+		type : "post",
+		data : {
+			"houseId" : $(".house-info-img-window").attr("value");
+		},
+		success : function(result) {
+			
+		}
+	});*/
 }
+
+function whetherAlreadyCollection(){
+	$.ajax({
+		url : '/house/judge/collection/state',
+		dataType : "json",
+		type : "post",
+		data : {
+			"collectionHouseId" : $(".house-info-window").attr("value")
+		},
+		success : function(result) {
+			if(result == true){
+				$(".collection").attr("value","1");
+				$(".collection-img").attr("src","/static/img/click-stars.png");
+				$(".collection-word").html("取消收藏");
+			}else{
+				$(".collection").attr("value","0");
+				$(".collection-img").attr("src","/static/img/stars.png");
+				$(".collection-word").html("加入收藏");
+			}
+		}
+	});
+}
+
+function addOrDeleteCollection(value){
+	$.ajax({
+		url : "/house/modify/collection/state",
+		dataType : "json",
+		type : "post",
+		data : {
+			"collectionHouseId" : $(".house-info-window").attr("value"),
+			"modify":$(".collection").attr("value")
+		},
+		success : function(result) {
+		
+			switch(result.result){
+			case "true":
+				switch(value){
+				case "0":
+					$(".collection-img").attr("src","/static/img/click-stars.png");
+					$(".collection").attr("value","1");
+					$(".collection-word").html("取消收藏");
+					break;
+				case "1":
+					$(".collection-img").attr("src","/static/img/stars.png");
+					$(".collection").attr("value","0");
+					$(".collection-word").html("加入收藏");
+					break;
+				}
+				break;
+			case "false":
+				alert("服务器错误")
+				break;
+			case "login":
+			window.location.href = "/house/show/loginView";
+			break;
+		}
+		}
+	})
+}
+
+
+

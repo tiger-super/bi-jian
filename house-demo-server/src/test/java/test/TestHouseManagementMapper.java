@@ -116,4 +116,20 @@ public class TestHouseManagementMapper {
 		  house.setHouseInfo(houseInfo);
 		  System.out.println(houseManagementMapper.getHouseInformationTotal(house));
 	}
+	@Test
+	public void testSelectPublishSituation() {
+		House house = new House();
+		 house.setHousePublisherId("1"); 
+		/* house.setHousePublisherState("0"); */
+		 house.setHouseAuditingState("1");
+		 Map<String,Object> map = new HashMap<String,Object>();
+		 Page page = new Page();
+		 page.setPageNumber(4);
+		 page.setPageShowNow(0);
+		 map.put("house", house);
+		 map.put("page",page);
+		 System.out.println(house);
+		  System.out.println("信息"+houseManagementMapper.selectPublishSituation(map));
+          System.out.println("总数"+houseManagementMapper.selectPublishSituationTotal(house));	
+	}
 }

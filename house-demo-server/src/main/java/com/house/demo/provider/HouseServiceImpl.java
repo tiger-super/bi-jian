@@ -13,6 +13,7 @@ import org.springframework.util.ClassUtils;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.house.HouseService;
+import com.house.entity.Collection;
 import com.house.entity.Device;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
@@ -141,7 +142,6 @@ public class HouseServiceImpl implements HouseService {
 	public Map<String, Object> publishManageService(House house,Page page) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("house", house);
-		System.out.println(house);
 		page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
 		map.put("page", page);
 		List<House> list =  houseManagementMapper.selectPublishSituation(map);
@@ -151,5 +151,15 @@ public class HouseServiceImpl implements HouseService {
 		result.put("list", FileUtil.readHouseImg(list));
 		result.put("page", page);
 		return result;
+	}
+
+	@Override
+	public boolean ModifyHouseState(House house) {
+	    int result = houseManagementMapper.updateHouseState(house);
+	    if(result == 1) {
+	    	return true;	    	
+	    }else {
+	    	return false;
+	    }
 	}
 }

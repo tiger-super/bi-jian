@@ -133,6 +133,7 @@
 
 .publish-content-div {
 	padding: 0px;
+	margin-top:20px;
 }
 .publish-content-div:hover{
 	background-color: #f8f8f8;
@@ -147,6 +148,9 @@
 
 .house-image {
 	height: 100px;
+	width:133px;
+	    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .publish-content div {
@@ -156,8 +160,17 @@
 .operation-div {
 	margin: 0px;
 	margin-top: 70px;
+	padding:0px;
 }
 
 .operation-div  button {
-	width: 44px;
+	width: 43px;
+}
+.my-publish-view{
+    margin-left: 50px;
+}
+.page-show-content{
+	margin-top:20px;
+	padding:0px;
+	text-align:right;
 }

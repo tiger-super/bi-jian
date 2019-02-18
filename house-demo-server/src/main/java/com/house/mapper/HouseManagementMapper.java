@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.house.entity.Collection;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
 
@@ -31,4 +32,7 @@ public interface HouseManagementMapper {
 	List<House> selectPublishSituation(Map<String,Object> map);
 	// 查询某个地区的房源信息总数
 		int selectPublishSituationTotal(House house);
+	// 修改房源的发布和审核状态
+	int	updateHouseState(House house);
+	
 }

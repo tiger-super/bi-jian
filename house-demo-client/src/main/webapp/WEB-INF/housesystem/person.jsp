@@ -63,7 +63,7 @@
 
 	</div>
 
-	<div class="col-sm-8 content-center content   person-information-view content-right" style="display:none">
+	<div class="col-sm-8 content-center content   person-information-view content-right" >
 		<div class="person-head-title">个人信息</div>
 
 		<div class="person-info">
@@ -105,36 +105,15 @@
 	</div>
 
 
-	<div class="col-sm-8 content-center content my-publish-view content-right">
-	<div class="person-head-title col-sm-12">
+	<div class="col-sm-8  content my-publish-view content-right" value="1" style="display:none">
+	<div class="person-head-title col-sm-12" value="housePublisherState">
 	<div class="publish-div publish-div-button col-sm-2" style="color:red">已发布</div>
 	<div class="no-publish-div publish-div-button col-sm-2">未发布</div>
 	<div class="to-be-audited-div publish-div-button col-sm-2">待审核</div>
 	<div class="audit-failure publish-div-button col-sm-2">审核失败</div>
 	</div>
-	<div class="publish-content-div col-sm-12">
-    <div class="house-image-div col-sm-2" >
-    <img src = "/static/img/house-img.jpg" class="house-image">
+	<div class="col-sm-12 my-publish-content"></div>
     
-    </div>
-	<div class="publish-content col-sm-8">
-	<div class="col-sm-12 house-name">房源名称</div>
-	<div class="col-sm-12 house-address">房源地址</div>
-	<div class="col-sm-12">租售</div>
-	<div class="col-sm-12">
-	<span >1房1厅1卫&nbsp|&nbsp</span>
-		<span >30平米&nbsp|&nbsp</span>
-			<span>950元</span>
-	</div>
-	
-	</div>
-	<div class="operation-div col-sm-2" >
-    <button type="button" class="btn btn-default btn-sm btn-info see">查看</button>
-    <button type="button" class="btn btn-default btn-sm  btn-warning cancel-publish">下架</button>
-    <button type="button" class="btn btn-default btn-sm btn-danger delete">删除</button>
-</div>
-	</div>
-	
 	</div>
 		<div class="no-publish-content col-sm-12"></div>
 			<div class="to-be-audited-content col-sm-12"></div>

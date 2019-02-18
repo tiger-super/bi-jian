@@ -342,3 +342,7 @@ color:#999;
 	margin-left:15px;
 	margin-right:15px;
 }
+
+.collection-div{
+	cursor: pointer;
+}

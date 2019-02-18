@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.mapper.CollectionManagementMapper">
+	<insert id="insertCollectionInformation" parameterType="com.house.entity.Collection">
+	insert into collection(collectors_id,collection_house_id) value(
+	#{collectorsId},#{collectionHouseId})
+	</insert>
+	<delete id="deleteCollectionInformation" parameterType="com.house.entity.Collection">
+	delete from collection where collectors_id = #{collectorsId}
+	and collection_house_id = #{collectionHouseId}
+	</delete>
+	<select id="ifExistCollectionInformation" parameterType="com.house.entity.Collection" resultType="com.house.entity.Collection">
+	select collectors_id,collection_house_id,collection_time from collection where collectors_id = #{collectorsId}
+	and collection_house_id = #{collectionHouseId}
+	</select>
+</mapper>

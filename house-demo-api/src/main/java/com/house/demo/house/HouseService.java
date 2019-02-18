@@ -3,6 +3,7 @@ package com.house.demo.house;
 import java.util.List;
 import java.util.Map;
 
+import com.house.entity.Collection;
 import com.house.entity.House;
 import com.house.entity.Page;
 
@@ -29,4 +30,7 @@ public interface HouseService {
 	
 	
 	public Map<String,Object> publishManageService(House house,Page page);
+	
+	public boolean ModifyHouseState(House house);
+	
 }
