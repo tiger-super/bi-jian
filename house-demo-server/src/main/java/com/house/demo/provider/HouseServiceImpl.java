@@ -22,6 +22,7 @@ import com.house.mapper.DeviceManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.FileUtil;
 import com.house.tool.PhoneAddressCreate;
+import com.house.tool.Time;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -155,6 +156,9 @@ public class HouseServiceImpl implements HouseService {
 
 	@Override
 	public boolean ModifyHouseState(House house) {
+		if(house.getHousePublisherState() != null && "1".equals(house.getHousePublisherState())) {
+		   house.setHousePublisherTime(Time.getNowTime());
+		}
 	    int result = houseManagementMapper.updateHouseState(house);
 	    if(result == 1) {
 	    	return true;	    	

@@ -209,6 +209,9 @@
 				 house_publisher_state = #{housePublisherState}
 			</otherwise>
 		</choose>
+		<if test='housePublisherTime != null'>
+			,house_publisher_time= #{housePublisherTime}
+		</if>
 	where house_id = #{houseId}
 	</update>
 	

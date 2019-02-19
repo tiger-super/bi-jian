@@ -36,14 +36,16 @@ public void testList() throws IOException {
 }
 @Test
 public void testPageShow() {
+	for(int j = 1; j <=20;j++) {
+	int max = j;
 	Page page = new Page();
-	page.setPageMax(8);
-	for(int i = 1 ; i <= 8 ; i ++) {
-		
+	page.setPageMax(max);
+	for(int i = 1 ; i <= max ; i ++) {
 		page.setPageCurrent(i);
 		List<String> list = com.house.tool.PageShow.handlePage(page);
 		System.out.println("点弟"+i+"页"+list);
 	}
-   
+	System.out.println("=========================================");
+	}  
 }
 }

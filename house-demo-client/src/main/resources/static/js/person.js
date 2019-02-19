@@ -287,6 +287,7 @@ function loadHouseInfo(data) {
 		dataType : "json",
 		data : data,
 		success : function(result) {
+			console.log(result.list)
 			let list = result.list;
 			$(".my-publish-content").empty();
 			for (let i = 0; i < list.length; i++) {
@@ -295,7 +296,7 @@ function loadHouseInfo(data) {
 			
 			$(".cancel-publish").click(function(){
 				let houseId = $(this).parents(".publish-content-div").attr("value");
-				modifyHouseState({"housePublisherState":"0","houseId":houseId},"下架成功",$(this));
+			   modifyHouseState({"housePublisherState":"0","houseId":houseId},"下架成功",$(this));
 			})
 			$(".immediately-publish").click(function(){
 				let houseId = $(this).parents(".publish-content-div").attr("value");
@@ -452,8 +453,6 @@ function getJson() {
 	}
 	return json;
 }
-
-
 function modifyHouseState(data,text,thisDiv){
 	$.ajax({
 		url : "/house/session/modify/state",
@@ -461,10 +460,19 @@ function modifyHouseState(data,text,thisDiv){
 		dataType : "json",
 		data : data,
 		success : function(result) {
-			console.log(result)
 			if(result == true){
-			thisDiv.parents(".publish-content-div").remove();
-			alert(text);
+				alert(text);
+				let json = {};
+				json.pageCurrent = pageCurrent;
+			switch(text){
+			case "发布成功":
+				json.housePublisherState = "0";
+				break;
+			case "下架成功":
+				json.housePublisherState = "1";
+				break;
+			}
+			loadHouseInfo(json);
 			}
 		}
 	})
