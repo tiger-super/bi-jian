@@ -35,4 +35,13 @@ public interface HouseManagementMapper {
 	// 修改房源的发布和审核状态
 	int	updateHouseState(House house);
 	
+	//删除房源
+	int deleteHouseDao(House house);
+	
+	//查询收藏数量
+	House seleteFollowNumber(String houseId);
+	
+	
+	//修改收藏数量
+	int updateFollowNumber(House house);
 }

@@ -166,4 +166,15 @@ public class HouseServiceImpl implements HouseService {
 	    	return false;
 	    }
 	}
+
+	@Override
+	public boolean deleteHouseService(House house) {
+		int result = houseManagementMapper.deleteHouseDao(house);
+		
+		 if(result == 1) {
+		    	return true;	    	
+		    }else {
+		    	return false;
+		    }
+	}
 }

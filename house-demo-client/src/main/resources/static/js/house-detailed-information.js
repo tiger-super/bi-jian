@@ -297,10 +297,13 @@ function addOrDeleteCollection(value){
 				}
 				break;
 			case "false":
-				alert("服务器错误")
+				alert("服务器错误");
 				break;
 			case "login":
 			window.location.href = "/house/show/loginView";
+			break;
+			case "equal":
+				alert("自己的东西你不清楚吗？");
 			break;
 		}
 		}

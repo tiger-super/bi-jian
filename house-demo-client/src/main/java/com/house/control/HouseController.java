@@ -180,5 +180,14 @@ public class HouseController {
 		house.setHousePublisherId(customer.getCustomerId());
     	return houseService.ModifyHouseState(house);
     }
+    
+    @RequestMapping("/delete")
+    @ResponseBody
+    public boolean deleteHouse(House house,HttpSession session) {
+    	Customer customer = (Customer) session.getAttribute("customerSession");
+		house.setHousePublisherId(customer.getCustomerId());
+    	return houseService.ModifyHouseState(house);
+    }
+    
 
 }

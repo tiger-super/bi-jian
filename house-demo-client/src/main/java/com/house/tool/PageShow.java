@@ -65,7 +65,7 @@ public class PageShow {
 			}
 		}
 		
-		if(max != current) {
+		if(max != current && max > 1 ) {
 			list.add("下一页");
 		}
 		return list;

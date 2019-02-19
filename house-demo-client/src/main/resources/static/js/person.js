@@ -296,15 +296,20 @@ function loadHouseInfo(data) {
 			
 			$(".cancel-publish").click(function(){
 				let houseId = $(this).parents(".publish-content-div").attr("value");
-			   modifyHouseState({"housePublisherState":"0","houseId":houseId},"下架成功",$(this));
+			   modifyHouseState({"housePublisherState":"0","houseId":houseId},"下架成功");
 			})
 			$(".immediately-publish").click(function(){
 				let houseId = $(this).parents(".publish-content-div").attr("value");
-				modifyHouseState({"housePublisherState":"1","houseId":houseId},"发布成功",$(this));
+				modifyHouseState({"housePublisherState":"1","houseId":houseId},"发布成功");
 			})
 			$(".apply-publish").click(function(){
 				let houseId = $(this).parents(".publish-content-div").attr("value");
-				modifyHouseState({"houseAuditingState ":"0","houseId":houseId},"申请成功",$(this));
+				modifyHouseState({"houseAuditingState":"0","houseId":houseId},"申请成功");
+			})
+			
+			$(".delete").click(function(){
+				let houseId = $(this).parents(".publish-content-div").attr("value");
+				deleteHouse({"houseId":houseId});
 			})
 			showPageView(result.page);
 		}
@@ -342,7 +347,9 @@ function showHouseInfo(house,i) {
 							case "housePublisherState":
 								switch($(".my-publish-view").attr("value")){
 								case "1":$(".publish-content-div-"+i).append("<div class='operation-div col-sm-2' >"+
-										"<button type='button' class='btn btn-default btn-sm btn-info see'>查看</button>" +
+										"<button type='button' class='btn btn-default btn-sm btn-info see'>" +
+										"<a href='/house/show/house/info?houseId="+house.houseId+"'>查看</a>" +
+										"</button>" +
 										"<button type='button' class='btn btn-default btn-sm  btn-warning cancel-publish'>下架</button>"
 								+ "<button type='button' class='btn btn-default btn-sm btn-danger delete'>删除</button></div></div>")
 									break;
@@ -453,7 +460,7 @@ function getJson() {
 	}
 	return json;
 }
-function modifyHouseState(data,text,thisDiv){
+function modifyHouseState(data,text){
 	$.ajax({
 		url : "/house/session/modify/state",
 		type : "post",
@@ -471,9 +478,27 @@ function modifyHouseState(data,text,thisDiv){
 			case "下架成功":
 				json.housePublisherState = "1";
 				break;
+			case "申请成功":	
+			    json.houseAuditingState = "-1";
 			}
 			loadHouseInfo(json);
 			}
 		}
 	})
+}	
+	function deleteHouse(data){
+        if(confirm("你确定要删除掉该房源吗")){
+		/*$.ajax({
+			url : "/house/delete",
+			type : "post",
+			dataType : "json",
+			data : data,
+			success : function(result) {
+				if(result == true){
+			    alert("删除成功")
+				loadHouseInfo(json);
+				}
+			}
+        })*/
+	}
 }

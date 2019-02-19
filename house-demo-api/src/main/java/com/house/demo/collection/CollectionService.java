@@ -8,7 +8,7 @@ public interface CollectionService {
 	 * @param collection
 	 * @return
 	 */
-	public boolean addHouseCollectionInformation(Collection collection);
+	public String addHouseCollectionInformation(Collection collection);
 	public boolean judgeHouseAleardyCollection(Collection collection);
-	public boolean cancelHouseCollectionInformation(Collection collection);
+	public String cancelHouseCollectionInformation(Collection collection);
 }

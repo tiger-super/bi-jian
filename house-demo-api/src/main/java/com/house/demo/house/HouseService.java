@@ -30,7 +30,10 @@ public interface HouseService {
 	
 	
 	public Map<String,Object> publishManageService(House house,Page page);
-	
+	// 修改房源状态
 	public boolean ModifyHouseState(House house);
+	// 删除房源服务
+	public boolean deleteHouseService(House house);
+	
 	
 }

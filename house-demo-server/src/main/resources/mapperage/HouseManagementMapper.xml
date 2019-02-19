@@ -220,4 +220,17 @@
 	insert into collection(collectors_id,collection_house_id) value(
 	#{collectorsId},#{collectionHouseId})
 	</insert>
+	
+	<delete id="deleteHouseDao" parameterType="com.house.entity.House">
+	delete from house where house_id = #{houseId} and house_publisher_id = #{housePublisherId }
+	</delete>
+	
+	
+	<select id="seleteFollowNumber" parameterType="java.lang.String" resultType="com.house.entity.House">
+	select house_publisher_id,follow_number from house where house_id = #{parameter}
+	</select>
+	
+	<update id="updateFollowNumber" parameterType="com.house.entity.House" >
+	update house set follow_number = #{followNumber} where house_id = #{houseId}
+	</update>
 </mapper>

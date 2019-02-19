@@ -39,24 +39,18 @@ public class CollectionController {
 		Customer customer = (Customer) session.getAttribute("customerSession");
 		Map<String,String> map = new HashMap<String,String>();
 		String result = null;
-		boolean value = false;
 		if(customer == null) {
 			result =  "login";
 		}else {
 		collection.setCollectorsId(customer.getCustomerId());
 		if("0".equals(modify)) {
-			value = collectionService.addHouseCollectionInformation(collection);
+			result = collectionService.addHouseCollectionInformation(collection);
 		}else {
-			value = collectionService.cancelHouseCollectionInformation(collection);
-		}
-		if(value) {
-			result = "true";
-		}else {
-			result = "false";
-		}
+			result = collectionService.cancelHouseCollectionInformation(collection);
 		}
 		map.put("result", result);
+		
+	}
 		return map;
 	}
-	
 }
