@@ -198,7 +198,6 @@ function getJson(){
 }
 function addJson(json,key,value){
 	json[key] = value;
-	console.log(json);
 	return json;
 }
 // 由json转换为字符串

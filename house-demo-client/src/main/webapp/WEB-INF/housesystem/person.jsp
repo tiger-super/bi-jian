@@ -53,7 +53,7 @@
 			</li>
 			<li class="person-information">个人中心</li>
 			<li class="my-publish">我的发布</li>
-			<li class="">我的收藏</li>
+			<li class="my-collection">我的收藏</li>
 			<li class="">我的浏览</li>
 
 
@@ -113,10 +113,14 @@
 	<div class="audit-failure publish-div-button col-sm-2">审核失败</div>
 	</div>
 	<div class="col-sm-12 my-publish-content"></div>
-    
+    </div>
+	
+	
+	<div class="col-sm-8  content my-collection-view content-right" >
+	<div class="col-sm-12 my-collection-content">
+	
+	
 	</div>
-		<div class="no-publish-content col-sm-12"></div>
-			<div class="to-be-audited-content col-sm-12"></div>
-				<div class="audit-failure col-sm-12"></div>
 	</div>
+
 </body>

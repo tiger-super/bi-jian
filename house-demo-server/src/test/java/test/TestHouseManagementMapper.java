@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,5 +132,16 @@ public class TestHouseManagementMapper {
 		 System.out.println(house);
 		  System.out.println("信息"+houseManagementMapper.selectPublishSituation(map));
           System.out.println("总数"+houseManagementMapper.selectPublishSituationTotal(house));	
+	}
+	@Test
+	public void testSelectHouseInfoFromHouseIdS() {
+		List<String> list = new ArrayList<String>();
+		list.add("10000");
+		list.add("10001");
+		list.add("10002");
+		List<House> houses = houseManagementMapper.selectHouseInfoFromHouseIdS(list);
+		for(int i = 0 ; i < list.size() ; i ++) {
+			 System.out.println("弟"+i+"个值为："+houses.get(i));
+		 }
 	}
 }

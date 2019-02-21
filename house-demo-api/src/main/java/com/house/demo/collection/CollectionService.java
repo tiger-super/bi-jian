@@ -1,6 +1,11 @@
 package com.house.demo.collection;
 
+import java.util.List;
+import java.util.Map;
+
 import com.house.entity.Collection;
+import com.house.entity.House;
+import com.house.entity.Page;
 
 public interface CollectionService {
 	/**
@@ -11,4 +16,6 @@ public interface CollectionService {
 	public String addHouseCollectionInformation(Collection collection);
 	public boolean judgeHouseAleardyCollection(Collection collection);
 	public String cancelHouseCollectionInformation(Collection collection);
+	
+	public Map<String,Object> loadCollectionInformation(String collectorsId,Page page);
 }

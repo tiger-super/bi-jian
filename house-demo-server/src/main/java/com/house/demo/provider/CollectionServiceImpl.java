@@ -1,13 +1,19 @@
 package com.house.demo.provider;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.collection.CollectionService;
 import com.house.entity.Collection;
 import com.house.entity.House;
+import com.house.entity.Page;
 import com.house.mapper.CollectionManagementMapper;
 import com.house.mapper.HouseManagementMapper;
+import com.house.tool.FileUtil;
 @Service
 public class CollectionServiceImpl implements CollectionService{
 	@Autowired
@@ -57,6 +63,25 @@ public class CollectionServiceImpl implements CollectionService{
 		}else {			
 			return true;
 		}
+	}
+	@Override
+	public Map<String,Object> loadCollectionInformation(String collectorsId,Page page) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		int pageTotal = collectionManagementMapper.totalSelectCollectionHouseIdFormCollectorsId(collectorsId);
+		// 最大值
+		page.setPageTotal(pageTotal);
+		// 已显示的页面
+		page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
+		// 最大页
+		page.setPageMax((int)Math.ceil((double)page.getPageTotal()/page.getPageNumber()));
+		Collection collection = new Collection();
+		collection.setCollectorsId(collectorsId);
+		map.put("collection",collection);
+		map.put("page", page);
+		List<String> houseIdS = collectionManagementMapper.selectCollectionHouseIdFormCollectorsId(map);
+		List<House> houses = houseManagementMapper.selectHouseInfoFromHouseIdS(houseIdS);
+		map.put("list", FileUtil.readHouseImg(houses));
+		return map;
 	}
 
 }

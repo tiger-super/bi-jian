@@ -44,4 +44,7 @@ public interface HouseManagementMapper {
 	
 	//修改收藏数量
 	int updateFollowNumber(House house);
+	
+	// 根据大量的houseId查询房源
+	List<House> selectHouseInfoFromHouseIdS(List<String> list);
 }

@@ -216,10 +216,7 @@
 	</update>
 	
 	
-	<insert id="insertCollectionInformation" parameterType="com.house.entity.Collection">
-	insert into collection(collectors_id,collection_house_id) value(
-	#{collectorsId},#{collectionHouseId})
-	</insert>
+
 	
 	<delete id="deleteHouseDao" parameterType="com.house.entity.House">
 	delete from house where house_id = #{houseId} and house_publisher_id = #{housePublisherId }
@@ -233,4 +230,13 @@
 	<update id="updateFollowNumber" parameterType="com.house.entity.House" >
 	update house set follow_number = #{followNumber} where house_id = #{houseId}
 	</update>
+	
+	<select id = "selectHouseInfoFromHouseIdS" parameterType="java.util.List" resultMap="publishHouse">
+	select h.house_id,house_name,house_address_province,house_address_city,house_address_area,house_address_info,
+		house_sell_way,house_size,house_structure,house_money,house_image_address
+		 from house h,house_info hi where h.house_id = hi.house_id 
+		 <foreach collection="list" item="houseId" open="and h.house_id in(" close=")" separator=",">  
+            #{houseId}  
+         </foreach> 
+	</select>
 </mapper>

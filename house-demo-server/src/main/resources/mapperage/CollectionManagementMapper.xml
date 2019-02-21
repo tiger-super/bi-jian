@@ -15,4 +15,14 @@
 	select collectors_id,collection_house_id,collection_time from collection where collectors_id = #{collectorsId}
 	and collection_house_id = #{collectionHouseId}
 	</select>
+	
+	
+		<select id="selectCollectionHouseIdFormCollectorsId" parameterType="java.util.Map" resultType="java.lang.String">
+	select collection_house_id from collection where collectors_id = #{collection.collectorsId} limit #{page.pageShowNow},#{page.pageNumber}
+	</select>
+	
+	<select id="totalSelectCollectionHouseIdFormCollectorsId" parameterType="java.lang.String" resultType="java.lang.Integer"> 
+	select count(*) from collection where collectors_id = #{collectorsId}
+	</select> 
+	
 </mapper>

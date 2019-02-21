@@ -1,6 +1,7 @@
 package com.house.control;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,8 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.collection.CollectionService;
 import com.house.entity.Collection;
 import com.house.entity.Customer;
+import com.house.entity.House;
+import com.house.entity.Page;
 
 @Controller
 @RequestMapping("/house")
@@ -53,4 +56,24 @@ public class CollectionController {
 	}
 		return map;
 	}
+	@RequestMapping("/load/collection")
+	@ResponseBody
+	public Map<String,Object> loadCollectionHouseInfo(HttpSession session,@RequestParam(required = false) Integer pageCurrent) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
+		Map<String,Object> map = new HashMap<String,Object>();
+		Page page = new Page();
+		if (pageCurrent != null) {
+			page.setPageCurrent(pageCurrent);
+		}
+		if(customer == null) {
+			map.put("result",false);
+			return map;
+		}else {
+	     map = collectionService.loadCollectionInformation(customer.getCustomerId(),page);
+	     map.put("result",true);
+			return map;
+		}
+	};
+	
+	
 }
