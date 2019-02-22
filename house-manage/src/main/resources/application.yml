@@ -1,0 +1,43 @@
+#配置静态资源
+spring:
+ mvc:
+  static-path-pattern: /static/**
+#配置视图解析器
+  view:
+   prefix: /WEB-INF/housemanage/
+   suffix: .jsp
+server:
+ port: 8082
+#jsp即使生效无需重启
+ servlet:
+  jsp:
+   init-parameters:
+    development: true
+#设置映射文件
+mybatis:
+ mapper-locations: classpath*:mapperage/*.xml
+ configuration:
+  mapUnderscoreToCamelCase: true
+  map-underscore-to-camel-case: true
+logging:
+ level:
+  com:
+   house:
+   mapper: debug
+#配置c3p0
+c3p0:
+  jdbcUrl: ${url}
+  user: ${user}
+  password: ${password}
+  driverClass: ${driver}
+  minPoolSize: 2
+  maxPoolSize: 10
+  maxIdleTime: 1800000
+  acquireIncrement: 3
+  maxStatements: 1000
+  initialPoolSize: 3
+  idleConnectionTestPeriod: 60
+  acquireRetryAttempts: 30
+  acquireRetryDelay: 1000
+  breakAfterAcquireFailure: false
+  testConnectionOnCheckout: false
