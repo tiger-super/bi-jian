@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manage.dao.HouseManageDao">
+  <select id="selectAllToBeAuditingHouse" resultMap="setHouse" parameterType="com.entity.page">
+  	select
+		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
+		h,house_info hi where
+		h.house_id = hi.house_id and house_auditing_state = '1' order by application_time
+		limit #{pageShowNow},#{pageNumber} 
+  </select>
+  <resultMap type="com.house.entity.House" id="setHouse">
+		<id column="house_id" property="houseId" />
+		<result column="house_name" property="houseName" />
+		<result column="house_address_info" property="houseAddressInfo" />
+		<result column="house_publisher_time"
+			property="housePublisherTime" />
+		<result column="follow_number" property="followNumber" />
+		<association property="houseInfo"
+			javaType="com.house.entity.HouseInfo">
+			<result column="house_size" property="houseSize" />
+			<result column="house_direction" property="houseDirection" />
+			<result column="house_money" property="houseMoney" />
+			<result column="house_structure" property="houseStructure" />
+			<result column="house_image_address"
+				property="houseImageAddress" />
+		</association>
+	</resultMap>
+   <select id="selectAllHasBeenPublishHouse" resultMap="setHouse" parameterType="com.entity.page">
+    	select
+		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
+		h,house_info hi where
+		h.house_id = hi.house_id and house_publisher_state = '1' 
+		limit #{pageShowNow},#{pageNumber}
+  </select>
+</mapper>

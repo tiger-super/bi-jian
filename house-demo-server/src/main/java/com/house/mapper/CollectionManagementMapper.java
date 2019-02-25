@@ -3,8 +3,10 @@ package com.house.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.house.entity.Collection;
+import org.springframework.stereotype.Repository;
 
+import com.house.entity.Collection;
+@Repository
 public interface CollectionManagementMapper {
 //  添加收藏信息
 	int insertCollectionInformation(Collection collection);

@@ -1,4 +1,4 @@
-package com.house.control;
+package com.manage.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
