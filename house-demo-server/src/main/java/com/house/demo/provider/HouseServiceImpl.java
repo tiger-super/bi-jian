@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.springframework.util.ClassUtils;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.house.HouseService;
-import com.house.entity.Collection;
 import com.house.entity.Device;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;

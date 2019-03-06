@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>tiger</groupId>
 	<artifactId>house-server</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>house-server Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -82,7 +82,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>house-server</finalName>
+		<finalName>house-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -22,8 +22,8 @@ mybatis:
 logging:
  level:
   com:
-   house:
-   mapper: debug
+   manage:
+    dao: debug
 #配置c3p0
 c3p0:
   jdbcUrl: ${url}

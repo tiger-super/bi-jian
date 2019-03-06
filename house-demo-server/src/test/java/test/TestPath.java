@@ -5,10 +5,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.springframework.util.ClassUtils;
-
 import com.house.tool.PhoneAddressCreate;
-
-import ch.qos.logback.core.util.FileUtil;
 
 public class TestPath {
     @Test

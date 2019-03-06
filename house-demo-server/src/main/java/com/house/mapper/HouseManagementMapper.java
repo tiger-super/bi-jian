@@ -2,10 +2,7 @@ package com.house.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Repository;
-
-import com.house.entity.Collection;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
 

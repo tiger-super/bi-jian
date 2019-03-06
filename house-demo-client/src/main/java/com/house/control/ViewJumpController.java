@@ -90,6 +90,9 @@ public class ViewJumpController {
 					break;
 				}
 			}
+		}else {
+			mv.setViewName("selectArea");
+			return mv;
 		}
 		List<String> areaList = analysisAreaXmlService.analysisAreaXmlGainArea(province, city);
 		mv.setViewName("house-list");

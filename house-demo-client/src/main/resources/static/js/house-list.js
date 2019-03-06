@@ -100,7 +100,7 @@ function renderIngInformation(house) {
 					"<div class='col-sm-9 house-information-div'  value="
 							+ house.houseId
 							+ ">"
-							+ "<div class='house-information-img col-sm-4'><img src='http://localhost:8080/static/publish-house-img/"
+							+ "<div class='house-information-img col-sm-4'><img src='http://localhost:8090/static/publish-house-img/"
 							+ house.houseInfo.houseImageAddress
 							+ "'></div>"
 							+ "<div class='col-sm-8' style='padding: 0px'><div class='house-information-word col-sm-10'>"

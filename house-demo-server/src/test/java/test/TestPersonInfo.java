@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.house.ServiceApplication;
 import com.house.entity.Customer;
-import com.house.mapper.HouseManagementMapper;
 import com.house.mapper.PersonInfoManagementMapper;
 
 @RunWith(SpringRunner.class)

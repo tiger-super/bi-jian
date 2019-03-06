@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.house.entity.House;
 import com.house.entity.Page;
+
 @Repository
 public interface HouseManageDao {
 	// 查询所有待审核的房源

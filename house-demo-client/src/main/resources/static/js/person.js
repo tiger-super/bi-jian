@@ -99,7 +99,7 @@ $(document)
 										$(".head-img")
 												.attr(
 														"src",
-														"http://localhost:8080/static/customerPhoto/"
+														"http://localhost:8090/static/customerPhoto/"
 																+ result.customerHeadImageAddress);
 									} else {
 										$(".head-img")
@@ -283,7 +283,7 @@ function submitform() {
 						$(".head-img").attr("src", "#");
 						$(".head-img").attr(
 								"src",
-								"http://localhost:8080/static/customerPhoto/"
+								"http://localhost:8090/static/customerPhoto/"
 										+ result);
 					} else {
 						alter("上传失败");
@@ -358,7 +358,7 @@ function showHouseInfo(house, i, div) {
 					+ " col-sm-12' value="
 					+ house.houseId
 					+ ">"
-					+ "<div class='house-image-div col-sm-2' ><img src='http://localhost:8080/static/publish-house-img/"
+					+ "<div class='house-image-div col-sm-2' ><img src='http://localhost:8090/static/publish-house-img/"
 					+ house.houseInfo.houseImageAddress
 					+ "' class='house-image'></div><div class='publish-content col-sm-8'>"
 					+ "<div class='col-sm-12 house-name'>" + house.houseName

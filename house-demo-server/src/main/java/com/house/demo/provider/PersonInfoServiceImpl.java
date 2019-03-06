@@ -2,13 +2,8 @@ package com.house.demo.provider;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.util.ClassUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;

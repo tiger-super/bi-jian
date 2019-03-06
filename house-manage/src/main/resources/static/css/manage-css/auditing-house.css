@@ -1,0 +1,38 @@
+.search-window{
+		padding:0px;
+		margin-left:17px;
+}
+.search-window div{
+	padding:0px;
+}
+#searchHouse{
+	height:50px;
+}
+
+#content{
+	border: 1px solid #ccc;
+	padding:0px;
+	margin-left:3px;
+}
+.button-window{
+	margin-left:50px;
+}
+
+.house-information-div {
+	height: 180px;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 0px;
+	padding-top: 25px;
+}
+
+.house-information-img {
+	padding: 0px;
+}
+
+.house-information-img img {
+	height: 120px;
+	width: 220px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+}

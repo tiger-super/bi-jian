@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.house.ServiceApplication;
 import com.house.mapper.DeviceManagementMapper;
-import com.house.mapper.HouseManagementMapper;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ServiceApplication.class)
 public class TestDeviceManagementMapper {

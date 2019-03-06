@@ -17,11 +17,6 @@ import com.house.demo.DemoService;
 public class TestHelloWorld {
 	@Autowired
 	HelloWorldServlet helloWorldServlet;
-    // 测试HelloWorld
-	@Test
-	public void test() {
-		System.out.println(helloWorldServlet.say());
-	}
 	
 	@Reference(version="1.0.0")
 	DemoService demoService ;

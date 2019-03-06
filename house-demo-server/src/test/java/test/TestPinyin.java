@@ -24,7 +24,7 @@ public class TestPinyin {
     }
     @Test
     public void testGetStringArray() {
-    	List list = new ArrayList();
+    	List<String> list = new ArrayList<String>();
     	list.add("1");
     	list.add("2");
     	String[] s =  PinyinComparator.getStringArray(list);
@@ -35,7 +35,7 @@ public class TestPinyin {
 
     @Test
     public void testSet() {
-    	Set set = new HashSet();
+    	Set<String> set = new HashSet<String>();
     	set.add("g");
     	set.add("a");
     	set.add("f");

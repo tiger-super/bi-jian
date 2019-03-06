@@ -9,10 +9,12 @@
 <!-- Le styles -->
 <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script"
 	rel="stylesheet" type="text/css">
+	<link href="/static/css/manage-css/index.css" rel="stylesheet">
 <link href="/static/css/bootstrap.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
 <link href="/static/css/admin.css" rel="stylesheet">
 <script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/manage-js/index.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/excanvas.min.js"></script>
 <script src="/static/js/jquery.flot.min.js"></script>
@@ -48,7 +50,7 @@
 							data-toggle="collapse" data-target="#store-dropdown" href="#"><i
 								class="icon-home"></i> 房源管理 <b class="caret"></b></a>
 							<ul id="store-dropdown" class="collapse">
-								<li><a href="listing.html">待审核房源</a></li>
+								<li class="li-auditing"><a href="#">待审核房源</a></li>
 								<li><a href="orders.html">已发布房源</a></li>
 
 							</ul></li>
@@ -76,8 +78,28 @@
 			<!-- end span2 -->
 
 			<div class="span10">
+			<div class="secondary-masthead">
 
-				<div class="secondary-masthead">
+			<ul class="nav nav-pills pull-right">
+
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"><i class="icon-user"></i> 钟泰文 <b
+						class="caret"></b> </a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.html">你的个人信息</a></li>
+						<li class="divider"></li>
+						<li><a href="">退出</a></li>
+					</ul></li>
+			</ul>
+
+			<ul class="breadcrumb">
+				<li><a href="#">管理员</a></li>
+			</ul>
+
+		</div>
+		 <iframe src="/manage/show/auditing/houseManageView" width="100%"  scrolling="no" frameborder="0" id="load"> </iframe> 
+
+	<!-- <div class="secondary-masthead">
 
 					<ul class="nav nav-pills pull-right">
 
@@ -182,8 +204,8 @@ $(function () {
 
     $.plot($("#placeholder"), [ d1 ], { grid: { backgroundColor: 'white', color: '#999', borderWidth: 1, borderColor: '#DDD' }, colors: ["#FC6B0A"], series: { lines: { show: true, fill: true, fillColor: "rgba(253,108,11,0.4)" } } });
 });
-</script>
-
-
+</script> 
+ -->
+</div>  
 </body>
 </html>

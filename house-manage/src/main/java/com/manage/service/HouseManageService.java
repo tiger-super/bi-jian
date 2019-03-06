@@ -1,9 +1,8 @@
 package com.manage.service;
+import java.util.Map;
 
-import java.util.List;
-
-import com.house.entity.House;
+import com.house.entity.Page;
 
 public interface HouseManageService {
-    
+    Map<String,Object> getAuditingHouse(Page page);
 }
