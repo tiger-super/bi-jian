@@ -5,11 +5,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sourceforge.pinyin4j.PinyinHelper;
+import org.springframework.stereotype.Component;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+@Component
 public class PinyinComparator implements Comparator<Object> {
 	private Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
-	
+	//排序方式
 	public int compare(Object o1, Object o2) {
 		char c1 = ((String) o1).charAt(0);
 		char c2 = ((String) o2).charAt(0);

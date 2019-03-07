@@ -108,7 +108,12 @@
 			<artifactId>house-api</artifactId>
 			<version>1.0</version>
 		</dependency>
-
+<!-- 解析xml -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -116,14 +121,14 @@
 		<resources>
 			<resource>
 				<directory>src/main/webapp</directory>
-				<targetPath>META-INF/housesystem</targetPath>
+				<targetPath>META-INF/resources</targetPath>
 				<includes>
 					<include>**/**</include>
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main</directory>
-				<targetPath>resources</targetPath>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
 				<includes>
 					<include>**/**</include>
 				</includes>
@@ -133,6 +138,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.4.2.RELEASE</version>
 			</plugin>
 
 			<plugin>

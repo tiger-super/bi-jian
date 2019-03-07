@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>tiger</groupId>
-	<artifactId>house-server</artifactId>
+	<artifactId>house-api</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>house-server Maven Webapp</name>
+	<name>house-api Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<!-- 引入springboot -->
 	<parent>

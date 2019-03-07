@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,6 @@ import com.house.tool.FileUtil;
 @Controller
 @RequestMapping("/house")
 public class SystemController {
-
 	/**
 	 * 该方法用于用户退出系统
 	 * @param session 这个对象用来获取用户信息
@@ -64,6 +64,7 @@ public class SystemController {
 	@RequestMapping("/delete/session")
 	@ResponseBody
 	   public void deleteSession(HttpServletResponse response,HttpServletRequest request) {
+		FileUtil fu = new FileUtil();
 		Cookie[] cookies = request.getCookies();
 		String folder = null;
 		if (cookies != null) {
@@ -79,7 +80,7 @@ public class SystemController {
 				}
 			}
 			try {
-				FileUtil.deleteFile(folder);
+				fu.deleteFile(folder);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

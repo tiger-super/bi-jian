@@ -1,4 +1,3 @@
-// 出售方式
 var isSellWay = false;
 // 地址
 var isHouseAddress = false;
@@ -37,7 +36,6 @@ $(document).ready(function() {
 	$(".send").click(function() {
 			var JsonData = decodeURIComponent($("#publish").serialize(), true);
 			JsonData = transformationJson(JsonData);
-			
 			var Data = JSON.parse(JsonData);
 			$.ajax({
 				url : '/house/session/publish/house',
@@ -46,14 +44,12 @@ $(document).ready(function() {
 				data : Data,
 				async : false,
 				success : function(result) {
-					console.log(result);
+					if(result.result == "true"){
+						window.location.href="/house/show/publish/success";
+					}
 				}
 			});
-	
-
-
 	})
-
 })
 var provinceClick = false;
 var cityClick = false;
@@ -63,12 +59,12 @@ function showProvince() {
 		provinceClick = false;
 		$(".province").children(".select-content").hide();
 		$(".province-select").children(".select-img").css("background-image",
-				"url(http://localhost:8088/static/img/down.png)");
+				"url(http://47.106.244.224:8088/static/img/down.png)");
 	} else {
 		provinceClick = true;
 		$(".province").children(".select-content").show();
 		$(".province-select").children(".select-img").css("background-image",
-				"url(http://localhost:8088/static/img/up.png)");
+				"url(http://47.106.244.224:8088/static/img/up.png)");
 		$(".province").children(".select-content");
 		$(".province").children(".select-content").children(
 				".select-content-ul").empty();
@@ -109,7 +105,7 @@ function showProvince() {
 											$(".province-select")
 													.children(".select-img")
 													.css("background-image",
-															"url(http://localhost:8088/static/img/down.png)");
+															"url(http://47.106.244.224:8088/static/img/down.png)");
 										})
 					}
 				});
@@ -123,13 +119,13 @@ function showCity() {
 			cityClick = false;
 			$(".city").children(".select-content").hide();
 			$(".city-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/down.png)");
+					"url(http://47.106.244.224:8088/static/img/down.png)");
 
 		} else {
 			cityClick = true;
 			$(".city").children(".select-content").show();
 			$(".city-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/up.png)");
+					"url(http://47.106.244.224:8088/static/img/up.png)");
 			$(".city").children(".select-content");
 			$(".city").children(".select-content").children(
 					".select-content-ul").empty();
@@ -175,7 +171,7 @@ function showCity() {
 														.children(".select-img")
 														.css(
 																"background-image",
-																"url(http://localhost:8088/static/img/down.png)");
+																"url(http://47.106.244.224:8088/static/img/down.png)");
 											});
 
 						}
@@ -194,12 +190,12 @@ function showArea() {
 			areaClick = false;
 			$(".area").children(".select-content").hide();
 			$(".area-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/down.png)");
+					"url(http://47.106.244.224:8088/static/img/down.png)");
 		} else {
 			areaClick = true;
 			$(".area").children(".select-content").show();
 			$(".area-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/up.png)");
+					"url(http://47.106.244.224:8088/static/img/up.png)");
 			$(".area").children(".select-content");
 			$(".area").children(".select-content").children(
 					".select-content-ul").empty();
@@ -247,7 +243,7 @@ function showArea() {
 														.children(".select-img")
 														.css(
 																"background-image",
-																"url(http://localhost:8088/static/img/down.png)");
+																"url(http://47.106.244.224:8088/static/img/down.png)");
 											});
 
 						}

@@ -21,3 +21,6 @@ INSERT INTO `device` VALUES ('10019', '1', '1', NULL, '1', '1', NULL, NULL, '1',
 INSERT INTO `device` VALUES ('10020', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', NULL, NULL, NULL, NULL);
 INSERT INTO `device` VALUES ('10021', '1', '1', 'on', '1', '1', NULL, NULL, '1', NULL, NULL, '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `device` VALUES ('10022', '1', '1', 'on', '1', NULL, NULL, NULL, '1', '1', NULL, '1', '1', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `device` VALUES ('10024', '1', '1', 'on', '1', NULL, NULL, '1', '1', '1', '1', '1', '1', NULL, '1', '1', NULL, NULL, NULL, NULL, '1');
+INSERT INTO `device` VALUES ('10025', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', '1', NULL, NULL, NULL, NULL, '1');
+INSERT INTO `device` VALUES ('10026', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', NULL, NULL, NULL, NULL, NULL, '1');

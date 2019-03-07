@@ -24,8 +24,8 @@ import com.house.tool.CreateVerificationCode;
 @RequestMapping("/house")
 public class VerificationCodeController {
 	// 设置超时时间
-	@Reference(timeout=20000)
-	VerificationCodeService verificationCodeService;
+	@Reference(timeout=30000,retries=0)
+    private VerificationCodeService verificationCodeService;
 
 	// 获取验证码
 	@RequestMapping("/gain/VerificationCode")
@@ -77,7 +77,7 @@ public class VerificationCodeController {
 				session.removeAttribute(attrName);
 				timer.cancel();
 			}
-		},  60 * 1000);
+		},  120 * 1000);
 	}
 	@RequestMapping("/judge/mailVerificationCode")
 	@ResponseBody

@@ -8,6 +8,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
 import com.house.mapper.PersonInfoManagementMapper;
+import com.house.tool.AnalysisXML;
 import com.house.tool.FileUtil;
 import com.house.tool.PhoneAddressCreate;
 
@@ -15,6 +16,8 @@ import com.house.tool.PhoneAddressCreate;
 public class PersonInfoServiceImpl implements PersonInfoService {
 	@Autowired
 	PersonInfoManagementMapper personInfoManagementMapper;
+	@Autowired
+	AnalysisXML ax;
 
 	@Override
 	public String modifyCustomerAge(Customer customer) {
@@ -73,55 +76,54 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 
 	@Override
 	public Customer queryCustomerInfo(Customer customer) {
-
-		return personInfoManagementMapper.selectCustomerAllInfoFromId(customer);
+		Customer result = personInfoManagementMapper.selectCustomerAllInfoFromId(customer);
+		String customerVisitAddress = ax.getName(AnalysisXML.CUSTOMERVISITADDRESS);
+		StringBuffer sb = new StringBuffer(customerVisitAddress + result.getCustomerHeadImageAddress());
+		result.setCustomerHeadImageAddress(sb.toString());
+		return result;
 	}
 
 	// 文件上传服务
 	@Override
-	public String photoUploadService(byte[] arr, String suffix,String id) {
+	public String photoUploadService(byte[] arr, String suffix, String id) {
+		String result = null;
 		Customer customer = new Customer();
+		String customerKeepAddress = ax.getName(AnalysisXML.CUSTOMERKEEPADDRESS);
 		customer.setCustomerId(id);
 		// 根据id去查询图片地址
 		String photoAddress;
-		int result = 0;
-        // 本地路径
-		StringBuffer path = new StringBuffer(); 
-        // 类路径
-		StringBuffer classPath = new StringBuffer();
-     
+		// 新的路径
+		StringBuffer path = new StringBuffer();
+		path.append(customerKeepAddress);
+		// 旧的路径
+		StringBuffer oldPath = new StringBuffer();
+		oldPath.append(customerKeepAddress);
+		// 访问路径
+		String customerVisitAddress = ax.getName(AnalysisXML.CUSTOMERVISITADDRESS);
+		StringBuffer visitPath = new StringBuffer(customerVisitAddress);
+
 		photoAddress = personInfoManagementMapper.selectPhotoAddressFromId(id);
+
 		try {
-			path.append(new File("").getCanonicalPath()+"/src/main/resources/static/customerPhoto/");
-			classPath.append(ClassUtils.getDefaultClassLoader().getResource("").getPath()+"/static/customerPhoto/");
 			if (photoAddress != null) {
-				 // 旧的本地路径
-				StringBuffer oldPath = new StringBuffer(); 
-		        // 旧的类路径
-				StringBuffer oldClassPath = new StringBuffer();
-				 oldPath.append(path.toString()).append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
-				 oldClassPath.append(classPath.toString()).append(photoAddress.substring(0, photoAddress.lastIndexOf("."))+suffix);
-				// 删除之前的文件
+				oldPath.append(photoAddress.substring(0, photoAddress.lastIndexOf(".")) + suffix);
 				FileUtil.deleteFile(oldPath.toString());
-				FileUtil.deleteFile(oldClassPath.toString());
-			} 
-				photoAddress = PhoneAddressCreate.createAddress(id) + suffix;
-				path.append(photoAddress);
-				classPath.append(photoAddress);
-				customer.setCustomerHeadImageAddress(photoAddress);
-			
-			FileUtil.fileupload(arr, path.toString());
-			FileUtil.fileupload(arr, classPath.toString());
-			result =  personInfoManagementMapper.updatePhotoAddressFromId(customer);
+			}
+			photoAddress = PhoneAddressCreate.createAddress(id) + suffix;
+			path.append(photoAddress);
+
+			visitPath.append(photoAddress);
+			customer.setCustomerHeadImageAddress(photoAddress);
+			int updateResult = 0;
+			updateResult = personInfoManagementMapper.updatePhotoAddressFromId(customer);
+			if (updateResult != 0) {
+				FileUtil.fileupload(arr, path.toString());
+				result = visitPath.toString();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-
 		}
-		if (result != 0) {
-			return customer.getCustomerHeadImageAddress();
-		} else {
-			return "false";
-		}
+		return result;
 	}
 
 	@Override

@@ -12,11 +12,12 @@ import com.house.entity.Page;
 import com.house.tool.FileUtil;
 
 public class TestFileUtil {
+	FileUtil fu = new FileUtil();
 @Test
 public void testReadCacheImg() {
 	List<byte[]> list = new ArrayList<byte[]>();
 	try {
-		FileUtil.readCacheImg("1548838613182",list);
+		fu.readCacheImg("1548838613182",list);
 	} catch (IOException e) {
 		e.printStackTrace();
 	}

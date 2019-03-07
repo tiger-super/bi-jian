@@ -71,9 +71,7 @@ function getPublisherInfo() {
 			} else {
 
 				$(".publish-person-img").attr(
-						"src",
-						"http://localhost:8090/static/customerPhoto/"
-								+ publishPersonImg);
+						"src",publishPersonImg);
 			}
 
 			$(".publish-person-phone-value").html(result.customerPhone);
@@ -94,13 +92,10 @@ function getHouseInfoImage() {
 				success : function(result) {
 					if (result != null && result.length != 0) {
 						$(".house-info-img-show").attr(
-								"src",
-								"http://localhost:8090/static/publish-house-img/"
-										+ folder + "/" + result[0]);
+								"src", result[0]);
 
 						for (let i = 0; i < result.length; i++) {
-							let imageAddress = "http://localhost:8090/static/publish-house-img/"
-									+ folder + "/" + result[i];
+							let imageAddress = result[i];
 							$(".house-info-list-ul").append(
 									"<li class='imageAddress'><img src='"
 											+ imageAddress + "'></li>");

@@ -98,9 +98,7 @@ $(document)
 									if (result.customerHeadImageAddress != null) {
 										$(".head-img")
 												.attr(
-														"src",
-														"http://localhost:8090/static/customerPhoto/"
-																+ result.customerHeadImageAddress);
+														"src", result.customerHeadImageAddress);
 									} else {
 										$(".head-img")
 												.attr("src",
@@ -282,9 +280,7 @@ function submitform() {
 					if (result != "false") {
 						$(".head-img").attr("src", "#");
 						$(".head-img").attr(
-								"src",
-								"http://localhost:8090/static/customerPhoto/"
-										+ result);
+								"src",result);
 					} else {
 						alter("上传失败");
 					}
@@ -358,7 +354,7 @@ function showHouseInfo(house, i, div) {
 					+ " col-sm-12' value="
 					+ house.houseId
 					+ ">"
-					+ "<div class='house-image-div col-sm-2' ><img src='http://localhost:8090/static/publish-house-img/"
+					+ "<div class='house-image-div col-sm-2' ><img src='"
 					+ house.houseInfo.houseImageAddress
 					+ "' class='house-image'></div><div class='publish-content col-sm-8'>"
 					+ "<div class='col-sm-12 house-name'>" + house.houseName
@@ -552,10 +548,13 @@ function loadMyCollection(data) {
 			if (result.result == true) {
 				$(".my-collection-content").empty();
 				let house = result.list;
+				if(house != undefined){
 				for (let i = 0; i < house.length; i++) {
 					showHouseInfo(house[i], i, $(".my-collection-content"));
 				}
+				console.log(result.page)
 				showPageView(result.page);
+				}
 			}
 		}
 	})

@@ -26,19 +26,16 @@ public class FileUtil {
 	         }
 		}
 		
-		public static List<House> readHouseImg(List<House> list) {
+		public static List<House> readHouseImg(List<House> list,String visitAddress,String keepAddress) {
 			for(int i = 0 ; i < list.size() ; i++) {
-			StringBuffer path = new StringBuffer();
+			StringBuffer keepPath = new StringBuffer();
+			StringBuffer visitPath = new StringBuffer();
 			String imageFolder = list.get(i).getHouseInfo().getHouseImageAddress();
-			try {
-				path.append(new File("").getCanonicalPath() + "/src/main/resources/static/publish-house-img/"
-						+ imageFolder);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			File file = new File(path.toString());
+			keepPath.append(keepAddress+ imageFolder);
+			File file = new File(keepPath.toString());
 			String[] images = file.list();
-			list.get(i).getHouseInfo().setHouseImageAddress(imageFolder+"/"+images[0]);
+			visitPath.append(visitAddress+imageFolder+"/"+images[0]);
+			list.get(i).getHouseInfo().setHouseImageAddress(visitPath.toString());
 			}
 			return list;
 		}

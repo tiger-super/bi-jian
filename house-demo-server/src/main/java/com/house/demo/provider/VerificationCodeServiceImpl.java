@@ -11,7 +11,9 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
 	  String verificationCodeText = MailVerificationCode.creat();
 	  String text = sendText+verificationCodeText;
 	  boolean resultSend = MailVerificationCode.send(receiveMail,text);
+	  System.out.println("resultSend:"+resultSend);
 	  if(resultSend) {
+		  System.out.println("准备返回结果");
 		  return  verificationCodeText;
 	  }else {
 		  return null;

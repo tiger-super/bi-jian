@@ -49,7 +49,7 @@
 				<li><a href="/house/session/show/personView">个人中心</a></li>
 				<li><a href="#">帮助中心</a></li>
 				<li><a>投诉渠道</a></li>
-				<li><a>网站导航</a></li>
+				<li><a href="/house/session/show/publish/house">房源发布</a></li>
 				<c:if test="${not empty sessionScope.customerSession.customerName}">
 				<li><a href="/house/quit">退出</a></li>
 				</c:if>

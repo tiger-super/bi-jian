@@ -1,3 +1,2 @@
 Manifest-Version: 1.0
-Class-Path: lib/house-demo-area.jar lib/house-demo-collection.jar lib/house-demo-customer.jar lib/house-demo-house.jar lib/house-demo-verificationcode.jar lib/house-entity.jar
 Main-Class: com.house.CoumterApplication

@@ -2,6 +2,7 @@ package com.house.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.house.HouseService;
-import com.house.entity.Collection;
 import com.house.entity.Customer;
 import com.house.entity.House;
 import com.house.entity.Page;
@@ -30,6 +32,8 @@ import com.house.tool.PhoneAddressCreate;
 public class HouseController {
 	@Reference
 	HouseService houseService;
+	@Autowired
+	FileUtil fu;
 
 	/**
 	 * 该方法收集用户发布的房源信息
@@ -41,8 +45,10 @@ public class HouseController {
 	 */
 	@RequestMapping("/session/publish/house")
 	@ResponseBody
-	public String PublishHouse(House house, HttpSession session, HttpServletRequest request) {
+	public Map<String,String> PublishHouse(House house, HttpSession session, HttpServletRequest request) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
+		Map<String,String> map = new HashMap<String,String>();
+		String result = null;
 		Cookie[] cookies = request.getCookies();
 		String folder = null;
 		if (cookies != null) {
@@ -56,13 +62,14 @@ public class HouseController {
 		}
 		List<byte[]> list = new ArrayList<byte[]>();
 		try {
-			FileUtil.readCacheImg(folder, list);
+			fu.readCacheImg(folder, list);
+			house.setHousePublisherId(customer.getCustomerId());
+		    result = houseService.housePublish(list, house);
 		} catch (IOException e) {
-			return "false";
+			result = "false";
 		}
-		house.setHousePublisherId(customer.getCustomerId());
-		String result = houseService.housePublish(list, house);
-		return result;
+		map.put("result",result);
+		return map;
 	}
 
 	/**
@@ -96,7 +103,7 @@ public class HouseController {
 		}
 
 		List<String> list = new ArrayList<String>();
-		FileUtil.uploadCache(houseImg, folder, list);
+		fu.uploadCache(houseImg, folder, list);
 		return list;
 	}
 
@@ -173,21 +180,21 @@ public class HouseController {
 		}
 		return houseService.publishManageService(house, page);
 	}
-    @RequestMapping("/session/modify/state")
-    @ResponseBody
-    public boolean modifyHouseState(House house,HttpSession session) {
-    	Customer customer = (Customer) session.getAttribute("customerSession");
+
+	@RequestMapping("/session/modify/state")
+	@ResponseBody
+	public boolean modifyHouseState(House house, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
 		house.setHousePublisherId(customer.getCustomerId());
-    	return houseService.ModifyHouseState(house);
-    }
-    
-    @RequestMapping("/delete")
-    @ResponseBody
-    public boolean deleteHouse(House house,HttpSession session) {
-    	Customer customer = (Customer) session.getAttribute("customerSession");
+		return houseService.ModifyHouseState(house);
+	}
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public boolean deleteHouse(House house, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
 		house.setHousePublisherId(customer.getCustomerId());
-    	return houseService.ModifyHouseState(house);
-    }
-    
+		return houseService.ModifyHouseState(house);
+	}
 
 }

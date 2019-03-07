@@ -112,12 +112,12 @@ function ProvinceClickTigger() {
 		provinceClick = false;
 		$(".province").children(".select-content").hide();
 		$(".province-select").children(".select-img").css("background-image",
-				"url(http://localhost:8088/static/img/down.png)");
+				"url(http://47.106.244.224:8088/static/img/down.png)");
 	} else {
 		provinceClick = true;
 		$(".province").children(".select-content").show();
 		$(".province-select").children(".select-img").css("background-image",
-				"url(http://localhost:8088/static/img/up.png)");
+				"url(http://47.106.244.224:8088/static/img/up.png)");
 		$(".province").children(".select-content");
 		$(".province").children(".select-content").children(
 				".select-content-ul").empty();
@@ -159,7 +159,7 @@ function ProvinceClickTigger() {
 											$(".province-select")
 													.children(".select-img")
 													.css("background-image",
-															"url(http://localhost:8088/static/img/down.png)");
+															"url(http://47.106.244.224:8088/static/img/down.png)");
 										})
 					}
 				});
@@ -173,13 +173,13 @@ function CityClickTigger() {
 			cityClick = false;
 			$(".city").children(".select-content").hide();
 			$(".city-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/down.png)");
+					"url(http://47.106.244.224:8088/static/img/down.png)");
 
 		} else {
 			cityClick = true;
 			$(".city").children(".select-content").show();
 			$(".city-select").children(".select-img").css("background-image",
-					"url(http://localhost:8088/static/img/up.png)");
+					"url(http://47.106.244.224:8088/static/img/up.png)");
 			$(".city").children(".select-content");
 			$(".city").children(".select-content").children(
 					".select-content-ul").empty();
@@ -226,7 +226,7 @@ function CityClickTigger() {
 														.children(".select-img")
 														.css(
 																"background-image",
-																"url(http://localhost:8088/static/img/down.png)");
+																"url(http://47.106.244.224:8088/static/img/down.png)");
 
 												$
 														.ajax({

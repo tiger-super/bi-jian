@@ -13,6 +13,7 @@ import com.house.entity.House;
 import com.house.entity.Page;
 import com.house.mapper.CollectionManagementMapper;
 import com.house.mapper.HouseManagementMapper;
+import com.house.tool.AnalysisXML;
 import com.house.tool.FileUtil;
 @Service
 public class CollectionServiceImpl implements CollectionService{
@@ -20,6 +21,8 @@ public class CollectionServiceImpl implements CollectionService{
 	CollectionManagementMapper collectionManagementMapper;
 	@Autowired
 	HouseManagementMapper houseManagementMapper; 
+	@Autowired
+	AnalysisXML ax;
 	@Override
 	public String addHouseCollectionInformation(Collection collection) {
 		House house = houseManagementMapper.seleteFollowNumber(collection.getCollectionHouseId());
@@ -66,8 +69,11 @@ public class CollectionServiceImpl implements CollectionService{
 	}
 	@Override
 	public Map<String,Object> loadCollectionInformation(String collectorsId,Page page) {
+		String houseVisitAddress = ax.getName(AnalysisXML.HOUSEVISITADDRESS);
+		String houseKeepAddress = ax.getName(AnalysisXML.HOUSEKEEPADDRESS);
 		Map<String,Object> map = new HashMap<String,Object>();
 		int pageTotal = collectionManagementMapper.totalSelectCollectionHouseIdFormCollectorsId(collectorsId);
+		if(pageTotal > 0) {
 		// 最大值
 		page.setPageTotal(pageTotal);
 		// 已显示的页面
@@ -79,8 +85,10 @@ public class CollectionServiceImpl implements CollectionService{
 		map.put("collection",collection);
 		map.put("page", page);
 		List<String> houseIdS = collectionManagementMapper.selectCollectionHouseIdFormCollectorsId(map);
+
 		List<House> houses = houseManagementMapper.selectHouseInfoFromHouseIdS(houseIdS);
-		map.put("list", FileUtil.readHouseImg(houses));
+		map.put("list", FileUtil.readHouseImg(houses,houseVisitAddress,houseKeepAddress));
+		}
 		return map;
 	}
 

@@ -72,9 +72,15 @@ public class ViewJumpController {
 		return "publish-house";
 	}
 
+	// 显示发布界面
+	@RequestMapping("/show/publish/success")
+	public String showPublishSuccessView() {
+		return "publishSuccess";
+	}
+
 	// 显示房源界面
 	@RequestMapping("/show/house/list")
-	public ModelAndView showHouseListView(HttpServletRequest request,String houseSellWay) {
+	public ModelAndView showHouseListView(HttpServletRequest request, String houseSellWay) {
 		ModelAndView mv = new ModelAndView();
 		Cookie[] cookies = request.getCookies();
 		String province = null;
@@ -90,14 +96,14 @@ public class ViewJumpController {
 					break;
 				}
 			}
-		}else {
+		} else {
 			mv.setViewName("selectArea");
 			return mv;
 		}
 		List<String> areaList = analysisAreaXmlService.analysisAreaXmlGainArea(province, city);
 		mv.setViewName("house-list");
 		mv.addObject("areaList", areaList);
-		mv.addObject("houseSellWay",houseSellWay);
+		mv.addObject("houseSellWay", houseSellWay);
 		return mv;
 	}
 

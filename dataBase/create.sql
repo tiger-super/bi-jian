@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
-Source Server Version : 50723
-Source Host           : localhost:3306
+Source Server         : 阿里云
+Source Server Version : 50718
+Source Host           : 47.106.244.224:3306
 Source Database       : house
 
 Target Server Type    : MYSQL
-Target Server Version : 50723
+Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2019-01-23 12:53:14
+Date: 2019-03-07 19:03:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,7 +52,7 @@ CREATE TABLE `customer` (
   `customer_head_image_address` varchar(200) DEFAULT NULL COMMENT '客户头像地址',
   `if_blacklist` varchar(20) DEFAULT '0' COMMENT '是否被列入黑名单',
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for device
@@ -70,7 +70,7 @@ CREATE TABLE `device` (
   `wifi` varchar(10) DEFAULT '0' COMMENT '是否配wifi,0表示无，1表示有',
   `sofa` varchar(10) DEFAULT '0' COMMENT '是否配沙发，0表示无，1表示有',
   `tv` varchar(10) DEFAULT '0' COMMENT '是否配电视,0表示无，1表示有',
-  `toilent` varchar(10) DEFAULT '0' COMMENT '是否配厕所，0表示无，1表示有',
+  `toilet` varchar(10) DEFAULT '0' COMMENT '是否配厕所，0表示无，1表示有',
   `balcony` varchar(10) DEFAULT '0' COMMENT '是否配阳台，0表示无，1表示有',
   `cook` varchar(10) DEFAULT '0' COMMENT '是否配厨房，0表示无，1表示有',
   `elevator` varchar(10) DEFAULT '0' COMMENT '是否配电梯，0表示无，1表示有',
@@ -113,8 +113,10 @@ CREATE TABLE `house` (
   `house_auditing_state` varchar(10) DEFAULT '0' COMMENT '房源的审核情况，0表示待审核，1表示审核通过。-1表示审核失败',
   `house_publisher_state` varchar(10) DEFAULT '0' COMMENT '房源的发布情况，0表示房源未发布，1表示房源正在发布',
   `house_publisher_time` varchar(200) DEFAULT NULL COMMENT '房源的发布时间',
+  `follow_number` varchar(200) DEFAULT '0' COMMENT '房源收藏数量',
+  `application_time` varchar(200) DEFAULT NULL COMMENT '房源的申请时间',
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10027 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for house_info
