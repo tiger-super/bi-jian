@@ -52,7 +52,7 @@ public class HouseServiceImpl implements HouseService {
 			}
 
 		}
-        house.setApplication_time(Time.getNowTime());
+        house.setApplicationTime(Time.getNowTime());
 		houseManagementMapper.insertHouse(house);
 		houseManagementMapper.insertHouseInfo(house);
 		deviceManagementMapper.inserDeviceInfo(house);

@@ -28,7 +28,7 @@ public class House implements Serializable {
 	// 房源关注数量
 	private String followNumber;
 	// 房源申请发布时间
-	private String application_time;
+	private String applicationTime;
 	// 房源详细描述
 	private HouseInfo houseInfo;
 	// 房源的配套设施
@@ -138,12 +138,12 @@ public class House implements Serializable {
 		this.followNumber = followNumber;
 	}
 
-	public String getApplication_time() {
-		return application_time;
+	public String getApplicationTime() {
+		return applicationTime;
 	}
 
-	public void setApplication_time(String application_time) {
-		this.application_time = application_time;
+	public void setApplicationTime(String applicationTime) {
+		this.applicationTime = applicationTime;
 	}
 
 	@Override
@@ -152,8 +152,7 @@ public class House implements Serializable {
 				+ houseAddressProvince + ", houseAddressCity=" + houseAddressCity + ", houseAddressArea="
 				+ houseAddressArea + ", houseAddressInfo=" + houseAddressInfo + ", housePublisherId=" + housePublisherId
 				+ ", houseAuditingState=" + houseAuditingState + ", housePublisherState=" + housePublisherState
-				+ ", housePublisherTime=" + housePublisherTime + ", followNumber=" + followNumber
-				+ ", application_time=" + application_time + ", houseInfo=" + houseInfo + ", device=" + device + "]";
+				+ ", housePublisherTime=" + housePublisherTime + ", followNumber=" + followNumber + ", applicationTime="
+				+ applicationTime + ", houseInfo=" + houseInfo + ", device=" + device + "]";
 	}
-
 }

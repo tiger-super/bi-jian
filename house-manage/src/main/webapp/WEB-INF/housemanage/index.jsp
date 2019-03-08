@@ -51,7 +51,7 @@
 								class="icon-home"></i> 房源管理 <b class="caret"></b></a>
 							<ul id="store-dropdown" class="collapse">
 								<li class="li-auditing"><a href="#">待审核房源</a></li>
-								<li><a href="orders.html">已发布房源</a></li>
+								<li><a class="li-publish">已发布房源</a></li>
 
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"

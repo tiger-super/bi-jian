@@ -14,8 +14,11 @@ function loadHouseInforMation(){
 			for(let i = 0; i < list.length; i++){
 				 renderIngInformation(list[i]);
 			}
-			 $("#load",parent.document).css("height",$(document).outerHeight(true)+"px");
-			  console.log($(document).outerHeight(true))
+			$(".approval").click(function(){
+				let id = $(this).parents(".house-information-div").attr("value");
+				window.location.href="/manage/show/house/information?houseId="+id;          
+			})
+			 showPageView(result.page);
 		}
 	});
 	
@@ -23,10 +26,10 @@ function loadHouseInforMation(){
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
-		/*url : '/house/get/show/page',
+		url : '/manage/get/show/page',
 		dataType : "json",
 		type : "post",
-		data : page,*/
+		data : page,
 		success : function(result) {
 			$(".page-show-content").empty();
 			for(let i = 0 ; i < result.length ; i ++){
@@ -51,16 +54,17 @@ function showPageView(page) {
 			}
 			$(".page").click(function(){
 				pageCurrent = parseInt($(this).text());
-				 informationLoad(addJson(getJson(),"pageCurrent",parseInt($(this).text())));
+				loadHouseInforMation();
 			})
 			$(".next").click(function(){
 				pageCurrent = pageCurrent+1;
-				 informationLoad(addJson(getJson(),"pageCurrent",pageCurrent));
+				loadHouseInforMation();
 			})
 			$(".upper").click(function(){
 				pageCurrent = pageCurrent-1;
-				 informationLoad(addJson(getJson(),"pageCurrent",pageCurrent));
+				loadHouseInforMation();
 			})
+			 $("#load",parent.document).css("height",$(document).outerHeight(true)+"px");
 		}
 	})
 }
@@ -69,13 +73,13 @@ function showPageView(page) {
 function renderIngInformation(house) {
 	$(".house-information-list-window")
 			.append(
-					"<div class='col-sm-9 house-information-div'  value="
+					"<div class='col-sm-12 house-information-div'  value="
 							+ house.houseId
 							+ ">"
-							+ "<div class='house-information-img col-sm-4'><img src='/static/publish-house-img/"
+							+ "<div class='house-information-img col-sm-3'><img src='"
 							+ house.houseInfo.houseImageAddress
 							+ "'></div>"
-							+ "<div class='col-sm-8' style='padding: 0px'><div class='house-information-word col-sm-10'>"
+							+ "<div class='col-sm-9' style='padding: 0px'><div class='house-information-word col-sm-10'>"
 							+ "<div class='house-information-word-title col-sm-12'>"
 							+ house.houseName
 							+ "</div></div>"
@@ -91,14 +95,9 @@ function renderIngInformation(house) {
 							+ "</div><div class='col-sm-12'><div class='col-sm-12'><img src='/static/img/place2.png'class='house-information-word-left-img'>"
 							+ "<span>"
 							+ house.houseAddressInfo
-							+ "</span></div></div><div class='col-sm-12'><div class='col-sm-12'><img src='/static/img/stars.png'"
-							+ "class='house-information-word-left-img'> <span>"
-							+ house.followNumber
-							+ "</span><span>人关注/</span><span>"
-							+ house.housePublisherTime
-							+ "发布</span>"
-							+ "</div></div></div><div class='house-information-word-right col-sm-2'><span class='house-money'>"
-							+ house.houseInfo.houseMoney
-							+ "</span>"
-							+ "<span style='color: red'>万</span></div></div></div></div>");
+							+ "</span></div></div><div class='col-sm-12'><div class='col-sm-12'><img src='/static/img/time.png'"
+							+ "class='house-information-word-left-img' style='width:20px;height:20px;margin-right:5px;margin-left:2px;'>"
+							+ house.applicationTime
+							+ "前申请</span>"
+							+ "</div></div></div> <div class='col-sm-2 button-div'><button type='button' class='btn btn-default btn-sm btn-info approval'>审阅</button></div>");
 }

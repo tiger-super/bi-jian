@@ -9,9 +9,9 @@
 		insert into
 		house(house_name,house_address_province,
 		house_address_city,house_address_area,house_address_info,
-		house_publisher_id)
+		house_publisher_id,application_time)
 		value(#{houseName},#{houseAddressProvince},#{houseAddressCity},
-		#{houseAddressArea},#{houseAddressInfo},#{housePublisherId})
+		#{houseAddressArea},#{houseAddressInfo},#{housePublisherId},#{applicationTime})
 	</insert>
 
 	<!-- 插入房源信息 -->

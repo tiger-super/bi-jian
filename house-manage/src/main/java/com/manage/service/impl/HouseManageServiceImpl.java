@@ -6,27 +6,98 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.house.entity.AuditingFail;
 import com.house.entity.House;
+import com.house.entity.HouseInfo;
 import com.house.entity.Page;
+import com.manage.dao.AuditingManageDao;
+import com.manage.dao.DeviceManageDao;
 import com.manage.dao.HouseManageDao;
 import com.manage.service.HouseManageService;
 import com.manage.tool.HouseImageTool;
+import com.manage.tool.Time;
+
 @Service
-public class HouseManageServiceImpl implements HouseManageService{
-    @Autowired
+public class HouseManageServiceImpl implements HouseManageService {
+	@Autowired
 	HouseManageDao houseManageDao;
+	@Autowired
+	HouseImageTool hit;
+	@Autowired
+	DeviceManageDao deviceManageDao;
+	@Autowired
+	AuditingManageDao auditingManageDao;
 
 	@Override
 	public Map<String, Object> getAuditingHouse(Page page) {
+		int pageTotal = houseManageDao.selectTotalToBeAuditingHouse();
+		double max = (double) pageTotal / page.getPageNumber();
+		int pageMax = (int) Math.ceil(max);
+		page.setPageMax(pageMax);
+		if (pageMax < page.getPageCurrent()) {
+			page.setPageCurrent(pageMax);
+		}
+		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
 		List<House> list = houseManageDao.selectAllToBeAuditingHouse(page);
-		HouseImageTool  houseImageTool = new HouseImageTool();
-		houseImageTool.getHouseImage(list);
-		Map<String,Object> map = new HashMap<String, Object>();
+		hit.getHouseImage(list);
+		Map<String, Object> map = new HashMap<String, Object>();
+		page.setPageTotal(pageTotal);
 		map.put("page", page);
 		map.put("list", list);
 		return map;
 	}
 
-    
+	@Override
+	public Map<String, Object> getHouseInformationFormHouseId(String houseId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		House house = houseManageDao.selectHouseFromHouseId(houseId);
+		HouseInfo houseInfo = houseManageDao.selectHouseInfoFromHouseId(houseId);
+		house.setHouseInfo(houseInfo);
+		List<String> list = hit.getHouseImages(houseInfo.getHouseImageAddress());
+		map.put("house", house);
+		map.put("list", list);
+		return map;
+	}
+
+	@Override
+	public boolean modifyHouseAuditingStateService(String houseId) {
+		int result = houseManageDao.updateSucceessHouseAuditingStateFromHouseId(houseId);
+		if (result == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean auditingFailService(AuditingFail auditingFail) {
+		auditingFail.setHouseAuditingTime(Time.getNowTime());
+		int r1 = auditingManageDao.insertAuditingReasonFromHouseId(auditingFail);
+		int r2 = houseManageDao.updateFailHouseAuditingStateFromHouseId(auditingFail.getHouseId());
+		if (r1 == 1 && r2 == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public Map<String, Object> getPublishHouse(Page page) {
+		int pageTotal = houseManageDao.selectTotalToBeAuditingHouse();
+		double max = (double) pageTotal / page.getPageNumber();
+		int pageMax = (int) Math.ceil(max);
+		page.setPageMax(pageMax);
+		if (pageMax < page.getPageCurrent()) {
+			page.setPageCurrent(pageMax);
+		}
+		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
+		List<House> list = houseManageDao.selectAllHasBeenPublishHouse(page);
+		hit.getHouseImage(list);
+		Map<String, Object> map = new HashMap<String, Object>();
+		page.setPageTotal(pageTotal);
+		map.put("page", page);
+		map.put("list", list);
+		return map;
+	}
+
 }

@@ -5,19 +5,29 @@
 <mapper namespace="com.manage.dao.HouseManageDao">
   <select id="selectAllToBeAuditingHouse" resultMap="setHouse" parameterType="com.house.entity.Page">
   	select
-		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
+		h.house_id,house_name,house_address_info,application_time,house_publisher_time,follow_number,
 		house_size,house_direction,house_money,house_structure,house_image_address
 		from house
 		h,house_info hi where
 		h.house_id = hi.house_id and house_auditing_state = '0' order by application_time
 		limit #{pageShowNow},#{pageNumber} 
   </select>
+  
+  <select id="selectTotalToBeAuditingHouse"  resultType="int">
+  select count(*) from house where house_auditing_state = '0'
+  
+  </select>
+   <select id="selectTotalHasBeenPublishHouse" resultType="int">
+  select count(*) from house where house_publisher_state = '1'
+  
+  </select>
   <resultMap type="com.house.entity.House" id="setHouse">
 		<id column="house_id" property="houseId" />
 		<result column="house_name" property="houseName" />
 		<result column="house_address_info" property="houseAddressInfo" />
-		<result column="house_publisher_time"
-			property="housePublisherTime" />
+		<result column="application_time"
+			property="applicationTime" />
+			<result column="house_publisher_time" property="housePublisherTime"/>
 		<result column="follow_number" property="followNumber" />
 		<association property="houseInfo"
 			javaType="com.house.entity.HouseInfo">
@@ -38,4 +48,17 @@
 		h.house_id = hi.house_id and house_publisher_state = '1' 
 		limit #{pageShowNow},#{pageNumber}
   </select>
+  
+  <select id="selectHouseFromHouseId" resultType="com.house.entity.House" parameterType="java.lang.String">
+  select * from house where house_id = #{parameter}
+  </select>
+   <select id="selectHouseInfoFromHouseId" resultType="com.house.entity.HouseInfo" parameterType="java.lang.String">
+  select * from house_info where house_id = #{parameter}
+  </select>
+  <update id="updateSucceessHouseAuditingStateFromHouseId" parameterType="java.lang.String">
+  update house set  house_auditing_state = '1' where house_id = #{parameter}
+  </update>
+    <update id="updateFailHouseAuditingStateFromHouseId" parameterType="java.lang.String">
+  update house set  house_auditing_state = '-1' where house_id = #{parameter}
+  </update>
 </mapper>

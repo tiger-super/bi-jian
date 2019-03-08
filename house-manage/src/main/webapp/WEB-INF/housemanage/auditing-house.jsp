@@ -23,11 +23,13 @@
 </form>
 </div>
 <div class="col-sm-11" id="content" style="width:966px;">
-
-<%-- ${map.list} --%>
 <div class="house-information-list-window">
 
 </div>
+</div>
+<div class="col-sm-12 page-window">
+<div class="col-sm-7"></div>
+<div class="col-sm-5 page-show-content"></div>
 </div>
 </body>
 </html>

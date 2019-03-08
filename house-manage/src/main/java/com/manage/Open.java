@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 public class Open {
 	public static void main(String[] args) {
 	   	 SpringApplication.run(Open.class,args);
+	   	 System.out.println("后台已启动");
 	}
 
 }

@@ -1,3 +1,6 @@
 #load{
 	margin-top:20px;
 }
+.side-nav li{
+	cursor:pointer;
+}

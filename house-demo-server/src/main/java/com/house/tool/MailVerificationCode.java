@@ -1,5 +1,6 @@
 package com.house.tool;
 
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -12,8 +13,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.sun.mail.util.MailSSLSocketFactory;
+
 public class MailVerificationCode {
-	  public static boolean send(String receiveMail,String text) {
+	  public static boolean send(String receiveMail,String text) throws GeneralSecurityException  {
 	      // 发件人电子邮箱
 	      String from = "347177277@qq.com";
 	 
@@ -27,6 +30,11 @@ public class MailVerificationCode {
 	      properties.setProperty("mail.smtp.host", host);
 	 
 	      properties.put("mail.smtp.auth", "true");
+	      
+	      MailSSLSocketFactory sf = new MailSSLSocketFactory();
+	        sf.setTrustAllHosts(true);
+	        properties.put("mail.smtp.ssl.enable", "true");
+	        properties.put("mail.smtp.ssl.socketFactory", sf);
 	      // 获取默认session对象
 	      Session session = Session.getDefaultInstance(properties,new Authenticator(){
 	        public PasswordAuthentication getPasswordAuthentication()
@@ -61,6 +69,7 @@ public class MailVerificationCode {
 	         System.out.println("发送完毕");
 	      }catch (MessagingException e) {
 	    	  System.out.println("异常1号");
+	    	  e.printStackTrace();
 	        return false;
 	      }catch(IllegalStateException e) {
 	    	  System.out.println("异常2号");

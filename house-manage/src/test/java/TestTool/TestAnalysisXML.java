@@ -7,10 +7,9 @@ public class TestAnalysisXML {
 
 	@Test
 	public void testGetXMLContent(){
-		/*
-		 * File file = new File(TestAnalysisXML.class.getResource("/").getFile()); File
-		 * f = file.getParentFile().getParentFile().getParentFile();
-		 */
+	double d = (double)10/3;
+	int x = (int)Math.ceil(d);
+	System.out.println(x);
 	    
 	}
 }
