@@ -4,3 +4,18 @@
 .side-nav li{
 	cursor:pointer;
 }
+.employee-information{
+	height:300px;
+	width:500px;
+	position:absolute;
+	top:100px;
+	border:1px solid #ddd;
+	background-color:white;
+}
+.td{
+	text-align:center;
+}
+.close-div{
+right:0px;
+		position:absolute;
+}

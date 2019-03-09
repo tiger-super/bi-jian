@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2019-03-09 17:38:24
+Date: 2019-03-09 23:00:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -160,12 +160,15 @@ CREATE TABLE `employee` (
   `employee_mailbox` varchar(200) DEFAULT NULL COMMENT '员工邮件',
   `employee_password` varchar(200) DEFAULT '8888' COMMENT '员工登录密码',
   `employee_role` varchar(150) DEFAULT NULL COMMENT '员工角色或者说权限',
+  `employee_address` varchar(200) DEFAULT NULL,
+  `employee_img_address` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
+INSERT INTO `employee` VALUES ('2', '钟泰文', '男', '23', '17875511746', '347177277@qq.com', '8888', '超级管理', null, null);
 
 -- ----------------------------
 -- Table structure for house

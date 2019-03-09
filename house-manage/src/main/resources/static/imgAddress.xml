@@ -9,4 +9,7 @@
 <houseKeep name="F:/apache-tomcat-8.5.38/webapps/publish-house-img/"></houseKeep> 
 <customerVisit name="http://127.0.0.1:8080/customerPhoto/"></customerVisit>
 <customerKeep name="F:/apache-tomcat-8.5.38/webapps/customerPhoto/"></customerKeep>
+
+<employeeVisit name="http://127.0.0.1:8080/employeePhoto/"></employeeVisit>
+<employeeKeep name="F:/apache-tomcat-8.5.38/webapps/employeePhoto/"></employeeKeep> 
 </address>

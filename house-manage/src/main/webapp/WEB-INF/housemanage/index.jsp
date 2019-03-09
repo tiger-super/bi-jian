@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <!-- Le styles -->
 <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script"
 	rel="stylesheet" type="text/css">
-	<link href="/static/css/manage-css/index.css" rel="stylesheet">
+<link href="/static/css/manage-css/index.css" rel="stylesheet">
 <link href="/static/css/bootstrap.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
 <link href="/static/css/admin.css" rel="stylesheet">
@@ -37,14 +38,18 @@
 
 					<ul class="side-nav">
 
-						<li class="active"><a href="index.html"><i class="icon-signal"></i> 网站报告</a></li>
+						<li class="active"><a href="index.html"><i
+								class="icon-signal"></i> 网站报告</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#website-dropdown" href="#"><i
 								class="icon-user"></i>员工管理 <b class="caret"></b></a>
 							<ul id="website-dropdown" class="collapse">
-								<li><a href="listing.html">添加员工</a></li>
-								<li><a href="listing.html">员工查询</a></li>
-								<li><a href="listing.html">权限设置</a></li>
+								<c:if test="${employeeSession.employeeRole == '超级管理员'}">
+									<li><a href="listing.html">添加员工</a></li>
+									<li><a href="listing.html">员工查询</a></li>
+									<li><a href="listing.html">权限设置</a></li>
+								</c:if>
+								<li><a href="">密码修改</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#store-dropdown" href="#"><i
@@ -55,7 +60,8 @@
 
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="collapse" data-target="#reports-dropdown" href="#"><i class="icon-group"></i>用户管理 <b class="caret"></b></a>
+							data-toggle="collapse" data-target="#reports-dropdown" href="#"><i
+								class="icon-group"></i>用户管理 <b class="caret"></b></a>
 							<ul id="reports-dropdown" class="collapse">
 								<li><a class="li-customer">用户查询</a></li>
 								<li><a class="li-black">黑名单</a></li>
@@ -78,134 +84,78 @@
 			<!-- end span2 -->
 
 			<div class="span10">
-			<div class="secondary-masthead">
-
-			<ul class="nav nav-pills pull-right">
-
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"><i class="icon-user"></i> 钟泰文 <b
-						class="caret"></b> </a>
-					<ul class="dropdown-menu">
-						<li><a href="profile.html">你的个人信息</a></li>
-						<li class="divider"></li>
-						<li><a href="">退出</a></li>
-					</ul></li>
-			</ul>
-
-			<ul class="breadcrumb">
-				<li><a href="#">管理员</a></li>
-			</ul>
-
-		</div>
-		 <iframe src="/manage/show/auditing/houseManageView" width="100%"  scrolling="no" frameborder="0" id="load"> </iframe> 
-
-	<!-- <div class="secondary-masthead">
+				<div class="secondary-masthead">
 
 					<ul class="nav nav-pills pull-right">
 
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"><i class="icon-user"></i> 钟泰文
+							data-toggle="dropdown" href="#"><i class="icon-user"></i>${employeeSession.employeeName}
 								<b class="caret"></b> </a>
 							<ul class="dropdown-menu">
-								<li><a href="profile.html">你的个人信息</a></li>
+								<li><a href="#" class="person">你的个人信息</a></li>
 								<li class="divider"></li>
-								<li><a href="">退出</a></li>
+								<li><a href="/manage/quit">退出</a></li>
 							</ul></li>
 					</ul>
 
 					<ul class="breadcrumb">
-						<li><a href="#">管理员</a></li>
+						<li><a href="#" value='${employeeSession.employeeId}'>管理员</a></li>
 					</ul>
 
 				</div>
-
-				<div class="main-area dashboard">
-
-					<div class="row">
-
-						<div class="span10">
-
-							<div class="slate clearfix">
-
-								<a class="stat-column" href="#"> <span class="number">16</span>
-									<span>本日访问量</span>
-
-								</a> <a class="stat-column" href="#"> <span class="number">452</span>
-									<span>本月访问量</span>
-
-								</a> <a class="stat-column" href="#"> <span class="number">$2,512</span>
-									<span>本月房源发布量</span>
-
-								</a> <a class="stat-column" href="#"> <span class="number">348</span>
-									<span>上一月新增用户量</span>
-								</a>
-
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="span5">
-
-							<div class="slate">
-
-								<div class="page-header">
-									<h2>
-										<i class="icon-signal pull-right"></i>访问量
-									</h2>
-								</div>
-								<div id="placeholder" style="height: 297px;"></div>
-
-							</div>
-
-						</div>
-
-
-
-					</div>
-				</div>
-
+				<iframe src="/manage/show/websiteReportView" width="100%"
+					scrolling="no" frameborder="0" id="load"> </iframe>
 			</div>
-
 		</div>
 
-	</div>
-	<script type="text/javascript">
-	// 图片数据
-$(function () {
-    var d1 = [];
-        d1.push([0, 32]);
-        d1.push([1, 30]);
-        d1.push([2, 24]);
-        d1.push([3, 17]);
-        d1.push([4, 11]);
-        d1.push([5, 25]);
-        d1.push([6, 28]);
-        d1.push([7, 36]);
-        d1.push([8, 44]);
-        d1.push([9, 52]);
-        d1.push([10, 53]);
-        d1.push([11, 50]);
-        d1.push([12, 45]);
-        d1.push([13, 42]);
-        d1.push([14, 40]);
-        d1.push([15, 36]);
-        d1.push([16, 34]);
-        d1.push([17, 24]);
-        d1.push([18, 17]);
-        d1.push([19, 17]);
-        d1.push([20, 20]);
-        d1.push([21, 28]);
-        d1.push([22, 36]);
-        d1.push([23, 38]);
 
-    $.plot($("#placeholder"), [ d1 ], { grid: { backgroundColor: 'white', color: '#999', borderWidth: 1, borderColor: '#DDD' }, colors: ["#FC6B0A"], series: { lines: { show: true, fill: true, fillColor: "rgba(253,108,11,0.4)" } } });
-});
-</script> 
- -->
-</div>  
+	</div>
+	<div class="employee-information">
+	    <div class="close-div"><img src="/static/img/close.png" style="width:25px;height:25px"></div>
+		<table class="table table-striped" style="margin-top:10px">
+			<caption>个人信息</caption>
+			<thead>
+			<tr>
+			<td rowspan="3" colspan="2" style="width:2px" >
+         <img src="${employeeSession.employeeImgAddress}" style="width:150px;height:150px"> 
+        </td>
+			<td>账号</td>
+			<td>${employeeSession.employeeId}</td>
+			
+			</tr>
+			<tr>
+			
+			<td>姓名</td>
+			<td>${employeeSession.employeeName}</td>
+		
+			</tr>
+			<tr>
+			
+			<td>职位</td>
+			<td>${employeeSession.employeeRole}</td>
+		
+			</tr>
+			<tr>
+			<td>性别</td>
+			<td>${employeeSession.employeeSex}</td>
+			<td>年龄</td>
+	        <td>${employeeSession.employeeAge}</td>
+			</tr>	
+			
+			
+			<tr>
+			<td>电话</td>
+			<td>${employeeSession.employeePhone}</td>
+			<td>邮箱</td>
+	        <td>${employeeSession.employeeMailBox}</td>
+			</tr>	
+			
+			<tr>
+			<td>现居住地址</td>
+			<td colspan="3">${employeeSession.employeeAddress}</td>
+				
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

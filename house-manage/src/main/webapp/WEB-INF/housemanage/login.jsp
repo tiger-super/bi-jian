@@ -14,6 +14,8 @@
 	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 <link rel="stylesheet" href="/static/css/style.css">
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/manage-js/login.js"></script>
 </head>
 <body>
 	<div class="pen-title">
@@ -25,15 +27,11 @@
 			<i class="fa fa-times fa-pencil"></i>
 		</div>
 		<div class="form">
-			<form>
-				<input type="text" placeholder="账号" /> <input type="password"
-					placeholder="密码" />
-				<button>登录</button>
-			</form>
-		</div>
-
-		<div class="cta">
-			<a href="">忘记密码了?</a>
+		
+				<input type="text" class="id" placeholder="账号" /> 
+				<input type="password" class="password" placeholder="密码" />
+				<button class="login">登录</button>
+		
 		</div>
 	</div>
 </body>

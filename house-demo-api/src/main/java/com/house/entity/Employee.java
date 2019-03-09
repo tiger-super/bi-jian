@@ -21,6 +21,8 @@ public class Employee implements Serializable{
 	private String employeeAddress;
 	// 员工密码
 	private String employeePassword;
+	// 员工图片地址
+	private String employeeImgAddress;
 	// 员工的角色或者说权限
 	private String employeeRole;
 	public String getEmployeeId() {
@@ -77,13 +79,17 @@ public class Employee implements Serializable{
 	public void setEmployeeRole(String employeeRole) {
 		this.employeeRole = employeeRole;
 	}
+	public String getEmployeeImgAddress() {
+		return employeeImgAddress;
+	}
+	public void setEmployeeImgAddress(String employeeImgAddress) {
+		this.employeeImgAddress = employeeImgAddress;
+	}
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSex=" + employeeSex
 				+ ", employeeAge=" + employeeAge + ", employeePhone=" + employeePhone + ", employeeMailBox="
 				+ employeeMailBox + ", employeeAddress=" + employeeAddress + ", employeePassword=" + employeePassword
-				+ ", employeeRole=" + employeeRole + "]";
-	}
-	
-	
+				+ ", employeeImgAddress=" + employeeImgAddress + ", employeeRole=" + employeeRole + "]";
+	}	
 }

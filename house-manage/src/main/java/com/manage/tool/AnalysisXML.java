@@ -17,6 +17,8 @@ public class AnalysisXML {
 	public static String HOUSEKEEPADDRESS = "houseKeep";
 	public static String CUSTOMERVISITADDRESS = "customerVisit";
 	public static String CUSTOMERKEEPADDRESS = "customerKeep";
+	public static String EMPLOYEEVISITADDRESS = "employeeVisit";
+	public static String EMPLOYEEKEEPADDRESS = "employeeKeep";
    public List<String> oneLevelAnalysis(String path){
 	   List<String> list = new ArrayList<String>();
 		Element ele = analysixResult(path,list);

@@ -18,7 +18,7 @@ public class ShowViewControl {
 	public String showLoginView() {
 		return "login";
 	}
-	@RequestMapping("/show/indexView")
+	@RequestMapping("/session/show/indexView")
 	public String showIndexView() {
 		return "index";
 	}
