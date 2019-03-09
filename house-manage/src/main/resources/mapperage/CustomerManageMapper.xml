@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manage.dao.CustomerManageDao">
+
+  
+  <select id="selectAllCustomer"  resultType="com.house.entity.Customer" parameterType="com.house.entity.Page">
+  select * from customer where if_blacklist = '0' 	limit #{pageShowNow},#{pageNumber} 
+  </select>
+  <select id="totalAllCustomer"  resultType="int">
+  select count(*) from customer where if_blacklist = '0'
+  </select>
+  <select id="selectAllBlackCustomer" resultType="com.house.entity.Customer" parameterType="com.house.entity.Page">
+ select * from customer where if_blacklist = '1' 	limit #{pageShowNow},#{pageNumber} 
+  </select>
+    <select id="totalAllBlackCustomer"  resultType="int">
+  select count(*) from customer where if_blacklist = '1'
+  </select>
+   <update id="addBlack" parameterType="java.lang.String">
+     update customer set  if_blacklist = '1' where customer_id = #{parameter}
+   </update>
+   <update id="deleteBlack" parameterType="java.lang.String">
+    update customer set  if_blacklist = '0' where customer_id = #{parameter}
+   </update>
+</mapper>

@@ -10,6 +10,7 @@ function loadHouseInforMation(){
 		data : {"pageCurrent":pageCurrent},
 		success : function(result) {
 			let list = result.list;
+			if(list  != null){
 			$(".house-information-list-window").empty();
 			for(let i = 0; i < list.length; i++){
 				 renderIngInformation(list[i]);
@@ -19,6 +20,7 @@ function loadHouseInforMation(){
 				window.location.href="/manage/show/house/information?houseId="+id;          
 			})
 			 showPageView(result.page);
+			}
 		}
 	});
 	

@@ -57,8 +57,8 @@
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#reports-dropdown" href="#"><i class="icon-group"></i>用户管理 <b class="caret"></b></a>
 							<ul id="reports-dropdown" class="collapse">
-								<li><a href="report.html">用户查询</a></li>
-								<li><a href="report.html">黑名单</a></li>
+								<li><a class="li-customer">用户查询</a></li>
+								<li><a class="li-black">黑名单</a></li>
 							</ul></li>
 
 						<li class="dropdown"><a class="dropdown-toggle"

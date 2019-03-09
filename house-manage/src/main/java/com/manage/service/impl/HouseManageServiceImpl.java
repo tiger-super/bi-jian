@@ -14,7 +14,7 @@ import com.manage.dao.AuditingManageDao;
 import com.manage.dao.DeviceManageDao;
 import com.manage.dao.HouseManageDao;
 import com.manage.service.HouseManageService;
-import com.manage.tool.HouseImageTool;
+import com.manage.tool.ImageTool;
 import com.manage.tool.Time;
 
 @Service
@@ -22,7 +22,7 @@ public class HouseManageServiceImpl implements HouseManageService {
 	@Autowired
 	HouseManageDao houseManageDao;
 	@Autowired
-	HouseImageTool hit;
+	ImageTool hit;
 	@Autowired
 	DeviceManageDao deviceManageDao;
 	@Autowired
@@ -30,7 +30,11 @@ public class HouseManageServiceImpl implements HouseManageService {
 
 	@Override
 	public Map<String, Object> getAuditingHouse(Page page) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int pageTotal = houseManageDao.selectTotalToBeAuditingHouse();
+		if(pageTotal == 0) {
+			return map;
+		}
 		double max = (double) pageTotal / page.getPageNumber();
 		int pageMax = (int) Math.ceil(max);
 		page.setPageMax(pageMax);
@@ -40,7 +44,6 @@ public class HouseManageServiceImpl implements HouseManageService {
 		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
 		List<House> list = houseManageDao.selectAllToBeAuditingHouse(page);
 		hit.getHouseImage(list);
-		Map<String, Object> map = new HashMap<String, Object>();
 		page.setPageTotal(pageTotal);
 		map.put("page", page);
 		map.put("list", list);
@@ -83,7 +86,11 @@ public class HouseManageServiceImpl implements HouseManageService {
 
 	@Override
 	public Map<String, Object> getPublishHouse(Page page) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int pageTotal = houseManageDao.selectTotalToBeAuditingHouse();
+		if(pageTotal == 0) {
+			return map;
+		}
 		double max = (double) pageTotal / page.getPageNumber();
 		int pageMax = (int) Math.ceil(max);
 		page.setPageMax(pageMax);
@@ -93,7 +100,6 @@ public class HouseManageServiceImpl implements HouseManageService {
 		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
 		List<House> list = houseManageDao.selectAllHasBeenPublishHouse(page);
 		hit.getHouseImage(list);
-		Map<String, Object> map = new HashMap<String, Object>();
 		page.setPageTotal(pageTotal);
 		map.put("page", page);
 		map.put("list", list);

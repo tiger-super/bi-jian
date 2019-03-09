@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
-import com.manage.tool.HouseImageTool;
+import com.manage.tool.ImageTool;
 
 public class TestHouseImageTool {
     @Test
@@ -19,7 +19,7 @@ public class TestHouseImageTool {
         houseInfo.setHouseImageAddress("11549690311179");
         house.setHouseInfo(houseInfo);
         list.add(house);
-        new HouseImageTool().getHouseImage(list);
+        new ImageTool().getHouseImage(list);
         System.out.println(list.get(0).getHouseInfo().getHouseImageAddress());
     }
     

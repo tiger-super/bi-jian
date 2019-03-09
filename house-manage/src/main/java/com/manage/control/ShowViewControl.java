@@ -5,10 +5,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.house.entity.House;
 import com.manage.service.impl.HouseManageServiceImpl;
 
 @Controller
@@ -45,5 +43,13 @@ public class ShowViewControl {
 	    mv.setViewName("house-information");
 	    mv.addObject("map", map);
 		return mv;
+	}
+	@RequestMapping("/show/customer/manage")
+	public String showCustomerManage() {
+		return "customer";
+	}
+	@RequestMapping("/show/black/customer/manage")
+	public String showBlackCustomerManage() {
+		return "black-customer";
 	}
 }

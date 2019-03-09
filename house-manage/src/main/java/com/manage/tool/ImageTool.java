@@ -7,9 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.house.entity.Customer;
 import com.house.entity.House;
 @Component
-public class HouseImageTool {
+public class ImageTool {
 	@Autowired
 	AnalysisXML ax;
 	private String getHouseImage(String path) {
@@ -57,5 +58,23 @@ public class HouseImageTool {
 		File file = new File(path);
 		String[] result = file.list();
 		return result[0];
+	}
+	
+	public List<Customer> getCustomerImageList(List<Customer> list) {
+		for(int i = 0 ; i < list.size() ; i++) {
+			Customer customer = list.get(i);
+			StringBuffer visit = new StringBuffer();
+			String customerVisitAddress = ax.getName(AnalysisXML.CUSTOMERVISITADDRESS);
+			String customerImg = customer.getCustomerHeadImageAddress();
+			if(customerImg == null) {
+				customerImg = "/static/img/renyuanzengjia.png";
+				customer.setCustomerHeadImageAddress(customerImg);
+			}else {
+				
+			visit.append(customerVisitAddress).append(customerImg);
+			customer.setCustomerHeadImageAddress(visit.toString());
+			}
+			}
+		return list;
 	}
 }

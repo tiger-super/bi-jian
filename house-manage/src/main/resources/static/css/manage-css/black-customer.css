@@ -1,0 +1,10 @@
+.customerImg{
+	height:50px;
+	width:50px;
+}
+.customer-tbody td{
+	text-align:center;
+}
+.customer-thead th{
+	text-align:center;
+}
