@@ -15,12 +15,14 @@ import com.house.entity.Employee;
 import com.house.entity.Page;
 import com.manage.service.SystemService;
 import com.manage.tool.PageShow;
+import com.manage.tool.ServerSocketTool;
 
 @Controller
 @RequestMapping("/manage")
 public class SystemControl {
 	@Autowired
 	SystemService systemService;
+	
 
 	@RequestMapping("/get/show/page")
 	@ResponseBody
@@ -41,5 +43,22 @@ public class SystemControl {
 	public String quitSystem(HttpSession session) {
 		session.setAttribute("employeeSession", null);
 		return "login";
+	}
+	@RequestMapping("/get/house/number")
+	@ResponseBody
+	public Map<String,String> getPuhlishHouseNumber(){
+		Map<String,String> map = new HashMap<String,String>();
+		String value = String.valueOf(systemService.totalPublishHouse());
+		map.put("result",value);
+		return map;
+	}
+
+	@RequestMapping("/update/house/data")
+	@ResponseBody
+	public Map<String,Boolean> wheterUpdateHouseData(){
+		Map<String,Boolean> map = new HashMap<String,Boolean>();
+		map.put("result",ServerSocketTool.publishHouse);
+		ServerSocketTool.setPublishHouse(false);
+		return map;
 	}
 }

@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.house.HouseService;
 import com.house.entity.Device;
@@ -20,6 +18,7 @@ import com.house.mapper.HouseManagementMapper;
 import com.house.tool.AnalysisXML;
 import com.house.tool.FileUtil;
 import com.house.tool.PhoneAddressCreate;
+import com.house.tool.SocketTool;
 import com.house.tool.Time;
 
 @Service
@@ -155,6 +154,8 @@ public class HouseServiceImpl implements HouseService {
 		}
 		int result = houseManagementMapper.updateHouseState(house);
 		if (result == 1) {
+			SocketTool st = new SocketTool();
+			st.updateSendSocket("house");
 			return true;
 		} else {
 			return false;

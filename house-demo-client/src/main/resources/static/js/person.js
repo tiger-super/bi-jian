@@ -27,7 +27,7 @@ $(document)
 										"housePublisherState");
 								pageCurrent = 1;
 							})
-					//显示已发布
+					// 显示已发布
 					$(".publish-div").click(
 							function() {
 								$(".publish-div-button").css("color", "black");
@@ -40,7 +40,7 @@ $(document)
 										"housePublisherState");
 								pageCurrent = 1;
 							})
-					//显示未发布
+					// 显示未发布
 					$(".no-publish-div").click(
 							function() {
 								$(".publish-div-button").css("color", "black");
@@ -98,7 +98,8 @@ $(document)
 									if (result.customerHeadImageAddress != null) {
 										$(".head-img")
 												.attr(
-														"src", result.customerHeadImageAddress);
+														"src",
+														result.customerHeadImageAddress);
 									} else {
 										$(".head-img")
 												.attr("src",
@@ -269,26 +270,24 @@ $(document)
 				})
 // 上传头像
 function submitform() {
-	$
-			.ajax({
-				url : "/house/session/photo/upload",
-				type : "post",
-				data : new FormData($('#fileUploadFrom')[0]),
-				processData : false,
-				contentType : false,
-				success : function(result) {
-					if (result != "false") {
-						$(".head-img").attr("src", "#");
-						$(".head-img").attr(
-								"src",result);
-					} else {
-						alter("上传失败");
-					}
-				}
+	$.ajax({
+		url : "/house/session/photo/upload",
+		type : "post",
+		data : new FormData($('#fileUploadFrom')[0]),
+		processData : false,
+		contentType : false,
+		success : function(result) {
+			if (result != "false") {
+				$(".head-img").attr("src", "#");
+				$(".head-img").attr("src", result);
+			} else {
+				alter("上传失败");
+			}
+		}
 
-			})
+	})
 }
-//加载房源信息
+// 加载房源信息
 function loadHouseInfo(data) {
 	$.ajax({
 		url : "/house/session/publish/manage",
@@ -302,6 +301,7 @@ function loadHouseInfo(data) {
 			for (let i = 0; i < list.length; i++) {
 				showHouseInfo(list[i], i, $(".my-publish-content"));
 			}
+			showPageView(result.page, $(".my-publish-content"));
 			// 下架事件
 			$(".cancel-publish").click(
 					function() {
@@ -341,7 +341,6 @@ function loadHouseInfo(data) {
 							"houseId" : houseId
 						});
 					})
-			/*			showPageView(result.page, $(".my-publish-content"));*/
 		}
 
 	})
@@ -419,8 +418,7 @@ function showHouseInfo(house, i, div) {
 let pageCurrent = 1;
 // 分页功能
 function showPageView(page, div) {
-	div
-			.append("<div class='col-sm-12' style='padding:0px'><div class='col-sm-6'></div><div class='col-sm-6 page-show-content'></div></div>");
+	div.append("<div class='col-sm-12' style='padding:0px'><div class='col-sm-6'></div><div class='col-sm-6 page-show-content'></div></div>");
 	pageCurrent = page.pageCurrent;
 	$.ajax({
 		url : '/house/get/show/page',
@@ -539,27 +537,29 @@ function deleteHouse(data) {
 }
 // 加载收藏信息
 function loadMyCollection(data) {
-	$.ajax({
-		url : '/house/load/collection',
-		type : 'post',
-		dataType : 'json',
-		data : data,
-		success : function(result) {
-			if (result.result == true) {
-				$(".my-collection-content").empty();
-				let house = result.list;
-				if(house != undefined){
-				for (let i = 0; i < house.length; i++) {
-					showHouseInfo(house[i], i, $(".my-collection-content"));
+	$
+			.ajax({
+				url : '/house/load/collection',
+				type : 'post',
+				dataType : 'json',
+				data : data,
+				success : function(result) {
+					if (result.result == true) {
+						$(".my-collection-content").empty();
+						let house = result.list;
+						if (house != undefined) {
+							for (let i = 0; i < house.length; i++) {
+								showHouseInfo(house[i], i,
+										$(".my-collection-content"));
+							}
+							console.log(result.page)
+							showPageView(result.page,$(".my-collection-content"));
+						}
+					}
 				}
-				console.log(result.page)
-				showPageView(result.page);
-				}
-			}
-		}
-	})
+			})
 }
-// 收藏信息的分页功能
+/*// 收藏信息的分页功能
 function showPageView(page) {
 	$(".my-collection-content")
 			.append(
@@ -625,4 +625,4 @@ function showPageView(page) {
 			})
 		}
 	})
-}
+}*/

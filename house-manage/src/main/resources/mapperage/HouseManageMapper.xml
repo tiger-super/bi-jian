@@ -61,4 +61,7 @@
     <update id="updateFailHouseAuditingStateFromHouseId" parameterType="java.lang.String">
   update house set  house_auditing_state = '-1' where house_id = #{parameter}
   </update>
+  <select id="selectTotalNoToBeAuditingHouse" resultType="int">
+  select count(*) from house where house_auditing_state = '1' and house_publisher_state = '0' 
+  </select>
 </mapper>

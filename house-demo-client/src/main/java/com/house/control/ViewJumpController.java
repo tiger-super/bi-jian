@@ -13,12 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.area.AnalysisAreaXmlService;
 import com.house.demo.house.HouseService;
+import com.house.demo.website.WebsiteService;
 import com.house.entity.Customer;
 import com.house.entity.House;
+import com.house.entity.WebsiteCount;
 
 @Controller
 @RequestMapping("/house")
 public class ViewJumpController {
+	@Reference
+	WebsiteService websiteCount;
 	@Reference
 	HouseService houseService;
 	@Reference(timeout = 20000)
@@ -45,6 +49,7 @@ public class ViewJumpController {
 	// 显示主界面
 	@RequestMapping("/show/indexView")
 	public String showIndex() {
+		websiteCount.website();
 		return "index";
 	}
 
@@ -69,10 +74,11 @@ public class ViewJumpController {
 	// 显示发布界面
 	@RequestMapping("/session/show/publish/house")
 	public String showPublishHouseView() {
+		System.out.println("control"+Thread.currentThread().getName());
 		return "publish-house";
 	}
 
-	// 显示发布界面
+	// 显示发布成功界面
 	@RequestMapping("/show/publish/success")
 	public String showPublishSuccessView() {
 		return "publishSuccess";

@@ -38,7 +38,7 @@ public class CollectionController {
 	
 	@RequestMapping("/modify/collection/state")
 	@ResponseBody
-	public Map modifyCollectionState(Collection collection, String modify,HttpSession session) {
+	public Map<String,String> modifyCollectionState(Collection collection, String modify,HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
 		Map<String,String> map = new HashMap<String,String>();
 		String result = null;

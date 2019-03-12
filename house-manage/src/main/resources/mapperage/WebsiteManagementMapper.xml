@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.manage.dao.WebsiteManagementMapper">
+  <insert id="timingInsertData">
+  insert into website_count (time) values (CURDATE())
+  </insert>
+  
+  <update id="updateWebsiteData" parameterType="com.house.entity.WebsiteCount">
+    update website_count set  house_publish_number_today = #{housePublishNumberToday},
+    house_lower_shelf_number_today=#{houseLowerShelfNumberToday} where time=#{time} 
+  </update>
+    </mapper>

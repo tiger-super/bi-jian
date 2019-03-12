@@ -3,5 +3,5 @@
 <houseVisit name="http://47.106.244.224:8080/house-img-cache/"></houseVisit>
 <houseKeep name="/usr/tomcat/tomcat8.5/webapps/house-img-cache/"></houseKeep>
 <!-- <houseVisit name="http://127.0.0.1:8080/house-img-cache/"></houseVisit>
-<houseKeep name="F:/apache-tomcat-8.5.38/webapps/house-img-cache/"></houseKeep>  -->
+<houseKeep name="F:/apache-tomcat-8.5.38/webapps/house-img-cache/"></houseKeep> -->
 </address>

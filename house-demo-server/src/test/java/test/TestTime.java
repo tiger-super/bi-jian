@@ -1,5 +1,4 @@
 package test;
-import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -39,6 +38,7 @@ public class TestTime {
  }
  @Test
  public void test1() {
-	 InputStream is= this.getClass().getResourceAsStream("/static/imgAddress.xml");
+	 System.out.println(new AnalysisXML().getName(AnalysisXML.HOUSEVISITADDRESS));
+	 System.out.println(new AnalysisXML().getName(AnalysisXML.HOUSEKEEPADDRESS));
  }
 }

@@ -26,4 +26,6 @@ public interface HouseManageDao {
     int updateSucceessHouseAuditingStateFromHouseId(String houseId);
     // 根据房源id修改房源审核失败
     int updateFailHouseAuditingStateFromHouseId(String houseId);
+    //统计所有未发布的房源
+    int selectTotalNoToBeAuditingHouse();
 }

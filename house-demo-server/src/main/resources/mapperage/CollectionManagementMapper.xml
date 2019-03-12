@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.house.mapper.CollectionManagementMapper">
 	<insert id="insertCollectionInformation" parameterType="com.house.entity.Collection">
-	insert into collection(collectors_id,collection_house_id) value(
-	#{collectorsId},#{collectionHouseId})
+	insert into collection(collectors_id,collection_house_id,collection_time) value(
+	#{collectorsId},#{collectionHouseId},#{collectionTime})
 	</insert>
 	<delete id="deleteCollectionInformation" parameterType="com.house.entity.Collection">
 	delete from collection where collectors_id = #{collectorsId}

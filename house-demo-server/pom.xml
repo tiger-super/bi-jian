@@ -118,12 +118,14 @@
 				</artifactId>
 			<optional>true</optional>
 		</dependency>
-           <!-- 自己的jar包 -->
+		<!-- 自己的jar包 -->
 		<dependency>
 			<groupId>com.house</groupId>
 			<artifactId>house-api</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
+
 	</dependencies>
 	<build>
 		<finalName>house-server</finalName>

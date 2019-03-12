@@ -15,6 +15,7 @@ import com.house.mapper.CollectionManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.AnalysisXML;
 import com.house.tool.FileUtil;
+import com.house.tool.Time;
 @Service
 public class CollectionServiceImpl implements CollectionService{
 	@Autowired
@@ -27,8 +28,10 @@ public class CollectionServiceImpl implements CollectionService{
 	public String addHouseCollectionInformation(Collection collection) {
 		House house = houseManagementMapper.seleteFollowNumber(collection.getCollectionHouseId());
 		if(house.getHousePublisherId().equals(collection.getCollectorsId())){
+			//这一步判断是否是自己的房源
 			return "equal";
 		}else {
+		collection.setCollectionTime(Time.getNowTime());
 		int result = collectionManagementMapper.insertCollectionInformation(collection);
 		if(result == 1) {
 			int number = Integer.valueOf(house.getFollowNumber());

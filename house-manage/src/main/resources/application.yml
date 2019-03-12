@@ -13,6 +13,9 @@ server:
   jsp:
    init-parameters:
     development: true
+  session:
+   cookie:
+    name: manage
 #设置映射文件
 mybatis:
  mapper-locations: classpath*:mapperage/*.xml
