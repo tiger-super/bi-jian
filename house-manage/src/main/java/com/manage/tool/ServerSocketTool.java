@@ -18,7 +18,6 @@ public class ServerSocketTool {
 			while (true) {
 				Socket socket = server.accept();
 				DataInputStream in = new DataInputStream(socket.getInputStream());
-				System.out.println(publishHouse);
 				String result = in.readUTF();
 				switch (result) {
 				case "house":

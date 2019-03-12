@@ -17,7 +17,7 @@ function loadHouseInforMation(){
 			}
 			$(".see").click(function(){
 				let id = $(this).parents(".house-information-div").attr("value");
-				window.location.href="/manage/show/house/information?houseId="+id;          
+				window.location.href="/manage/session/show/house/information?houseId="+id;          
 			})
 			 showPageView(result.page);
 			}

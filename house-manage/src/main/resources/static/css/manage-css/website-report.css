@@ -1,0 +1,48 @@
+.head-data{
+	height:150px;
+	border:1px solid  red;
+	padding:0px;
+}
+.head-data div{
+	padding:0px;
+}
+.visit{
+	margin-left:0px;
+	background-color:#a2d200;
+}
+.customer{
+	margin-right:0px;
+	background-color:#ff4a43;
+}
+.publish-house{
+	background-color:#a2d200;
+}
+.no-publish-house{
+	background-color:#8e44ad;
+}
+.head-data-img{
+	height:50px;
+	width:50px;
+}
+.head-data-img-div{
+	margin-top:15px;
+	text-align:center;
+}
+.head-data-wrold{
+	margin-top:10px;
+	color:white;
+	text-align:center;
+}
+#website{
+	padding:0px;
+	height:400px;
+}
+
+#publish{
+	padding:0px;
+	height:400px;
+}
+.head-data-result{
+	color:white;
+	text-align:center;
+}

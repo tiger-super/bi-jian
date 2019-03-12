@@ -28,6 +28,6 @@ public class EndEveryDayUpdateData {
 		wc.setTime(Time.getNowTimeforYearAndMonthAndDay());
 		wc.setHouseLowerShelfNumberToday(houseLowerShelfNumberToday);
 		wc.setHousePublishNumberToday(housePublishNumberToday);
-		websiteManagementMapper.updateWebsiteData(wc);
+		websiteManagementMapper.timingInsertData();
 	}
 }

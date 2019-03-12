@@ -61,4 +61,18 @@ public class SystemControl {
 		ServerSocketTool.setPublishHouse(false);
 		return map;
 	}
+	
+	@RequestMapping("/session/load/website/data")
+	@ResponseBody
+	public Map<String,Integer> loadWebsiteData(){
+		Map<String,Integer> map = systemService.webSiteDataService();
+		return map;
+	}
+	
+	@RequestMapping("/session/load/website/graph")
+	@ResponseBody
+	public Map<String,List<Integer>> loadWebsiteGraph(){
+		Map<String,List<Integer>> map = systemService.weekWebsite();
+		return map;
+	}
 }

@@ -2,13 +2,47 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.manage.dao.WebsiteManagementMapper">
-  <insert id="timingInsertData">
-  insert into website_count (time) values (CURDATE())
-  </insert>
-  
-  <update id="updateWebsiteData" parameterType="com.house.entity.WebsiteCount">
-    update website_count set  house_publish_number_today = #{housePublishNumberToday},
-    house_lower_shelf_number_today=#{houseLowerShelfNumberToday} where time=#{time} 
-  </update>
-    </mapper>
+<mapper namespace="com.manage.dao.WebsiteManagementMapper">
+	<insert id="timingInsertData"  parameterType="com.house.entity.WebsiteCount">
+		insert into website_count (time,house_publish_number_today,house_lower_shelf_number_today) values (#{time},#{housePublishNumberToday},#{houseLowerShelfNumberToday})
+	</insert>
+
+	<update id="updateWebsiteData"
+		parameterType="com.house.entity.WebsiteCount">
+		update website_count set house_publish_number_today =
+		#{housePublishNumberToday},
+		house_lower_shelf_number_today=#{houseLowerShelfNumberToday} where
+		time=#{time}
+	</update>
+
+	<select id="selectVisitFromDay" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select visit_number_today from website_count where time = #{parameter}
+	</select>
+
+	<select id="selectPublishNumberFromDay"
+		parameterType="java.lang.String" resultType="int">
+		select house_publish_number_today from website_count where time =
+		#{parameter}
+	</select>
+
+	<select id="selectNowWeekVisitWebsite"
+		parameterType="java.util.List" resultType="int">
+
+		select visit_number_today from website_count
+		<foreach collection="list" item="time" open="where time in("
+			close=")" separator=",">
+			#{time}
+		</foreach>
+	</select>
+
+	<select id="selectNowWeekPublishHouse"
+		parameterType="java.util.List" resultType="int">
+		select house_publish_number_today from website_count
+		<foreach collection="list" item="time" open="where time in("
+			close=")" separator=",">
+			#{time}
+		</foreach>
+	</select>
+
+</mapper>

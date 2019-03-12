@@ -14,7 +14,7 @@
 <link href="/static/css/bootstrap.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
 <link href="/static/css/admin.css" rel="stylesheet">
-<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script src="/static/js/manage-js/index.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/excanvas.min.js"></script>
@@ -38,7 +38,7 @@
 
 					<ul class="side-nav">
 
-						<li class="active"><a href="index.html"><i
+						<li class="website"><a href="#"><i
 								class="icon-signal"></i> 网站报告</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#website-dropdown" href="#"><i
@@ -103,7 +103,7 @@
 					</ul>
 
 				</div>
-				<iframe src="/manage/show/websiteReportView" width="100%"
+				<iframe src="/manage/session/show/websiteReportView" width="100%"
 					scrolling="no" frameborder="0" id="load"> </iframe>
 			</div>
 		</div>
