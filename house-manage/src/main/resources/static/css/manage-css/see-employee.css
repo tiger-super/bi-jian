@@ -17,13 +17,14 @@
 	margin-left:50px;
 }
 
-.customerImg{
+.employeeImg{
 	height:50px;
 	width:50px;
 }
-.customer-tbody td{
+.employee-tbody td{
 	text-align:center;
+	padding:0px;
 }
-.customer-thead th{
+.employee-thead th{
 	text-align:center;
 }

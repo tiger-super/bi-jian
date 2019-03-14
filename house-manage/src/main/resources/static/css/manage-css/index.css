@@ -1,21 +1,34 @@
-#load{
-	margin-top:20px;
+#load {
+	margin-top: 20px;
 }
-.side-nav li{
-	cursor:pointer;
+
+.side-nav li {
+	cursor: pointer;
 }
-.employee-information{
-	height:300px;
-	width:500px;
-	position:absolute;
-	top:100px;
-	border:1px solid #ddd;
-	background-color:white;
+
+.employee-information {
+	height: 300px;
+	width: 500px;
+	position: absolute;
+	top: 100px;
+	border: 1px solid #ddd;
+	background-color: white;
 }
-.td{
-	text-align:center;
+
+.td {
+	text-align: center;
 }
-.close-div{
-right:0px;
-		position:absolute;
+
+.close-div {
+	right: 0px;
+	position: absolute;
+}
+
+.modifyPasssword-div {
+	height: 100px;
+    padding-top:20px;
+	border: 1px solid #ddd;
+	position: absolute;
+	top: 300px;
+	background-color: white;
 }

@@ -54,4 +54,14 @@ public class ShowViewControl {
 	public String showBlackCustomerManage() {
 		return "black-customer";
 	}
+	
+	@RequestMapping("/session/show/add/employee")
+	public String showAddEmployee() {
+		return "add-employee";
+	}
+	
+	@RequestMapping("/session/show/see/employee")
+	public String showSeeEmployee() {
+		return "see-employee";
+	}
 }

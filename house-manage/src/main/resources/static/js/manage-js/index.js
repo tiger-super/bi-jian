@@ -1,7 +1,10 @@
 let person = true;
+let password = true;
 $(document).ready(function() {
+	$(".modifyPasssword-div").hide();
 	$(".employee-information").hide();
 	$(".employee-information").css("left",($(document).outerWidth(true)/2-250)+"px");
+	$(".modifyPasssword-div").css("left",($(document).outerWidth(true)/2-100)+"px");
 	$(".website").click(function(){
 		$("#load").attr("src", "/manage/session/show/websiteReportView");
 	})
@@ -21,14 +24,46 @@ $(document).ready(function() {
 		$(".employee-information").hide();
 	})
 	$(".person").click(function(){
+		$(".modifyPasssword-div").hide();
 		$(".employee-information").show();
+		password=true;
 	})
-	/*$(".dropdown-toggle").click(function(){
-		if(person){
-		$(".dropdown-menu").show();
-		
+	$(".li-add-employee").click(function(){
+		$("#load").attr("src", "/manage/session/show/add/employee");
+	})
+	
+	$(".li-see-employee").click(function(){
+		$("#load").attr("src", "/manage/session/show/see/employee");
+	})
+	$(".modifyPassword").click(function(){
+		$(".employee-information").hide();
+		if(password){
+			$(".modifyPasssword-div").show();
+			password=false;
 		}else{
-			$(".dropdown-menu").hide();
+			password=true;
+			$(".modifyPasssword-div").hide();
 		}
-		})*/
+	})
+	
+	$(".modify").click(function(){
+	$.ajax({
+			url : '/manage/session/modify/password',
+			dataType : "json",
+			type : "post",
+			data : {
+				"employeeId" : $(".employeeId").attr("value"),
+				"employeePassword":$(".new-password").val()
+			},
+			success : function(result) {
+				if(result.result){
+					password=true;
+					$(".modifyPasssword-div").hide();
+					alert("修改成功");
+				}else{
+					alert("系统错误");
+				}
+			}
+		})
+	})
 })

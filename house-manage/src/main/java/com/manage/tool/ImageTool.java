@@ -86,4 +86,16 @@ public class ImageTool {
 		}
 		return list;
 	}
+	public void getEmployeeImage(List<Employee> list) {
+		int length = list.size();
+		if (length > 0) {
+			for (int i = 0; i < length; i++) {
+				StringBuffer employeeVisit = new StringBuffer();
+				employeeVisit.append(ax.getName(AnalysisXML.EMPLOYEEVISITADDRESS));
+				Employee employee = list.get(i);
+				employeeVisit.append(employee.getEmployeeImgAddress()); 
+				employee.setEmployeeImgAddress(employeeVisit.toString());
+			}
+		}
+	}
 }

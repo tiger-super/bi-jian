@@ -6,4 +6,23 @@
  <select id="ifExistEmployee" parameterType="com.house.entity.Employee" resultType="com.house.entity.Employee">
  select * from employee where employee_id = #{employeeId}
  </select>
+ 
+ <insert id="insertEmployee" parameterType="com.house.entity.Employee" keyProperty="employeeId" useGeneratedKeys="true">
+ insert into employee(employee_name,employee_sex,employee_age,employee_phone,employee_mailbox
+ ,employee_role,employee_address,employee_img_address,entry_time) VALUES (#{employeeName},#{employeeSex},#{employeeAge},#{employeePhone},
+ #{employeeMailbox},#{employeeRole},#{employeeAddress},#{employeeImgAddress},#{entryTime})
+ </insert>
+ 
+ <select id="selectAllEmployee"  resultType="com.house.entity.Employee" parameterType="com.house.entity.Page">
+ select * from employee limit #{pageShowNow},#{pageNumber} 
+ 
+ </select>
+ 
+ <select id="selectTotalEmployee" resultType="int" >
+ select count(*) from employee
+ </select>
+ 
+ <update id="updateEmployeePassword" parameterType="com.house.entity.Employee">
+    update employee set  employee_password = #{employeePassword} where employee_id = #{employeeId}
+ </update>
 </mapper>

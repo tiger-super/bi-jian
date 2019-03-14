@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2019-03-13 00:56:33
+Date: 2019-03-14 10:41:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -157,13 +157,15 @@ CREATE TABLE `employee` (
   `employee_role` varchar(150) DEFAULT NULL COMMENT '员工角色或者说权限',
   `employee_address` varchar(200) DEFAULT NULL,
   `employee_img_address` varchar(200) DEFAULT NULL,
+  `entry_time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10005 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
-INSERT INTO `employee` VALUES ('10000', '钟泰文', '男', '24', '17875511746', '347177277@qq.com', '8888', '超级管理员', '广东省梅州市五华县', '11548384110426.jpg');
+INSERT INTO `employee` VALUES ('10000', '钟泰文', '男', '24', '17875511746', '347177277@qq.com', '123', '超级管理员', '广东省梅州市五华县', '11548384110426.jpg', '2019-3-13');
+INSERT INTO `employee` VALUES ('10004', '张三', '男', '33', '17875511750', '547376282@qq.com', '8888', '超级管理员', '广东省梅州市梅江区嘉应学院', '15524618141971.jpg', '2019-03-13');
 
 -- ----------------------------
 -- Table structure for house
@@ -285,4 +287,5 @@ INSERT INTO `website_count` VALUES ('2019-03-09', '50', '16', '1');
 INSERT INTO `website_count` VALUES ('2019-03-10', '33', '15', '2');
 INSERT INTO `website_count` VALUES ('2019-03-11', '40', '14', '3');
 INSERT INTO `website_count` VALUES ('2019-03-12', '30', '16', '1');
-INSERT INTO `website_count` VALUES ('2019-03-13', '60', '15', '0');
+INSERT INTO `website_count` VALUES ('2019-03-13', '60', '15', '1');
+INSERT INTO `website_count` VALUES ('2019-03-14', '44', '17', '3');

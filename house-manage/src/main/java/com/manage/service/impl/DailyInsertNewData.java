@@ -23,12 +23,6 @@ public class DailyInsertNewData {
 	HouseManageDao houseManageDao;
 
 	public void reptilian() {
-		int housePublishNumberToday =  houseManageDao.selectTotalHasBeenPublishHouse();
-		int houseLowerShelfNumberToday = houseManageDao.selectTotalNoToBeAuditingHouse();
-		WebsiteCount wc = new WebsiteCount();
-		wc.setTime(Time.getNowTimeforYearAndMonthAndDay());
-		wc.setHouseLowerShelfNumberToday(houseLowerShelfNumberToday);
-		wc.setHousePublishNumberToday(housePublishNumberToday);
-		websiteManagementMapper.updateWebsiteData(wc);
+		websiteManagementMapper.timingInsertData();
 	}
 }

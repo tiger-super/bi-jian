@@ -11,6 +11,18 @@
 <script type="text/javascript" src="/static/js/manage-js/customer.js"></script>
 </head>
 <body>
+<div class="col-sm-12 search-window">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+    <div class="col-sm-9">
+      <input type="text" class="form-control" placeholder="请输入客户id" id="searchHouse">
+    </div>
+    <div class="col-sm-2 button-window">
+    <button type="submit" class="btn btn-info btn-lg btn-block">查询</button>
+    </div>
+  </div>
+</form>
+</div>
 	<table class="table table-bordered">
 		<caption>用户数据表</caption>
 		<thead class="customer-thead">

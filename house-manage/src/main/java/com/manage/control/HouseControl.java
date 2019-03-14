@@ -38,7 +38,6 @@ public class HouseControl {
 		page.setPageCurrent(pageCurrent);
 		}
 		Map<String,Object> map = houseManageService.getPublishHouse(page);
-		map.put("page", page);
 		return map;
 	}
 	

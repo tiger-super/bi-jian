@@ -13,5 +13,4 @@ public class Open {
 	   	ServerSocketTool sst = new ServerSocketTool();
 	   	 sst.serverStart();
 	}
-
 }

@@ -16,7 +16,7 @@ public class Employee implements Serializable{
 	// 员工的电话
 	private String employeePhone;
 	// 员工的邮箱
-	private String employeeMailBox;
+	private String employeeMailbox;
 	// 员工住址
 	private String employeeAddress;
 	// 员工密码
@@ -25,6 +25,8 @@ public class Employee implements Serializable{
 	private String employeeImgAddress;
 	// 员工的角色或者说权限
 	private String employeeRole;
+	// 员工的入职时间
+	private String entryTime;
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -55,11 +57,11 @@ public class Employee implements Serializable{
 	public void setEmployeePhone(String employeePhone) {
 		this.employeePhone = employeePhone;
 	}
-	public String getEmployeeMailBox() {
-		return employeeMailBox;
+	public String getEmployeeMailbox() {
+		return employeeMailbox;
 	}
-	public void setEmployeeMailBox(String employeeMailBox) {
-		this.employeeMailBox = employeeMailBox;
+	public void setEmployeeMailbox(String employeeMailbox) {
+		this.employeeMailbox = employeeMailbox;
 	}
 	public String getEmployeeAddress() {
 		return employeeAddress;
@@ -85,11 +87,18 @@ public class Employee implements Serializable{
 	public void setEmployeeImgAddress(String employeeImgAddress) {
 		this.employeeImgAddress = employeeImgAddress;
 	}
+	public String getEntryTime() {
+		return entryTime;
+	}
+	public void setEntryTime(String entryTime) {
+		this.entryTime = entryTime;
+	}
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeSex=" + employeeSex
-				+ ", employeeAge=" + employeeAge + ", employeePhone=" + employeePhone + ", employeeMailBox="
-				+ employeeMailBox + ", employeeAddress=" + employeeAddress + ", employeePassword=" + employeePassword
-				+ ", employeeImgAddress=" + employeeImgAddress + ", employeeRole=" + employeeRole + "]";
-	}	
+				+ ", employeeAge=" + employeeAge + ", employeePhone=" + employeePhone + ", employeeMailbox="
+				+ employeeMailbox + ", employeeAddress=" + employeeAddress + ", employeePassword=" + employeePassword
+				+ ", employeeImgAddress=" + employeeImgAddress + ", employeeRole=" + employeeRole + ", entryTime="
+				+ entryTime + "]";
+	}
 }

@@ -1,0 +1,29 @@
+.register {
+	width: 100px;
+}
+
+.button-div {
+	text-align: right;
+}
+
+.employee-img-div {
+	height: 140px;
+	padding: 0px;
+	margin-bottom:	px;
+}
+
+.employee-img{
+	height: 140px;
+	width: 140px;
+	 position: absolute;
+}
+#fileInput {
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	height: 150px;
+	width: 150px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+}

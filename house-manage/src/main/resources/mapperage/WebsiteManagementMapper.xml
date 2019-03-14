@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.manage.dao.WebsiteManagementMapper">
 	<insert id="timingInsertData"  parameterType="com.house.entity.WebsiteCount">
-		insert into website_count (time,house_publish_number_today,house_lower_shelf_number_today) values (#{time},#{housePublishNumberToday},#{houseLowerShelfNumberToday})
+	insert into website_count (time) value(CURDATE())
 	</insert>
 
 	<update id="updateWebsiteData"

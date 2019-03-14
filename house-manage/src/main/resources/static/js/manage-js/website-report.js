@@ -103,7 +103,7 @@ function loadPublishGraph(list){
         },
         yAxis: {},
         series: [{
-            name: '网站访问量',
+            name: '房源发布量',
             type: 'bar',
             data: list
         }]
