@@ -18,4 +18,6 @@ public interface EmployeeManageDao {
 	public int selectTotalEmployee();
 	
 	public int updateEmployeePassword(Employee employee);
+	
+	public Employee quaryEmployeeFromEmployeeId(String employeeId);
 }

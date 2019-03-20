@@ -69,6 +69,7 @@ function informationLoad(data) {
 		type : "post",
 		data : data,
 		success : function(result) {
+			if(result.result){
 			let length = result.page.pageTotal;
 			$(".house-information-list-window").empty();
 			$(".information-total").text(length);
@@ -77,6 +78,9 @@ function informationLoad(data) {
 			}
 			bindingEvent();
 			showPageView(result.page);
+			}else{
+				window.location.href = "/house/show/selectAreaView";
+			}
 		}
 	});
 }

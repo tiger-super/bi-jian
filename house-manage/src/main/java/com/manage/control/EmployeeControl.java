@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,12 +63,14 @@ public class EmployeeControl {
 	}
 	@RequestMapping("/session/get/employee/information")
 	@ResponseBody
-	public Map<String,Object> getEmployees(@RequestParam(required = false) Integer pageCurrent){
+	public Map<String,Object> getEmployees(@RequestParam(required = false) Integer pageCurrent,HttpSession session){
 		Page page = new Page();
 		if(pageCurrent != null) {
 		page.setPageCurrent(pageCurrent);
 		}
 		Map<String,Object> map = employeeManageService.getEmployee(page);
+		Employee employee = (Employee)session.getAttribute("employeeSession");
+		map.put("role",employee.getEmployeeRole());
 		return map;
 	}
 	@RequestMapping("/session/modify/password")
@@ -75,6 +79,14 @@ public class EmployeeControl {
 		Map<String,Boolean> map = new HashMap<String,Boolean>();
 		boolean result = employeeManageService.modifyPasswordService(employee);
 		map.put("result",result);
+		return map;
+	}
+	@RequestMapping("/session/select/employee")
+	@ResponseBody
+	public Map<String,Object> selectEmployeeFromEmployeeId(Employee employee,HttpSession session){
+		Employee employeeSession = (Employee)session.getAttribute("employeeSession");
+		Map<String,Object> map  = employeeManageService.getEmployeeWithEmployeeId(employeeSession.getEmployeeId());
+		map.put("role",employeeSession.getEmployeeRole());
 		return map;
 	}
 }

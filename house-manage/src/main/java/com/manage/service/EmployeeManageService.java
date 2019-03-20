@@ -19,4 +19,6 @@ public interface EmployeeManageService {
 	
 	//修改密码
 	boolean modifyPasswordService(Employee employee);
+	
+	Map<String,Object> getEmployeeWithEmployeeId(String employeeId);
 }

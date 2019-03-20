@@ -25,4 +25,8 @@
  <update id="updateEmployeePassword" parameterType="com.house.entity.Employee">
     update employee set  employee_password = #{employeePassword} where employee_id = #{employeeId}
  </update>
+ <select id="quaryEmployeeFromEmployeeId"  parameterType="java.lang.String" resultType="com.house.entity.Employee">
+  select * from employee where employee_id = #{parameter}
+ 
+ </select>
 </mapper>

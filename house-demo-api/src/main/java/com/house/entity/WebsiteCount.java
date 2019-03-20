@@ -1,6 +1,8 @@
 package com.house.entity;
 
-public class WebsiteCount {
+import java.io.Serializable;
+
+public class WebsiteCount implements Serializable {
     private String time;
     private int visitNumberToday;
     private int housePublishNumberToday;

@@ -16,7 +16,7 @@ public class ImageTool {
 	@Autowired
 	AnalysisXML ax;
 
-	private String getHouseImage(String path) {
+	public String getHouseImage(String path) {
 		StringBuffer visit = new StringBuffer();
 		String houseVisitAddress = ax.getName(AnalysisXML.HOUSEVISITADDRESS);
 		visit.append(houseVisitAddress).append(path);

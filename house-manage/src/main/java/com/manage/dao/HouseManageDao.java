@@ -28,4 +28,8 @@ public interface HouseManageDao {
     int updateFailHouseAuditingStateFromHouseId(String houseId);
     //统计所有未发布的房源
     int selectTotalNoToBeAuditingHouse();
+    //根据id查询未审核的房源
+    House selectAuditingHouseFromHouseId(String houseId);
+    //根据id查询
+    House selectPublicHouseFromHouseId(String houseId);
 }

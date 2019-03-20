@@ -15,4 +15,9 @@ public interface HouseManageService {
 
 	// 审核失败
 	boolean auditingFailService(AuditingFail auditingFail);
+	
+	//根据房源id获得未审核的房源
+	public Map<String,Object> getAuditingHouseFromId(String houseId);
+	//根据房源id获得发布的房源
+	public Map<String,Object> getPublicHouseFromId(String houseId);
 }

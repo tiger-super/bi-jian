@@ -1,7 +1,6 @@
 package com.house.control;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,20 +9,18 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.house.HouseService;
 import com.house.entity.Customer;
 import com.house.entity.House;
 import com.house.entity.Page;
-import com.house.tool.FileUtil;
 import com.house.tool.PageShow;
 import com.house.tool.PhoneAddressCreate;
 
@@ -32,8 +29,7 @@ import com.house.tool.PhoneAddressCreate;
 public class HouseController {
 	@Reference
 	HouseService houseService;
-	@Autowired
-	FileUtil fu;
+
 
 	/**
 	 * 该方法收集用户发布的房源信息
@@ -45,9 +41,9 @@ public class HouseController {
 	 */
 	@RequestMapping("/session/publish/house")
 	@ResponseBody
-	public Map<String,String> PublishHouse(House house, HttpSession session, HttpServletRequest request) {
+	public Map<String, String> PublishHouse(House house, HttpSession session, HttpServletRequest request,@RequestParam(required = false)String houseId) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
-		Map<String,String> map = new HashMap<String,String>();
+		Map<String, String> map = new HashMap<String, String>();
 		String result = null;
 		Cookie[] cookies = request.getCookies();
 		String folder = null;
@@ -60,15 +56,12 @@ public class HouseController {
 				}
 			}
 		}
-		List<byte[]> list = new ArrayList<byte[]>();
-		try {
-			fu.readCacheImg(folder, list);
-			house.setHousePublisherId(customer.getCustomerId());
-		    result = houseService.housePublish(list, house);
-		} catch (IOException e) {
-			result = "false";
+		house.setHousePublisherId(customer.getCustomerId());
+		result = houseService.housePublish(folder, house);
+		if(houseId == null) {
+			houseService.deleteAndUpdateInformation(houseId);
 		}
-		map.put("result",result);
+			map.put("result", result);			
 		return map;
 	}
 
@@ -83,7 +76,9 @@ public class HouseController {
 	@RequestMapping("/session/publish/house/upload")
 	@ResponseBody
 	public List<String> uploadHouseImg(@RequestParam("photoFile") MultipartFile houseImg, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request,HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customerSession");
+		
 		Cookie[] cookies = request.getCookies();
 		String folder = null;
 		if (cookies != null) {
@@ -101,9 +96,18 @@ public class HouseController {
 			cookieFolder.setPath("/");
 			response.addCookie(cookieFolder);
 		}
-
-		List<String> list = new ArrayList<String>();
-		fu.uploadCache(houseImg, folder, list);
+		// 获取文件名称,包含后缀
+		String fileName = houseImg.getOriginalFilename();
+	    // 获得后缀
+		String suffixName = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		
+		List<String> list = null;
+		try {
+			list = houseService.cacheHouseImg(houseImg.getBytes(),folder,suffixName,customer.getCustomerId());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -141,7 +145,9 @@ public class HouseController {
 			}
 		}
 		if (province == null || city == null) {
-			return null;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("result", false);
+			return map;
 		} else {
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
@@ -197,4 +203,22 @@ public class HouseController {
 		return houseService.ModifyHouseState(house);
 	}
 
+	@RequestMapping("/get/fail/reason")
+	@ResponseBody
+	public Map<String, Object> getFailReason(String houseId) {
+		return houseService.houseReasonService(houseId);
+	}
+
+	@RequestMapping("/see/house/Information")
+	public ModelAndView seeHouseInformation(String houseId) {
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		House house = houseService.getHouseInformation(houseId);
+		List<String> list = houseService.getHouseImageInfo(house.getHouseInfo().getHouseImageAddress());
+		map.put("house", house);
+		map.put("list",list);
+		mv.setViewName("house-information");
+		mv.addObject("map", map);
+		return mv;
+	}
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class AnalysisXML {
 	public static String HOUSEVISITADDRESS = "houseVisit";
 	public static String HOUSEKEEPADDRESS = "houseKeep";
+	public static String HOUSECACHEKEEPADDRESS = "houseCache";
    public  String getName(String condition) {
 	   SAXReader reader = new SAXReader();
 		 InputStream is= this.getClass().getResourceAsStream("/static/cacheAddress.xml");

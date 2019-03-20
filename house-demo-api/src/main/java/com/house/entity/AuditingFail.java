@@ -1,6 +1,8 @@
 package com.house.entity;
 
-public class AuditingFail {
+import java.io.Serializable;
+
+public class AuditingFail implements Serializable {
 	private String houseId;
 	private String houseAuditingReason;
 	private String houseAuditingTime;

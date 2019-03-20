@@ -6,9 +6,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.house.entity.Collection;
+
 @Repository
 public interface CollectionManagementMapper {
-//  添加收藏信息
+    //  添加收藏信息
 	int insertCollectionInformation(Collection collection);
 	// 删除收藏信息
 	int deleteCollectionInformation(Collection collection);

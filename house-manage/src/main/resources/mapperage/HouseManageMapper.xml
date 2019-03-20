@@ -64,4 +64,24 @@
   <select id="selectTotalNoToBeAuditingHouse" resultType="int">
   select count(*) from house where house_auditing_state = '1' and house_publisher_state = '0' 
   </select>
+  
+  
+  <select id="selectAuditingHouseFromHouseId" resultMap="setHouse" parameterType="java.lang.String">
+  	select
+		h.house_id,house_name,house_address_info,application_time,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
+		h,house_info hi where
+		h.house_id = hi.house_id and house_auditing_state = '0' and h.house_id = #{parameter}
+  </select>
+  
+   <select id="selectPublicHouseFromHouseId" resultMap="setHouse" parameterType="java.lang.String">
+  	select
+		h.house_id,house_name,house_address_info,application_time,house_publisher_time,follow_number,
+		house_size,house_direction,house_money,house_structure,house_image_address
+		from house
+		h,house_info hi where
+		h.house_id = hi.house_id and  house_publisher_state = '1'  and h.house_id = #{parameter}
+  </select>
+
 </mapper>

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/static/css/person.css" />
 <link rel="stylesheet" href="/static/css/iconfont.css" />
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/js/person.js"></script>
 <script type="text/javascript" src="/static/js/index.js"></script>
 <body>

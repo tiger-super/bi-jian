@@ -1,11 +1,11 @@
 package com.house.control;
-
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,9 +14,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.area.AnalysisAreaXmlService;
 import com.house.demo.house.HouseService;
 import com.house.demo.website.WebsiteService;
-import com.house.entity.Customer;
 import com.house.entity.House;
-import com.house.entity.WebsiteCount;
 
 @Controller
 @RequestMapping("/house")
@@ -25,6 +23,7 @@ public class ViewJumpController {
 	WebsiteService websiteCount;
 	@Reference
 	HouseService houseService;
+
 	@Reference(timeout = 20000)
 	AnalysisAreaXmlService analysisAreaXmlService;
 
@@ -122,4 +121,18 @@ public class ViewJumpController {
 		mv.addObject("house", house);
 		return mv;
 	}
+	
+	@RequestMapping("/session/show/again")
+	public ModelAndView showAgainPublishView(String houseId,HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = houseService.againHouseService(houseId);
+		Cookie folderCookie = new Cookie("folder", (String) map.get("folder"));
+		folderCookie.setPath("/");
+		folderCookie.setMaxAge(60*60);
+		response.addCookie(folderCookie);
+		mv.setViewName("again-publish-house");
+		mv.addObject("map", map);
+		return mv;
+	}
+	
 }

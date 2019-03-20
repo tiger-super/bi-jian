@@ -19,4 +19,7 @@
    select bed,wardrobe,desk,air,heater,washer,refigerator,wifi,sofa,tv,toilet,balcony,cook,elevator,tube_coal,heating,escalator,
    smoke,sewage_disposal,parking from device where house_id = #{parameter}
   </select> 
+  <delete id="deleteDeviceWithId" parameterType="java.lang.String" >
+  	delete from device where house_id = #{parameter}
+  </delete>
   </mapper>

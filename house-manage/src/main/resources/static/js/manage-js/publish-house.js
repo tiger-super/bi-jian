@@ -1,6 +1,9 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loadHouseInforMation();
+	$(".select").click(function(){
+		select();
+	})
 })
 function loadHouseInforMation(){
 	$.ajax({
@@ -103,4 +106,23 @@ function renderIngInformation(house) {
 							+ "发布</span>"
 							+ "</div></div></div> <div class='col-sm-2 button-div'><button type='button' class='btn btn-default btn-sm btn-info see'>查看</button>"+
 							"<button type='button' class='btn btn-default btn-sm btn-danger lower	'>强制下架</button></div>");
+}
+
+
+function select(){
+	$.ajax({
+		url : '/manage/session/public/house/with/id',
+		dataType : "json",
+		type : "post",
+		data : {"houseId":$("#searchHouse").val()},
+		success : function(result) {
+			if(result.result){
+				$(".house-information-list-window").empty();
+				$(".page-window").empty();
+				renderIngInformation(result.house);
+			}else{
+				alert("无该房源");
+			}
+		}
+	})
 }

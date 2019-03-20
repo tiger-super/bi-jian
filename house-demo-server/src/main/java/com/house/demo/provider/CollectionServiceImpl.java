@@ -90,7 +90,12 @@ public class CollectionServiceImpl implements CollectionService{
 		List<String> houseIdS = collectionManagementMapper.selectCollectionHouseIdFormCollectorsId(map);
 
 		List<House> houses = houseManagementMapper.selectHouseInfoFromHouseIdS(houseIdS);
-		map.put("list", FileUtil.readHouseImg(houses,houseVisitAddress,houseKeepAddress));
+		for(int i = 0 ; i < houses.size() ; i++) {
+			House value = houses.get(i);
+			String imageFolder = value.getHouseInfo().getHouseImageAddress();
+			value.getHouseInfo().setHouseImageAddress(FileUtil.getObjectImgVisitPath(imageFolder, houseVisitAddress, houseKeepAddress));
+		}
+		map.put("list", houses);
 		}
 		return map;
 	}

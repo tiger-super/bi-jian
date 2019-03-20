@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 public class AnalysisXML {
 	public static String HOUSEVISITADDRESS = "houseVisit";
 	public static String HOUSEKEEPADDRESS = "houseKeep";
+	public static String HOUSECACHEVISIT = "houseCacheVisit";
+	public static String HOUSECACHEKEEP = "houseCacheKeep";
 	public static String CUSTOMERVISITADDRESS = "customerVisit";
 	public static String CUSTOMERKEEPADDRESS = "customerKeep";
 	public static String SOCKET = "socket";

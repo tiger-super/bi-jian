@@ -16,11 +16,11 @@ $(document).ready(function() {
 							type : "post",
 							data : $("#login").serialize(),
 							success : function(result) {
-								if (result == "true") {
+								if (result.result == "true") {
 									window.location.href = "/house/show/indexView";
 								} else {
-									$(".dataJudge").removeClass("hide");
-									$(".text").text(result);
+									$(".result-tips").removeClass("hide");
+									$(".result-tips").text(result.result);
 								}
 							}
 						});
@@ -46,14 +46,17 @@ $(document).ready(function() {
 	})
 
 	$(".form-id").blur(function() {
+		$(".result-tips").addClass("hide");
 		blurNameJudge();
 	});
 
 	$(".form-password").blur(function() {
+		$(".result-tips").addClass("hide");
 		blurPasswordJudge();
 	});
 	
 	$(".VerificationCode").blur(function() {
+		$(".result-tips").addClass("hide");
 		blurVerification();
 	});
 

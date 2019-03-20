@@ -199,8 +199,7 @@ function showArea() {
 			$(".area").children(".select-content");
 			$(".area").children(".select-content").children(
 					".select-content-ul").empty();
-			$
-					.ajax({
+			$.ajax({
 						url : '/house/gain/area',
 						type : "post",
 						dataType : "json",
@@ -298,7 +297,7 @@ function checkLeave(){
 	url : "/house/delete/session",
 	type : "post",
 	success : function(result) {
-		
+		    document.cookie = folder + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'
 	}
 
 })

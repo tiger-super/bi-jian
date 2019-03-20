@@ -1,5 +1,6 @@
 package com.manage.service.impl;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import com.manage.dao.AuditingManageDao;
 import com.manage.dao.DeviceManageDao;
 import com.manage.dao.HouseManageDao;
 import com.manage.service.HouseManageService;
+import com.manage.tool.AnalysisXML;
 import com.manage.tool.ImageTool;
 import com.manage.tool.Time;
 
@@ -22,11 +24,13 @@ public class HouseManageServiceImpl implements HouseManageService {
 	@Autowired
 	HouseManageDao houseManageDao;
 	@Autowired
-	ImageTool hit;
+	ImageTool it;
 	@Autowired
 	DeviceManageDao deviceManageDao;
 	@Autowired
 	AuditingManageDao auditingManageDao;
+	@Autowired
+	AnalysisXML ax;
 
 	@Override
 	public Map<String, Object> getAuditingHouse(Page page) {
@@ -43,7 +47,7 @@ public class HouseManageServiceImpl implements HouseManageService {
 		}
 		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
 		List<House> list = houseManageDao.selectAllToBeAuditingHouse(page);
-		hit.getHouseImage(list);
+		it.getHouseImage(list);
 		page.setPageTotal(pageTotal);
 		map.put("page", page);
 		map.put("list", list);
@@ -56,7 +60,7 @@ public class HouseManageServiceImpl implements HouseManageService {
 		House house = houseManageDao.selectHouseFromHouseId(houseId);
 		HouseInfo houseInfo = houseManageDao.selectHouseInfoFromHouseId(houseId);
 		house.setHouseInfo(houseInfo);
-		List<String> list = hit.getHouseImages(houseInfo.getHouseImageAddress());
+		List<String> list = it.getHouseImages(houseInfo.getHouseImageAddress());
 		map.put("house", house);
 		map.put("list", list);
 		return map;
@@ -99,10 +103,40 @@ public class HouseManageServiceImpl implements HouseManageService {
 		}
 		page.setPageShowNow((page.getPageCurrent() - 1) * page.getPageNumber());
 		List<House> list = houseManageDao.selectAllHasBeenPublishHouse(page);
-		hit.getHouseImage(list);
+		it.getHouseImage(list);
 		page.setPageTotal(pageTotal);
 		map.put("page", page);
 		map.put("list", list);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getAuditingHouseFromId(String houseId) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		House house = houseManageDao.selectAuditingHouseFromHouseId(houseId);
+		if(house == null) {
+			map.put("result",false);
+		}else {
+			String imgFolder = house.getHouseInfo().getHouseImageAddress();
+			house.getHouseInfo().setHouseImageAddress(it.getHouseImage(imgFolder));
+			map.put("result",true);
+			map.put("house",house);
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getPublicHouseFromId(String houseId) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		House house = houseManageDao.selectPublicHouseFromHouseId(houseId);
+		if(house == null) {
+			map.put("result",false);
+		}else {
+			String imgFolder = house.getHouseInfo().getHouseImageAddress();
+			house.getHouseInfo().setHouseImageAddress(it.getHouseImage(imgFolder));
+			map.put("result",true);
+			map.put("house",house);
+		}
 		return map;
 	}
 

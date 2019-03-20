@@ -375,10 +375,7 @@ function showHouseInfo(house, i, div) {
 					.append(
 							"<div class='operation-div col-sm-2' >"
 									+ "<button type='button' class='btn btn-default btn-sm btn-info see'>"
-									+ "<a href='/house/show/house/info?houseId="
-									+ house.houseId
-									+ "'>查看</a>"
-									+ "</button>"
+									+ "查看</button>"
 									+ "<button type='button' class='btn btn-default btn-sm  btn-warning cancel-publish'>下架</button>"
 									+ "<button type='button' class='btn btn-default btn-sm btn-danger delete'>删除</button></div></div>")
 			break;
@@ -398,9 +395,13 @@ function showHouseInfo(house, i, div) {
 			$(".publish-content-div-" + i)
 					.append(
 							"<div class='operation-div col-sm-2' >"
-									+ "<button type='button' class='btn btn-default btn-sm btn-info see'>查看</button>"
-									+ "<button type='button' class='btn btn-default btn-sm  btn-warning apply-publish'>申请</button>"
+									+ "<div class='btn-group'>"
+									+ "<button type='button' class='btn btn-default btn-sm dropdown-toggle' data-toggle='dropdown' style='width:48px'>原因"
+									+ "<span class='caret'></span></button>"
+									+ "<ul class='dropdown-menu' role='menu'><li><a href='#' class='reason'></a></li></ul></div>"
+									+ "<button type='button' class='btn btn-default btn-sm  btn-warning see'>查看</button>"
 									+ "<button type='button' class='btn btn-default btn-sm btn-danger delete'>删除</button></div></div>")
+			getReason(house.houseId);
 			break;
 		case "0":
 			$(".publish-content-div-" + i)
@@ -412,9 +413,29 @@ function showHouseInfo(house, i, div) {
 		}
 		break;
 	}
-
+     $(".see").click(function(){
+    	 window.open("/house/see/house/Information?houseId="+house.houseId,"_blank");     
+     })
 }
+function getReason(houseId) {
+	$.ajax({
+		url : '/house/get/fail/reason',
+		dataType : "json",
+		type : "post",
+		data : {
+			"houseId" : houseId
+		},
+		success : function(result) {
+			if (result.result == true) {
+				$(".reason").html(
+						"内容:" + result.reason.houseAuditingReason
+								+ "<br/>审核时间:"
+								+ result.reason.houseAuditingTime);
 
+			}
+		}
+	})
+}
 let pageCurrent = 1;
 // 分页功能
 function showPageView(page, div) {
@@ -537,8 +558,7 @@ function deleteHouse(data) {
 }
 // 加载收藏信息
 function loadMyCollection(data) {
-	$
-			.ajax({
+	$.ajax({
 				url : '/house/load/collection',
 				type : 'post',
 				dataType : 'json',
@@ -553,76 +573,10 @@ function loadMyCollection(data) {
 										$(".my-collection-content"));
 							}
 							console.log(result.page)
-							showPageView(result.page,$(".my-collection-content"));
+							showPageView(result.page,
+									$(".my-collection-content"));
 						}
 					}
 				}
 			})
 }
-/*// 收藏信息的分页功能
-function showPageView(page) {
-	$(".my-collection-content")
-			.append(
-					"<div class='col-sm-12' style='padding:0px'><div class='col-sm-6'></div><div class='col-sm-6 page-show-content'></div></div>");
-	pageCurrent = page.pageCurrent;
-	$.ajax({
-		url : '/house/get/show/page',
-		dataType : "json",
-		type : "post",
-		data : page,
-		success : function(result) {
-			$(".page-show-content").empty();
-			for (let i = 0; i < result.length; i++) {
-				switch (result[i]) {
-				case "上一页":
-					$(".page-show-content").append(
-							"<button class='btn upper' >" + result[i]
-									+ "</button>")
-					break;
-				case "下一页":
-					$(".page-show-content").append(
-							"<button class='btn next' >" + result[i]
-									+ "</button>")
-					break;
-				case "...":
-					$(".page-show-content").append(
-							"<button class='btn next-display disabled' >"
-									+ result[i] + "</button>")
-					break;
-				case "" + (page.pageCurrent):
-					$(".page-show-content").append(
-							"<button class='btn btn-info page' >" + result[i]
-									+ "</button>")
-					break;
-				default:
-					$(".page-show-content").append(
-							"<button class='btn page' >" + result[i]
-									+ "</button>")
-					break;
-				}
-
-			}
-			$(".page").click(function() {
-				pageCurrent = parseInt($(this).text());
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadMyCollection(json);
-			})
-			$(".next").click(function() {
-				pageCurrent = pageCurrent + 1;
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadMyCollection(json);
-			})
-			$(".upper").click(function() {
-				pageCurrent = pageCurrent - 1;
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadMyCollection(json);
-			})
-		}
-	})
-}*/

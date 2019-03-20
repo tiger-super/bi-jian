@@ -1,6 +1,9 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loadHouseInforMation();
+	$(".select").click(function(){
+		select();
+	})
 })
 function loadHouseInforMation(){
 	$.ajax({
@@ -102,4 +105,24 @@ function renderIngInformation(house) {
 							+ house.applicationTime
 							+ "前申请</span>"
 							+ "</div></div></div> <div class='col-sm-2 button-div'><button type='button' class='btn btn-default btn-sm btn-info approval'>审阅</button></div>");
+}
+
+
+
+function select(){
+	$.ajax({
+		url : '/manage/session/audit/house/with/id',
+		dataType : "json",
+		type : "post",
+		data : {"houseId":$("#searchHouse").val()},
+		success : function(result) {
+			if(result.result){
+				$(".house-information-list-window").empty();
+				$(".page-window").empty();
+				renderIngInformation(result.house);
+			}else{
+				alert("无该房源");
+			}
+		}
+	})
 }

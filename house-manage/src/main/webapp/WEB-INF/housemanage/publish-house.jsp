@@ -11,13 +11,13 @@
 </head>
 <body>
 <div class="col-sm-12 search-window">
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" autocomplete="off">
 <div class="form-group">
     <div class="col-sm-9">
       <input type="text" class="form-control" placeholder="请输入房源id" id="searchHouse">
     </div>
     <div class="col-sm-2 button-window">
-    <button type="submit" class="btn btn-info btn-lg btn-block">查询</button>
+      <button type="button" class="btn btn-info btn-lg btn-block select">查询</button>
     </div>
   </div>
 </form>

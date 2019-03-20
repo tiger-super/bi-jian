@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.house.entity.AuditingFail;
+import com.house.entity.House;
 import com.house.entity.Page;
 import com.manage.service.impl.HouseManageServiceImpl;
 
@@ -57,4 +58,17 @@ public class HouseControl {
         map.put("result",result);
 		return map;
 	}
+	
+	@RequestMapping("/session/audit/house/with/id")
+	@ResponseBody
+	public Map<String,Object> getAuditingHouseWithId(House house){
+		return houseManageService.getAuditingHouseFromId(house.getHouseId());
+	}
+	
+	@RequestMapping("/session/public/house/with/id")
+	@ResponseBody
+	public Map<String,Object> getPublicHouseWithId(House house){
+		return houseManageService.getPublicHouseFromId(house.getHouseId());
+	}
+	
 }

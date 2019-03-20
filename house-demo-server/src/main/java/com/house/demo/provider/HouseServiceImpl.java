@@ -9,10 +9,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.house.HouseService;
+import com.house.entity.AuditingFail;
 import com.house.entity.Device;
 import com.house.entity.House;
 import com.house.entity.HouseInfo;
 import com.house.entity.Page;
+import com.house.mapper.CollectionManagementMapper;
 import com.house.mapper.DeviceManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.AnalysisXML;
@@ -28,30 +30,40 @@ public class HouseServiceImpl implements HouseService {
 	@Autowired
 	DeviceManagementMapper deviceManagementMapper;
 	@Autowired
+	CollectionManagementMapper collectionManagementMapper;
+	@Autowired
 	AnalysisXML ax;
-
+    @Autowired
+    FileUtil fu;
 	// 房源发布
 	@Override
-	public String housePublish(List<byte[]> list, House house) {
+	public String housePublish(String folder, House house) {
+		//获得缓存路径
+		String readPath = ax.getName(AnalysisXML.HOUSECACHEKEEP);
+		//拿到缓存图片
+		List<byte[]> list = fu.readImg(folder, readPath);
+		//获得保存地址
 		String houseKeepAddress = ax.getName(AnalysisXML.HOUSEKEEPADDRESS);
+		//创建新的文件夹
 		String houseFolder = PhoneAddressCreate.createAddress(house.getHousePublisherId());
+		//对象保存文件夹
 		house.getHouseInfo().setHouseImageAddress(houseFolder);
 		for (int i = 0; i < list.size(); i++) {
+			//给各张图片创建名字
 			String houseImageAddress = PhoneAddressCreate.createAddress(house.getHousePublisherId());
-			// 本地路径
 			StringBuffer path = new StringBuffer();
-			try {
-				path.append(houseKeepAddress+ houseFolder);
-				new File(path.toString()).mkdirs();
+				path.append(houseKeepAddress + houseFolder);
+				//创建文件夹
+				fu.createFolder(path.toString());
 				path.append("/" + houseImageAddress + ".jpg");
-				FileUtil.fileupload(list.get(i), path.toString());
-			} catch (IOException e) {
-				e.printStackTrace();
-				return "false";
-			}
-
+				try {
+					FileUtil.fileupload(list.get(i), path.toString());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
-        house.setApplicationTime(Time.getNowTime());
+		house.setApplicationTime(Time.getNowTime());
 		houseManagementMapper.insertHouse(house);
 		houseManagementMapper.insertHouseInfo(house);
 		deviceManagementMapper.inserDeviceInfo(house);
@@ -125,8 +137,14 @@ public class HouseServiceImpl implements HouseService {
 		page.setPageTotal(houseManagementMapper.getHouseInformationTotal(house));
 		page.setPageMax((int) Math.ceil((double) page.getPageTotal() / page.getPageNumber()));
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("list", FileUtil.readHouseImg(list, houseVisitAddress, houseKeepAddress));
+		for(int i = 0 ; i < list.size() ; i++) {
+			House value = list.get(i);
+			String imageFolder = value.getHouseInfo().getHouseImageAddress();
+			value.getHouseInfo().setHouseImageAddress(FileUtil.getObjectImgVisitPath(imageFolder, houseVisitAddress, houseKeepAddress));
+		}
+		result.put("list", list);
 		result.put("page", page);
+		result.put("result", true);
 		return result;
 	}
 
@@ -142,7 +160,12 @@ public class HouseServiceImpl implements HouseService {
 		page.setPageTotal(houseManagementMapper.selectPublishSituationTotal(house));
 		page.setPageMax((int) Math.ceil((double) page.getPageTotal() / page.getPageNumber()));
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("list", FileUtil.readHouseImg(list, houseVisitAddress, houseKeepAddress));
+		for(int i = 0 ; i < list.size() ; i++) {
+			House value = list.get(i);
+			String imageFolder = value.getHouseInfo().getHouseImageAddress();
+			value.getHouseInfo().setHouseImageAddress(FileUtil.getObjectImgVisitPath(imageFolder, houseVisitAddress, houseKeepAddress));
+		}
+		result.put("list", list);
 		result.put("page", page);
 		return result;
 	}
@@ -172,4 +195,71 @@ public class HouseServiceImpl implements HouseService {
 			return false;
 		}
 	}
+
+	@Override
+	public Map<String, Object> houseReasonService(String houseId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		AuditingFail af = houseManagementMapper.selectFailReasonFromHouseId(houseId);
+		if (af != null) {
+			map.put("reason", af);
+			map.put("result", true);
+		} else {
+			map.put("result", false);
+		}
+		return map;
+	}
+
+	@Override
+	public List<String> cacheHouseImg(byte[] houseImg, String folder,String suffixName,String id) {
+		String cacheAddress = ax.getName(AnalysisXML.HOUSECACHEKEEP);
+		// 图片保存
+		fu.keepImg(houseImg, folder, suffixName, cacheAddress,id);
+		// 访问缓存图片
+		List<String> imgVisit = fu.cacheVistPath(folder, ax.getName(AnalysisXML.HOUSECACHEVISIT), cacheAddress);
+		return imgVisit;
+	}
+
+	@Override
+	public Map<String, Object> againHouseService(String houseId) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		House house = getHouseInformation(houseId);
+		String folder = house.getHouseInfo().getHouseImageAddress();
+		map.put("folder",folder);
+		map.put("house",house);
+		StringBuffer houseKeepFolderPath = new StringBuffer();
+		houseKeepFolderPath.append(ax.getName(AnalysisXML.HOUSEKEEPADDRESS)).append(folder);
+		List<String> houseImgS = fu.getFolderValue(houseKeepFolderPath.toString());
+		StringBuffer cacheFolder = new StringBuffer();
+		cacheFolder.append(ax.getName(AnalysisXML.HOUSECACHEKEEP)).append(folder);
+		fu.createFolder(cacheFolder.toString());
+		StringBuffer cacheVisitFolder = new StringBuffer();
+		cacheVisitFolder.append(ax.getName(AnalysisXML.HOUSECACHEVISIT)).append(folder);
+		List<String> houseImgVisit = new ArrayList<String>();
+		for(int i = 0 ; i < houseImgS.size() ; i++) {
+			String img = houseImgS.get(i);
+			StringBuffer houseImgPath = new StringBuffer();
+			StringBuffer houseImgCachePath = new StringBuffer();
+			houseImgPath.append(houseKeepFolderPath.toString()).append("/").append(img);
+			houseImgCachePath.append(cacheFolder.toString()).append("/").append(img);
+			byte[] houseImageBinary = FileUtil.getImageBinary(houseImgPath.toString());
+			try {
+				FileUtil.fileupload(houseImageBinary, houseImgCachePath.toString());
+				StringBuffer houseImgVisitPath = new StringBuffer();
+				houseImgVisitPath.append(cacheVisitFolder.toString()).append("/").append(img);
+				houseImgVisit.add(houseImgVisitPath.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		map.put("list",houseImgVisit);
+		return map;
+	}
+
+	@Override
+	public void deleteAndUpdateInformation(String houseId) {
+		houseManagementMapper.deleteHouseHouseInfoWithId(houseId);
+		houseManagementMapper.deleteHouseWithId(houseId);
+		deviceManagementMapper.deleteDeviceWithId(houseId);
+	}
+	
 }

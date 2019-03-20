@@ -8,4 +8,10 @@ public class PhoneAddressCreate {
     	sb.append(id).append(String.valueOf(time));
     	return sb.toString();
     }
+    public static String createAddress() {
+    	long time = System.currentTimeMillis();
+    	StringBuffer sb = new StringBuffer();
+    	sb.append(String.valueOf(time));
+    	return sb.toString();
+    }
 }

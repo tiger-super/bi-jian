@@ -12,13 +12,13 @@
 </head>
 <body>
 <div class="col-sm-12 search-window">
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" autocomplete="off">
 <div class="form-group">
     <div class="col-sm-9">
       <input type="text" class="form-control" placeholder="请输入员工id" id="searchHouse">
     </div>
     <div class="col-sm-2 button-window">
-    <button type="submit" class="btn btn-info btn-lg btn-block">查询</button>
+    <button type="button" class="btn btn-info btn-lg btn-block select">查询</button>
     </div>
   </div>
 </form>
@@ -26,7 +26,7 @@
 	<table class="table table-bordered">
 		<caption>员工数据表</caption>
 		<thead class="employee-thead">
-			<tr>
+			<tr class="employee-title">
 				<th>员工id</th>
 				<th>员工头像</th>
 				<th>员工姓名</th>
@@ -37,7 +37,6 @@
 				<th>员工邮箱</th>
 				<th>员工住址</th>
 				<th>入职时间</th>
-				<th>操作按钮</th>
 			</tr>
 		</thead>
 		<tbody class="employee-tbody">

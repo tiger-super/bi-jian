@@ -13,9 +13,11 @@ import com.house.entity.Employee;
 import com.house.entity.Page;
 import com.manage.dao.EmployeeManageDao;
 import com.manage.service.EmployeeManageService;
+import com.manage.tool.AnalysisXML;
 import com.manage.tool.FileUtil;
 import com.manage.tool.ImageTool;
 import com.manage.tool.Time;
+
 @Service
 public class EmployeeManageServiceImpl implements EmployeeManageService {
 	@Autowired
@@ -24,6 +26,9 @@ public class EmployeeManageServiceImpl implements EmployeeManageService {
 	EmployeeManageDao employeeManageDao;
 	@Autowired
 	ImageTool hit;
+	@Autowired
+	AnalysisXML ax;
+
 	@Override
 	public String cacheEmployeeImg(MultipartFile multipartFile) {
 		// 获取文件名称,包含后缀
@@ -32,6 +37,7 @@ public class EmployeeManageServiceImpl implements EmployeeManageService {
 		String employeeImgAddress = fileUtil.cacheFile(suffix, multipartFile);
 		return employeeImgAddress;
 	}
+
 	@Override
 	public String addEmployeeService(Employee employee) {
 		try {
@@ -43,11 +49,12 @@ public class EmployeeManageServiceImpl implements EmployeeManageService {
 		int employeeId = employeeManageDao.insertEmployee(employee);
 		return String.valueOf(employeeId);
 	}
+
 	@Override
 	public Map<String, Object> getEmployee(Page page) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int pageTotal = employeeManageDao.selectTotalEmployee();
-		if(pageTotal == 0) {
+		if (pageTotal == 0) {
 			return map;
 		}
 		double max = (double) pageTotal / page.getPageNumber();
@@ -64,15 +71,32 @@ public class EmployeeManageServiceImpl implements EmployeeManageService {
 		map.put("list", list);
 		return map;
 	}
+
 	@Override
 	public boolean modifyPasswordService(Employee employee) {
 		int result = employeeManageDao.updateEmployeePassword(employee);
-		if(result == 1) {
+		if (result == 1) {
 			return true;
-		}else {
-		return false;
+		} else {
+			return false;
 		}
 	}
-	
+
+	@Override
+	public Map<String, Object> getEmployeeWithEmployeeId(String employeeId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Employee employee = employeeManageDao.quaryEmployeeFromEmployeeId(employeeId);
+		if (employee == null) {
+			map.put("result", false);
+		} else {
+			StringBuffer visit = new StringBuffer();
+			visit.append(ax.getName(AnalysisXML.EMPLOYEEVISITADDRESS));
+			visit.append(employee.getEmployeeImgAddress());
+			employee.setEmployeeImgAddress(visit.toString());
+			map.put("result", true);
+			map.put("employee", employee);
+		}
+		return map;
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.house.control;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import com.house.entity.Customer;
 @SessionAttributes(value= {"customerSession"},types={Customer.class})
 public class RegisterAndLoginController {
 	@Reference
-	private RegisterAndLoginService registerAndService;
+	private RegisterAndLoginService registerAndLoginService;
 	@Reference
 	private PersonInfoService personInfoService;
 
@@ -26,17 +27,19 @@ public class RegisterAndLoginController {
 	@RequestMapping("/handle/register")
 	@ResponseBody
 	public String handleRegiseter(Customer customer) {
-		return registerAndService.registerService(customer);
+		return registerAndLoginService.registerService(customer);
 	}
 
 	// 处理登录
 	@RequestMapping("/handle/login")
 	@ResponseBody
-	public String handleLogin(Customer customer,Map<String,Customer> map) {
-		String result =  registerAndService.loginSystemService(customer);
-		 if("true".equals(result)) {
+	public Map<String,String> handleLogin(Customer customer,Map<String,Customer> map) {
+		Map<String,String> result = new HashMap<String,String>();
+		String value =  registerAndLoginService.loginSystemService(customer);
+		 if("true".equals(value)) {
 		 map.put("customerSession",personInfoService.queryCustomerIdAndCustomerName(customer));
 		 }
+		 result.put("result",value);
 		return result;
 	}
 	

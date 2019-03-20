@@ -83,7 +83,11 @@
 					style="margin: 0px;"></div>
 			</div>
 			
-
+            <div class="form-group">
+				<div class="alert alert-warning hide result-tips"
+					style="margin: 0px;"></div>
+			</div>
+			
 			<div class="form-group">
 				<button class="btn btn-primary btn-block">登录</button>
 			</div>

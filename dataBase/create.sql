@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2019-03-14 10:41:03
+Date: 2019-03-20 13:07:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,6 +29,7 @@ CREATE TABLE `auditing_fail` (
 -- ----------------------------
 -- Records of auditing_fail
 -- ----------------------------
+INSERT INTO `auditing_fail` VALUES ('10016', '信息有误', '2019-03-16 09:05:46');
 
 -- ----------------------------
 -- Table structure for chat
@@ -59,6 +60,7 @@ CREATE TABLE `collection` (
 -- ----------------------------
 -- Records of collection
 -- ----------------------------
+INSERT INTO `collection` VALUES ('2', '10002', '2019-03-20 12:46:14');
 
 -- ----------------------------
 -- Table structure for customer
@@ -115,32 +117,34 @@ CREATE TABLE `device` (
 -- ----------------------------
 -- Records of device
 -- ----------------------------
-INSERT INTO `device` VALUES ('10000', '1', '1', 'on', '1', '1', null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10001', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10002', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10000', '1', '1', '1', '1', '1', null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10001', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10002', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, null);
 INSERT INTO `device` VALUES ('10003', '1', null, null, null, null, null, null, null, '1', null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10004', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
-INSERT INTO `device` VALUES ('10005', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
+INSERT INTO `device` VALUES ('10004', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
+INSERT INTO `device` VALUES ('10005', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
 INSERT INTO `device` VALUES ('10006', '1', null, null, '1', '1', null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10007', '1', null, 'on', '1', '1', null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10007', '1', null, '1', '1', '1', null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, '1');
 INSERT INTO `device` VALUES ('10008', '1', null, null, null, null, '1', null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
 INSERT INTO `device` VALUES ('10009', '1', null, null, null, null, null, null, '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10010', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
+INSERT INTO `device` VALUES ('10010', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
 INSERT INTO `device` VALUES ('10011', '1', '1', null, '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, null);
-INSERT INTO `device` VALUES ('10012', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
-INSERT INTO `device` VALUES ('10013', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', null);
+INSERT INTO `device` VALUES ('10012', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', '1');
+INSERT INTO `device` VALUES ('10013', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, '1', '1', null);
 INSERT INTO `device` VALUES ('10014', '1', '1', null, '1', '1', null, null, '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10015', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
-INSERT INTO `device` VALUES ('10016', '1', null, 'on', null, '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10017', '1', '1', 'on', '1', '1', null, null, null, '1', null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10018', '1', '1', 'on', '1', '1', '1', '1', '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10015', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10016', '1', null, '1', null, '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10017', '1', '1', '1', '1', '1', null, null, null, '1', null, '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10018', '1', '1', '1', '1', '1', '1', '1', '1', null, null, '1', '1', null, '1', null, null, null, null, null, null);
 INSERT INTO `device` VALUES ('10019', '1', '1', null, '1', '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10020', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, null, null, null);
-INSERT INTO `device` VALUES ('10021', '1', '1', 'on', '1', '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10022', '1', '1', 'on', '1', null, null, null, '1', '1', null, '1', '1', null, '1', null, null, null, null, null, null);
-INSERT INTO `device` VALUES ('10024', '1', '1', 'on', '1', null, null, '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
-INSERT INTO `device` VALUES ('10025', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
-INSERT INTO `device` VALUES ('10026', '1', '1', 'on', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10020', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', '1', null, null, null, null);
+INSERT INTO `device` VALUES ('10021', '1', '1', '1', '1', '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10022', '1', '1', '1', '1', null, null, null, '1', '1', null, '1', '1', null, '1', null, null, null, null, null, null);
+INSERT INTO `device` VALUES ('10024', '1', '1', '1', '1', null, null, '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10025', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', '1', null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10026', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', null, '1', null, null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10027', '1', null, null, '1', null, '1', '1', '1', null, null, '1', '1', null, '1', null, null, null, null, null, '1');
+INSERT INTO `device` VALUES ('10028', '1', null, '1', null, '1', null, null, '1', null, null, '1', '1', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for employee
@@ -185,14 +189,14 @@ CREATE TABLE `house` (
   `follow_number` varchar(200) DEFAULT '0' COMMENT '房源收藏数量',
   `application_time` varchar(200) DEFAULT NULL COMMENT '房源的申请时间',
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10027 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10029 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of house
 -- ----------------------------
 INSERT INTO `house` VALUES ('10000', '贝塔青年社区 · 桂城店', '广东省', '佛山市', '南海区', '格沙工业区E9座101号', '1', '1', '1', '2019-03-11 01:23:14', '1', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10001', '万科泊寓 · 石啃店', '广东省', '佛山市', '南海区', '南海区教育路与桂业路交汇处', '1', '1', '1', '2019-03-11 01:23:22', '1', '2019-2-19 11:39:49');
-INSERT INTO `house` VALUES ('10002', '尔必公寓 · 桂城夏西罗芳西便公安横巷1号', '广东省', '佛山市', '南海区', '桂城夏西罗芳西便公安横巷1号', '1', '1', '1', '2019-03-11 01:23:16', '1', '2019-2-19 11:39:49');
+INSERT INTO `house` VALUES ('10002', '尔必公寓 · 桂城夏西罗芳西便公安横巷1号', '广东省', '佛山市', '南海区', '桂城夏西罗芳西便公安横巷1号', '1', '1', '1', '2019-03-11 01:23:16', '2', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10003', '微乐寓 · 明珠店', '广东省', '佛山市', '禅城区', '文华北路河边街64号', '1', '1', '1', '2019-03-11 01:23:29', '0', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10004', '嘉信城市花园 家私家电齐 精装修', '广东省', '佛山市', '顺德区', '佛山市顺德区呈祥路6号', '1', '1', '1', '2019-03-11 12:45:37', '1', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10005', '江南名居 方正三房', '广东省', '佛山市', '南海区', '广东省佛山市南海区南一路39', '1', '1', '1', '2019-02-19 13:15:43', '0', '2019-2-19 11:39:49');
@@ -206,7 +210,7 @@ INSERT INTO `house` VALUES ('10012', '南海颐景园 4室2厅', '广东省', '�
 INSERT INTO `house` VALUES ('10013', '中海寰宇天下 3室2厅', '广东省', '佛山市', '南海区', '桂澜中路18号', '1', '0', '1', '2019-03-06 12:02:12', '1', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10014', '百年汇国际公寓 · 怡翠世嘉店', '广东省', '佛山市', '南海区', '怡翠世嘉花园16栋', '1', '0', '1', '2019-03-11 12:50:08', '0', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10015', '经典温馨舒适大二房，南望怡翠公园', '广东省', '佛山市', '南海区', '华翠南路与桂平西路交汇处', '1', '0', '1', '2019-03-11 12:50:10', '0', '2019-2-19 11:39:49');
-INSERT INTO `house` VALUES ('10016', '蓝万公寓 · 金色领域', '广东省', '佛山市', '南海区', '南湾大道与香基路交叉口东北50米', '1', '0', '0', null, '0', '2019-2-19 11:39:49');
+INSERT INTO `house` VALUES ('10016', '蓝万公寓 · 金色领域', '广东省', '佛山市', '南海区', '南湾大道与香基路交叉口东北50米', '1', '-1', '0', null, '0', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10017', '有家公寓-狮山广场店', '广东省', '佛山市', '南海区', '狮山镇政协路旁边', '1', '0', '0', null, '0', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10018', '河畔雅苑公寓 · 里水河村店', '广东省', '佛山市', '南海区', '里水镇河村月池村墨园街六巷11号', '1', '0', '0', null, '0', '2019-2-19 11:39:49');
 INSERT INTO `house` VALUES ('10019', '爱加公寓 · 里水店', '广东省', '佛山市', '南海区', '里水镇新联桥一旧村37号', '1', '0', '1', '2019-02-19 13:25:08', '1', '2019-2-19 11:39:49');
@@ -217,6 +221,8 @@ INSERT INTO `house` VALUES ('10023', '银滩万泉城', '广东省', '梅州市'
 INSERT INTO `house` VALUES ('10024', '珠江半岛花园 3室2厅', '广东省', '佛山市', '南海区', '黄歧北村大桥', '1', '0', '0', null, '0', '2019-3-01 11:39:49');
 INSERT INTO `house` VALUES ('10025', '寓米公寓 · 碧桂园华府店', '广东省', '佛山市', '三水区', '贤兴一街2号', '2', '0', '0', null, '0', '2019-3-02 11:39:49');
 INSERT INTO `house` VALUES ('10026', '岭南天地复式4房 采光通透 安静舒适 复式', '广东省', '佛山市', '禅城区', '禅城兆祥路33号', '2', '0', '0', null, '0', '2019-3-03 11:39:49');
+INSERT INTO `house` VALUES ('10027', '碧水湾', '广东省', '佛山市', '南海区', '黄岐北村大桥西侧', '1', '0', '0', null, '0', '2019-03-18 10:30:08');
+INSERT INTO `house` VALUES ('10028', '蓝万公寓 · 金色领域', '广东省', '佛山市', '南海区', '南湾大道与香基路交叉口东北50米', '1', '0', '0', null, '0', '2019-03-20 12:53:00');
 
 -- ----------------------------
 -- Table structure for house_info
@@ -266,6 +272,8 @@ INSERT INTO `house_info` VALUES ('10022', '1', '公寓', '2200', '65', '东南',
 INSERT INTO `house_info` VALUES ('10024', '1', '商品房', '1700', '100', '南', '租售', '押一付一', '交通方便，环境优美', '11551893097839', '3室2厅1卫');
 INSERT INTO `house_info` VALUES ('10025', '2', '公寓', '1500', '', '南北', '租售', '押一付一', '三水寓米酒店公寓为您提供舒适安全的居住环境。', '21551948625520', '1室1厅1卫');
 INSERT INTO `house_info` VALUES ('10026', '2', '商品房', '8000', '200', '南', '租售', '押一付一', '【交通出行】楼下普君北路公交站，市十中公交站，普君北路地铁站。北向是东方广场，南向是普君市场，西向是祖庙，东向是桂城，交通十分便利。【周边配套】普君市场，百佳超市，普君北路地铁站，兆祥公园，普君步行街，市二医院，佛山远大医院，佛山第十中学，佛山第十一中学，佛山第九小学，兴业银行，农业银行，建设银行等【小区介绍】小区位于普君北路地铁站，小区楼下就是地铁C出口。小区共为3栋5座楼，在兆祥路和市东下路交汇处。停车位充足，物管处月租800元，含管理费。', '21551950152763', '4室2厅3卫');
+INSERT INTO `house_info` VALUES ('10027', '1', '商品房', '3300', '132', '东南', '租售', '押一付一', '环境好，交通便利', '11552876208608', '3室2厅2卫');
+INSERT INTO `house_info` VALUES ('10028', '1', '公寓', '1450', '39', '东南', '租售', '押一付一', '品质租房，时尚白领，写意生活', '11553057580326', '1室0厅1卫');
 
 -- ----------------------------
 -- Table structure for website_count
@@ -288,4 +296,10 @@ INSERT INTO `website_count` VALUES ('2019-03-10', '33', '15', '2');
 INSERT INTO `website_count` VALUES ('2019-03-11', '40', '14', '3');
 INSERT INTO `website_count` VALUES ('2019-03-12', '30', '16', '1');
 INSERT INTO `website_count` VALUES ('2019-03-13', '60', '15', '1');
-INSERT INTO `website_count` VALUES ('2019-03-14', '44', '17', '3');
+INSERT INTO `website_count` VALUES ('2019-03-14', '44', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-15', '61', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-16', '48', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-17', '34', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-18', '4', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-19', '0', '16', '1');
+INSERT INTO `website_count` VALUES ('2019-03-20', '19', '0', '0');

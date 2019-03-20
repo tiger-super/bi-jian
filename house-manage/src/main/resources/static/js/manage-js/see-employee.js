@@ -1,11 +1,13 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loademployeeInformation();
+	$(".select").click(function(){
+		select();
+	})
 })
 
 function loademployeeInformation() {
-	$
-			.ajax({
+	$.ajax({
 				url : '/manage/session/get/employee/information',
 				dataType : "json",
 				type : "post",
@@ -17,78 +19,87 @@ function loademployeeInformation() {
 					$(".employee-tbody").empty();
 					if (list != null) {
 						for (let i = 0; i < list.length; i++) {
-							$(".employee-tbody")
-									.append(
-											"<tr><td class='employeeId' value='"
-													+ list[i].employeeId
-													+ "'>"
-													+ list[i].employeeId
-													+ "</td>"
-													+ "<td><img class='employeeImg' src='"
-													+ list[i].employeeImgAddress
-													+ "'></td><td>"
-													+ list[i].employeeName
-													+ "</td><td>"
-													+ list[i].employeeSex
-													+ "</td>"
-													+ "<td>"
-													+ list[i].employeeAge
-													+ "</td><td>"
-													+ list[i].employeePassword
-													+ "</td><td>"
-													+ list[i].employeePhone
-													+ "</td>"
-													+ "<td>"
-													+ list[i].employeeMailbox
-													+ "</td>"
-													+ "<td>"
-													+ list[i].employeeAddress
-													+ "</td><td>"
-													+ list[i].entryTime
-													+ "</td><td>"
-													+ "<button type='button' class='btn btn-warning add-black'>删除</button></td></tr>");
+							showResult(list[i]);
+						}
+						if(result.role == '超级管理员'){
+							$(".employee-title").append("<th class='button-th'>操作按钮</th>");
+							showDelete();
 						}
 						$(".employee-tbody td").css("line-height",
 								$(".employee-tbody td").outerHeight(true) + "px");
 						showPageView(result.page);
-						$(".add-black")
-								.click(
-										function() {
-											let employeeId = $(this).parents(
-													"tr").children("td").eq(0)
-													.text()
-											$
-													.ajax({
-														url : '/manage/modify/black/state',
-														dataType : "json",
-														type : "post",
-														data : {
-															"pageCurrent" : pageCurrent,
-															"condition" : "1",
-															"employeeId" : employeeId
-														},
-														success : function(
-																result) {
-															if (result.result == true) {
-																if (result.page.pageCurrent != 0) {
-																	pageCurrent = result.page.pageCurrent;
-																} else if (result.page.pageCurrent == 0) {
-																	pageCurrent = 1;
-																}
-																loademployeeInformation();
-															} else {
-																alert("操作失败");
-															}
-														}
-													})
-										})
-					}
-				}
-
+					}}
 			});
 
 }
-
+function showResult(employee){
+	$(".employee-tbody")
+	.append(
+			"<tr><td class='employeeId' value='"
+					+ employee.employeeId
+					+ "'>"
+					+ employee.employeeId
+					+ "</td>"
+					+ "<td><img class='employeeImg' src='"
+					+ employee.employeeImgAddress
+					+ "'></td><td>"
+					+ employee.employeeName
+					+ "</td><td>"
+					+ employee.employeeSex
+					+ "</td>"
+					+ "<td>"
+					+ employee.employeeAge
+					+ "</td><td>"
+					+ employee.employeePassword
+					+ "</td><td>"
+					+ employee.employeePhone
+					+ "</td>"
+					+ "<td>"
+					+ employee.employeeMailbox
+					+ "</td>"
+					+ "<td>"
+					+ employee.employeeAddress
+					+ "</td><td>"
+					+ employee.entryTime
+					+ "</td></tr>");
+}
+function showDelete(){
+	$(".employee-tbody tr").append("<td><button type='button' class='btn btn-warning delete'>删除</button></td>");
+	/*$(".add-black")
+	.click(
+			function() {
+				let employeeId = $(this).parents(
+						"tr").children("td").eq(0)
+						.text()
+				$
+						.ajax({
+							url : '/manage/modify/black/state',
+							dataType : "json",
+							type : "post",
+							data : {
+								"pageCurrent" : pageCurrent,
+								"condition" : "1",
+								"employeeId" : employeeId
+							},
+							success : function(
+									result) {
+								if (result.result == true) {
+									if (result.page.pageCurrent != 0) {
+										pageCurrent = result.page.pageCurrent;
+									} else if (result.page.pageCurrent == 0) {
+										pageCurrent = 1;
+									}
+									loademployeeInformation();
+								} else {
+									alert("操作失败");
+								}
+							}
+						})
+			})
+}
+}*/
+   
+}
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -142,6 +153,29 @@ function showPageView(page) {
 			})
 			$("#load", parent.document).css("height",
 					$(document).outerHeight(true) + "px");
+		}
+	})
+}
+
+
+function select(){
+	$.ajax({
+		url : '/manage/session/select/employee',
+		dataType : "json",
+		type : "post",
+		data : {"employeeId":$(".select").val()},
+		success : function(result) {
+			if(result.result){
+				$(".employee-tbody").empty();
+				showResult(result.employee);
+				if(result.role == '超级管理员'){
+					$("th").remove(".button-th");
+					$(".employee-title").append("<th class='button-th'>操作按钮</th>");
+					showDelete();
+				}
+			}else{
+				loademployeeInformation();
+			}
 		}
 	})
 }

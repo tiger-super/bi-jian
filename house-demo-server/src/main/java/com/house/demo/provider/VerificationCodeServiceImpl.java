@@ -20,9 +20,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
 		e.printStackTrace();
 		 return null;
 	}
-	  System.out.println("resultSend:"+resultSend);
+	
 	  if(resultSend) {
-		  System.out.println("准备返回结果");
 		  return  verificationCodeText;
 	  }else {
 		  return null;

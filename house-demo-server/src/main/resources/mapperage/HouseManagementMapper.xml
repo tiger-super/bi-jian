@@ -29,8 +29,8 @@
 	<select id="selectHouseAccordingHouseId" parameterType="String"
 		resultType="com.house.entity.House">
 		select house_id,
-		house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number
-		from house where house_id = #{parameter}
+		house_name,house_address_province,house_address_city,house_address_area,house_address_info,house_publisher_id,follow_number,
+		house_auditing_state from house where house_id = #{parameter}
 	</select>
 	<!-- 查询房源详细信息 -->
 	<select id="selectHouseInfoAccordingHouseId"
@@ -219,7 +219,7 @@
 
 	
 	<delete id="deleteHouseDao" parameterType="com.house.entity.House">
-	delete from house where house_id = #{houseId} and house_publisher_id = #{housePublisherId }
+	delete from house where house_id = #{houseId} and house_publisher_id = #{housePublisherId}
 	</delete>
 	
 	
@@ -239,4 +239,15 @@
             #{houseId}  
          </foreach> 
 	</select>
+	
+	<select id="selectFailReasonFromHouseId" parameterType="java.lang.String" resultType="com.house.entity.AuditingFail">
+	select * from auditing_fail where house_id = #{parameter}
+	</select>
+	<delete id="deleteHouseWithId" parameterType="java.lang.String" >
+	delete from house where house_id = #{parameter}
+	</delete>
+	
+	<delete id="deleteHouseHouseInfoWithId" parameterType="java.lang.String" >
+	delete from house_info where house_id = #{parameter}
+	</delete>
 </mapper>
