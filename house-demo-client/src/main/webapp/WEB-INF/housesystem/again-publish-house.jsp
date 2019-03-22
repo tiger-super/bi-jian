@@ -497,8 +497,6 @@ select($(".office option"),'${map.house.houseInfo.houseStructure}'.substring(2,3
 select($(".toilet option"),'${map.house.houseInfo.houseStructure}'.substring(4,5)+"卫");
 select($(".depoitway option"),'${map.house.houseInfo.houseDepoitWay}');
 select($(".direction option"),'${map.house.houseInfo.houseDirection}');
-/* let folder = ${(map.list[0].split("/"))[4]};
-document.cookie="folder="+folder; */
 })
 function select(div,value){
 	let length = div.length;

@@ -70,5 +70,10 @@ public class HouseControl {
 	public Map<String,Object> getPublicHouseWithId(House house){
 		return houseManageService.getPublicHouseFromId(house.getHouseId());
 	}
-	
+	@RequestMapping("/lower/house")
+	@ResponseBody
+	public Map<String,Boolean> lowerHouse(String houseId) {
+		Map<String,Boolean> map = houseManageService.lowerHouseFromId(houseId);
+		return map;
+	}
 }

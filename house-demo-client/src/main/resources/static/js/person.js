@@ -528,7 +528,7 @@ function modifyHouseState(data, text) {
 		dataType : "json",
 		data : data,
 		success : function(result) {
-			if (result == true) {
+			if (result.result == true) {
 				alert(text);
 				let json = {};
 				json.pageCurrent = pageCurrent;
@@ -543,6 +543,8 @@ function modifyHouseState(data, text) {
 					json.houseAuditingState = "-1";
 				}
 				loadHouseInfo(json);
+			}else{
+				alert(result.text);
 			}
 		}
 	})

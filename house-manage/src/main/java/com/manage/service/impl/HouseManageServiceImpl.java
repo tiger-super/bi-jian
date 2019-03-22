@@ -1,6 +1,4 @@
 package com.manage.service.impl;
-
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +89,7 @@ public class HouseManageServiceImpl implements HouseManageService {
 	@Override
 	public Map<String, Object> getPublishHouse(Page page) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int pageTotal = houseManageDao.selectTotalToBeAuditingHouse();
+		int pageTotal = houseManageDao.selectTotalHasBeenPublishHouse();
 		if(pageTotal == 0) {
 			return map;
 		}
@@ -136,6 +134,21 @@ public class HouseManageServiceImpl implements HouseManageService {
 			house.getHouseInfo().setHouseImageAddress(it.getHouseImage(imgFolder));
 			map.put("result",true);
 			map.put("house",house);
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Boolean> lowerHouseFromId(String houseId) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		House house = new House();
+		house.setHouseId(houseId);
+		house.setHousePublisherState("0");
+		int result = houseManageDao.updateHousePublisherStateFormHouseId(house);
+		if(result == 1) {
+			map.put("result",true);
+		}else {
+			map.put("result",false);
 		}
 		return map;
 	}

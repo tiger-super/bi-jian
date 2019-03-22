@@ -22,6 +22,7 @@ var isDescripe = false;
 // 房屋配置
 var isHouseDevice = false;
 $(document).ready(function() {
+	console.log($(".content-title").attr("old-id"));
 	$(".select-address-content").hide();
 	$(".province").click(function() {
 		showProvince();
@@ -260,10 +261,14 @@ function transformationJson(data) {
 
 	var text = $(".house-descripe").val().replace(/\s|\xA0/g,"");
 	var index = data.lastIndexOf("&houseInfo.houseDescripe");
+	let houseId = $(".content-title").attr("old-id");
 	data = data.substring(0,index);
 	data = data + "&houseAddressProvince=" + houseAddressProvince
 			+ "&houseAddressCity=" + houseAddressCity + "&houseAddressArea="
 			+ houseAddressArea + "&houseInfo.houseStructure=" + houseStructure;
+	if(houseId != undefined){
+		data = data + "&houseId="+houseId;	
+	}
 	data = data.replace(/&/g, "\",\"");
 	data = data.replace(/=/g, "\":\"");
 	data = data+"\",\"houseInfo.houseDescripe\":\""+text;

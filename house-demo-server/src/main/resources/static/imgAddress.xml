@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <address>
-<!-- <houseVisit name="http://47.106.244.224:8080/publish-house-img/"></houseVisit>
+<houseVisit name="http://47.106.244.224:8080/publish-house-img/"></houseVisit>
 <houseKeep name="/usr/tomcat/tomcat8.5/webapps/publish-house-img/"></houseKeep>
 <houseCacheVisit name="http://47.106.244.224:8080/house-img-cache/"></houseCacheVisit>
 <houseCacheKeep name="/usr/tomcat/tomcat8.5/webapps/house-img-cache/"></houseCacheKeep>
 <customerVisit name="http://47.106.244.224:8080/customerPhoto/"></customerVisit>
 <customerKeep name="/usr/tomcat/tomcat8.5/webapps/customerPhoto/"></customerKeep>
-<socket name="47.106.244.224"/> -->
-<socket name="127.0.0.1"/>
+<socket name="47.106.244.224"/>
+<!-- <socket name="127.0.0.1"/> 
 <houseVisit name="http://127.0.0.1:8080/publish-house-img/"></houseVisit>
 <houseKeep name="F:/apache-tomcat-8.5.38/webapps/publish-house-img/"></houseKeep> 
 <houseCacheVisit name="http://127.0.0.1:8080/house-img-cache/"></houseCacheVisit>
 <houseCacheKeep name="F:/apache-tomcat-8.5.38/webapps/house-img-cache/"></houseCacheKeep>
 <customerVisit name="http://127.0.0.1:8080/customerPhoto/"></customerVisit>
-<customerKeep name="F:/apache-tomcat-8.5.38/webapps/customerPhoto/"></customerKeep>
+<customerKeep name="F:/apache-tomcat-8.5.38/webapps/customerPhoto/"></customerKeep> -->
 </address>

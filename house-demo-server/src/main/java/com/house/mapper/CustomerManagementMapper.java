@@ -10,11 +10,13 @@ public interface CustomerManagementMapper {
       * @param customer
       * @return
       */
-	int registerCustomer(Customer customer);
+	public int registerCustomer(Customer customer);
 	/**
 	 * 通过账号返回一个客户类
 	 * @param customerPhone
 	 * @return
 	 */
-	Customer loginSystem(String customerPhone);
+	public Customer loginSystem(String customerPhone);
+	
+	public String ifExistBlack(String customerId);
 }

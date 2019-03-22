@@ -18,6 +18,9 @@ function loadHouseInforMation(){
 			for(let i = 0; i < list.length; i++){
 				 renderIngInformation(list[i]);
 			}
+			$(".lower").click(function(){
+				 lowerHouse($(this).parents(".house-information-div").attr("value"));
+			})
 			$(".see").click(function(){
 				let id = $(this).parents(".house-information-div").attr("value");
 				window.location.href="/manage/session/show/house/information?houseId="+id;          
@@ -27,6 +30,23 @@ function loadHouseInforMation(){
 		}
 	});
 	
+}
+
+function lowerHouse(id){
+	$.ajax({
+		url : '/manage/lower/house',
+		dataType : "json",
+		type : "post",
+		data : {"houseId":id},
+		success : function(result) {
+			if(result.result){
+				alert("已下架");
+				loadHouseInforMation();
+			}else{
+				alert("下加失败");
+			}
+		}
+	})
 }
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;

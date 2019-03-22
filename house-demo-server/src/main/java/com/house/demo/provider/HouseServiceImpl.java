@@ -15,6 +15,7 @@ import com.house.entity.House;
 import com.house.entity.HouseInfo;
 import com.house.entity.Page;
 import com.house.mapper.CollectionManagementMapper;
+import com.house.mapper.CustomerManagementMapper;
 import com.house.mapper.DeviceManagementMapper;
 import com.house.mapper.HouseManagementMapper;
 import com.house.tool.AnalysisXML;
@@ -31,6 +32,8 @@ public class HouseServiceImpl implements HouseService {
 	DeviceManagementMapper deviceManagementMapper;
 	@Autowired
 	CollectionManagementMapper collectionManagementMapper;
+	@Autowired
+	CustomerManagementMapper  customerManagementMapper;
 	@Autowired
 	AnalysisXML ax;
     @Autowired
@@ -171,7 +174,14 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public boolean ModifyHouseState(House house) {
+	public Map<String,Object> ModifyHouseState(House house) {
+		System.out.println(house);
+		Map<String,Object> map = new HashMap<String,Object>();
+		String ifBlack = customerManagementMapper.ifExistBlack(house.getHousePublisherId());
+		if("1".equals(ifBlack)) {
+			map.put("result",false);
+			map.put("text","你已被列入黑名单");
+		}else {
 		if (house.getHousePublisherState() != null && "1".equals(house.getHousePublisherState())) {
 			house.setHousePublisherTime(Time.getNowTime());
 		}
@@ -179,10 +189,13 @@ public class HouseServiceImpl implements HouseService {
 		if (result == 1) {
 			SocketTool st = new SocketTool();
 			st.updateSendSocket("house");
-			return true;
+			map.put("result",true);
 		} else {
-			return false;
+			map.put("result",false);
+			map.put("text","系统发生了未知错误");
 		}
+		}
+		return map;
 	}
 
 	@Override

@@ -41,8 +41,9 @@ public class HouseController {
 	 */
 	@RequestMapping("/session/publish/house")
 	@ResponseBody
-	public Map<String, String> PublishHouse(House house, HttpSession session, HttpServletRequest request,@RequestParam(required = false)String houseId) {
+	public Map<String, String> PublishHouse(House house, HttpSession session, HttpServletRequest request) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
+		String houseId = house.getHouseId();
 		Map<String, String> map = new HashMap<String, String>();
 		String result = null;
 		Cookie[] cookies = request.getCookies();
@@ -58,7 +59,7 @@ public class HouseController {
 		}
 		house.setHousePublisherId(customer.getCustomerId());
 		result = houseService.housePublish(folder, house);
-		if(houseId == null) {
+		if(houseId != null) {
 			houseService.deleteAndUpdateInformation(houseId);
 		}
 			map.put("result", result);			
@@ -189,7 +190,7 @@ public class HouseController {
 
 	@RequestMapping("/session/modify/state")
 	@ResponseBody
-	public boolean modifyHouseState(House house, HttpSession session) {
+	public Map<String,Object> modifyHouseState(House house, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
 		house.setHousePublisherId(customer.getCustomerId());
 		return houseService.ModifyHouseState(house);
@@ -197,7 +198,7 @@ public class HouseController {
 
 	@RequestMapping("/delete")
 	@ResponseBody
-	public boolean deleteHouse(House house, HttpSession session) {
+	public Map<String,Object> deleteHouse(House house, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
 		house.setHousePublisherId(customer.getCustomerId());
 		return houseService.ModifyHouseState(house);

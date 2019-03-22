@@ -41,7 +41,7 @@ $(document).ready(function() {
 				data : {"houseId":houseId,"houseAuditingReason":houseAuditingReason},
 				success : function(result) {
 					if(result.result == true){
-						window.location.href="/manage/show/auditing/houseManageView";
+						window.location.href="/manage/session/show/auditing/houseManageView";
 					}else{
 						alert("系统发生了错误");
 					}

@@ -2,11 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.house.mapper.WebsiteManagementMapper">
-<update id="updateWebsiteWithVisitNumber" parameterType="com.house.entity.WebsiteCount">
-update  website_count set visit_number_today = #{visitNumberToday} where time = #{time}
-</update>
-<select id="selectVisitNumberToday" parameterType="java.lang.String" resultType="java.lang.Integer">
- select visit_number_today from  website_count where time= #{parameter}
-</select>
-    </mapper>
+<mapper namespace="com.house.mapper.WebsiteManagementMapper">
+	<update id="updateWebsiteWithVisitNumber"
+		parameterType="com.house.entity.WebsiteCount">
+		update website_count set visit_number_today = #{visitNumberToday} where time
+		= #{time}
+	</update>
+	<select id="selectVisitNumberToday"
+		parameterType="java.lang.String" resultType="java.lang.Integer">
+		select visit_number_today from website_count where time= #{parameter}
+	</select>
+</mapper>

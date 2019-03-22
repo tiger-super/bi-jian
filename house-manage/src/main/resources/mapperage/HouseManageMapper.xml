@@ -83,5 +83,12 @@
 		h,house_info hi where
 		h.house_id = hi.house_id and  house_publisher_state = '1'  and h.house_id = #{parameter}
   </select>
+<update id="updateHousePublisherStateFormPublisherId" parameterType="com.house.entity.House">
+  update house set  house_publisher_state = #{housePublisherState} where house_publisher_id = #{housePublisherId}
 
+</update>
+<update id="updateHousePublisherStateFormHouseId" parameterType="com.house.entity.House">
+  update house set  house_publisher_state = #{housePublisherState} where house_id = #{houseId}
+
+</update>
 </mapper>

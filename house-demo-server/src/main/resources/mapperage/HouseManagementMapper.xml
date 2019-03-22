@@ -160,7 +160,7 @@
 				and house_auditing_state = #{house.houseAuditingState}
 			</when>
 			<otherwise>
-				and house_publisher_state = #{house.housePublisherState}
+				and house_auditing_state = '1' and house_publisher_state = #{house.housePublisherState}
 			</otherwise>
 		</choose>
 		
@@ -176,7 +176,7 @@
 				and house_auditing_state = #{houseAuditingState}
 			</when>
 			<otherwise>
-				and house_publisher_state = #{housePublisherState}
+				and house_auditing_state = '1' and house_publisher_state = #{housePublisherState}
 			</otherwise>
 		</choose>
 	</select>

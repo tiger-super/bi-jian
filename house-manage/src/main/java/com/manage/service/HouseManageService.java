@@ -20,4 +20,6 @@ public interface HouseManageService {
 	public Map<String,Object> getAuditingHouseFromId(String houseId);
 	//根据房源id获得发布的房源
 	public Map<String,Object> getPublicHouseFromId(String houseId);
+	//根据房源id下架房源
+	public Map<String,Boolean> lowerHouseFromId(String houseId);
 }

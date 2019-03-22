@@ -13,4 +13,9 @@
    <select id="loginSystem" parameterType="String" resultType="com.house.entity.Customer">
       select customer_password from customer where customer_phone = #{parameter}
    </select>
+   
+   
+   <select id="ifExistBlack" parameterType="String" resultType="String">
+      select if_blacklist from customer where customer_id = #{parameter}
+   </select>
   </mapper>

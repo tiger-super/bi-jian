@@ -82,7 +82,7 @@ public class VerificationCodeController {
 	@RequestMapping("/judge/mailVerificationCode")
 	@ResponseBody
 	public  Map<String, String> judgeMailVerificationCode(String mailVerificationCodeText,HttpSession session) {
-		Map<String, String> map = new HashMap();
+		Map<String, String> map = new HashMap<String,String>();
 		String  mailVerificationCodeSession = (String) session.getAttribute("mailVerificationCodeText");
 		if( mailVerificationCodeSession == null) {
 			map.put("result", "验证码已失效，请重新获取");

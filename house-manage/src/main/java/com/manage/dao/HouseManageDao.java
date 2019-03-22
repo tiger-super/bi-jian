@@ -32,4 +32,8 @@ public interface HouseManageDao {
     House selectAuditingHouseFromHouseId(String houseId);
     //根据id查询
     House selectPublicHouseFromHouseId(String houseId);
+    //修改对应发布人的id的所有房源的发布情况
+    int updateHousePublisherStateFormPublisherId(House house);
+    //修改房源的id的房源的发布情况
+    int updateHousePublisherStateFormHouseId(House house);
 }

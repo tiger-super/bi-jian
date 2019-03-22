@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.house.entity.Customer;
+import com.house.entity.House;
 import com.house.entity.Page;
 import com.manage.dao.CustomerManageDao;
+import com.manage.dao.HouseManageDao;
 import com.manage.service.CustomerManageService;
 import com.manage.tool.ImageTool;
 
@@ -17,6 +19,8 @@ import com.manage.tool.ImageTool;
 public class CustomerManageServiceImpl implements CustomerManageService {
 	@Autowired
 	CustomerManageDao customerManageDao;
+	@Autowired
+	HouseManageDao houseManageDao;
 	@Autowired
 	ImageTool it;
 
@@ -70,10 +74,14 @@ public class CustomerManageServiceImpl implements CustomerManageService {
 		int result = 0;
 		int pageTotal = 0;
 		Page page = new Page();
+		House house = new House();
+		house.setHousePublisherId(customerId);
 		switch (condition) {
 		case "1":
+			house.setHousePublisherState("0");
 			result = customerManageDao.addBlack(customerId);
 			pageTotal = customerManageDao.totalAllCustomer();
+			houseManageDao.updateHousePublisherStateFormPublisherId(house);
 			break;
 		case "0":
 			result = customerManageDao.deleteBlack(customerId);

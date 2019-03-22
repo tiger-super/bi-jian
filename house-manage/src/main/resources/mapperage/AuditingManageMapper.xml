@@ -4,6 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.manage.dao.AuditingManageDao">
  <insert id="insertAuditingReasonFromHouseId" parameterType="com.house.entity.AuditingFail">
- insert into auditing_fail value(#{houseId},#{houseAuditingTime},#{houseAuditingReason})
+ insert into auditing_fail value(#{houseId},#{houseAuditingReason},#{houseAuditingTime})
  </insert>
 </mapper>
