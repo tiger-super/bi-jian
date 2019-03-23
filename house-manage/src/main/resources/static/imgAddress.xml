@@ -7,7 +7,7 @@
 <employeeVisit name="http://47.106.244.224:8080/employeePhoto/"></employeeVisit>
 <employeeKeep name="/usr/tomcat/tomcat8.5/webapps/employeePhoto/"></employeeKeep>
 <employeeCache name="/usr/tomcat/tomcat8.5/webapps/employeeCache/"></employeeCache>
-<employeeVisitCache name="http://47.106.244.224:8080/employeeCache/"></employeeVisitCache>
+<employeeVisitCache name="http://47.106.244.224:8080/employeeCache/"></employeeVisitCache> 
 <!-- <houseVisit name="http://127.0.0.1:8080/publish-house-img/"></houseVisit>
 <houseKeep name="F:/apache-tomcat-8.5.38/webapps/publish-house-img/"></houseKeep> 
 <customerVisit name="http://127.0.0.1:8080/customerPhoto/"></customerVisit>

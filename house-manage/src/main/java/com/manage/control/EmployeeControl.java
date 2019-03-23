@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.house.entity.Employee;
 import com.house.entity.Page;
-import com.manage.dao.EmployeeManageDao;
 import com.manage.service.EmployeeManageService;
 import com.manage.tool.FileUtil;
 
@@ -87,6 +85,18 @@ public class EmployeeControl {
 		Employee employeeSession = (Employee)session.getAttribute("employeeSession");
 		Map<String,Object> map  = employeeManageService.getEmployeeWithEmployeeId(employeeSession.getEmployeeId());
 		map.put("role",employeeSession.getEmployeeRole());
+		return map;
+	}
+	@RequestMapping("/session/modify/employee/img")
+	@ResponseBody
+	public Map<String,String> modifyEmployeeImg(@RequestParam("photoFile") MultipartFile employeeImg,Employee employee){
+		Map<String, String> map = employeeManageService.modifyEmployeeImg( employeeImg,employee);
+		return map;
+	}
+	@RequestMapping("/session/modify/employee/info")
+	@ResponseBody
+	public Map<String,Boolean> modifyEmployee(Employee employee){
+		Map<String, Boolean> map = employeeManageService.modifyEmployeeInfo(employee);
 		return map;
 	}
 }

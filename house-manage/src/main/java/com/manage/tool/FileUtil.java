@@ -10,7 +10,7 @@ public class FileUtil {
 
 	// 静态方法：三个参数：文件的二进制，文件路径，文件名
 	// 通过该方法将在指定目录下添加指定文件
-	private void fileupload(byte[] file, String filePath) throws IOException {
+	public void fileupload(byte[] file, String filePath) throws IOException {
 		FileOutputStream out = new FileOutputStream(filePath);
 		out.write(file);
 		out.flush();

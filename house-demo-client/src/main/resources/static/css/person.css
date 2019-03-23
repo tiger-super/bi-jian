@@ -80,8 +80,8 @@
 #fileInput {
 	opacity: 0;
 	filter: alpha(opacity = 0);
-	height: 95px;
-	width: 100px;
+	height:95px;
+	width:100px;
 	position: absolute;
 	top: 0;
 	left: 0;

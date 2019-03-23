@@ -47,6 +47,7 @@
 								<c:if test="${employeeSession.employeeRole == '超级管理员'}">
 									<li class="li-add-employee"><a href="#">添加员工</a></li>
 									<li><a class="li-see-employee">员工查询</a></li>
+										<li><a class="li-modify-employee">信息修改</a></li>
 								</c:if>
 								<li><a class="modifyPassword">密码修改</a></li>
 							</ul></li>
@@ -102,9 +103,8 @@
 					</ul>
 
 				</div>
-			<iframe src="/manage/session/show/websiteReportView" width="100%"
-					scrolling="no" frameborder="0" id="load"> </iframe>
-				
+		        <iframe src="/manage/session/show/websiteReportView" width="100%"
+					scrolling="no" frameborder="0" id="load"> </iframe> 	
 			</div>
 
 

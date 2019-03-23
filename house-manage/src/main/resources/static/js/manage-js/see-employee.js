@@ -21,10 +21,6 @@ function loademployeeInformation() {
 						for (let i = 0; i < list.length; i++) {
 							showResult(list[i]);
 						}
-						if(result.role == '超级管理员'){
-							$(".employee-title").append("<th class='button-th'>操作按钮</th>");
-							showDelete();
-						}
 						$(".employee-tbody td").css("line-height",
 								$(".employee-tbody td").outerHeight(true) + "px");
 						showPageView(result.page);
@@ -61,45 +57,9 @@ function showResult(employee){
 					+ employee.employeeAddress
 					+ "</td><td>"
 					+ employee.entryTime
-					+ "</td></tr>");
+					+ "</td><td><button type='button' class='btn btn-warning delete'>删除</button></td></tr>");
 }
-function showDelete(){
-	$(".employee-tbody tr").append("<td><button type='button' class='btn btn-warning delete'>删除</button></td>");
-	/*$(".add-black")
-	.click(
-			function() {
-				let employeeId = $(this).parents(
-						"tr").children("td").eq(0)
-						.text()
-				$
-						.ajax({
-							url : '/manage/modify/black/state',
-							dataType : "json",
-							type : "post",
-							data : {
-								"pageCurrent" : pageCurrent,
-								"condition" : "1",
-								"employeeId" : employeeId
-							},
-							success : function(
-									result) {
-								if (result.result == true) {
-									if (result.page.pageCurrent != 0) {
-										pageCurrent = result.page.pageCurrent;
-									} else if (result.page.pageCurrent == 0) {
-										pageCurrent = 1;
-									}
-									loademployeeInformation();
-								} else {
-									alert("操作失败");
-								}
-							}
-						})
-			})
-}
-}*/
-   
-}
+
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -168,11 +128,6 @@ function select(){
 			if(result.result){
 				$(".employee-tbody").empty();
 				showResult(result.employee);
-				if(result.role == '超级管理员'){
-					$("th").remove(".button-th");
-					$(".employee-title").append("<th class='button-th'>操作按钮</th>");
-					showDelete();
-				}
 			}else{
 				loademployeeInformation();
 			}

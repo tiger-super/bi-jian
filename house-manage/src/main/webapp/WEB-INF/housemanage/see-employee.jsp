@@ -37,6 +37,7 @@
 				<th>员工邮箱</th>
 				<th>员工住址</th>
 				<th>入职时间</th>
+				<th>操作按钮</th>
 			</tr>
 		</thead>
 		<tbody class="employee-tbody">

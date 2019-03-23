@@ -21,4 +21,8 @@ public interface EmployeeManageService {
 	boolean modifyPasswordService(Employee employee);
 	
 	Map<String,Object> getEmployeeWithEmployeeId(String employeeId);
+	//修改头像
+	Map<String,String> modifyEmployeeImg(MultipartFile multipartFile,Employee employee);
+	
+	Map<String,Boolean> modifyEmployeeInfo(Employee employee);
 }

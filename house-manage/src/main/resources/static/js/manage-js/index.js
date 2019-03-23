@@ -20,6 +20,9 @@ $(document).ready(function() {
 	$(".li-black").click(function() {
 		$("#load").attr("src", "/manage/session/show/black/customer/manage");
 	})
+	$(".li-modify-employee").click(function() {
+		$("#load").attr("src", "/manage/session/show/modify/employee");
+	})
 	$(".close-div").click(function(){
 		$(".employee-information").hide();
 	})

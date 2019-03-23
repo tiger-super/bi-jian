@@ -29,4 +29,34 @@
   select * from employee where employee_id = #{parameter}
  
  </select>
+ 
+  
+ <update id="updateEmployeeImg" parameterType="com.house.entity.Employee">
+    update employee set  employee_img_address = #{employeeImgAddress} where employee_id = #{employeeId}
+ </update>
+ <update id="updateEmployeeInformation" parameterType="com.house.entity.Employee">
+   update employee set 
+    <if test="employeeName != null">
+	    employee_name = #{employeeName}
+	  </if>
+	  <if test="employeeSex != null">
+	    employee_sex = #{employeeSex}
+	  </if>
+	  <if test="employeeAge != null">
+	    employee_age = #{employeeAge}
+	  </if>
+	  <if test="employeePhone != null">
+	    employee_phone = #{employeePhone}
+	  </if>
+	  <if test="employeeMailbox != null">
+	    employee_mailbox = #{employeeMailbox}
+	  </if>
+	  <if test="employeeRole!= null">
+	    employee_role = #{employeeRole}
+	  </if>
+	  <if test="employeeAddress!= null">
+	    employee_address = #{employeeAddress}
+	  </if>
+	  where employee_id = #{employeeId}
+ </update>
 </mapper>

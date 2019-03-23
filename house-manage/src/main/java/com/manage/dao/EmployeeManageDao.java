@@ -20,4 +20,9 @@ public interface EmployeeManageDao {
 	public int updateEmployeePassword(Employee employee);
 	
 	public Employee quaryEmployeeFromEmployeeId(String employeeId);
+	
+	public int updateEmployeeImg(Employee employee);
+	
+	public int updateEmployeeInformation(Employee employee);
+    
 }

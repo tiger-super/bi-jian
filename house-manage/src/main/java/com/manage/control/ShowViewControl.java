@@ -62,4 +62,8 @@ public class ShowViewControl {
 	public String showSeeEmployee() {
 		return "see-employee";
 	}
+	@RequestMapping("/session/show/modify/employee")
+	public String showModifyEmployee() {
+		return "employee-information";
+	}
 }

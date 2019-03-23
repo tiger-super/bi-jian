@@ -1,5 +1,6 @@
 package com.manage.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.house.entity.Page;
 import com.manage.dao.EmployeeManageDao;
 import com.manage.service.EmployeeManageService;
 import com.manage.tool.AnalysisXML;
+import com.manage.tool.EmployeeAddressCreate;
 import com.manage.tool.FileUtil;
 import com.manage.tool.ImageTool;
 import com.manage.tool.Time;
@@ -95,6 +97,50 @@ public class EmployeeManageServiceImpl implements EmployeeManageService {
 			employee.setEmployeeImgAddress(visit.toString());
 			map.put("result", true);
 			map.put("employee", employee);
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, String> modifyEmployeeImg(MultipartFile multipartFile,Employee employee) {
+		 Map<String, String> map = new HashMap<String,String>();
+		// 获取文件名称,包含后缀
+		String fileName = multipartFile.getOriginalFilename();
+		String suffix = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		StringBuffer imgKeepAddress = new StringBuffer();
+		imgKeepAddress.append(ax.getName(AnalysisXML.EMPLOYEEKEEPADDRESS));
+		String img = EmployeeAddressCreate.createAddress();
+		imgKeepAddress.append(img).append(suffix);	
+		employee.setEmployeeImgAddress(img+suffix);
+		try {
+			fileUtil.fileupload(multipartFile.getBytes(),imgKeepAddress.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		StringBuffer oldImg = new StringBuffer();
+		oldImg.append(ax.getName(AnalysisXML.EMPLOYEEKEEPADDRESS)).append(employeeManageDao.quaryEmployeeFromEmployeeId(employee.getEmployeeId()).getEmployeeImgAddress());
+		StringBuffer imgVisitAddress = new StringBuffer();
+		imgVisitAddress.append(ax.getName(AnalysisXML.EMPLOYEEVISITADDRESS)).append(img).append(suffix);
+		map.put("imgVisitAddress", imgVisitAddress.toString());
+		int result = employeeManageDao.updateEmployeeImg(employee);
+		if(result == 1) {
+			map.put("result","true");
+			
+			new File(oldImg.toString()).delete();
+		}else {
+			map.put("result","false");
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Boolean> modifyEmployeeInfo(Employee employee) {
+		Map<String, Boolean> map = new HashMap<String,Boolean>();
+		int result = employeeManageDao.updateEmployeeInformation(employee);
+		if(result == 1) {
+			map.put("result",true);
+		}else {
+			map.put("result",false);
 		}
 		return map;
 	}
