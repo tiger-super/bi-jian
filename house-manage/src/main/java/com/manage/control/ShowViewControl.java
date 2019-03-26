@@ -66,4 +66,8 @@ public class ShowViewControl {
 	public String showModifyEmployee() {
 		return "employee-information";
 	}
+	@RequestMapping("/show/chat")
+	public String showChat() {
+		return "chat";
+	}
 }

@@ -134,5 +134,8 @@ public class ViewJumpController {
 		mv.addObject("map", map);
 		return mv;
 	}
-	
+	@RequestMapping("/show/chat")
+	public String showChat() {
+		return "chat";
+	}
 }
