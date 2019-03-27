@@ -32,3 +32,16 @@
 	top: 300px;
 	background-color: white;
 }
+.chatNumber{
+	width:20px;
+	height:20px;
+	background-color:red;
+	position:absolute;
+	border-radius:100%;
+	top:8px;
+	right:0px;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	line-height:20px;
+}

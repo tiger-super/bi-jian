@@ -42,7 +42,7 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="#">欢迎你！<span
-								class="glyphicon glyphicon-user"></span>${sessionScope.customerSession.customerName}
+								class="glyphicon glyphicon-user" id="usr" value='${sessionScope.customerSession.customerId}'></span>${sessionScope.customerSession.customerName}
 						</a></li>
 					</c:otherwise>
 				</c:choose>

@@ -14,7 +14,7 @@
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/house-list.js"></script>
 <script type="text/javascript" src="/static/js/index.js"></script>
-
+<script type="text/javascript" src="/static/js/chat-loading.js"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -39,7 +39,7 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="#">欢迎你！<span
-								class="glyphicon glyphicon-user"></span>${sessionScope.customerSession.customerName}
+								class="glyphicon glyphicon-user" id="usr" value='${sessionScope.customerSession.customerId}'></span>${sessionScope.customerSession.customerName}
 						</a></li>
 					</c:otherwise>
 				</c:choose>

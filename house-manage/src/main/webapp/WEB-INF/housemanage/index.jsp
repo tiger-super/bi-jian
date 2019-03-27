@@ -11,7 +11,7 @@
 <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script"
 	rel="stylesheet" type="text/css">
 <link href="/static/css/manage-css/index.css" rel="stylesheet">
-<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
 <link href="/static/css/admin.css" rel="stylesheet">
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 <script src="/static/js/excanvas.min.js"></script>
 <script src="/static/js/jquery.flot.min.js"></script>
 <script src="/static/js/jquery.flot.resize.js"></script>
-
+<script type="text/javascript" src="/static/js/manage-js/chat-loading.js"></script>
 </head>
 <body>
 
@@ -67,13 +67,12 @@
 								<li><a class="li-black">黑名单</a></li>
 							</ul></li>
 
-						<li class="dropdown"><a class="dropdown-toggle"
+						<li class="dropdown chat-li">
+						<div class="chatNumber"></div>
+						<a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#settings-dropdown" href="#"><i
-								class="icon-cogs"></i> 系统 </a>
-							<ul id="settings-dropdown" class="collapse">
-
-							</ul></li>
-
+								class="icon-refresh"></i> 客服 </a>
+						</li>
 
 					</ul>
 

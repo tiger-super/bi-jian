@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.system.SystemService;
+import com.house.entity.Customer;
 
 @Controller
 @RequestMapping("/house")
@@ -89,5 +90,13 @@ public class SystemController {
 		}
 		return map;
 
+	}
+	@RequestMapping("/session/chat")
+	@ResponseBody
+	public Map<String,String> chat( HttpSession session) {
+		Map<String,String> map = new HashMap<String,String>();
+		Customer customer = (Customer) session.getAttribute("customerSession");
+	    map.put("id",customer.getCustomerId());
+	    return map;
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.house.entity.Customer;
 import com.house.entity.Employee;
 import com.house.entity.Page;
 import com.manage.service.SystemService;
@@ -74,5 +75,13 @@ public class SystemControl {
 	public Map<String,List<Integer>> loadWebsiteGraph(){
 		Map<String,List<Integer>> map = systemService.weekWebsite();
 		return map;
+	}
+	@RequestMapping("/session/chat")
+	@ResponseBody
+	public Map<String,String> chat( HttpSession session) {
+		Map<String,String> map = new HashMap<String,String>();
+		Employee employee = (Employee)session.getAttribute("employeeSession");
+	    map.put("id",employee.getEmployeeId());
+	    return map;
 	}
 }

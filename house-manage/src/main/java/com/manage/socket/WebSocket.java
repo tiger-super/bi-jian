@@ -48,6 +48,8 @@ public class WebSocket{
     private static Map<String,String> eAndC = new HashMap<String,String>();
     private static List<String> employeeIdList = new ArrayList<String>(); 
     private static List<String> customerIdList = new ArrayList<String>(); 
+    private static Map<String,WebSocket> employeeWebSocketMap = new HashMap<String,WebSocket>();
+    private static Map<String,WebSocket> customerWebSocketMap= new HashMap<String,WebSocket>();
     /**与某个客户端的连接会话，需要通过它来给客户端发送数据*/
     /** 连接建立成功调用的方法 */
     @OnOpen
@@ -57,15 +59,18 @@ public class WebSocket{
         case "customer":
         	customerMap.put(id,session);
         	customerIdList.add(id);
+        	int index = customerIdList.indexOf(id);
+        	sendMessage(session,"number="+index+"&");
         	messageTigs();
+        	 customerWebSocketMap.put(id,this);
         	break;
         case "employee":
         	employeeIdList.add(id);
         	employeeMap.put(id,session);
         	messageTigs();
+        	employeeWebSocketMap.put(id,this);
         	break;
         }
-      
         webSocketSet.add(this);
         System.out.println("有新连接加入,当前在线人数为" + webSocketSet.size());
      
@@ -77,11 +82,12 @@ public class WebSocket{
         case "customer":
         	String employeeId = eAndC.get(id);
         	Session employee = employeeMap.get(employeeId);
-        	showClose(employee,name) ;
-        	eAndC.remove(id);
-        	eAndC.remove(employeeId );
-        	customerMap.remove(id);
-        	customerIdList.remove(id);
+        	 deleteMap(id,"customer");
+        	 showClose(employee,name) ;
+			/*
+			 * eAndC.remove(id); eAndC.remove(employeeId ); customerMap.remove(id);
+			 * customerIdList.remove(id);
+			 */
         	break;
         case "employee":
         	String customerId = eAndC.get(id);
@@ -108,15 +114,21 @@ public class WebSocket{
 			socketMsg = objectMapper.readValue(message, SocketMsg.class);
 			socketMsg.setFromName(name);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
        if("true".equals(socketMsg.getIfWork())) {
+
+    	   deleteMap(socketMsg.getFromUser(),"employee");
+    	   if(customerIdList.size() > 0) {
         	String serverObejctId = distributionResource(socketMsg.getFromUser());
         	Session serverObejct = customerMap.get(serverObejctId);
-        	serverObejct.getAsyncRemote().sendText("管理员"+socketMsg.getFromUser()+"为你服务");
-        	employeeMap.get(socketMsg.getFromUser()).getAsyncRemote().sendText("客户"+serverObejctId+"已成功连接");
-        } else {
+        	messageTigs();
+        	sendMessage(serverObejct,"message="+"管理员"+socketMsg.getFromUser()+"为你服务"+"&");    	
+        	sendMessage(employeeMap.get(socketMsg.getFromUser()),"客户"+serverObejctId+"已成功连接");    	   
+    	   }else {
+    		   sendMessage(employeeMap.get(socketMsg.getFromUser()),"当前没有用户咨询");
+    	   }
+    	   } else {
         	String fromId = socketMsg.getFromUser();//发送者
 			String acceptId = eAndC.get(fromId);
 			Session fromSession = null; 
@@ -134,14 +146,11 @@ public class WebSocket{
 			if(toSession != null){
 				//发送给发送者.
 				  String content = "name="+socketMsg.getFromName()+"&"+"message="+socketMsg.getMsg()+"&role="+role;
-				  sendMessage(content,fromSession);
-				  sendMessage(content, toSession);
-				 
-				
-				
+				  sendMessage(toSession,content);
+				  sendMessage(fromSession,content);
 			}else{
 				//发送给发送者.
-				fromSession.getAsyncRemote().sendText("系统消息：对方不在线");
+				 sendMessage(fromSession,"系统消息：对方不在线");
 			}
         }
     }
@@ -157,11 +166,8 @@ public class WebSocket{
      * @param message 客户端消息
      * @throws IOException
      */
-    private static void sendMessage(String message,Session session) {
-       session.getAsyncRemote().sendText(message);
-    }
     
-    public static synchronized String distributionResource(String employeeId) {
+    public  String distributionResource(String employeeId) {
     	String customerId = null;
     	if(customerIdList.size() > 0) {
     	  customerId = customerIdList.get(0);
@@ -172,15 +178,58 @@ public class WebSocket{
     	return customerId;
     }
     
-    public static void showClose(Session session,String role) {
+    public void showClose(Session session,String role) {
     	if(session != null) {
-    		sendMessage(role+"已下线",session);
+    		sendMessage(session,role+"已下线");
+    		
     	}
     }
-    public static void messageTigs(){
+    public  void messageTigs(){
     	for(int i = 0 ; i < employeeIdList.size() ; i++) {
     		Session employee = employeeMap.get(employeeIdList.get(i));
-    		employee.getAsyncRemote().sendText("已经有"+customerIdList.size()+"个人请求咨询"); 
+    		sendMessage(employee,"number="+customerIdList.size()+"&");
+    	}
+    }
+    public  void lineUp() {
+    	for(int i = 0 ; i < customerIdList.size() ; i++) {
+    		Session customer = customerMap.get(customerIdList.get(i));
+    		sendMessage(customer,"number="+i+"&");
+    	}
+    }
+    public void deleteMap(String id,String role) {
+    	String value = null;
+    	switch(role) {
+    	case "employee":
+    	    value = eAndC.get(id);
+    		if(value != null) {
+    		Session session = customerMap.remove(value);
+    		showClose(session,"管理员");
+    		eAndC.remove(value);
+    		eAndC.remove(id);
+    		webSocketSet.remove(customerWebSocketMap.get(value));
+    		customerWebSocketMap.remove(value);
+    		}
+    		break;
+    	case "customer":
+    		value = eAndC.get(id);
+    		customerIdList.remove(id);
+    		customerMap.remove(id);
+    		eAndC.remove(id);
+    		if(value != null) {
+    		eAndC.remove(value);
+    		}
+    		break;
+    	}
+    	messageTigs();
+    	lineUp();
+    }
+    public void  sendMessage(Session session,String message) {
+    	synchronized(session){
+    	    try {
+				session.getBasicRemote().sendText(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
     	}
     }
 }

@@ -16,8 +16,9 @@
 	src="/static/js/house-detailed-information.js"></script>
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=nI6URMs9j07NGjGT3Ho2FRaj0NwdFMzx"></script>
-<body>
 <script type="text/javascript" src="/static/js/index.js"></script>
+<script type="text/javascript" src="/static/js/chat-loading.js"></script>
+<body>
 	<div class="navbar navbar-default head">
 		<div class="container">
 			<div class="col-sm-1" style="padding-right: 0px;">
@@ -42,13 +43,13 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="#">欢迎你！<span
-								class="glyphicon glyphicon-user"></span>${sessionScope.customerSession.customerName}
+								class="glyphicon glyphicon-user" id="usr" value='${sessionScope.customerSession.customerId}'></span>${sessionScope.customerSession.customerName}
 						</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li><a href="/house/show/indexView">首页</a>
 				<li><a href="/house/session/show/personView">个人中心</a></li>
-				<li><a href="#">帮助中心</a></li>
+				<li><a href="#" class="consult">在线咨询</a></li>
 				<li><a>投诉渠道</a></li>
 			<li><a href="/house/session/show/publish/house">房源发布</a></li>
 				<c:if test="${not empty sessionScope.customerSession.customerName}">

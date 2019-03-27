@@ -15,6 +15,7 @@
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/js/person.js"></script>
 <script type="text/javascript" src="/static/js/index.js"></script>
+<script type="text/javascript" src="/static/js/chat-loading.js"></script>
 <body>
 	<div class="navbar navbar-default head">
 		<div class="container">
@@ -30,7 +31,8 @@
 					class="show-city-a"> </a></span>
 			</div>
 			<ul class="nav navbar-nav navbar-right" id="head-nav">
-				<li><a href="#">欢迎你！<span class="glyphicon glyphicon-user"></span>
+				<li><a href="#">欢迎你！<span
+								class="glyphicon glyphicon-user" id="usr" value='${sessionScope.customerSession.customerId}'></span>
 						<span class="head-span-customerName">${sessionScope.customerSession.customerName}</span>
 				</a></li>
 				<li><a href="/house/show/indexView">首页</a>

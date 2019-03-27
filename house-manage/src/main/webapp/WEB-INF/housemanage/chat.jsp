@@ -5,11 +5,12 @@
 <head>
     <title>My WebSocket</title>
 </head>
+<link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <body>
 Welcome<br/>
 <input id="text" type="text" /><button onclick="send()">Send</button>    <button onclick="closeWebSocket()">Close</button><button onclick="accept()">accept</button>
-<div id="message" style="height:200px;width:300px;overflow-y:scroll;overflow-x:hidden">
+<div id="message" style="height:200px;width:300px;overflow-y: auto;overflow-x:hidden">
 
 </div>
 </body>
@@ -57,12 +58,16 @@ Welcome<br/>
     	  console.log(json)
     	  switch(json.role){
     	  case "employee":
-    		  $('#message').append("<div><img src=''><div style='text-align:right;font-size:10px'>"+json.name+"</div>"+
-    		  "<div style='word-wrap:break-word; word-break:break-all; overflow: hidden;text-align:right'>"+json.message+"</div></div>");
+    		  $('#message').append("<div><div style='text-align:right;font-size:5px'>"+json.name+"</div>"+
+    		  "<div style='word-wrap:break-word; word-break:break-all; overflow: hidden;text-align:right'><div class='col-sm-3' style='padding:0px'></div>"+
+    		  "<div class='col-sm-8' style='padding:0px;right:0px'><div style='background-color:#99FF00;display:inline-block;padding-left:10px;padding-right:10px;margin-top:5px;border-radius:7px;'>"+
+    		  json.message+"</div></div><div class='col-sm-1' style='padding:0px'><img src='/static/img/chat/chat-e.png' style='height:30px;width:30px'></div></div></div>");
     		  break;
     	  case "customer":
-    		  $('#message').append("<div><div style='text-align:left;font-size:10px'>"+json.name+"</div>"+
-    	    		  "<div style='word-wrap:break-word; word-break:break-all; overflow: hidden;text-align:left'>"+json.message+"</div></div>");
+    		  $('#message').append("<div><div style='text-align:left;font-size:5px'>"+json.name+"</div>"+
+    	    		  "<div style='word-wrap:break-word; word-break:break-all; overflow: hidden;text-align:left'>"+
+    	    		  "<div class='col-sm-1' style='padding:0px'><img src='/static/img/chat/chat-c.png' style='height:30px;width:30px'></div>"+
+    	    		  "<div class='col-sm-8' style='padding:0px;right:0px'><div style='background-color:#11EEEE;display:inline-block;padding-left:10px;padding-right:10px;margin-top:5px;margin-left:5px;border-radius:7px;'>"+json.message+"</div></div></div></div>");
     		  break;
     	  }
     	}else{
