@@ -80,7 +80,6 @@ public class SystemServiceImpl implements SystemService {
 			map.put("publish",publish);
 			map.put("visit",visit);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return map;

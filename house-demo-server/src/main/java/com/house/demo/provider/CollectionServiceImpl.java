@@ -79,10 +79,15 @@ public class CollectionServiceImpl implements CollectionService{
 		if(pageTotal > 0) {
 		// 最大值
 		page.setPageTotal(pageTotal);
-		// 已显示的页面
-		page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
 		// 最大页
 		page.setPageMax((int)Math.ceil((double)page.getPageTotal()/page.getPageNumber()));
+		if(page.getPageMax() < page.getPageCurrent()) {
+			page.setPageCurrent(page.getPageMax());
+		}
+		// 已显示的页面
+		page.setPageShowNow((page.getPageCurrent()-1)*page.getPageNumber());
+		System.out.println(page);
+		System.out.println(page);
 		Collection collection = new Collection();
 		collection.setCollectorsId(collectorsId);
 		map.put("collection",collection);

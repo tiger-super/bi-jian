@@ -301,7 +301,7 @@ function loadHouseInfo(data) {
 			for (let i = 0; i < list.length; i++) {
 				showHouseInfo(list[i], i, $(".my-publish-content"));
 			}
-			showPageView(result.page, $(".my-publish-content"));
+			showPageView(result.page, $(".my-publish-content"),"house");
 			// 下架事件
 			$(".cancel-publish").click(
 					function() {
@@ -347,8 +347,7 @@ function loadHouseInfo(data) {
 }
 // 房源信息渲染
 function showHouseInfo(house, i, div) {
-	div
-			.append("<div class='publish-content-div publish-content-div-"
+	div.append("<div class='publish-content-div publish-content-div-"
 					+ i
 					+ " col-sm-12' value="
 					+ house.houseId
@@ -438,7 +437,7 @@ function getReason(houseId) {
 }
 let pageCurrent = 1;
 // 分页功能
-function showPageView(page, div) {
+function showPageView(page, div,value) {
 	div.append("<div class='col-sm-12' style='padding:0px'><div class='col-sm-6'></div><div class='col-sm-6 page-show-content'></div></div>");
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -478,33 +477,66 @@ function showPageView(page, div) {
 				}
 
 			}
-			// 对应的页码
-			$(".page").click(function() {
-				pageCurrent = parseInt($(this).text());
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadHouseInfo(json);
-			})
-			// 下一页
-			$(".next").click(function() {
-				pageCurrent = pageCurrent + 1;
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadHouseInfo(json);
-
-			})
-			// 上一页
-			$(".upper").click(function() {
-				pageCurrent = pageCurrent - 1;
-				let json = getJson();
-				json.housePublisherState = $(".my-publish-view").attr("value");
-				json.pageCurrent = pageCurrent;
-				loadHouseInfo(json);
-			})
+			pageButton(value);
 		}
 	})
+}
+
+function pageButton(show){
+	switch(show){
+	case "house":
+		// 对应的页码
+		$(".page").click(function() {
+			pageCurrent = parseInt($(this).text());
+			let json = getJson();
+			json.housePublisherState = $(".my-publish-view").attr("value");
+			json.pageCurrent = pageCurrent;
+			loadHouseInfo(json);
+		})
+		// 下一页
+		$(".next").click(function() {
+			pageCurrent = pageCurrent + 1;
+			let json = getJson();
+			json.housePublisherState = $(".my-publish-view").attr("value");
+			json.pageCurrent = pageCurrent;
+			loadHouseInfo(json);
+			
+		})
+		// 上一页
+		$(".upper").click(function() {
+			pageCurrent = pageCurrent - 1;
+			let json = getJson();
+			json.housePublisherState = $(".my-publish-view").attr("value");
+			json.pageCurrent = pageCurrent;
+			loadHouseInfo(json);
+		})
+		break;
+	case "collection":
+		// 对应的页码
+		$(".page").click(function() {
+			pageCurrent = parseInt($(this).text());
+			let json = getJson();
+			json.pageCurrent = pageCurrent;
+			loadMyCollection(json);
+		})
+		// 下一页
+		$(".next").click(function() {
+			pageCurrent = pageCurrent + 1;
+			let json = getJson();
+			json.pageCurrent = pageCurrent;
+			loadMyCollection(json);
+			
+		})
+		// 上一页
+		$(".upper").click(function() {
+			pageCurrent = pageCurrent - 1;
+			let json = getJson();
+			json.pageCurrent = pageCurrent;
+			loadMyCollection(json);
+		})
+		break;
+	}
+	
 }
 
 function getJson() {
@@ -571,14 +603,71 @@ function loadMyCollection(data) {
 						let house = result.list;
 						if (house != undefined) {
 							for (let i = 0; i < house.length; i++) {
-								showHouseInfo(house[i], i,
-										$(".my-collection-content"));
+								showCollection(house[i],$(".my-collection-content"));
 							}
-							console.log(result.page)
+							addCollectionButton();
 							showPageView(result.page,
-									$(".my-collection-content"));
+									$(".my-collection-content"),"collection");
 						}
 					}
 				}
 			})
+}
+
+
+function showCollection(house,div){
+	div.append("<div class='collection-content-div"
+			+ " col-sm-12' value="
+			+ house.houseId
+			+ ">"
+			+ "<div class='house-image-div col-sm-2' ><img src='"
+			+ house.houseInfo.houseImageAddress
+			+ "' class='house-image'></div><div class='publish-content col-sm-8'>"
+			+ "<div class='col-sm-12 house-name'>" + house.houseName
+			+ "</div><div class='col-sm-12 house-address'>"
+			+ house.houseAddressProvince + house.houseAddressCity
+			+ house.houseAddressArea + "</div><div "
+			+ "class='col-sm-12'>" + house.houseInfo.houseSellWay
+			+ "</div><div class='col-sm-12'>" + "<span >"
+			+ house.houseInfo.houseStructure
+			+ "&nbsp|&nbsp</span><span >" + house.houseInfo.houseSize
+			+ "平米" + "&nbsp|&nbsp</span><span>"
+			+ house.houseInfo.houseMoney + "元</span></div></div></div>");
+	$(".see").click(function(){
+		window.open("/house/see/house/Information?houseId="+house.houseId,"_blank");     
+	})
+}
+
+function addCollectionButton(){
+	$(".collection-content-div").append("<div class='operation-div col-sm-2' >"
+					+ "<button type='button' class='btn btn-default btn-sm btn-info see'>"
+					+ "查看</button>"
+					+ "<button type='button' class='btn btn-default btn-sm btn-danger cancelCollection' style='width:65px;'>取消收藏</button></div></div>");
+	$(".cancelCollection").click(function(){
+		$.ajax({
+			url : '/house/modify/collection/state',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				"collectionHouseId" :$(this).parents(".collection-content-div ").attr("value"),
+				"modify":"1"
+			},
+			success : function(result) {
+
+				switch(result.result){
+				case "true":
+					loadMyCollection({
+						"pageCurrent" :pageCurrent,
+					});
+					break;
+				case "false":
+					alert("服务器错误");
+					break;
+				case "login":
+				window.location.href = "/house/show/loginView";
+				break;
+			}
+			}
+		})
+	})
 }
