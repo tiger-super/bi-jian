@@ -186,6 +186,17 @@ public class HouseServiceImpl implements HouseService {
 			house.setHousePublisherTime(Time.getNowTime());
 		}
 		int result = houseManagementMapper.updateHouseState(house);
+		if(house.getHousePublisherState() != null) {
+			switch(house.getHousePublisherState()) {
+			case "0":
+				house.setDaysOff(0);
+				break;
+			case "1":
+				house.setDaysOff(30);
+				break;
+			}
+			houseManagementMapper.updateDaysOff(house);
+		}
 		if (result == 1) {
 			SocketTool st = new SocketTool();
 			st.updateSendSocket("house");

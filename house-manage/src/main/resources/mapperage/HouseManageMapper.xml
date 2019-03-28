@@ -88,7 +88,17 @@
 
 </update>
 <update id="updateHousePublisherStateFormHouseId" parameterType="com.house.entity.House">
-  update house set  house_publisher_state = #{housePublisherState} where house_id = #{houseId}
-
+  update house set  house_publisher_state = #{housePublisherState},days_off = #{daysOff} where house_id = #{houseId}
 </update>
+
+<select id="selectHouseWhereDaysOffIsNotZero"   resultType="com.house.entity.House">
+select house_id,days_off,house_publisher_id from house where days_off != 0 and house_publisher_state = '1'
+</select>
+<update id="updateHouseDaysOffFromList" parameterType="java.util.List">
+update house set days_off = (days_off-1) 
+<foreach collection="list" item="houseId" open="where house_id in(" close=")" separator=",">  
+     #{houseId}  
+</foreach> 
+</update>
+
 </mapper>

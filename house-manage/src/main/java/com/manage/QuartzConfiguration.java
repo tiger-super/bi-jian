@@ -32,7 +32,7 @@ public class QuartzConfiguration {
 
 		/* TODO 非常重要 执行QuartzTask类中的需要执行方法 */
 
-		jobDetail.setTargetMethod("reptilian");
+		jobDetail.setTargetMethod("newData");
 		return jobDetail;
 	}
 

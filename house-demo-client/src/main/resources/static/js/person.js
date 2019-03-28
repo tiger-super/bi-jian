@@ -633,9 +633,6 @@ function showCollection(house,div){
 			+ "&nbsp|&nbsp</span><span >" + house.houseInfo.houseSize
 			+ "平米" + "&nbsp|&nbsp</span><span>"
 			+ house.houseInfo.houseMoney + "元</span></div></div></div>");
-	$(".see").click(function(){
-		window.open("/house/see/house/Information?houseId="+house.houseId,"_blank");     
-	})
 }
 
 function addCollectionButton(){
@@ -643,6 +640,9 @@ function addCollectionButton(){
 					+ "<button type='button' class='btn btn-default btn-sm btn-info see'>"
 					+ "查看</button>"
 					+ "<button type='button' class='btn btn-default btn-sm btn-danger cancelCollection' style='width:65px;'>取消收藏</button></div></div>");
+	$(".see").click(function(){
+		window.open("/house/see/house/Information?houseId="+$(this).parents(".collection-content-div ").attr("value"),"_blank");     
+	})
 	$(".cancelCollection").click(function(){
 		$.ajax({
 			url : '/house/modify/collection/state',

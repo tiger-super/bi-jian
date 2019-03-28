@@ -36,4 +36,8 @@ public interface HouseManageDao {
     int updateHousePublisherStateFormPublisherId(House house);
     //修改房源的id的房源的发布情况
     int updateHousePublisherStateFormHouseId(House house);
+    //查询未到期的房源
+    public List<House> selectHouseWhereDaysOffIsNotZero();
+    //房源到期时间减一
+    public int updateHouseDaysOffFromList(List<String> list);
 }

@@ -250,4 +250,8 @@
 	<delete id="deleteHouseHouseInfoWithId" parameterType="java.lang.String" >
 	delete from house_info where house_id = #{parameter}
 	</delete>
+	
+    <update id="updateDaysOff" parameterType="com.house.entity.House">
+    update house set days_off = #{daysOff} where house_id = #{houseId}
+    </update>
 </mapper>

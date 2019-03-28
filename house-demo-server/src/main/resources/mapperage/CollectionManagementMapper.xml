@@ -24,7 +24,7 @@
 	<select id="totalSelectCollectionHouseIdFormCollectorsId" parameterType="java.lang.String" resultType="java.lang.Integer"> 
 	select count(*) from collection where collectors_id = #{collectorsId}
 	</select> 
-	<update id="updateWithdId">
+	<!-- <update id="updateWithdId">
 	update collection set collection_house_id = #{new} where collection_house_id = #{old}
-	</update> 
+	</update>  -->
 </mapper>

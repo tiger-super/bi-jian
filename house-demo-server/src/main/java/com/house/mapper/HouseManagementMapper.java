@@ -54,4 +54,6 @@ public  interface HouseManagementMapper {
 	public int deleteHouseWithId(String houseId);
 	//根据id删除房子信息
 	public int deleteHouseHouseInfoWithId(String houseId);
+	// 修改房源下架时间
+	public int updateDaysOff(House house);
 }

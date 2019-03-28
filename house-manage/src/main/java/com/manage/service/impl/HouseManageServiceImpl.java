@@ -144,6 +144,7 @@ public class HouseManageServiceImpl implements HouseManageService {
 		House house = new House();
 		house.setHouseId(houseId);
 		house.setHousePublisherState("0");
+		house.setDaysOff(0);
 		int result = houseManageDao.updateHousePublisherStateFormHouseId(house);
 		if(result == 1) {
 			map.put("result",true);

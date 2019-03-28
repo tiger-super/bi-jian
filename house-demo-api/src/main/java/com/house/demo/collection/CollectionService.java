@@ -1,10 +1,6 @@
 package com.house.demo.collection;
-
-import java.util.List;
 import java.util.Map;
-
 import com.house.entity.Collection;
-import com.house.entity.House;
 import com.house.entity.Page;
 
 public interface CollectionService {

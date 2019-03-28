@@ -122,6 +122,11 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 			<version>1.3.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>house-manage</finalName>

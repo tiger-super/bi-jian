@@ -29,8 +29,8 @@ $(document).ready(function() {
 
 
 function ConnectWebSockt(){
-	/*let ws = "ws://47.106.244.224:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value")*/
-		let ws = "ws://localhost:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value");
+	let ws = "ws://47.106.244.224:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value")
+		/*let ws = "ws://localhost:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value");*/
 	if('WebSocket' in window){
         websocket = new WebSocket(ws);
     }

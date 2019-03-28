@@ -1,9 +1,4 @@
 package com.house.demo.customer;
-
-import java.io.InputStream;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.house.entity.Customer;
 
 public interface PersonInfoService {

@@ -2,6 +2,8 @@ package com.manage.dao;
 
 
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Repository;
 
 import com.house.entity.Customer;
@@ -22,4 +24,7 @@ public interface CustomerManageDao {
     int addBlack(String customerId);
     // 取消黑名单
     int deleteBlack(String customerId);
+    
+    //获取用户的邮箱
+    List<String> selectCustomerMailBoxFromId(Set<String> list);
 }
