@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.mapper.PayManagementMapper" >
+	<insert id="insertPayInformation" parameterType="com.house.entity.Pay" >
+	insert into pay(pay_id,pay_money,pay_time,pay_people_id) value(#{payId},#{payMoney},#{payTime},#{payPeopleId})
+	</insert>
+	<update id="updateCustomerVipInformation" parameterType="java.util.Map">
+	    update customer set if_vip = #{ifVip},vip_stop_time=#{vipStopTime},vip_recharge_time=#{vipRechargeTime}
+	   	where customer_id = #{id}
+	</update>
+	
+	<select id="selectCustomerVipInformationWithCustomerId" parameterType = "java.lang.String" resultType="com.house.entity.Customer">
+	select if_vip,vip_recharge_time,vip_stop_time from customer where customer_id = #{parameter}
+	</select>
+</mapper>

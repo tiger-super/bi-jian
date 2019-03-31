@@ -23,69 +23,119 @@ public class Customer implements Serializable {
 	private String customerHeadImageAddress;
 	// 是否是被列入客户黑名单
 	private String ifBlacklist;
+	// 是否是vip
+	private String ifVip;
+	// vip充值时间
+	private String vipRechargeTime;
+	// vip结束时间
+	private String vipStopTime;
+
 	public String getCustomerId() {
 		return customerId;
 	}
+
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+
 	public String getCustomerName() {
 		return customerName;
 	}
+
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+
 	public String getCustomerSex() {
 		return customerSex;
 	}
+
 	public void setCustomerSex(String customerSex) {
 		this.customerSex = customerSex;
 	}
+
 	public String getCustomerAge() {
 		return customerAge;
 	}
+
 	public void setCustomerAge(String customerAge) {
 		this.customerAge = customerAge;
 	}
+
 	public String getCustomerMailbox() {
 		return customerMailbox;
 	}
+
 	public void setCustomerMailbox(String customerMailbox) {
 		this.customerMailbox = customerMailbox;
 	}
+
 	public String getCustomerPhone() {
 		return customerPhone;
 	}
+
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
 	}
+
 	public String getCustomerPassword() {
 		return customerPassword;
 	}
+
 	public void setCustomerPassword(String customerPassword) {
 		this.customerPassword = customerPassword;
 	}
+
 	public String getCustomerHeadImageAddress() {
 		return customerHeadImageAddress;
 	}
+
 	public void setCustomerHeadImageAddress(String customerHeadImageAddress) {
 		this.customerHeadImageAddress = customerHeadImageAddress;
 	}
+
 	public String getIfBlacklist() {
 		return ifBlacklist;
 	}
+
 	public void setIfBlacklist(String ifBlacklist) {
 		this.ifBlacklist = ifBlacklist;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getIfVip() {
+		return ifVip;
+	}
+
+	public void setIfVip(String ifVip) {
+		this.ifVip = ifVip;
+	}
+
+	public String getVipRechargeTime() {
+		return vipRechargeTime;
+	}
+
+	public void setVipRechargeTime(String vipRechargeTime) {
+		this.vipRechargeTime = vipRechargeTime;
+	}
+
+	public String getVipStopTime() {
+		return vipStopTime;
+	}
+
+	public void setVipStopTime(String vipStopTime) {
+		this.vipStopTime = vipStopTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerSex=" + customerSex
 				+ ", customerAge=" + customerAge + ", customerMailbox=" + customerMailbox + ", customerPhone="
 				+ customerPhone + ", customerPassword=" + customerPassword + ", customerHeadImageAddress="
-				+ customerHeadImageAddress + ", ifBlacklist=" + ifBlacklist + "]";
+				+ customerHeadImageAddress + ", ifBlacklist=" + ifBlacklist + ", ifVip=" + ifVip + ", vipRechargeTime="
+				+ vipRechargeTime + ", vipStopTime=" + vipStopTime + "]";
 	}
-
 }

@@ -1,0 +1,113 @@
+.head {
+	margin: 0px
+}
+
+.houselogo {
+	margin-top: 5px;
+	width: 40px;
+	height: 40px;
+	margin-left: 35px;
+}
+
+.place-img {
+	width: 20px;
+	height: 20px;
+}
+
+.place-div {
+	padding: 0px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.place a {
+	color: black;
+}
+
+.place a:hover {
+	text-decoration: none;
+}
+
+.logo {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#head-nav li {
+	cursor: pointer;
+}
+
+#head-nav li a {
+	display: block;
+}
+
+#head-nav li a:hover {
+	color: red;
+}
+
+.footer {
+	padding: 0px;
+	margin-top: 20px;
+	border-top: 1px solid #eee;
+	padding-top: 30px;
+	margin-bottom: 20px;
+}
+
+.footer a {
+	color: #555;
+	font-size: 12px;
+	text-decoration: none;
+	margin-right: 8px;
+	margin-left: 8px;
+}
+
+.footer span {
+	color: #999;
+}
+
+.vip-content-div-window {
+	height: 300px;
+	padding: 0px;
+	margin-top: 70px;
+}
+
+.vip-content-div-window div {
+	padding: 0px;
+}
+
+.vip-content-div {
+	height: 150px;
+	border: 1px solid #eee;
+	cursor: pointer;
+}
+
+.vip-content {
+	height: 120px;
+	border-bottom: 2px dashed #eee;
+}
+
+.vip-money {
+	margin-top: 30px;
+	color: #151515;
+	font-size: 30px;
+	text-align: center;
+}
+
+.vip-day {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.vip-tips {
+	margin-top: 50px;
+	color: #aaa;
+	margin-left:45px;
+}
+.vip-button{
+	margin-top: 20px;
+	margin-left:45px;
+}
+.vip-button button{
+	width:100px;
+}

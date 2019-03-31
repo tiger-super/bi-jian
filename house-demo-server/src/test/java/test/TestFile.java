@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,5 +45,16 @@ public class TestFile {
 		}
 
 		System.out.println(list);
+ }
+ @Test
+ public void test() throws ParseException {
+	 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	  Calendar calendar = Calendar.getInstance();
+      calendar.setTime(df.parse(Time.getNowTimeforYearAndMonthAndDay()));
+      calendar.add(Calendar.MONTH, 1);
+      Date newTime =  Time.dateAddMonth(1,df.parse(Time.getNowTimeforYearAndMonthAndDay()));;
+      Date oldTime = df.parse("2019-03-31");
+      System.out.println(newTime.compareTo(oldTime));
+      System.out.println(df.format(newTime) );
  }
 }
