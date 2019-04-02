@@ -29,8 +29,7 @@ function loademployeeInformation() {
 
 }
 function showResult(employee){
-	$(".employee-tbody")
-	.append(
+	$(".employee-tbody").append(
 			"<tr><td class='employeeId' value='"
 					+ employee.employeeId
 					+ "'>"

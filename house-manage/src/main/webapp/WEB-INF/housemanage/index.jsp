@@ -14,16 +14,17 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
 <link href="/static/css/admin.css" rel="stylesheet">
+<link href="/static/css/manage-css/iconfont.css" rel="stylesheet">
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script src="/static/js/manage-js/index.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/excanvas.min.js"></script>
 <script src="/static/js/jquery.flot.min.js"></script>
 <script src="/static/js/jquery.flot.resize.js"></script>
-<script type="text/javascript" src="/static/js/manage-js/chat-loading.js"></script>
+<script type="text/javascript"
+	src="/static/js/manage-js/chat-loading.js"></script>
 </head>
 <body>
-
 	<div class="container">
 
 		<div class="row">
@@ -47,7 +48,7 @@
 								<c:if test="${employeeSession.employeeRole == '超级管理员'}">
 									<li class="li-add-employee"><a href="#">添加员工</a></li>
 									<li><a class="li-see-employee">员工查询</a></li>
-										<li><a class="li-modify-employee">信息修改</a></li>
+									<li><a class="li-modify-employee">信息修改</a></li>
 								</c:if>
 								<li><a class="modifyPassword">密码修改</a></li>
 							</ul></li>
@@ -66,10 +67,19 @@
 								<li><a class="li-customer">用户查询</a></li>
 								<li><a class="li-black">黑名单</a></li>
 							</ul></li>
-
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="collapse" data-target="#vip-dropdown" href="#">
+								<span class='vip-iconfont viphuiyuan'
+								style="color: white; font-size: 15px;"></span> 会员管理 <b
+								class="caret"> </b>
+						</a>
+						<ul id="vip-dropdown" class="collapse">
+								<li><a class="li-vip">vip管理</a></li>
+								<li><a class="li-vip-pay">vip充值管理</a></li>
+							</ul></li>
+						</li>
 						<li class="dropdown chat-li">
-						<div class="chatNumber"></div>
-						<a class="dropdown-toggle"
+							<div class="chatNumber"></div> <a class="dropdown-toggle"
 							data-toggle="collapse" data-target="#settings-dropdown" href="#"><i
 								class="icon-refresh"></i> 客服 </a>
 						</li>
@@ -98,12 +108,13 @@
 					</ul>
 
 					<ul class="breadcrumb">
-						<li><a class="employeeId" value='${employeeSession.employeeId}'>管理员</a></li>
+						<li><a class="employeeId"
+							value='${employeeSession.employeeId}'>管理员</a></li>
 					</ul>
 
 				</div>
-		        <iframe src="/manage/session/show/websiteReportView" width="100%"
-					scrolling="no" frameborder="0" id="load"> </iframe> 	
+				<iframe src="/manage/session/show/websiteReportView" width="100%"
+					scrolling="no" frameborder="0" id="load"> </iframe>
 			</div>
 
 
@@ -166,10 +177,10 @@
 				<label for="name">请输入新密码</label> <input type="text"
 					class="new-password" placeholder="新密码">
 			</div>
-		
-			<div class="form-group" style="text-align:right">	
-					<button type="button"  class="btn btn-info modify">修改</button>
-            </div>
+
+			<div class="form-group" style="text-align: right">
+				<button type="button" class="btn btn-info modify">修改</button>
+			</div>
 		</form>
 	</div>
 </body>

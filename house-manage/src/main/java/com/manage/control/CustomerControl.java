@@ -23,7 +23,6 @@ public class CustomerControl {
 		page.setPageCurrent(pageCurrent);
 		}
 		Map<String,Object> map = customerManageService.loadCustomerInformationService(page);
-		map.put("page",page);
 		return map;
     }
 	@RequestMapping("/load/black/customer")

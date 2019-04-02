@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.house.demo.customer.PersonInfoService;
 import com.house.demo.house.HouseService;
 import com.house.entity.Customer;
 import com.house.entity.House;
@@ -29,7 +30,8 @@ import com.house.tool.PhoneAddressCreate;
 public class HouseController {
 	@Reference
 	HouseService houseService;
-
+	@Reference
+	PersonInfoService personInfoService;
 
 	/**
 	 * 该方法收集用户发布的房源信息
@@ -43,8 +45,13 @@ public class HouseController {
 	@ResponseBody
 	public Map<String, String> PublishHouse(House house, HttpSession session, HttpServletRequest request) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
-		String houseId = house.getHouseId();
 		Map<String, String> map = new HashMap<String, String>();
+		if(!personInfoService.ifVip(customer.getCustomerId())) {
+			map.put("result","false");
+			map.put("vip","true");
+			return map;
+		}
+		String houseId = house.getHouseId();
 		String result = null;
 		Cookie[] cookies = request.getCookies();
 		String folder = null;

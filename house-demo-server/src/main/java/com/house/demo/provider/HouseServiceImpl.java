@@ -175,13 +175,18 @@ public class HouseServiceImpl implements HouseService {
 
 	@Override
 	public Map<String,Object> ModifyHouseState(House house) {
-		System.out.println(house);
 		Map<String,Object> map = new HashMap<String,Object>();
 		String ifBlack = customerManagementMapper.ifExistBlack(house.getHousePublisherId());
 		if("1".equals(ifBlack)) {
 			map.put("result",false);
 			map.put("text","你已被列入黑名单");
 		}else {
+		String ifVip = customerManagementMapper.selectCustomerWhetherVipAccordingToId(house.getHousePublisherId());
+		if("0".equals(ifVip)) {
+				map.put("result",false);
+				map.put("text","你的会员已过期");
+				return map;
+		}
 		if (house.getHousePublisherState() != null && "1".equals(house.getHousePublisherState())) {
 			house.setHousePublisherTime(Time.getNowTime());
 		}

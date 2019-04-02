@@ -6,27 +6,27 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/manage-css/customer.css">
+<link rel="stylesheet" href="/static/css/manage-css/see-vip.css">
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/static/js/manage-js/customer.js"></script>
+<script type="text/javascript" src="/static/js/manage-js/see-vip.js"></script>
 </head>
 <body>
 <div class="col-sm-12 search-window">
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" autocomplete="off">
 <div class="form-group">
     <div class="col-sm-9">
-      <input type="text" class="form-control" placeholder="请输入客户id" id="searchHouse">
+      <input type="text" class="form-control" placeholder="请输入用户id" id="searchHouse">
     </div>
     <div class="col-sm-2 button-window">
-    <button type="submit" class="btn btn-info btn-lg btn-block">查询</button>
+    <button type="button" class="btn btn-info btn-lg btn-block select">查询</button>
     </div>
   </div>
 </form>
 </div>
 	<table class="table table-bordered">
 		<caption>用户数据表</caption>
-		<thead class="customer-thead">
-			<tr>
+		<thead class="vip-thead">
+			<tr class="vip-title">
 				<th>用户id</th>
 				<th>用户头像</th>
 				<th>用户姓名</th>
@@ -34,10 +34,12 @@
 				<th>用户年龄</th>
 				<th>用户电话</th>
 				<th>用户邮箱</th>
+				<th>起始时间</th>
+				<th>到期时间</th>
 				<th>操作按钮</th>
 			</tr>
 		</thead>
-		<tbody class="customer-tbody">
+		<tbody class="vip-tbody">
 			
 		</tbody>
 	</table>

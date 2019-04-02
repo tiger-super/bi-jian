@@ -18,4 +18,8 @@
    <select id="ifExistBlack" parameterType="String" resultType="String">
       select if_blacklist from customer where customer_id = #{parameter}
    </select>
+   
+   <select id="selectCustomerWhetherVipAccordingToId" parameterType="String" resultType="String">
+   select if_vip from customer where customer_id = #{parameter}   
+   </select>
   </mapper>

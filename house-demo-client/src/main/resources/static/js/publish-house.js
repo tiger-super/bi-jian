@@ -47,6 +47,8 @@ $(document).ready(function() {
 				success : function(result) {
 					if(result.result == "true"){
 						window.location.href="/house/show/publish/success";
+					}else if(result.vip == "true"){
+				    	 window.open("/house/session/show/vip/view","_blank"); 
 					}
 				}
 			});

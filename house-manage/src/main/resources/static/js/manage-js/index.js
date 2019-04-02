@@ -38,6 +38,10 @@ $(document).ready(function() {
 	$(".li-see-employee").click(function(){
 		$("#load").attr("src", "/manage/session/show/see/employee");
 	})
+	
+	$(".li-vip").click(function(){
+		$("#load").attr("src", "/manage/session/show/vip");
+	})
 	$(".modifyPassword").click(function(){
 		$(".employee-information").hide();
 		if(password){

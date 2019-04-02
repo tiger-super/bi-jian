@@ -58,6 +58,7 @@
 		</div>
 	</div>
 <div class='col-sm-12' style='text-align:center'><h1>住哪儿VIP充值中心</h1></div>
+<div class='col-sm-12' style='text-align:center;color:red;'><h6>成为我们的会员，解锁所有特权</h6></div>
 <div class='col-sm-1'></div>
 <div class='col-sm-10 vip-content-div-window'>
 <div class='col-sm-12'>

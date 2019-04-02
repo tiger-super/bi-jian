@@ -79,8 +79,7 @@ $(document)
 										"houseAuditingState");
 								pageCurrent = 1;
 							})
-					$
-							.ajax({
+					$.ajax({
 								url : '/house/session/gain/info',
 								dataType : "json",
 								type : "post",
@@ -95,15 +94,10 @@ $(document)
 											result.customerAge);
 									$("#customerMailbox").attr("value",
 											result.customerMailbox);
-									if (result.customerHeadImageAddress != null) {
-										$(".head-img")
-												.attr(
-														"src",
-														result.customerHeadImageAddress);
+									if (result.customerHeadImageAddress.indexOf("null") != -1 ) {
+										$(".head-img").attr("src","/static/img/renyuanzengjia.png");
 									} else {
-										$(".head-img")
-												.attr("src",
-														"/static/img/renyuanzengjia.png");
+										$(".head-img").attr("src",result.customerHeadImageAddress);
 									}
 								}
 							});

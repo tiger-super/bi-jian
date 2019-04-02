@@ -48,7 +48,7 @@ public class ViewJumpController {
 	// 显示主界面
 	@RequestMapping("/show/indexView")
 	public String showIndex() {
-		websiteCount.website();
+		websiteCount.website(); 
 		return "index";
 	}
 

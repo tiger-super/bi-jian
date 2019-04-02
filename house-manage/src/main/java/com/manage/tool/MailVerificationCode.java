@@ -19,7 +19,7 @@ public class MailVerificationCode {
 	  public static boolean send(String receiveMail,String text) throws GeneralSecurityException  {
 	      // 发件人电子邮箱
 	      String from = "347177277@qq.com";
-	 
+
 	      // 指定发送邮件的主机为 smtp.qq.com
 	      String host = "smtp.qq.com";  //QQ 邮件服务器
 	 

@@ -70,4 +70,8 @@ public class ShowViewControl {
 	public String showChat() {
 		return "chat";
 	}
+	@RequestMapping("/session/show/vip")
+	public String showVip() {
+		return "see-vip";
+	}
 }

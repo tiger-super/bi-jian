@@ -54,6 +54,7 @@ public class DailyInsertNewData {
 		if (publisherId.size() > 0) {
 	    mailBox = customerManageDao.selectCustomerMailBoxFromId(publisherId);
 		}
+		if( mailBox != null) {
 		for(int i = 0 ;i < mailBox.size();i++) {
 			try {
 				MailVerificationCode.send(mailBox.get(i),"你在住哪儿发布的房源上架已过一月，现系统自动下架房源，如果房源未成功出售,则请登录住哪儿网站重新发布");
@@ -62,5 +63,6 @@ public class DailyInsertNewData {
 				e.printStackTrace();
 			}
 		}
+	    }
 	}
 }

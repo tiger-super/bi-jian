@@ -19,4 +19,6 @@ public interface CustomerManagementMapper {
 	public Customer loginSystem(String customerPhone);
 	
 	public String ifExistBlack(String customerId);
+	
+	public String selectCustomerWhetherVipAccordingToId(String customerId);
 }

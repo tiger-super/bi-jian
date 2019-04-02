@@ -20,6 +20,7 @@ public interface PersonInfoService {
 	public String photoUploadService(byte[] arr,String suffix,String id);
     // 查询账号是否存在，若存在返回该账号的邮箱
 	public Customer ifExistAccountNumberReturnMail(Customer customer);
-
+    // 查询是是否是vip
+	public boolean ifVip(String customerId);
 
 }

@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/manage-css/add-employee.css">
+
 <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 <script type="text/javascript"

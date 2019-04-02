@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.house.demo.customer.PersonInfoService;
 import com.house.entity.Customer;
+import com.house.mapper.CustomerManagementMapper;
 import com.house.mapper.PersonInfoManagementMapper;
 import com.house.tool.AnalysisXML;
 import com.house.tool.FileUtil;
@@ -14,6 +15,8 @@ import com.house.tool.PhoneAddressCreate;
 public class PersonInfoServiceImpl implements PersonInfoService {
 	@Autowired
 	PersonInfoManagementMapper personInfoManagementMapper;
+	@Autowired
+	CustomerManagementMapper customerManagementMapper;
 	@Autowired
 	AnalysisXML ax;
 
@@ -128,5 +131,17 @@ public class PersonInfoServiceImpl implements PersonInfoService {
 	public Customer ifExistAccountNumberReturnMail(Customer customer) {
 		return personInfoManagementMapper.selectCustomerIdAndMail(customer);
 	}
+
+	@Override
+	public boolean ifVip(String customerId) {
+		String ifVip = customerManagementMapper.selectCustomerWhetherVipAccordingToId(customerId);
+		if("0".equals(ifVip)) {
+			return false;
+		}else {
+			return true;			
+		}
+	}
+	
+	
 
 }
