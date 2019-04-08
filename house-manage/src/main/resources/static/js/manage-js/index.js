@@ -38,7 +38,9 @@ $(document).ready(function() {
 	$(".li-see-employee").click(function(){
 		$("#load").attr("src", "/manage/session/show/see/employee");
 	})
-	
+	$(".li-vip-pay").click(function(){
+		$("#load").attr("src", "/manage/session/show/pay/manage");
+	})
 	$(".li-vip").click(function(){
 		$("#load").attr("src", "/manage/session/show/vip");
 	})

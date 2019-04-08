@@ -38,7 +38,16 @@
     </tr>
      <tr>
       <td>房源价钱</td>
-      <td>${map.house.houseInfo.houseMoney}</td>
+      <td>${map.house.houseInfo.houseMoney}
+      <c:choose>
+      <c:when test="${house.houseInfo.houseSellWay == '出售'}">
+                          万
+      </c:when>
+      <c:otherwise>
+	                 元/月	
+      </c:otherwise>
+      </c:choose>
+      </td>
     </tr>
      <tr>
       <td>房源大小</td>

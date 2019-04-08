@@ -20,7 +20,7 @@ $(document).ready(function() {
 					}else{
 						alert("系统出错");
 					}
-					window.location.href="/manage/show/auditing/houseManageView";
+					window.location.href="/manage/session/show/auditing/houseManageView";
 				}
 		 })
 	 })

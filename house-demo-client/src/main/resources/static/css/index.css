@@ -19,6 +19,13 @@
 	margin-top: 15px;
 	cursor: pointer;
 }
+.all a{
+	color:black;
+}
+.all a:hover{
+	text-decoration: none;
+}
+
 .place a{
 	color:black;
 }

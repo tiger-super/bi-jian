@@ -7,6 +7,13 @@ public class WebsiteCount implements Serializable {
     private int visitNumberToday;
     private int housePublishNumberToday;
     private int houseLowerShelfNumberToday;
+    private int todayPayNumber;
+	public int getTodayPayNumber() {
+		return todayPayNumber;
+	}
+	public void setTodayPayNumber(int todayPayNumber) {
+		this.todayPayNumber = todayPayNumber;
+	}
 	public String getTime() {
 		return time;
 	}
@@ -34,6 +41,7 @@ public class WebsiteCount implements Serializable {
 	@Override
 	public String toString() {
 		return "WebsiteCount [time=" + time + ", visitNumberToday=" + visitNumberToday + ", housePublishNumberToday="
-				+ housePublishNumberToday + ", houseLowerShelfNumberToday=" + houseLowerShelfNumberToday + "]";
+				+ housePublishNumberToday + ", houseLowerShelfNumberToday=" + houseLowerShelfNumberToday
+				+ ", todayPayNumber=" + todayPayNumber + "]";
 	}
 }

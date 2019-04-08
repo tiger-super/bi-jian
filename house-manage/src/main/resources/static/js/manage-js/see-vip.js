@@ -1,6 +1,26 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loadCustomerInformation();
+	$(".select").click(function(){
+		$.ajax({
+			url : '/manage/session/get/id/from/vip',
+			dataType : "json",
+			type : "post",
+			data : {
+					"customerId" : $("#searchVip").val(),
+					},
+			success : function(result) {
+				if(result != null){
+					$(".vip-tbody").empty();
+					showInformation(result,0);
+				}else{
+					alert("不存在该用户");
+				}
+			}
+		})
+	})
+	
+	
 })
 
 function loadCustomerInformation() {
@@ -16,54 +36,60 @@ function loadCustomerInformation() {
 			$(".vip-tbody").empty();
 			if(list != null){
 			for (let i = 0; i < list.length; i++) {
-				$(".vip-tbody").append(
-						"<tr><td class='customerId' value='"+list[i].customerId +"'>" + list[i].customerId + "</td>"
-								+ "<td><img class='vipImg' src='"
-								+ list[i].customerHeadImageAddress
-								+ "'></td><td>" + list[i].customerName
-								+ "</td><td>" + list[i].customerSex + "</td>"
-								+ "<td>" + list[i].customerAge + "</td><td>"
-								+ list[i].customerPhone + "</td><td class='mailbox'>"
-								+ list[i].customerMailbox + "</td><td>"
-								+ list[i].vipRechargeTime + "</td><td class='stopTime'>"
-								+ list[i].vipStopTime + "</td><td>"+
-								"<button type='button' class='button-"+i+" btn btn-success pay-remind'>续费提醒</button></td></tr>");
-			if(ifRemind(list[i].vipStopTime)){
-					$(".button-"+i).removeClass("btn-success");
-					$(".button-"+i).addClass("btn-warning");
+				showInformation(list[i],i);
 			}
-			}
-			$(".vip-tbody td").css("line-height",
-					$(".vip-tbody td").height() + "px");
 			showPageView(result.page);
-			$(".pay-remind").click(function(){
-				let mailbox = $(this).parents("tr").children(".mailbox").text();
-				let stopStr = $(this).parents("tr").children(".stopTime").text()
-				let stopDate = stringToDate(stopStr);
-				let day = subtractDate(stopDate,new Date());
-				$.ajax({
-					url : '/manage/session/remind/renew',
-					dataType : "json",
-					type : "post",
-					data : {
-						"day" : day,
-						"mailbox":mailbox,
-					},
-					success : function(result) {
-						if(result.result == true){
-							
-						}else{
-							alert("操作失败");
-						}
-				}
-				})
-			})
 			}
-		}
-
+	}
 	});
 
 }
+
+function showInformation(customer,i){
+	$(".vip-tbody").append(
+			"<tr><td class='customerId' value='"+customer.customerId +"'>" + customer.customerId + "</td>"
+			+ "<td><img class='vipImg' src='"
+			+ customer.customerHeadImageAddress
+			+ "'></td><td>" + customer.customerName
+			+ "</td><td>" + customer.customerSex + "</td>"
+			+ "<td>" + customer.customerAge + "</td><td>"
+			+ customer.customerPhone + "</td><td class='mailbox'>"
+			+ customer.customerMailbox + "</td><td>"
+			+ customer.vipRechargeTime + "</td><td class='stopTime'>"
+			+ customer.vipStopTime + "</td><td>"+
+			"<button type='button' class='button-"+i+" btn btn-success pay-remind'>续费提醒</button></td></tr>");
+	if(ifRemind(customer.vipStopTime)){
+		$(".button-"+i).removeClass("btn-success");
+		$(".button-"+i).addClass("btn-warning");
+	}
+
+$(".vip-tbody td").css("line-height",
+		$(".vip-tbody td").height() + "px");
+$(".pay-remind").click(function(){
+	let mailbox = $(this).parents("tr").children(".mailbox").text();
+	let stopStr = $(this).parents("tr").children(".stopTime").text()
+	let stopDate = stringToDate(stopStr);
+	let day = subtractDate(stopDate,new Date());
+	$.ajax({
+		url : '/manage/session/remind/renew',
+		dataType : "json",
+		type : "post",
+		data : {
+			"day" : day,
+			"mailbox":mailbox,
+		},
+		success : function(result) {
+			if(result.result == true){
+				
+			}else{
+				alert("操作失败");
+			}
+		}
+	})
+})
+	}
+
+
 
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
@@ -130,7 +156,7 @@ var stringToDate = function(dateStr){
     var dateArr = dateStr.split(separator); 
     var year = parseInt(dateArr[0]); 
     var month; 
-//处理月份为04这样的情况                        
+// 处理月份为04这样的情况
 if(dateArr[1].indexOf("0") == 0){
         month = parseInt(dateArr[1].substring(1)); 
     }else{ 

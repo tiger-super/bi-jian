@@ -75,7 +75,7 @@
 						</a>
 						<ul id="vip-dropdown" class="collapse">
 								<li><a class="li-vip">vip管理</a></li>
-								<li><a class="li-vip-pay">vip充值管理</a></li>
+								<li><a class="li-vip-pay">订单管理</a></li>
 							</ul></li>
 						</li>
 						<li class="dropdown chat-li">

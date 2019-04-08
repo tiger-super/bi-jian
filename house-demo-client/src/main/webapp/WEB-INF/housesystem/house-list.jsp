@@ -22,7 +22,7 @@
 				<img src="/static/img/houselogo.png" class="houselogo" />
 			</div>
 			<div class="navbar-header">
-				<a href="#" class="navbar-brand logo" value=${houseSellWay}>住哪儿</a>
+				<a href="#" class="navbar-brand logo">住哪儿</a>
 			</div>
 			<div class="col-sm-1 place-div">
 				<img src="/static/img/place.png" class="place-img" /> <span
@@ -58,7 +58,7 @@
 
 	<div class="col-sm-1"></div>
 
-	<div class="content col-sm-11" value = "condition=default">
+	<div class="content col-sm-11" value = ${houseStr}>
 		<div class="col-sm-12 select-area-title-window">
 			<div class="col-sm-1 select-area-title">位置</div>
 			<div class="col-sm-2 select-area-title">

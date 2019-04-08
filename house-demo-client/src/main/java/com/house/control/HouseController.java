@@ -159,8 +159,8 @@ public class HouseController {
 		} else {
 			house.setHouseAddressProvince(province);
 			house.setHouseAddressCity(city);
-			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition,
-					page);
+			System.out.println(house);
+			return houseService.getHouseFromProvinceAndCityAndAreaAndSortAndOtherCondition(house, sort, condition,page);
 		}
 	}
 

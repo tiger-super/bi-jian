@@ -101,7 +101,17 @@
 				<div class="col-sm-12 house-other-info">
 					<div class="col-sm-12">
 						<span class="house-money">${house.houseInfo.houseMoney}</span> <span
-							class="house-money-company">元/月</span> <span>${house.houseInfo.houseDepoitWay}</span>
+							class="house-money-company">
+							<c:choose>
+                          <c:when test="${house.houseInfo.houseSellWay == '出售'}">
+                          万</span> 
+                       </c:when>
+                     <c:otherwise>
+	元/月	</span> <span>${house.houseInfo.houseDepoitWay}</span>
+                   </c:otherwise>
+                   </c:choose>
+							
+					
 					</div>
 
 					<div class="col-sm-12">

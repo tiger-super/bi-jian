@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.house.entity.Customer;
 import com.house.entity.Page;
 import com.manage.service.VipManageService;
 import com.manage.tool.MailVerificationCode;
@@ -42,5 +44,23 @@ public class VipControl {
 		map.put("result",result);
 		return map;
 	}
-
+	@RequestMapping("/session/get/id/from/vip")
+	@ResponseBody
+	public Customer getVipCustomerFromId(Customer customer){
+		return vipManageService.selectVipFromId(customer);
+	}
+	@RequestMapping("/session/show/pay/manage")
+	public String getShowPayManage() {
+		return "vip-pay-manage";
+	}
+	@RequestMapping("/session/get/vip/order/information")
+	@ResponseBody
+	public Map<String,Object> getVipOrderInformation(@RequestParam(required = false) Integer pageCurrent){
+		Page page = new Page();
+		if(pageCurrent != null) {
+		page.setPageCurrent(pageCurrent);
+		}
+		Map<String,Object> map = vipManageService.vipOrderServer(page);
+		return map;
+	}
 }

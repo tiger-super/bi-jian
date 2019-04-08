@@ -1,7 +1,4 @@
-$(document)
-		.ready(
-				function() {
-					 addCondtion("houseInfo.houseSellWay",$(".logo").attr("value"));
+$(document).ready(function() {
 					informationLoad(getJson());
 					$(".select-area-content-part").click(
 							function(){
@@ -99,6 +96,13 @@ function bindingEvent() {
 }
 
 function renderIngInformation(house) {
+	console.log(house);
+	let moneyCompany;
+	if(house.houseInfo.houseSellWay == '出售'){
+		 moneyCompany = "万";
+	}else{
+		moneyCompany = "元/月";
+	}
 	$(".house-information-list-window")
 			.append(
 					"<div class='col-sm-9 house-information-div'  value="
@@ -132,7 +136,7 @@ function renderIngInformation(house) {
 							+ "</div></div></div><div class='house-information-word-right col-sm-2'><span class='house-money'>"
 							+ house.houseInfo.houseMoney
 							+ "</span>"
-							+ "<span style='color: red'>万</span></div></div></div></div>");
+							+ "<span style='color: red'>"+moneyCompany+"</span></div></div></div></div>");
 }
 
 let pageCurrent = 1;
@@ -198,13 +202,14 @@ function getJson(){
 	if(value != ""){
 		data = transformationJson(value);
 	}
+	// 将json字符串转换为json对象
 	return JSON.parse(data);
 }
 function addJson(json,key,value){
 	json[key] = value;
 	return json;
 }
-// 由json转换为字符串
+// 由json字符串转换为字符串
 function getString(json){
 	let data = JSON.stringify(json)
 	data = data.replace(/{"/g, "");
@@ -214,7 +219,7 @@ function getString(json){
 	$(".content").attr("value",data); 
 	
 }
-// 由字符串转换为json
+// 将字符串转换为json字符串
 function transformationJson(data) {
 	data = data.replace(/&/g, "\",\"");
 	data = data.replace(/=/g, "\":\"");

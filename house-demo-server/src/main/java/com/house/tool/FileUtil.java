@@ -106,8 +106,12 @@ public class FileUtil {
 		keepPath.append(keepAddress + imageFolder);
 		File file = new File(keepPath.toString());
 		String[] images = file.list();
+		if(images.length>0) {
 		visitPath.append(visitAddress + imageFolder + "/" + images[0]);
 		return visitPath.toString();
+		}else {
+        return null;			
+		}
 	}
 
 	// 创建文件夹

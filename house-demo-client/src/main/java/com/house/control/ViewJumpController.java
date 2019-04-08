@@ -6,15 +6,19 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.house.demo.area.AnalysisAreaXmlService;
 import com.house.demo.house.HouseService;
 import com.house.demo.website.WebsiteService;
+import com.house.entity.Device;
 import com.house.entity.House;
+import com.house.entity.HouseInfo;
 
 @Controller
 @RequestMapping("/house")
@@ -85,7 +89,7 @@ public class ViewJumpController {
 
 	// 显示房源界面
 	@RequestMapping("/show/house/list")
-	public ModelAndView showHouseListView(HttpServletRequest request, String houseSellWay) {
+	public ModelAndView showHouseListView(HttpServletRequest request, House house) {
 		ModelAndView mv = new ModelAndView();
 		Cookie[] cookies = request.getCookies();
 		String province = null;
@@ -108,7 +112,36 @@ public class ViewJumpController {
 		List<String> areaList = analysisAreaXmlService.analysisAreaXmlGainArea(province, city);
 		mv.setViewName("house-list");
 		mv.addObject("areaList", areaList);
-		mv.addObject("houseSellWay", houseSellWay);
+		StringBuffer houseStr = new StringBuffer();
+		HouseInfo houseInfo =house.getHouseInfo();
+		Device device = house.getDevice();
+		if(houseInfo != null) {
+			if(houseInfo.getHouseSellWay() != null) {
+				houseStr.append("houseInfo.houseSellWay="+houseInfo.getHouseSellWay()+"&");
+			}
+			if(houseInfo.getHouseDirection() != null) {
+				houseStr.append("houseInfo.houseDirection="+houseInfo.getHouseDirection()+"&");
+			}
+			if(houseInfo.getHouseDepoitWay() != null) {
+				houseStr.append("houseInfo.houseDepoitWay="+houseInfo.getHouseDepoitWay()+"&");
+			}
+			if(houseInfo.getHouseStructure() != null) {
+				houseStr.append("houseInfo.houseStructure="+houseInfo.getHouseStructure()+"&");
+			}
+			if(houseInfo.getHouseType() != null) {
+				houseStr.append("houseInfo.houseType="+houseInfo.getHouseType()+"&");
+			}
+		}
+		if(device != null) {
+			if(device.getElevator()!= null) {
+				houseStr.append("device.elevator="+device.getElevator()+"&");
+			}
+			if(device.getBalcony()!= null) {
+				houseStr.append("device.balcony="+device.getBalcony()+"&");
+			}
+		}
+	    houseStr.append("condition=default");
+		mv.addObject("houseStr",houseStr.toString());
 		return mv;
 	}
 

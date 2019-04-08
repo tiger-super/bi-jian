@@ -13,6 +13,5 @@ public class Open {
 		System.out.println("后台已启动");
 		ServerSocketTool sst = new ServerSocketTool();
 		sst.serverStart();
-
 	}
 }

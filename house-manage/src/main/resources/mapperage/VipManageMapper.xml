@@ -5,14 +5,35 @@
 <mapper namespace="com.manage.dao.VipManageDao">
 
 
-	<select id="selectAllVip"
+	<select id="selectAllVipCustomer"
 		resultType="com.house.entity.Customer"
 		parameterType="com.house.entity.Page">
 		select * from customer where if_vip = '1' limit
 		#{pageShowNow},#{pageNumber}
 	</select>
-	<select id="accountAllVip" resultType="int">
+	<select id="accountAllVipCustomer" resultType="int">
 		select count(*) from customer where if_vip = '1'
 	</select>
+	<select id="seletctVipCustomerAccordingId" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
+	select * from customer where if_vip = '1' and customer_id = #{customerId}
+	</select>
+	<select id="queryAllVipOrder" resultMap="vipOrder" parameterType="com.house.entity.Page">
+		select pay_id,pay_money,pay_time,pay_people_id,customer_name  from pay,customer where pay_people_id = customer_id order by pay_time desc limit #{pageShowNow},#{pageNumber} 
+	</select>
+	<resultMap type="com.house.entity.Pay" id="vipOrder">
+	    <id column="pay_id" property="payId" />
+		<result column="pay_money" property="payMoney" />
+		<result column="pay_time" property="payTime" />
+		<result column="pay_people_id" property="payPeopleId" />
+		<result column="customer_name" property="payPeopleName"/> 
+	</resultMap>
 	
+	<select id="accountVipOrder" resultType="int">
+	select count(*) from pay
+	</select>
+	
+	
+	<select id="accountPayMoneyAndNowDay" resultType="java.lang.String" parameterType="java.lang.String">
+	select pay_money from pay where pay_time like concat(#{parameter},'%')
+	</select>
 </mapper>

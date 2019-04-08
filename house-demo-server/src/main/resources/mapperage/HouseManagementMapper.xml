@@ -44,17 +44,46 @@
 		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address
-		from house
-		h,house_info hi where
-		h.house_id = hi.house_id and
-		house_address_province = #{house.houseAddressProvince}
-		and
-		house_address_city
-		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
-		<if test='house.houseAddressArea != null'>
+		house_size,house_direction,house_money,house_structure,house_image_address,house_sell_way
+		from house h,house_info hi,device d where
+		h.house_id = hi.house_id 
+		and h.house_id = d.house_id 
+		and house_address_province = #{house.houseAddressProvince}
+		and house_address_city = #{house.houseAddressCity} 
+		and house_publisher_state = '1'
+		<if test='house.houseInfo != null and house.houseInfo.houseSellWay != null'>
+		and house_sell_way = #{house.houseInfo.houseSellWay} 
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseType != null'>
+		<choose>
+			<when test="house.houseInfo.houseType == 'business' ">
+				and house_type in ('写字楼','仓库','厂房','土地','商铺','车位')
+			</when>
+			<otherwise>
+				and house_type= #{house.houseInfo.houseType}
+			</otherwise>
+			</choose>
+		</if>
+		<if test='house != null and house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseDepoitWay != null'>
+			and house_depoit_way = #{house.houseInfo.houseDepoitWay}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseDirection != null'>
+			and house_direction = #{house.houseInfo.houseDirection}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseStructure != null'>
+			and house_structure like concat(#{house.houseInfo.houseStructure},'%')
+		</if>
+		<if test='house.device != null and house.device.elevator != null'>
+			and elevator = '1'
+		</if>
+		<if test='house.device != null and house.device.toilet != null'>
+			and toilet = '1'
+		</if>
+		<if test='house.device != null and house.device.balcony != null'>
+			and balcony = '1'
 		</if>
 		limit #{page.pageShowNow},#{page.pageNumber}
 	</select>
@@ -74,6 +103,7 @@
 			<result column="house_structure" property="houseStructure" />
 			<result column="house_image_address"
 				property="houseImageAddress" />
+				<result column="house_sell_way" property="houseSellWay"/>
 		</association>
 	</resultMap>
 
@@ -83,17 +113,47 @@
 		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address
-		from house
-		h,house_info hi where
-		h.house_id = hi.house_id and
-		house_address_province = #{house.houseAddressProvince}
-		and
-		house_address_city
-		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
-		<if test='house.houseAddressArea != null'>
+		house_size,house_direction,house_money,house_structure,house_image_address,house_sell_way
+		from house h,house_info hi,device d where
+		h.house_id = hi.house_id
+		and h.house_id = d.house_id 
+		and house_address_province = #{house.houseAddressProvince}
+		and house_address_city = #{house.houseAddressCity} 
+		and house_publisher_state = '1'
+		<if test='house.houseInfo != null and house.houseInfo.houseSellWay != null'>
+		and house_sell_way = #{house.houseInfo.houseSellWay} 
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseType != null'>
+		<choose>
+			<when test="house.houseInfo.houseType == 'business' ">
+				and house_type in ('写字楼','仓库','厂房','土地','商铺','车位')
+			</when>
+			<otherwise>
+				and house_type= #{house.houseInfo.houseType}
+			</otherwise>
+	   </choose>
+		</if>
+		
+		<if test='house != null and house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseDepoitWay != null'>
+			and house_depoit_way = #{house.houseInfo.houseDepoitWay}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseDirection != null'>
+			and house_direction = #{house.houseInfo.houseDirection}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseStructure != null'>
+			and house_structure like concat(#{house.houseInfo.houseStructure},'%')
+		</if>
+		<if test='house.device != null and house.device.elevator != null'>
+			and elevator = '1'
+		</if>
+		<if test='house.device != null and house.device.toilet != null'>
+			and toilet = '1'
+		</if>
+		<if test='house.device != null and house.device.balcony != null'>
+			and balcony = '1'
 		</if>
 		order by CAST(
 		<choose>
@@ -112,17 +172,46 @@
 		parameterType="java.util.Map" resultMap="setHouse">
 		select
 		h.house_id,house_name,house_address_info,house_publisher_time,follow_number,
-		house_size,house_direction,house_money,house_structure,house_image_address
-		from house
-		h,house_info hi where
-		h.house_id = hi.house_id and
-		house_address_province = #{house.houseAddressProvince}
-		and
-		house_address_city
-		= #{house.houseAddressCity} and house_sell_way =
-		#{house.houseInfo.houseSellWay} and house_publisher_state = '1'
-		<if test='house.houseAddressArea != null'>
+		house_size,house_direction,house_money,house_structure,house_image_address,house_sell_way
+		from house h,house_info hi,device d where
+		h.house_id = hi.house_id
+		and h.house_id = d.house_id 
+		and house_address_province = #{house.houseAddressProvince}
+		and house_address_city = #{house.houseAddressCity} 
+		and house_publisher_state = '1'
+		<if test='house.houseInfo != null and house.houseInfo.houseSellWay != null'>
+		and house_sell_way = #{house.houseInfo.houseSellWay} 
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseType != null'>
+		<choose>
+			<when test="house.houseInfo.houseType == 'business' ">
+				and house_type in ('写字楼','仓库','厂房','土地','商铺','车位')
+			</when>
+			<otherwise>
+				and house_type= #{house.houseInfo.houseType}
+			</otherwise>
+			</choose>
+		</if>
+		<if test='house != null and house.houseAddressArea != null'>
 			and house_address_area = #{house.houseAddressArea}
+		</if>
+			<if test='house.houseInfo != null and house.houseInfo.houseDepoitWay != null'>
+			and house_depoit_way = #{house.houseInfo.houseDepoitWay}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseDirection != null'>
+			and house_direction = #{house.houseInfo.houseDirection}
+		</if>
+		<if test='house.houseInfo != null and house.houseInfo.houseStructure != null'>
+			and house_structure like concat(#{house.houseInfo.houseStructure},'%')
+		</if>
+		<if test='house.device != null and house.device.elevator != null'>
+			and elevator = '1'
+		</if>
+		<if test='house.device != null and house.device.toilet != null'>
+			and toilet = '1'
+		</if>
+		<if test='house.device != null and house.device.balcony != null'>
+			and balcony = '1'
 		</if>
 		order by CAST(
 		<choose>
@@ -139,12 +228,45 @@
 	<select id="getHouseInformationTotal"
 		parameterType="com.house.entity.House" resultType="int">
 		select count(*) from house
-		h,house_info hi where
-		h.house_id = hi.house_id and house_address_province = #{houseAddressProvince}
-		and house_address_city = #{houseAddressCity} and house_sell_way = #{houseInfo.houseSellWay}
-		 and house_publisher_state = '1'
+		h,house_info hi,device d where
+		h.house_id = hi.house_id 
+		and h.house_id = d.house_id 
+		and house_address_province = #{houseAddressProvince}
+		and house_address_city = #{houseAddressCity}
+		and house_publisher_state = '1'
+		<if test='houseInfo != null and houseInfo.houseSellWay != null'>
+		and house_sell_way = #{houseInfo.houseSellWay} 
+		</if>
+		<if test='houseInfo != null and houseInfo.houseType != null'>
+		<choose>
+			<when test="houseInfo.houseType == 'business'">
+				and house_type in ('写字楼','仓库','厂房','土地','商铺','车位')
+			</when>
+			<otherwise>
+				and house_type= #{houseInfo.houseType}
+			</otherwise>
+			</choose>
+		</if>
 		<if test='houseAddressArea != null'>
 			and house_address_area = #{houseAddressArea}
+		</if>
+		<if test='houseInfo != null and houseInfo.houseDepoitWay != null'>
+			and house_depoit_way = #{houseInfo.houseDepoitWay}
+		</if>
+		<if test='houseInfo != null and houseInfo.houseDirection != null'>
+			and house_direction = #{houseInfo.houseDirection}
+		</if>
+		<if test='houseInfo != null and houseInfo.houseStructure != null'>
+			and house_structure like concat(#{houseInfo.houseStructure},'%')
+		</if>
+		<if test='device != null and device.elevator != null'>
+			and elevator = '1'
+		</if>
+		<if test='device != null and device.toilet != null'>
+			and toilet = '1'
+		</if>
+		<if test='device != null and device.balcony != null'>
+			and balcony = '1'
 		</if>
 	</select>
 	

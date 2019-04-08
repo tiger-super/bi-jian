@@ -11,8 +11,9 @@
 		parameterType="com.house.entity.WebsiteCount">
 		update website_count set house_publish_number_today =
 		#{housePublishNumberToday},
-		house_lower_shelf_number_today=#{houseLowerShelfNumberToday} where
-		time=#{time}
+		house_lower_shelf_number_today=#{houseLowerShelfNumberToday},
+		today_pay_number=#{todayPayNumber}
+		where time=#{time}
 	</update>
 
 	<select id="selectVisitFromDay" parameterType="java.lang.String"

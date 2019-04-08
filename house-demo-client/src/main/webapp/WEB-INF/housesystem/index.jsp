@@ -75,7 +75,7 @@
 								<div class="number">21套</div>
 								<div class="see">
 									<div class="col-lg-1" style="height: 20px; padding: 0px;"></div>
-									<div class="col-lg-8" style="padding: 0px;">查看全部</div>
+									<div class="col-lg-8 all" style="padding: 0px;"><a href=href="/house/show/house/list?houseInfo.houseSellWay=租售">查看全部</a></div>
 
 									<div class="iconfont icon-bofang col-lg-1 icon"></div>
 
@@ -90,40 +90,40 @@
 
 							<tbody>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售">
 											<div class="col-sm=12" style="padding: 0px;">整租</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">合租</div>
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售&houseInfo.houseStructure=1室1厅">
+											<div class="col-sm=12" style="padding: 0px;">一室一厅</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">精装修</div>
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售&device.toilet='1'">
+											<div class="col-sm=12" style="padding: 0px;">独立卫生间</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售">
 											<div class="col-sm=12" style="padding: 0px;">个人房源</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售&houseInfo.houseDepoitWay=押一付一">
 											<div class="col-sm=12" style="padding: 0px;">押一付一</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售">
 											<div class="col-sm=12" style="padding: 0px;">家电齐全</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售&houseInfo.houseDirection=南">
 											<div class="col-sm=12" style="padding: 0px;">朝南</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">短租</div>
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售&device.balcony='1'">
+											<div class="col-sm=12" style="padding: 0px;">独立阳台</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">求租</div>
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseSellWay=租售">
+											<div class="col-sm=12" style="padding: 0px;">短租</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td colspan="3" style="border: 5px solid white"><a href="/house/show/house/list?houseSellWay='租售'">
+									<td colspan="3" style="border: 5px solid white"><a href="/house/show/house/list?houseInfo.houseSellWay=租售">
 											<div class="col-sm=12" style="padding: 0px;">
 												全部租房房源 <i class="iconfont icon-bofang icon"></i>
 											</div>
@@ -150,7 +150,7 @@
 								<div class="number">8266套</div>
 								<div class="see">
 									<div class="col-lg-1" style="height: 20px; padding: 0px;"></div>
-									<div class="col-lg-8" style="padding: 0px;">查看全部</div>
+									<div class="col-lg-8" all" style="padding: 0px;"><a href=href="/house/show/house/list?houseInfo.houseSellWay=出售">查看全部</div>
 
 									<div class="iconfont icon-bofang col-lg-1 icon"></div>
 
@@ -165,41 +165,50 @@
 
 							<tbody>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">小户型</div>
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售&houseInfo.houseStructure=1室1厅">
+											<div class="col-sm=12" style="padding: 0px;">一房一厅</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">精装两居</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">小三居</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">准新房</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">精装修</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售&houseInfo.houseDirection=南北">
 											<div class="col-sm=12" style="padding: 0px;">南北通透</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">低总价</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售&device.elevator=1">
 											<div class="col-sm=12" style="padding: 0px;">带电梯</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a
+										href="/house/show/house/list?houseInfo.houseSellWay=出售&houseInfo.houseType=别墅">
 											<div class="col-sm=12" style="padding: 0px;">别墅</div>
 									</a></td>
 								</tr>
 								<tr>
 									<td colspan="3" style="border: 5px solid white;"><a
-										href="/house/show/house/list?houseSellWay='出售'">
+										href="/house/show/house/list?houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">
 												全部二手房源 <i class="iconfont icon-bofang icon"></i>
 											</div>
@@ -229,7 +238,7 @@
 								<div class="number">5310套</div>
 								<div class="see">
 									<div class="col-lg-1" style="height: 20px; padding: 0px;"></div>
-									<div class="col-lg-8" style="padding: 0px;">查看全部</div>
+									<div class="col-lg-8 all" style="padding: 0px;"><a href="/house/show/house/list?houseInfo.houseType=business">查看全部</a></div>
 
 									<div class="iconfont icon-bofang col-lg-1 icon"></div>
 
@@ -246,44 +255,45 @@
 
 							<tbody>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=商铺&houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">商铺出租</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=商铺&houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">商铺出售</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=写字楼&houseInfo.houseSellWay=出租">
 											<div class="col-sm=12" style="padding: 0px;">写字楼出租</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=写字楼&houseInfo.houseSellWay=出售">
 											<div class="col-sm=12" style="padding: 0px;">写字楼出售</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=business">
 											<div class="col-sm=12" style="padding: 0px;">生意转让</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=厂房">
 											<div class="col-sm=12" style="padding: 0px;">厂房</div>
 									</a></td>
 								</tr>
 								<tr>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=仓库">
 											<div class="col-sm=12" style="padding: 0px;">仓库</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
-											<div class="col-sm=12" style="padding: 0px;">土地</div>
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=土地">
+											<div class="col-sm=12" style="padding: 0px;">
+											土地</div>
 									</a></td>
-									<td style="border: 5px solid white;"><a href="">
+									<td style="border: 5px solid white;"><a href="/house/show/house/list?houseInfo.houseType=车位">
 											<div class="col-sm=12" style="padding: 0px;">车位</div>
 									</a></td>
 								</tr>
 								<tr>
 									<td colspan="3" style="border: 5px solid white;"><a
-										href="">
+										href="/house/show/house/list?houseInfo.houseType=business">
 											<div class="col-sm=12" style="padding: 0px;">
 												全部商业地产 <i class="iconfont icon-bofang icon"></i>
-									</a></td>
+									</div></a></td>
 								</tr>
 							</tbody>
 						</table>

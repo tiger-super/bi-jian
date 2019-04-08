@@ -56,6 +56,7 @@
       <td>房源出售方式</td>
       <td>${map.house.houseInfo.houseSellWay}</td>
     </tr>
+    
      <tr>
       <td>房源押金</td>
       <td>${map.house.houseInfo.houseDepoitWay}</td>

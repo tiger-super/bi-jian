@@ -98,4 +98,10 @@ public class ImageTool {
 			}
 		}
 	}
+	public String getCustomerImg(String path) {
+		StringBuffer visit = new StringBuffer();
+		String employeeVisitAddress = ax.getName(AnalysisXML.CUSTOMERVISITADDRESS);
+		visit.append(employeeVisitAddress).append(path);
+		return visit.toString();
+	}
 }
