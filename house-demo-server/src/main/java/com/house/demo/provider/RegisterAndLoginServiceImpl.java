@@ -1,5 +1,8 @@
 package com.house.demo.provider;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
@@ -27,13 +30,22 @@ public class RegisterAndLoginServiceImpl implements RegisterAndLoginService{
 	}
 
 	@Override
-	public String registerService(Customer customer) {
+	public Map<String,String> registerService(Customer customer) {
+		Map<String,String> map = new HashMap<String,String>();
+		Customer ifCustomer = cmm.loginSystem(customer.getCustomerPhone());
+		if(ifCustomer == null) {
 		int result = cmm.registerCustomer(customer);
 		if(result != 0) {
-			return "true";
+			 map.put("result","true");
 		}else{
-			return "false";
+			 map.put("result","false");
+			 map.put("reason","系统错误");
 		}
+		 }else {
+			 map.put("result","false");
+			 map.put("reason","用户已存在");
+		 }
+		return map;
 	}
     
 }

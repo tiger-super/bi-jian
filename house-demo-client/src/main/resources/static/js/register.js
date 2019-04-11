@@ -23,11 +23,14 @@ $(document).ready(function(){
     							type : "get",
     							data : $("#register").serialize(),
     							success : function(result) {
-    								if (result == "true") {
+    								console.log(result);
+    								if (result.result == "true") {
     									window.location.href = "/house/show/successView";
     								} else {
-    									$(".dataJudge").removeClass("hide");
-    									$(".text").text(result);
+    									$(".mailVerificationCode-tips").removeClass("hide");
+    					    	      	$(".mailVerificationCode-tips").text(result.reason);
+    					    	      	$(".mailVerificationCodeText").parent().addClass("has-error");
+    					    	      	$(".form-mailbox").parent().addClass("has-error");
     								}
     							}
     						});

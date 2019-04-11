@@ -32,7 +32,7 @@ public class EndEveryDayUpdateData {
 		wc.setTime(Time.getNowTimeforYearAndMonthAndDay());
 		wc.setHouseLowerShelfNumberToday(houseLowerShelfNumberToday);
 		wc.setHousePublishNumberToday(housePublishNumberToday);
-		List<String> list = vipManageDao.accountPayMoneyAndNowDay("2019-04-07");
+		List<String> list = vipManageDao.accountPayMoneyAndNowDay(Time.getNowOtherTime());
 		int sum = 0;
 		for(int i = 0 ; i < list.size(); i++) {
 			 sum += Integer.valueOf(list.get(i));

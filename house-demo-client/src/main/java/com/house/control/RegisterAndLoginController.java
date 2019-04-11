@@ -26,7 +26,7 @@ public class RegisterAndLoginController {
 	// 处理注册
 	@RequestMapping("/handle/register")
 	@ResponseBody
-	public String handleRegiseter(Customer customer) {
+	public Map<String,String> handleRegiseter(Customer customer) {
 		return registerAndLoginService.registerService(customer);
 	}
 
