@@ -37,4 +37,7 @@
 			#{customerId}
 		</foreach>
 	</select>
+	<select id="selectCsutomerWithId" parameterType="com.house.entity.Customer" resultType="com.house.entity.Customer">
+	select * from customer where customer_id = #{customerId}
+	</select>
 </mapper>

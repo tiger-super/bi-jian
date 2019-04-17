@@ -1,6 +1,9 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loadCustomerInformation();
+	$(".select").click(function(){
+		select();
+	})
 })
 
 function loadCustomerInformation() {
@@ -117,4 +120,32 @@ function showPageView(page) {
 					$(document).outerHeight(true) + "px");
 		}
 	})
-}
+}	
+	
+function select(){
+		$.ajax({
+			url : '/manage/session/select/customer/with/id',
+			dataType : "json",
+			type : "post",
+			data : {"customerId":$("#searchCustomer").val()},
+			success : function(result) {
+				if(result.result){
+					$(".page-show-content").empty();
+					$(".customer-tbody").empty();
+					let customer = result.customer;
+					$(".customer-tbody").append(
+							"<tr><td class='customerId' value='"+customer.customerId +"'>" + customer.customerId + "</td>"
+									+ "<td><img class='customerImg' src='"
+									+ customer.customerHeadImageAddress
+									+ "'></td><td>" + customer.customerName
+									+ "</td><td>" + customer.customerSex + "</td>"
+									+ "<td>" + customer.customerAge + "</td><td>"
+									+ customer.customerPhone + "</td>" + "<td>"
+									+ customer.customerMailbox + "</td><td>"+
+									"<button type='button' class='btn btn-warning add-black'>加入黑名单</button></td></tr>");
+				}else{
+					loademployeeInformation();
+				}
+			}
+		})
+	}

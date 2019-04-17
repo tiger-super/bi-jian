@@ -83,7 +83,7 @@ public class EmployeeControl {
 	@ResponseBody
 	public Map<String,Object> selectEmployeeFromEmployeeId(Employee employee,HttpSession session){
 		Employee employeeSession = (Employee)session.getAttribute("employeeSession");
-		Map<String,Object> map  = employeeManageService.getEmployeeWithEmployeeId(employeeSession.getEmployeeId());
+		Map<String,Object> map  = employeeManageService.getEmployeeWithEmployeeId(employee.getEmployeeId());
 		map.put("role",employeeSession.getEmployeeRole());
 		return map;
 	}

@@ -15,7 +15,7 @@
 <form class="form-horizontal" role="form" autocomplete="off">
 <div class="form-group">
     <div class="col-sm-9">
-      <input type="text" class="form-control" placeholder="请输入员工id" id="searchHouse">
+      <input type="text" class="form-control" placeholder="请输入员工id" id="searchEmployee">
     </div>
     <div class="col-sm-2 button-window">
     <button type="button" class="btn btn-info btn-lg btn-block select">查询</button>

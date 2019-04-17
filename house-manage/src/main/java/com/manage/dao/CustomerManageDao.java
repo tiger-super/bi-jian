@@ -24,7 +24,8 @@ public interface CustomerManageDao {
     int addBlack(String customerId);
     // 取消黑名单
     int deleteBlack(String customerId);
-    
     //获取用户的邮箱
     List<String> selectCustomerMailBoxFromId(Set<String> list);
+    // 根据id获取用户信息
+    Customer selectCsutomerWithId(Customer customer);
 }

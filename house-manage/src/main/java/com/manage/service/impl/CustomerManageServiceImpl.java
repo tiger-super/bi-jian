@@ -105,4 +105,17 @@ public class CustomerManageServiceImpl implements CustomerManageService {
 		return map;
 	}
 
+	@Override
+	public Map<String, Object> getCustomerWithCustomerId(Customer customer) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		Customer result = customerManageDao.selectCsutomerWithId(customer);
+		if(result == null) {
+			map.put("result",false);
+		}else {
+			map.put("result",true);
+			map.put("customer",result);
+		}
+		return map;
+	}
+
 }

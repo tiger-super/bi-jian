@@ -174,7 +174,7 @@ function select(){
 		url : '/manage/session/select/employee',
 		dataType : "json",
 		type : "post",
-		data : {"employeeId":$(".select").val()},
+		data : {"employeeId":$("#searchEmployee").val()},
 		success : function(result) {
 		if(result.result == true){
 			$(".head-img").attr("src",result.employee.employeeImgAddress);

@@ -35,7 +35,7 @@ public class EndEveryDayUpdateData {
 		List<String> list = vipManageDao.accountPayMoneyAndNowDay(Time.getNowOtherTime());
 		int sum = 0;
 		for(int i = 0 ; i < list.size(); i++) {
-			 sum += Integer.valueOf(list.get(i));
+			 sum += Double.valueOf(list.get(i));
 		}
 		wc.setTodayPayNumber(sum);
 		websiteManagementMapper.updateWebsiteData(wc);

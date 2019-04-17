@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$(".chat").remove();
 	$("body").append("	<div class='col-sm-3 chat' style='padding:0px;background-color:#f5f5f5;height:337px;position:fixed;right:10px;bottom:10px'>"
 			+"<div style='width:20px;position:absolute;right:0px;z-index:10000' class='close'><img src='/static/img/chat/close.png' style='height:20px;width:20px'></div>"
-	+"<div class='col-sm-12' id='message' style='padding:0px;height:250px;border:1px solid #ddd;;overflow-y:auto;overflow-x:hidden'></div>"
+	+"<div class='col-sm-12 m' id='message' style='padding:0px;height:250px;border:1px solid #ddd;;overflow-y:auto;overflow-x:hidden'></div>"
 	+"<div class='col-sm-12 import' style='background-color:#f5f5f5'>" +
 	"<div class='col-sm-12' style='padding:0px'><textarea class='send-content' rows='2' cols='40' style='height:35px;width:294px;border:none;background-color:#f5f5f5;'></textarea></div>" +
 	"<div class='col-sm-8'><button type='button' class='btn btn-info' id='content' style='height:30px;width:70px;line-height:18px'>连接</button>"+
@@ -29,14 +29,15 @@ $(document).ready(function() {
 
 
 function ConnectWebSockt(){
-	let ws = "ws://47.106.244.224:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value")
-		/*let ws = "ws://localhost:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value");*/
+	let ws = "ws://47.106.244.224:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value");
+	/*let ws = "ws://localhost:8082/websocket/"+$(".employeeId").attr("value")+"/employee/管理员-"+$(".employeeId").attr("value");*/
 	if('WebSocket' in window){
         websocket = new WebSocket(ws);
     }
     else{
         alert('Not support websocket')
     }
+	
     //连接发生错误的回调方法
     websocket.onerror = function(){
         setMessageInnerHTML("error");
@@ -44,6 +45,10 @@ function ConnectWebSockt(){
 
     //连接成功建立的回调方法
     websocket.onopen = function(event){
+    	timer = setInterval(function(){
+      	     let socketMsg = {msg:"ping-content"};
+          	 websocket.send(JSON.stringify(socketMsg));
+         },5000);
     }
 
     //接收到消息的回调方法
@@ -53,15 +58,19 @@ function ConnectWebSockt(){
 
     //连接关闭的回调方法
     websocket.onclose = function(){
+    	console.log("关闭")
+    	  $('#message').append("你已断开连接");
     }
 
     //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
     window.onbeforeunload = function(){
         websocket.close();
     }
+
 }
     //将消息显示在网页上
     function setMessageInnerHTML(innerHTML){
+    	
     	if(innerHTML.indexOf("&") != -1 ){
     	  let json = analysis(innerHTML);
     	  let number = json.number;
@@ -96,6 +105,8 @@ function ConnectWebSockt(){
     	}else{
     	  $('#message').append("<div style='width:250px;word-wrap:break-word; word-break:break-all; overflow: hidden;'>"+innerHTML+"</div>");
     }
+    	let message = $(".m");
+    	message[0].scrollTop = message[0].scrollHeight;
     }
     //关闭连接
     function closeWebSocket(){

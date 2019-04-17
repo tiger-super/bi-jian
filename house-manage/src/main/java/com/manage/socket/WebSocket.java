@@ -116,6 +116,9 @@ public class WebSocket{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	   if("ping-content".equals(socketMsg.getMsg())){
+		   
+	   }else {
        if("true".equals(socketMsg.getIfWork())) {
 
     	   deleteMap(socketMsg.getFromUser(),"employee");
@@ -152,7 +155,7 @@ public class WebSocket{
 				//发送给发送者.
 				 sendMessage(fromSession,"系统消息：对方不在线");
 			}
-        }
+        }}
     }
     //发送错误时调用
     @OnError

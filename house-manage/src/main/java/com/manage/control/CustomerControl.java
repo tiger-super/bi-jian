@@ -1,4 +1,5 @@
 package com.manage.control;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.house.entity.Customer;
 import com.house.entity.Page;
 import com.manage.service.CustomerManageService;
 
@@ -41,5 +43,17 @@ public class CustomerControl {
 	public Map<String,Object> blackCustomerControl(String condition,Integer pageCurrent,String customerId){
 		Map<String,Object> map = customerManageService.blackManageService(pageCurrent,condition,customerId);
 		return map;
+	}
+	@RequestMapping("/session/select/customer/with/id")
+	@ResponseBody
+	public Map<String,Object> selectCustomerInformationFromId(Customer customer){
+		if("".equals(customer.getCustomerId())) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("result",false);
+			return map;
+		}else {
+		Map<String,Object> map = customerManageService.getCustomerWithCustomerId(customer);
+		return map;
+		}
 	}
 }
