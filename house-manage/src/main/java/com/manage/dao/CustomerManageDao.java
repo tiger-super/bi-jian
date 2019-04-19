@@ -27,5 +27,7 @@ public interface CustomerManageDao {
     //获取用户的邮箱
     List<String> selectCustomerMailBoxFromId(Set<String> list);
     // 根据id获取用户信息
-    Customer selectCsutomerWithId(Customer customer);
+    Customer selectCustomerWithId(Customer customer);
+    
+    Customer selectBlackCustomerWithId(Customer customer);
 }

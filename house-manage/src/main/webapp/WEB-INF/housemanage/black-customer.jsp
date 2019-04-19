@@ -16,10 +16,10 @@
 <form class="form-horizontal" role="form">
 <div class="form-group">
     <div class="col-sm-9">
-      <input type="text" class="form-control" placeholder="请输入黑名单id" id="searchHouse">
+      <input type="text" class="form-control" placeholder="请输入黑名单id" id="searchCustomer" autocomplete="off">
     </div>
     <div class="col-sm-2 button-window">
-    <button type="submit" class="btn btn-info btn-lg btn-block">查询</button>
+    <button type="button" class="btn btn-info btn-lg btn-block select">查询</button>
     </div>
   </div>
 </form>

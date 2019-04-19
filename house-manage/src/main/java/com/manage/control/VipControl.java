@@ -46,7 +46,7 @@ public class VipControl {
 	}
 	@RequestMapping("/session/get/id/from/vip")
 	@ResponseBody
-	public Customer getVipCustomerFromId(Customer customer){
+	public  Map<String,Object> getVipCustomerFromId(Customer customer){
 		return vipManageService.selectVipFromId(customer);
 	}
 	@RequestMapping("/session/show/pay/manage")

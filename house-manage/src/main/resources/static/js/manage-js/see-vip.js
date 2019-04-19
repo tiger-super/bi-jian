@@ -10,11 +10,12 @@ $(document).ready(function() {
 					"customerId" : $("#searchVip").val(),
 					},
 			success : function(result) {
-				if(result != null){
+				if(result.result){
 					$(".vip-tbody").empty();
-					showInformation(result,0);
+					showInformation(result.customer,0);
 				}else{
-					alert("不存在该用户");
+					alert("不存在该vip用户");
+					 loadCustomerInformation();
 				}
 			}
 		})

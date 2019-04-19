@@ -41,10 +41,17 @@ public class VipManageServiceImpl implements VipManageService {
 		return map;
 	}
 	@Override
-	public Customer selectVipFromId(Customer customer) {		
+	public Map<String,Object> selectVipFromId(Customer customer) {	
+    Map<String,Object> map = new HashMap<String,Object>();
 	Customer result = vipManageDao.seletctVipCustomerAccordingId(customer);
-	result.setCustomerHeadImageAddress(it.getCustomerImg(result.getCustomerHeadImageAddress()));
-	return result;
+	if(result == null) {
+		map.put("result", false);
+	}else {
+		result.setCustomerHeadImageAddress(it.getCustomerImg(result.getCustomerHeadImageAddress()));
+		map.put("result", true);
+		map.put("customer", result);
+	}
+	return map;
 	}
 	@Override
 	public Map<String, Object> vipOrderServer(Page page) {

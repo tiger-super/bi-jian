@@ -30,41 +30,44 @@ function loadCustomerInformation() {
 								+ list[i].customerMailbox + "</td><td>"+
 								"<button type='button' class='btn btn-warning add-black'>加入黑名单</button></td></tr>");
 			}
+			addFunction();
 			$(".customer-tbody td").css("line-height",
 					$(".customer-tbody td").height() + "px");
 			showPageView(result.page);
-			$(".add-black").click(function(){
-				let customerId = $(this).parents("tr").children("td").eq(0).text()
-				$.ajax({
-					url : '/manage/modify/black/state',
-					dataType : "json",
-					type : "post",
-					data : {
-						"pageCurrent" : pageCurrent,
-						"condition":"1",
-				         "customerId":customerId
-					},
-					success : function(result) {
-						if(result.result == true){
-							if(result.page.pageCurrent != 0){
-							pageCurrent = result.page.pageCurrent;
-							}else if(result.page.pageCurrent == 0){
-								pageCurrent = 1;
-							}
-							loadCustomerInformation();
-						}else{
-							alert("操作失败");
-						}
-					}
-				})
-			})
 			}
 		}
 
 	});
 
 }
-
+function addFunction(){
+	$(".add-black").click(function(){
+		let customerId = $(this).parents("tr").children("td").eq(0).text()
+		$.ajax({
+			url : '/manage/modify/black/state',
+			dataType : "json",
+			type : "post",
+			data : {
+				"pageCurrent" : pageCurrent,
+				"condition":"1",
+				"customerId":customerId
+			},
+			success : function(result) {
+				if(result.result == true){
+					if(result.page.pageCurrent != 0){
+						pageCurrent = result.page.pageCurrent;
+					}else if(result.page.pageCurrent == 0){
+						pageCurrent = 1;
+					}
+					loadCustomerInformation();
+				}else{
+					alert("操作失败");
+				}
+			}
+		})
+	})
+	
+}
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -143,8 +146,9 @@ function select(){
 									+ customer.customerPhone + "</td>" + "<td>"
 									+ customer.customerMailbox + "</td><td>"+
 									"<button type='button' class='btn btn-warning add-black'>加入黑名单</button></td></tr>");
+					addFunction();
 				}else{
-					loademployeeInformation();
+					loadCustomerInformation();
 				}
 			}
 		})

@@ -56,4 +56,16 @@ public class CustomerControl {
 		return map;
 		}
 	}
+	@RequestMapping("/session/select/black/customer/with/id")
+	@ResponseBody
+	public Map<String,Object> selectBlackCustomerInformationFromId(Customer customer){
+		if("".equals(customer.getCustomerId())) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("result",false);
+			return map;
+		}else {
+		Map<String,Object> map = customerManageService.getBlackCustomerWithCustomerId(customer);
+		return map;
+		}
+	}
 }

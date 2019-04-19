@@ -1,6 +1,9 @@
 let pageCurrent = 1;
 $(document).ready(function() {
 	loadCustomerInformation();
+	$(".select").click(function(){
+		select();
+	})
 })
 
 function loadCustomerInformation() {
@@ -27,41 +30,44 @@ function loadCustomerInformation() {
 								+ list[i].customerMailbox + "</td><td>"+
 								"<button type='button' class='btn btn-warning delete-black'>取消黑名单</button></td></tr>");
 			}
+			addFunction();
 			showPageView(result.page);
 			$(".customer-tbody td").css("line-height",
 					$(".customer-tbody td").height() + "px");
 			
 			
-            $(".delete-black").click(function(){
-            	let customerId = $(this).parents("tr").children("td").eq(0).text()
-				$.ajax({
-					url : '/manage/modify/black/state',
-					dataType : "json",
-					type : "post",
-					data : {
-						"pageCurrent" : pageCurrent,
-						"condition":"0",
-				         "customerId":customerId
-					},
-					success : function(result) {
-						if(result.result == true){
-							if(result.page.pageCurrent != 0){
-								pageCurrent = result.page.pageCurrent;
-								}else if(result.page.pageCurrent == 0){
-									pageCurrent = 1;
-								}
-							loadCustomerInformation();
-						}else{
-							alert("操作失败");
-						}
-					}
-			})
-			})
 			}}	
 	});
 
 }
-
+function addFunction(){
+	$(".delete-black").click(function(){
+		let customerId = $(this).parents("tr").children("td").eq(0).text()
+		$.ajax({
+			url : '/manage/modify/black/state',
+			dataType : "json",
+			type : "post",
+			data : {
+				"pageCurrent" : pageCurrent,
+				"condition":"0",
+				"customerId":customerId
+			},
+			success : function(result) {
+				if(result.result == true){
+					if(result.page.pageCurrent != 0){
+						pageCurrent = result.page.pageCurrent;
+					}else if(result.page.pageCurrent == 0){
+						pageCurrent = 1;
+					}
+					loadCustomerInformation();
+				}else{
+					alert("操作失败");
+				}
+			}
+		})
+	})
+	
+}
 function showPageView(page) {
 	pageCurrent = page.pageCurrent;
 	$.ajax({
@@ -115,6 +121,36 @@ function showPageView(page) {
 			})
 			$("#load", parent.document).css("height",
 					$(document).outerHeight(true) + "px");
+		}
+	})
+}
+
+
+function select(){
+	$.ajax({
+		url : '/manage/session/select/black/customer/with/id',
+		dataType : "json",
+		type : "post",
+		data : {"customerId":$("#searchCustomer").val()},
+		success : function(result) {
+			if(result.result){
+				$(".page-show-content").empty();
+				$(".customer-tbody").empty();
+				let customer = result.customer;
+				$(".customer-tbody").append(
+						"<tr><td class='customerId' value='"+customer.customerId +"'>" + customer.customerId + "</td>"
+								+ "<td><img class='customerImg' src='"
+								+ customer.customerHeadImageAddress
+								+ "'></td><td>" + customer.customerName
+								+ "</td><td>" + customer.customerSex + "</td>"
+								+ "<td>" + customer.customerAge + "</td><td>"
+								+ customer.customerPhone + "</td>" + "<td>"
+								+ customer.customerMailbox + "</td><td>"+
+								"<button type='button' class='btn btn-warning delete-black'>取消黑名单</button></td></tr>");
+				addFunction();
+			}else{
+				loadCustomerInformation();
+			}
 		}
 	})
 }
