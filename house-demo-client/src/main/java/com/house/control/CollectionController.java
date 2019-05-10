@@ -44,10 +44,9 @@ public class CollectionController {
 			result = collectionService.addHouseCollectionInformation(collection);
 		}else {
 			result = collectionService.cancelHouseCollectionInformation(collection);
-		}
-		map.put("result", result);
-		
+		}		
 	}
+		map.put("result", result);
 		return map;
 	}
 	@RequestMapping("/load/collection")

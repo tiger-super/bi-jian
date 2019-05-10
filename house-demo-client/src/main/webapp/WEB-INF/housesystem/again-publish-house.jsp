@@ -447,7 +447,7 @@
 						</div>
 						<div class="col-sm-9 select-content select-upload-img-show">
 					 <c:forEach items="${map.list}" var= "img">
-					 <div>
+					 <div class='col-sm-2' style="width:120px">
 					 
 					 <img src= '${img}'>
 					 </div>

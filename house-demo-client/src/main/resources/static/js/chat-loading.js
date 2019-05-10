@@ -49,7 +49,6 @@ function ConnectWebSockt(){
     	timer = setInterval(function(){
      	     let socketMsg = {msg:"ping-content"};
          	 websocket.send(JSON.stringify(socketMsg));
-         	 console.log(websocket)
         },5000);
     }
 

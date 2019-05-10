@@ -50,7 +50,6 @@ public class QuartzConfiguration {
 
 		tigger.setJobDetail(reptilianJob);
 
-		// cron表达式，每1分钟执行一次
 		tigger.setCronExpression("0 01 0 * * ?");
 		tigger.setName("reptilianTrigger");
 		return tigger;

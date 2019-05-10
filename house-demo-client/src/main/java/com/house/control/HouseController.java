@@ -86,7 +86,6 @@ public class HouseController {
 	public List<String> uploadHouseImg(@RequestParam("photoFile") MultipartFile houseImg, HttpServletResponse response,
 			HttpServletRequest request,HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customerSession");
-		
 		Cookie[] cookies = request.getCookies();
 		String folder = null;
 		if (cookies != null) {
